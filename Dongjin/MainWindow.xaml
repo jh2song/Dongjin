@@ -36,28 +36,108 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="기초작업"
+        <Button x:Name="topButton1" 
+                Content="기초작업"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
                 Grid.Column="0"
                 />
-        <Button Content="일일작업"
+        <Button x:Name="topButton2" 
+                Content="일일작업"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
                 Grid.Column="1"
                 />
-        <Button Content="확인작업"
+        <Button x:Name="topButton3" 
+                Content="확인작업"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
                 Grid.Column="2"
                 />
-        <Button Content="자료출력"
+        <Button x:Name="topButton4" 
+                Content="자료출력"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
                 Grid.Column="3"
                 />
-        <Button Content="세금계산"
+        <Button x:Name="topButton5" 
+                Content="세금계산"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
                 Grid.Column="4"
                 />
-        <Button Content="작업종료"
+        <Button x:Name="topButton6" 
+                Content="작업종료"
+                Style="{StaticResource topButtonStyle}"
                 Grid.Row="2"
+                Grid.Column="5"
+                />
+
+        <Button x:Name="underButton11" 
+                Content="거래처등록"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="3"
+                Grid.Column="0"
+                />
+        <Button x:Name="underButton12" 
+                Content="제품등록"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="4"
+                Grid.Column="0"
+                />
+        <Button x:Name="underButton13" 
+                Content="할인률등록"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="5"
+                Grid.Column="0"
+                />
+        <Button x:Name="underButton14" 
+                Content="단가등록"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="6"
+                Grid.Column="0"
+                />
+
+        <Button x:Name="underButton21" 
+                Content="입출고전표"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="3"
+                Grid.Column="1"/>
+        <Button x:Name="underButton22" 
+                Content="입출금전표"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="4"
+                Grid.Column="1"
+                />
+
+        <Button x:Name="underButton31" 
+                Content="미수금현황"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="3"
+                Grid.Column="2"/>
+        <Button x:Name="underButton32" 
+                Content="거래처원장"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="4"
+                Grid.Column="2"
+                />
+        <Button x:Name="underButton33" 
+                Content="과별거래실적"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="5"
+                Grid.Column="2"
+                />
+
+        <Button x:Name="underButton61" 
+                Content="작업마침"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="3"
+                Grid.Column="5"
+                />
+        <Button x:Name="underButton62" 
+                Content="작업계속"
+                Style="{StaticResource underButtonStyle}"
+                Grid.Row="4"
                 Grid.Column="5"
                 />
     </Grid>
