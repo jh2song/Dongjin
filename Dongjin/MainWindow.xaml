@@ -1,0 +1,64 @@
+﻿<Window x:Class="Dongjin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dongjin"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Width="1280"
+        Height="720"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Background="Black"
+        >
+    <Grid Margin="50 0 50 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="기초작업"
+                Grid.Row="2"
+                Grid.Column="0"
+                />
+        <Button Content="일일작업"
+                Grid.Row="2"
+                Grid.Column="1"
+                />
+        <Button Content="확인작업"
+                Grid.Row="2"
+                Grid.Column="2"
+                />
+        <Button Content="자료출력"
+                Grid.Row="2"
+                Grid.Column="3"
+                />
+        <Button Content="세금계산"
+                Grid.Row="2"
+                Grid.Column="4"
+                />
+        <Button Content="작업종료"
+                Grid.Row="2"
+                Grid.Column="5"
+                />
+    </Grid>
+</Window>
