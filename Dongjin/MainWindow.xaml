@@ -11,6 +11,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="Black"
+        KeyDown="Window_KeyDown"
         >
     <Grid Margin="50 0 50 0">
         <Grid.ColumnDefinitions>
@@ -152,10 +153,40 @@
                 Grid.Column="5"
                 />
 
-        <Border BorderBrush="Cyan"
+        <Border x:Name="borderTop" 
+                BorderBrush="Cyan"
                 BorderThickness="2">
             <Grid.Row>2</Grid.Row>
             <Grid.ColumnSpan>6</Grid.ColumnSpan>
+        </Border>
+        
+        <Border x:Name="borderUnder1" 
+                BorderBrush="Cyan"
+                >
+            <Grid.Column>0</Grid.Column>
+            <Grid.Row>3</Grid.Row>
+            <Grid.RowSpan>4</Grid.RowSpan>
+        </Border>
+        <Border x:Name="borderUnder2" 
+                BorderBrush="Cyan"
+                >
+            <Grid.Column>1</Grid.Column>
+            <Grid.Row>3</Grid.Row>
+            <Grid.RowSpan>2</Grid.RowSpan>
+        </Border>
+        <Border x:Name="borderUnder3" 
+                BorderBrush="Cyan"
+                >
+            <Grid.Column>2</Grid.Column>
+            <Grid.Row>3</Grid.Row>
+            <Grid.RowSpan>3</Grid.RowSpan>
+        </Border>
+        <Border x:Name="borderUnder6" 
+                BorderBrush="Cyan"
+                >
+            <Grid.Column>5</Grid.Column>
+            <Grid.Row>3</Grid.Row>
+            <Grid.RowSpan>2</Grid.RowSpan>
         </Border>
     </Grid>
 </Window>
