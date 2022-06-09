@@ -38,7 +38,7 @@ namespace Dongjin
 		public MainWindow()
 		{
 			InitializeComponent();
-
+			
 			/* 시계
 			/* 참고
 			/* https://post.naver.com/viewer/postView.nhn?volumeNo=6903303&memberNo=11439725
@@ -112,7 +112,7 @@ namespace Dongjin
 
 		int topIndex = 0;
 		int underIndex = 0;
-		private void Window_KeyDown(object sender, KeyEventArgs e)
+		private void Window_KeyUp(object sender, KeyEventArgs e)
 		{
 			switch(e.Key)
 			{
@@ -135,7 +135,8 @@ namespace Dongjin
 			}
 
 			topButtons[topIndex].Focus();
-			borders[topIndex].BorderThickness = new Thickness(2, 2, 2, 2);
+			if (underVisible)
+				borders[topIndex].BorderThickness = new Thickness(2, 2, 2, 2);
 			if (underVisible)
 			{
 				foreach (Button b in underButtons[topIndex])
