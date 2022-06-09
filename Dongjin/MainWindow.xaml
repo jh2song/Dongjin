@@ -36,6 +36,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <RichTextBox x:Name="rtbDate"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="6"
+                     VerticalAlignment="Bottom"
+                     Margin="0 0 0 10"
+                     Background="Black"
+                     BorderThickness="0"
+                     FontSize="30"
+                     FontWeight="Bold"
+                    />
+
         <Button x:Name="topButton1" 
                     Content="기초작업"
                     Style="{StaticResource topButtonStyle}"
