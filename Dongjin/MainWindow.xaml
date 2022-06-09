@@ -37,17 +37,17 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="topButton1" 
-                Content="기초작업"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="0"
-                />
+                    Content="기초작업"
+                    Style="{StaticResource topButtonStyle}"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    />
         <Button x:Name="topButton2" 
-                Content="일일작업"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="1"
-                />
+                    Content="일일작업"
+                    Style="{StaticResource topButtonStyle}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    />
         <Button x:Name="topButton3" 
                 Content="확인작업"
                 Style="{StaticResource topButtonStyle}"
@@ -140,5 +140,11 @@
                 Grid.Row="4"
                 Grid.Column="5"
                 />
+
+        <Border BorderBrush="Cyan"
+                BorderThickness="2">
+            <Grid.Row>2</Grid.Row>
+            <Grid.ColumnSpan>6</Grid.ColumnSpan>
+        </Border>
     </Grid>
 </Window>
