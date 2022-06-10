@@ -37,9 +37,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <RichTextBox x:Name="rtbDate"
@@ -106,33 +103,42 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Label x:Name="underLabel11" 
-               Content="거래처등록"
-               Style="{StaticResource underLabelStyle}"
-               Grid.Row="0"
-               Grid.Column="0"
-               />
+                   Content="거래처등록"
+                   Style="{StaticResource underLabelStyle}"
+                   
+                   Grid.Row="0"
+                   Grid.Column="0"
+                    />
             <Label x:Name="underLabel12" 
-               Content="제품등록"
-               Style="{StaticResource underLabelStyle}"
-               Grid.Row="1"
-               Grid.Column="0"
-               />
+                   Content="제품등록"
+                   Style="{StaticResource underLabelStyle}"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   />
             <Label x:Name="underLabel13" 
-               Content="할인률등록"
-               Style="{StaticResource underLabelStyle}"
-               Grid.Row="2"
-               Grid.Column="0"
-               />
+                   Content="할인률등록"
+                   Style="{StaticResource underLabelStyle}"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                    />
             <Label x:Name="underLabel14" 
-               Content="단가등록"
-               Style="{StaticResource underLabelStyle}"
-               Grid.Row="3"
-               Grid.Column="0"
-               />
+                   Content="단가등록"
+                   Style="{StaticResource underLabelStyle}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   />
+
+            <Border x:Name="borderUnder1" 
+                BorderBrush="Cyan"
+                BorderThickness="2"
+                >
+                <Grid.Column>0</Grid.Column>
+                <Grid.Row>0</Grid.Row>
+                <Grid.RowSpan>4</Grid.RowSpan>
+            </Border>
         </Grid>
         
         
@@ -187,14 +193,7 @@
             <Grid.ColumnSpan>6</Grid.ColumnSpan>
         </Border>
 
-        <Border x:Name="borderUnder1" 
-                BorderBrush="Cyan"
-                BorderThickness="2"
-                >
-            <Grid.Column>0</Grid.Column>
-            <Grid.Row>3</Grid.Row>
-            <Grid.RowSpan>4</Grid.RowSpan>
-        </Border>
+        
         <Border x:Name="borderUnder2" 
                 BorderBrush="Cyan"
                 >

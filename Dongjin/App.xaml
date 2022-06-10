@@ -9,14 +9,14 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Yellow"/>
-            <Setter Property="Background" Value="Green"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="32"/>
         </Style>
 
         <Style TargetType="Label" x:Key="underLabelStyle" BasedOn="{StaticResource topLabelStyle}">
+            <Setter Property="Margin" Value="5 5 5 5"/>
             <Setter Property="Foreground" Value="Pink"/>
-            <Setter Property="Background" Value="Green"/>
+            <Setter Property="Background" Value="White"/>
         </Style>
     </Application.Resources>
 </Application>
