@@ -25,6 +25,11 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -41,7 +46,7 @@
                      Grid.Row="1"
                      Grid.ColumnSpan="6"
                      VerticalAlignment="Bottom"
-                     Margin="0 0 0 10"
+                     Margin="0 0 0 15"
                      Background="Black"
                      BorderThickness="0"
                      FontSize="30"
@@ -49,107 +54,128 @@
                      Focusable="False"
                     />
 
-        <Button x:Name="topButton1" 
+        <Label x:Name="topLabel1" 
                     Content="기초작업"
-                    Style="{StaticResource topButtonStyle}"
+                    Style="{StaticResource topLabelStyle}"
                     Grid.Row="2"
                     Grid.Column="0"
                     />
-        <Button x:Name="topButton2" 
+        <Label x:Name="topLabel2" 
                     Content="일일작업"
-                    Style="{StaticResource topButtonStyle}"
+                    Style="{StaticResource topLabelStyle}"
                     Grid.Row="2"
                     Grid.Column="1"
                     />
-        <Button x:Name="topButton3" 
-                Content="확인작업"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="2"
-                />
-        <Button x:Name="topButton4" 
-                Content="자료출력"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="3"
-                />
-        <Button x:Name="topButton5" 
-                Content="세금계산"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="4"
-                />
-        <Button x:Name="topButton6" 
-                Content="작업종료"
-                Style="{StaticResource topButtonStyle}"
-                Grid.Row="2"
-                Grid.Column="5"
-                />
+        <Label x:Name="topLabel3" 
+                    Content="확인작업"
+                    Style="{StaticResource topLabelStyle}"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    />
+        <Label x:Name="topLabel4" 
+                    Content="자료출력"
+                    Style="{StaticResource topLabelStyle}"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    />
+        <Label x:Name="topLabel5" 
+                    Content="세금계산"
+                    Style="{StaticResource topLabelStyle}"
+                    Grid.Row="2"
+                    Grid.Column="4"
+                    />
+        <Label x:Name="topLabel6" 
+                    Content="작업종료"
+                    Style="{StaticResource topLabelStyle}"
+                    Grid.Row="2"
+                    Grid.Column="5"
+                    />
 
-        <Button x:Name="underButton11" 
-                Content="거래처등록"
-                Style="{StaticResource underButtonStyle}"
-                Grid.Row="3"
-                Grid.Column="0"
-                />
-        <Button x:Name="underButton12" 
-                Content="제품등록"
-                Style="{StaticResource underButtonStyle}"
-                Grid.Row="4"
-                Grid.Column="0"
-                />
-        <Button x:Name="underButton13" 
-                Content="할인률등록"
-                Style="{StaticResource underButtonStyle}"
-                Grid.Row="5"
-                Grid.Column="0"
-                />
-        <Button x:Name="underButton14" 
-                Content="단가등록"
-                Style="{StaticResource underButtonStyle}"
-                Grid.Row="6"
-                Grid.Column="0"
-                />
+        <Grid Grid.Row="3"
+              Grid.RowSpan="13">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Button x:Name="underButton21" 
+            <Label x:Name="underLabel11" 
+               Content="거래처등록"
+               Style="{StaticResource underLabelStyle}"
+               Grid.Row="0"
+               Grid.Column="0"
+               />
+            <Label x:Name="underLabel12" 
+               Content="제품등록"
+               Style="{StaticResource underLabelStyle}"
+               Grid.Row="1"
+               Grid.Column="0"
+               />
+            <Label x:Name="underLabel13" 
+               Content="할인률등록"
+               Style="{StaticResource underLabelStyle}"
+               Grid.Row="2"
+               Grid.Column="0"
+               />
+            <Label x:Name="underLabel14" 
+               Content="단가등록"
+               Style="{StaticResource underLabelStyle}"
+               Grid.Row="3"
+               Grid.Column="0"
+               />
+        </Grid>
+        
+        
+        <Label x:Name="underLabel21" 
                 Content="입출고전표"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="3"
-                Grid.Column="1"/>
-        <Button x:Name="underButton22" 
+                Grid.Column="1"
+               />
+        <Label x:Name="underLabel22" 
                 Content="입출금전표"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="4"
                 Grid.Column="1"
                 />
 
-        <Button x:Name="underButton31" 
+        <Label x:Name="underLabel31" 
                 Content="미수금현황"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="3"
                 Grid.Column="2"/>
-        <Button x:Name="underButton32" 
+        <Label x:Name="underLabel32" 
                 Content="거래처원장"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="4"
                 Grid.Column="2"
                 />
-        <Button x:Name="underButton33" 
+        <Label x:Name="underLabel33" 
                 Content="과별거래실적"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="5"
                 Grid.Column="2"
                 />
 
-        <Button x:Name="underButton61" 
+        <Label x:Name="underLabel61" 
                 Content="작업마침"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="3"
                 Grid.Column="5"
                 />
-        <Button x:Name="underButton62" 
+        <Label x:Name="underLabel62" 
                 Content="작업계속"
-                Style="{StaticResource underButtonStyle}"
+                Style="{StaticResource underLabelStyle}"
                 Grid.Row="4"
                 Grid.Column="5"
                 />
@@ -163,6 +189,7 @@
 
         <Border x:Name="borderUnder1" 
                 BorderBrush="Cyan"
+                BorderThickness="2"
                 >
             <Grid.Column>0</Grid.Column>
             <Grid.Row>3</Grid.Row>
@@ -190,12 +217,5 @@
             <Grid.RowSpan>2</Grid.RowSpan>
         </Border>
 
-        <Label Background="Green"
-               Content="안녕하세요"
-               FontSize="32"
-               HorizontalAlignment="center"
-               VerticalAlignment="center"
-               Margin="25 25 25 25"
-            />
     </Grid>
 </Window>

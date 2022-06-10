@@ -4,45 +4,19 @@
              xmlns:local="clr-namespace:Dongjin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
-        <Style x:Key="focusVisualStyle">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle StrokeThickness="0"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
-        
-        <Style TargetType="Button" x:Key="topButtonStyle">
-            <Setter Property="Background" Value="Black"/>
+        <Style TargetType="Label" x:Key="topLabelStyle">
+            <Setter Property="Margin" Value="15 15 15 15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Yellow"/>
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            
-            
-            <Setter Property="FocusVisualStyle" Value="{StaticResource focusVisualStyle}"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="Background" Value="Green"/>
-                </Trigger>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="Background" Value="Green"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="20"/>
         </Style>
 
-        <Style TargetType="Button" x:Key="underButtonStyle" BasedOn="{StaticResource topButtonStyle}">
+        <Style TargetType="Label" x:Key="underLabelStyle" BasedOn="{StaticResource topLabelStyle}">
             <Setter Property="Foreground" Value="Pink"/>
-            <Setter Property="Visibility" Value="Hidden"/>
+            <Setter Property="Background" Value="Green"/>
         </Style>
-
     </Application.Resources>
 </Application>
