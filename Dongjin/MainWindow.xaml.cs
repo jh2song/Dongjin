@@ -38,15 +38,8 @@ namespace Dongjin
 		public MainWindow()
 		{
 			InitializeComponent();
-			
-			/* 시계
-			/* 참고
-			/* https://post.naver.com/viewer/postView.nhn?volumeNo=6903303&memberNo=11439725
-			*/
-			DispatcherTimer timer = new DispatcherTimer();
-			timer.Interval = new TimeSpan(0, 0, 1);
-			timer.Tick += Timer_Tick;
-			timer.Start();
+
+			DateRender();
 
 			topButtons.Add(topButton1);
 			topButtons.Add(topButton2);
@@ -87,7 +80,7 @@ namespace Dongjin
 			topButtons[0].Focus();
 		}
 
-		private void Timer_Tick(object sender, EventArgs e)
+		private void DateRender()
 		{
 			var fd = new FlowDocument();
 			
@@ -111,7 +104,7 @@ namespace Dongjin
 		}
 
 		int topIndex = 0;
-		int underIndex = 0;
+		//int underIndex = 0;
 		private void Window_KeyUp(object sender, KeyEventArgs e)
 		{
 			switch(e.Key)
@@ -135,6 +128,7 @@ namespace Dongjin
 			}
 
 			topButtons[topIndex].Focus();
+
 			if (underVisible)
 				borders[topIndex].BorderThickness = new Thickness(2, 2, 2, 2);
 			if (underVisible)

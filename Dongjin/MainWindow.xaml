@@ -46,6 +46,7 @@
                      BorderThickness="0"
                      FontSize="30"
                      FontWeight="Bold"
+                     Focusable="False"
                     />
 
         <Button x:Name="topButton1" 
@@ -159,7 +160,7 @@
             <Grid.Row>2</Grid.Row>
             <Grid.ColumnSpan>6</Grid.ColumnSpan>
         </Border>
-        
+
         <Border x:Name="borderUnder1" 
                 BorderBrush="Cyan"
                 >
@@ -188,5 +189,13 @@
             <Grid.Row>3</Grid.Row>
             <Grid.RowSpan>2</Grid.RowSpan>
         </Border>
+
+        <Label Background="Green"
+               Content="안녕하세요"
+               FontSize="32"
+               HorizontalAlignment="center"
+               VerticalAlignment="center"
+               Margin="25 25 25 25"
+            />
     </Grid>
 </Window>
