@@ -65,7 +65,7 @@ namespace Dongjin
 		// 다시 그리기
 		private void Window_KeyUp(object sender, KeyEventArgs e)
 		{
-			switch(e.Key)
+			switch (e.Key)
 			{
 				case (Key.Escape):
 					underVisible = false;
