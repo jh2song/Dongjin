@@ -137,7 +137,11 @@ namespace Dongjin
 				labels[topIndex].UnderLabels[underIndex].Background = Brushes.White;
 				labels[topIndex].UnderLabels[underIndex].Foreground = Brushes.Black;
 			}
-			
+			else
+			{
+				if (grids[topIndex] != null)
+					grids[topIndex].Visibility = Visibility.Hidden;
+			}
 		}
 
 		private void DateRender()
