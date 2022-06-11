@@ -21,7 +21,7 @@ namespace Dongjin
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MenuWindow : Window
 	{
 		private List<LabelClass> labels = new List<LabelClass>();
 		private List<Grid> grids = new List<Grid>();
@@ -30,26 +30,29 @@ namespace Dongjin
 		private int topIndex = -1;
 		private int underIndex = 0;
 
-		public MainWindow()
+		public MenuWindow()
 		{
 			InitializeComponent();
 
 			DateRender();
-			SetList();
 
+			SetList();
 		}
 
-		// 초기화
+		// 기존에 그린것을 초기화
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
-
+			// topIndex가 범위안에 있는지 체크
 			if (topIndex < 0 || topIndex >= 6)
 				return;
 
+			// 좌, 우 키를 눌렀을 때 그 전 레이블을 초기화하는 작업
 			if (e.Key == Key.Right || e.Key == Key.Left)
 			{
 				labels[topIndex].TopLabel.Background = Brushes.Black;
 				labels[topIndex].TopLabel.Foreground = Brushes.Yellow;
+				if (grids[topIndex] != null)
+					grids[topIndex].Visibility = Visibility.Hidden;
 			}
 
 			if (labels[topIndex].UnderLabels == null)
@@ -57,19 +60,19 @@ namespace Dongjin
 
 			labels[topIndex].UnderLabels[underIndex].Background = Brushes.Black;
 			labels[topIndex].UnderLabels[underIndex].Foreground = Brushes.Pink;
-
-			if (grids[topIndex] == null)
-				return;
-
-			grids[topIndex].Visibility = Visibility.Hidden;
 		}
 
+		// 다시 그리기
 		private void Window_KeyUp(object sender, KeyEventArgs e)
 		{
 			switch(e.Key)
 			{
+				case (Key.Escape):
+					underVisible = false;
+					break;
+
 				case (Key.Enter):
-					underVisible = !underVisible;
+					underVisible = true;
 					break;
 
 				case (Key.Right):
