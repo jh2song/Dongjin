@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace Dongjin
+namespace Dongjin.Windows.MenuWindow
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
