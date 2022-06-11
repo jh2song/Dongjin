@@ -5,8 +5,9 @@ using System.Windows.Controls;
 
 namespace Dongjin.Classes
 {
-	class TopButton
+	class LabelClass
 	{
-		static List<Button> DownButton { get; set; }
+		public Label TopLabel { get; set; }
+		public List<Label> UnderLabels { get; set; }
 	}
 }

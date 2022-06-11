@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:Dongjin"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Width="1280"
-        Height="720"
+        Width="1920"
+        Height="1080"
         WindowState="Maximized"
         WindowStyle="None"
         Background="Black"
         KeyUp="Window_KeyUp"
+        KeyDown="Window_KeyDown"
         >
     <Grid Margin="50 0 50 0">
         <Grid.ColumnDefinitions>
@@ -88,9 +89,20 @@
                     Grid.Column="5"
                     />
 
-        <Grid Grid.Row="3"
+        <Border x:Name="borderTop" 
+                BorderBrush="Cyan"
+                BorderThickness="2">
+            <Grid.Row>2</Grid.Row>
+            <Grid.ColumnSpan>6</Grid.ColumnSpan>
+        </Border>
+        
+        <Grid x:Name="underGrid1"
+              Visibility="Hidden"
+              Grid.Column="0"
+              Grid.Row="3"
               Grid.RowSpan="13">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -132,89 +144,145 @@
                    />
 
             <Border x:Name="borderUnder1" 
-                BorderBrush="Cyan"
-                BorderThickness="2"
+                    BorderBrush="Cyan"
+                    BorderThickness="2 0 2 2"
                 >
                 <Grid.Column>0</Grid.Column>
                 <Grid.Row>0</Grid.Row>
                 <Grid.RowSpan>4</Grid.RowSpan>
             </Border>
         </Grid>
-        
-        
-        <Label x:Name="underLabel21" 
+
+        <Grid x:Name="underGrid2" 
+              Visibility="Hidden"
+              Grid.Column="1"
+              Grid.Row="3"
+              Grid.RowSpan="13">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="underLabel21" 
                 Content="입출고전표"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="3"
-                Grid.Column="1"
+                Grid.Row="0"
                />
-        <Label x:Name="underLabel22" 
+            <Label x:Name="underLabel22" 
                 Content="입출금전표"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="4"
-                Grid.Column="1"
+                Grid.Row="1"
                 />
 
-        <Label x:Name="underLabel31" 
+            <Border x:Name="borderUnder2" 
+                BorderBrush="Cyan"
+                BorderThickness="2 0 2 2"
+                >
+                <Grid.Column>1</Grid.Column>
+                <Grid.Row>0</Grid.Row>
+                <Grid.RowSpan>2</Grid.RowSpan>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="underGrid3" 
+              Visibility="Hidden"
+              Grid.Column="2"
+              Grid.Row="3"
+              Grid.RowSpan="13">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="underLabel31" 
                 Content="미수금현황"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="3"
-                Grid.Column="2"/>
-        <Label x:Name="underLabel32" 
+                Grid.Row="0"
+                />
+            <Label x:Name="underLabel32" 
                 Content="거래처원장"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="4"
-                Grid.Column="2"
+                Grid.Row="1"
                 />
-        <Label x:Name="underLabel33" 
+            <Label x:Name="underLabel33" 
                 Content="과별거래실적"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="5"
-                Grid.Column="2"
+                Grid.Row="2"
                 />
 
-        <Label x:Name="underLabel61" 
+            <Border x:Name="borderUnder3" 
+                BorderBrush="Cyan"
+                BorderThickness="2 0 2 2"
+                >
+                <Grid.Column>2</Grid.Column>
+                <Grid.Row>0</Grid.Row>
+                <Grid.RowSpan>3</Grid.RowSpan>
+            </Border>
+        </Grid>
+
+        <Grid x:Name="underGrid6"
+              Visibility="Hidden"
+              Grid.Column="5"
+              Grid.Row="3"
+              Grid.RowSpan="13">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="underLabel61" 
                 Content="작업마침"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="3"
-                Grid.Column="5"
+                Grid.Row="0"
                 />
-        <Label x:Name="underLabel62" 
+            <Label x:Name="underLabel62" 
                 Content="작업계속"
                 Style="{StaticResource underLabelStyle}"
-                Grid.Row="4"
-                Grid.Column="5"
+                Grid.Row="1"
                 />
 
-        <Border x:Name="borderTop" 
+            <Border x:Name="borderUnder6" 
                 BorderBrush="Cyan"
-                BorderThickness="2">
-            <Grid.Row>2</Grid.Row>
-            <Grid.ColumnSpan>6</Grid.ColumnSpan>
-        </Border>
-
-        
-        <Border x:Name="borderUnder2" 
-                BorderBrush="Cyan"
+                BorderThickness="2 0 2 2"
                 >
-            <Grid.Column>1</Grid.Column>
-            <Grid.Row>3</Grid.Row>
-            <Grid.RowSpan>2</Grid.RowSpan>
-        </Border>
-        <Border x:Name="borderUnder3" 
-                BorderBrush="Cyan"
-                >
-            <Grid.Column>2</Grid.Column>
-            <Grid.Row>3</Grid.Row>
-            <Grid.RowSpan>3</Grid.RowSpan>
-        </Border>
-        <Border x:Name="borderUnder6" 
-                BorderBrush="Cyan"
-                >
-            <Grid.Column>5</Grid.Column>
-            <Grid.Row>3</Grid.Row>
-            <Grid.RowSpan>2</Grid.RowSpan>
-        </Border>
+                <Grid.Column>5</Grid.Column>
+                <Grid.Row>0</Grid.Row>
+                <Grid.RowSpan>2</Grid.RowSpan>
+            </Border>
+        </Grid>
 
     </Grid>
 </Window>

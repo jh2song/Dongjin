@@ -14,9 +14,8 @@
         </Style>
 
         <Style TargetType="Label" x:Key="underLabelStyle" BasedOn="{StaticResource topLabelStyle}">
-            <Setter Property="Margin" Value="5 5 5 5"/>
+            <Setter Property="Margin" Value="15 5 15 5"/>
             <Setter Property="Foreground" Value="Pink"/>
-            <Setter Property="Background" Value="White"/>
         </Style>
     </Application.Resources>
 </Application>
