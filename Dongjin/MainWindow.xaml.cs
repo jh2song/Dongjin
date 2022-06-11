@@ -42,10 +42,11 @@ namespace Dongjin
 		// 초기화
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
+
 			if (topIndex < 0 || topIndex >= 6)
 				return;
 
-			if (underVisible == false)
+			if (e.Key == Key.Right || e.Key == Key.Left)
 			{
 				labels[topIndex].TopLabel.Background = Brushes.Black;
 				labels[topIndex].TopLabel.Foreground = Brushes.Yellow;
