@@ -11,14 +11,13 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="Black"
+        KeyDown="Window_KeyDown"
+        KeyUp="Window_KeyUp"
         >
     <Grid>
         <GroupBox Width="1080" Height="500">
             <GroupBox.Header>
-                <Label Foreground="White"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       >
+                <Label>
                     로그인 화면 (모니터 해상도는 1920x1080가 권장됩니다.)
                 </Label>
             </GroupBox.Header>
@@ -27,6 +26,52 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"  
+                    HorizontalAlignment="Center"
+                    Grid.Row="0"
+                    >
+
+                    <Label Content="비밀번호: "/>
+                    <Label
+                        x:Name="label1"
+                        />
+                </StackPanel>
+                
+                <Grid
+                    Grid.Row="1"
+                    >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        x:Name="label2"
+                        Content="비밀번호 수정"
+                        VerticalAlignment="Top"
+                        FontSize="32"
+                        Grid.Column="0"
+                        />
+                    <Label
+                        x:Name="label3"
+                        Content="로그인"
+                        VerticalAlignment="Top"
+                        FontSize="32"
+                        Grid.Column="1"
+                        />
+                    <Label
+                        x:Name="label4"
+                        Content="작업 종료"
+                        VerticalAlignment="Top"
+                        FontSize="32"
+                        Grid.Column="2"
+                        />
+                </Grid>
+                
             </Grid>
         </GroupBox>
     </Grid>
