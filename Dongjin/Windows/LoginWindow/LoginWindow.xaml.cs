@@ -62,6 +62,7 @@ namespace Dongjin.Windows.LoginWindow
 					if (App.pwHash == SHA256Class.SHA256Hash(pw))
 					{
 						new MenuWindow.MenuWindow().ShowDialog();
+						DBConnectClass.DBConnect(App.databasePath);
 						Close();
 					}
 					else
@@ -116,6 +117,8 @@ namespace Dongjin.Windows.LoginWindow
 			}
 			catch (Exception ex)
 			{
+				Console.WriteLine(ex);
+
 				System.IO.File.WriteAllText(App.passwordPath, SHA256Class.SHA256Hash(Key.D1.ToString() + Key.D2.ToString() + Key.D3.ToString() + Key.D4.ToString()));
 				App.pwHash = System.IO.File.ReadAllText(App.passwordPath);
 				MessageBox.Show("비밀번호 파일이 없습니다. 기본 비밀번호는 '1234'입니다. 비밀번호를 수정해주세요. ESC로 빠져 나가십시오.", "비밀번호 변경 요청", MessageBoxButton.OK, MessageBoxImage.Error);
