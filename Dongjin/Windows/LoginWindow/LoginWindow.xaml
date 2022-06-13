@@ -13,6 +13,7 @@
         Background="Black"
         KeyDown="Window_KeyDown"
         KeyUp="Window_KeyUp"
+        Loaded="Window_Loaded"
         >
     <Grid>
         <GroupBox Width="1080" Height="500">
