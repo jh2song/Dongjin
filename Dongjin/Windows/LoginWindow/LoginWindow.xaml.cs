@@ -81,6 +81,25 @@ namespace Dongjin.Windows.LoginWindow
 				if (index > 3)
 					index = 0;
 			}
+			else if (e.Key == Key.Left)
+			{
+				index--;
+				if (index < 0)
+					index = 3;
+			}
+			else if (e.Key == Key.Right)
+			{
+				index++;
+				if (index > 3)
+					index = 0;
+			}
+			else if (e.Key == Key.Up || e.Key == Key.Down)
+			{
+				if (index == 1 || index == 2 || index == 3)
+					index = 0;
+				else
+					index = 1;
+			}
 			else if (e.Key == Key.Escape)
 			{
 				pw = "";
