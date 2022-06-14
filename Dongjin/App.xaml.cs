@@ -18,7 +18,7 @@ namespace Dongjin
 
 		static string databaseName = "동진_데이터베이스.db";
 		static string passwordHashName = "비밀번호_해시.dat";
-		static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+		static string folderPath = @"C:\동진화장품";
 		public static string databasePath = System.IO.Path.Combine(folderPath, databaseName);
 		public static string passwordPath = System.IO.Path.Combine(folderPath, passwordHashName);
 

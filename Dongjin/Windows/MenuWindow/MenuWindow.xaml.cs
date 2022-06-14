@@ -1,6 +1,7 @@
 ﻿using Dongjin.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -72,7 +73,10 @@ namespace Dongjin.Windows.MenuWindow
 					break;
 
 				case (Key.Enter):
-					underVisible = true;
+					if (underVisible == true)
+						NextSession();
+					else
+						underVisible = true;
 					break;
 
 				case (Key.Right):
@@ -117,6 +121,18 @@ namespace Dongjin.Windows.MenuWindow
 			}
 
 			MenuRender();
+		}
+
+		private void NextSession()
+		{
+			if (topIndex == 5 && underIndex == 0) // 작업마침
+			{
+				DBConnectClass.Conn.Close();
+				ExpressEncription.AESEncription.AES_Encrypt(App.databasePath + ".decrypted", LoginWindow.LoginWindow.pw);
+				File.Delete(App.databasePath + ".decrypted");
+				File.Replace(App.databasePath + ".decrypted.aes", App.databasePath, null);
+				Close();
+			}
 		}
 
 		private void MenuRender()

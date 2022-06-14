@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dongjin.Windows.MenuWindow;
+using ExpressEncription;
 
 namespace Dongjin.Windows.LoginWindow
 {
@@ -21,7 +22,7 @@ namespace Dongjin.Windows.LoginWindow
 	{
 		private List<Label> labels = new List<Label>();
 		private int index = -1;
-		private static string pw = "";
+		public static string pw = "";
 
 		public LoginWindow()
 		{
@@ -61,8 +62,9 @@ namespace Dongjin.Windows.LoginWindow
 				{
 					if (App.pwHash == SHA256Class.SHA256Hash(pw))
 					{
+						ExpressEncription.AESEncription.AES_Decrypt(App.databasePath, pw);
+						DBConnectClass.DBConnect(App.databasePath + ".decrypted");
 						new MenuWindow.MenuWindow().ShowDialog();
-						DBConnectClass.DBConnect(App.databasePath);
 						Close();
 					}
 					else
