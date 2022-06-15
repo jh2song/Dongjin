@@ -11,7 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Dongjin.Windows.MenuWindow;
-using ExpressEncription;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Dongjin.Windows.LoginWindow
 {
@@ -20,130 +21,115 @@ namespace Dongjin.Windows.LoginWindow
 	/// </summary>
 	public partial class LoginWindow : Window
 	{
-		private List<Label> labels = new List<Label>();
-		private int index = -1;
-		public static string pw = "";
+		private List<Control> controls = new List<Control>();
+		private int index = 0;
 
 		public LoginWindow()
 		{
 			InitializeComponent();
 
-			labels.Add(label1);
-			labels.Add(label2);
-			labels.Add(label3);
-			labels.Add(label4);
+			controls.Add(passwordBox0);
+			controls.Add(label1);
+			controls.Add(label2);
+			controls.Add(label3);
 		}
 
-		bool pwChangeTrigger = false;
-		private void Window_KeyUp(object sender, KeyEventArgs e)
+		private void RenderUpdate()
 		{
-			if (e.Key == Key.Enter)
+			// 그리기 갱신
+			controls[index].Foreground = Brushes.Black;
+			controls[index].Background = Brushes.White;
+		}
+
+		private void RenderInitialize()
+		{
+			// 그리기 초기화
+			if (index >= 0 && index <= 3)
 			{
-				if (index == 1) // 비밀번호 수정
-				{
-					if (App.pwHash == SHA256Class.SHA256Hash(pw))
-					{
-						MessageBox.Show("ESC를 눌러 새로운 암호를 입력하세요.", "암호 변경", MessageBoxButton.OK, MessageBoxImage.Information);
-						pwChangeTrigger = true;
-					}
-					else if (pwChangeTrigger == true)
-					{
-						App.pwHash = SHA256Class.SHA256Hash(pw);
-						System.IO.File.WriteAllText(App.passwordPath, App.pwHash);
-						MessageBox.Show("암호가 변경되었습니다. ESC로 빠져 나가십시오.", "암호 변경", MessageBoxButton.OK, MessageBoxImage.Information);
-						pwChangeTrigger = false;
-					}
-					else
-					{
-						MessageBox.Show("기존 암호가 다릅니다. ESC를 눌러서 다시 입력하세요.", "암호 오류", MessageBoxButton.OK, MessageBoxImage.Error);
-					}
-				}
-				else if (index == 2) // 로그인
-				{
-					if (App.pwHash == SHA256Class.SHA256Hash(pw))
-					{
-						ExpressEncription.AESEncription.AES_Decrypt(App.databasePath, pw);
-						DBConnectClass.DBConnect(App.databasePath + ".decrypted");
-						new MenuWindow.MenuWindow().ShowDialog();
-						Close();
-					}
-					else
-					{
-						MessageBox.Show("암호가 다릅니다. ESC를 눌러서 다시 입력하세요.", "암호 오류", MessageBoxButton.OK, MessageBoxImage.Error);
-					}
-				}
-				else if (index == 3) // 작업 종료
-					Close();
+				controls[index].Foreground = Brushes.White;
+				controls[index].Background = Brushes.Black;
 			}
-			else if (e.Key == Key.Tab)
+		}
+
+		private void Window_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderUpdate();
+		}
+
+		private void PB0_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderInitialize();
+
+			if (e.Key == Key.Tab)
 			{
-				index++;
-				if (index > 3)
-					index = 0;
-			}
-			else if (e.Key == Key.Left)
-			{
-				index--;
-				if (index < 0)
-					index = 3;
-			}
-			else if (e.Key == Key.Right)
-			{
-				index++;
-				if (index > 3)
-					index = 0;
-			}
-			else if (e.Key == Key.Up || e.Key == Key.Down)
-			{
-				if (index == 1 || index == 2 || index == 3)
-					index = 0;
-				else
-					index = 1;
+				index = 1;
+				passwordBox0.Focusable = false;
+				controls[index].Focus();
 			}
 			else if (e.Key == Key.Escape)
 			{
-				pw = "";
-				label1.Content = "";
+				passwordBox0.Clear();
 			}
-			else if (index == 0)
+			else if (e.Key == Key.Enter)
 			{
-				pw += e.Key.ToString();
-				label1.Content += " ";
-			}
-
-
-			// 그리기 갱신
-			if (index >= 0 && index <= 3)
-			{
-				labels[index].Foreground = Brushes.Black;
-				labels[index].Background = Brushes.White;
+				Login();
 			}
 		}
 
-		// 그리기 초기화
-		private void Window_KeyDown(object sender, KeyEventArgs e)
+		private void Login()
 		{
-			if (index >= 0 && index <= 3)
+			throw new NotImplementedException();
+		}
+
+		private void label1_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderInitialize();
+
+			if (e.Key == Key.Tab)
 			{
-				labels[index].Foreground = Brushes.White;
-				labels[index].Background = Brushes.Black;
+				index++;
+				controls[index].Focus();
+			}
+			else if (e.Key == Key.Enter) // 비밀번호 수정
+			{
+
+			}
+		}
+
+		private void label2_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderInitialize();
+
+			if (e.Key == Key.Tab)
+			{
+				index++;
+				controls[index].Focus();
+			}
+			else if (e.Key == Key.Enter) // 로그인
+			{
+
+			}
+		}
+
+		private void label3_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderInitialize();
+
+			if (e.Key == Key.Tab)
+			{
+				index = 0;
+				controls[index].Focusable = true;
+				controls[index].Focus();
+			}
+			else if (e.Key == Key.Enter) // 작업 종료
+			{
+				Close();
 			}
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			try
-			{
-				App.pwHash = System.IO.File.ReadAllText(App.passwordPath);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-
-				System.IO.File.WriteAllText(App.passwordPath, SHA256Class.SHA256Hash(Key.D1.ToString() + Key.D2.ToString() + Key.D3.ToString() + Key.D4.ToString()));
-				App.pwHash = System.IO.File.ReadAllText(App.passwordPath);
-				MessageBox.Show("비밀번호 파일이 없습니다. 기본 비밀번호는 '1234'입니다. 비밀번호를 수정해주세요. ESC로 빠져 나가십시오.", "비밀번호 변경 요청", MessageBoxButton.OK, MessageBoxImage.Error);
-			}
+			passwordBox0.Focus();
 		}
 	}
 }

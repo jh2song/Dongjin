@@ -12,7 +12,6 @@
         WindowStyle="None"
         Background="Black"
         KeyDown="Window_KeyDown"
-        KeyUp="Window_KeyUp"
         Loaded="Window_Loaded"
         >
     <Grid>
@@ -34,10 +33,18 @@
                     HorizontalAlignment="Center"
                     Grid.Row="0"
                     >
-
+                    
                     <Label Content="비밀번호: "/>
-                    <Label
-                        x:Name="label1"
+
+                    <PasswordBox
+                        x:Name="passwordBox0"
+                        Width="300"
+                        Background="Black"
+                        Foreground="White"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        PasswordChar="*"
+                        KeyDown="PB0_KeyDown"
                         />
                 </StackPanel>
                 
@@ -51,25 +58,31 @@
                     </Grid.ColumnDefinitions>
 
                     <Label
-                        x:Name="label2"
+                        x:Name="label1"
                         Content="비밀번호 수정"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="0"
+                        KeyDown="label1_KeyDown"
+                        Focusable="True"
                         />
                     <Label
-                        x:Name="label3"
+                        x:Name="label2"
                         Content="로그인"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="1"
+                        KeyDown="label2_KeyDown"
+                        Focusable="True"
                         />
                     <Label
-                        x:Name="label4"
+                        x:Name="label3"
                         Content="작업 종료"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="2"
+                        KeyDown="label3_KeyDown"
+                        Focusable="True"
                         />
                 </Grid>
                 

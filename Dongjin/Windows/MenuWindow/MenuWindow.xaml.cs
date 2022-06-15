@@ -128,7 +128,7 @@ namespace Dongjin.Windows.MenuWindow
 			if (topIndex == 5 && underIndex == 0) // 작업마침
 			{
 				DBConnectClass.Conn.Close();
-				ExpressEncription.AESEncription.AES_Encrypt(App.databasePath + ".decrypted", LoginWindow.LoginWindow.pw);
+				// ExpressEncription.AESEncription.AES_Encrypt(App.databasePath + ".decrypted", LoginWindow.LoginWindow.pw);
 				File.Delete(App.databasePath + ".decrypted");
 				File.Replace(App.databasePath + ".decrypted.aes", App.databasePath, null);
 				Close();
