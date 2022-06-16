@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Dongjin"
              StartupUri="Windows/LoginWindow/LoginWindow.xaml">
     <Application.Resources>
-        
+
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>

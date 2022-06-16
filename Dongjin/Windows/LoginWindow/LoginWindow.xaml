@@ -37,7 +37,7 @@
                     <Label Content="비밀번호: "/>
 
                     <PasswordBox
-                        x:Name="passwordBox0"
+                        x:Name="passwordBox1"
                         Width="300"
                         Background="Black"
                         Foreground="White"
@@ -45,6 +45,14 @@
                         FontWeight="Bold"
                         PasswordChar="*"
                         KeyDown="PB0_KeyDown"
+                        />
+
+                    <Label
+                        x:Name="label1"
+                        Content="비밀번호 확인"
+                        Margin="50 0 0 0"
+                        KeyDown="label1_KeyDown"
+                        Focusable="True"
                         />
                 </StackPanel>
                 
@@ -58,30 +66,30 @@
                     </Grid.ColumnDefinitions>
 
                     <Label
-                        x:Name="label1"
+                        x:Name="label2"
                         Content="비밀번호 수정"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="0"
-                        KeyDown="label1_KeyDown"
-                        Focusable="True"
-                        />
-                    <Label
-                        x:Name="label2"
-                        Content="로그인"
-                        VerticalAlignment="Top"
-                        FontSize="32"
-                        Grid.Column="1"
                         KeyDown="label2_KeyDown"
                         Focusable="True"
                         />
                     <Label
                         x:Name="label3"
+                        Content="로그인"
+                        VerticalAlignment="Top"
+                        FontSize="32"
+                        Grid.Column="1"
+                        KeyDown="label3_KeyDown"
+                        Focusable="True"
+                        />
+                    <Label
+                        x:Name="label4"
                         Content="작업 종료"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="2"
-                        KeyDown="label3_KeyDown"
+                        KeyDown="label4_KeyDown"
                         Focusable="True"
                         />
                 </Grid>

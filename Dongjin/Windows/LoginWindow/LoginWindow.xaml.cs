@@ -30,15 +30,19 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			InitializeComponent();
 
-			controls.Add(passwordBox0);
+			controls.Add(passwordBox1);
 			controls.Add(label1);
 			controls.Add(label2);
 			controls.Add(label3);
+			controls.Add(label4);
 		}
 
 		private void RenderUpdate()
 		{
 			// 그리기 갱신
+			if (index == 0)
+				return;
+
 			controls[index].Foreground = Brushes.Black;
 			controls[index].Background = Brushes.White;
 		}
@@ -46,7 +50,7 @@ namespace Dongjin.Windows.LoginWindow
 		private void RenderInitialize()
 		{
 			// 그리기 초기화
-			if (index >= 0 && index <= 3)
+			if (index >= 1 && index <= 4)
 			{
 				controls[index].Foreground = Brushes.White;
 				controls[index].Background = Brushes.Black;
@@ -65,12 +69,12 @@ namespace Dongjin.Windows.LoginWindow
 			if (e.Key == Key.Tab)
 			{
 				index = 1;
-				passwordBox0.Focusable = false;
+				passwordBox1.Focusable = false;
 				controls[index].Focus();
 			}
 			else if (e.Key == Key.Escape)
 			{
-				passwordBox0.Clear();
+				passwordBox1.Clear();
 			}
 			else if (e.Key == Key.Enter)
 			{
@@ -78,8 +82,23 @@ namespace Dongjin.Windows.LoginWindow
 			}
 		}
 
-		// 비밀번호 수정
 		private void label1_KeyDown(object sender, KeyEventArgs e)
+		{
+			RenderInitialize();
+
+			if (e.Key == Key.Tab)
+			{
+				index++;
+				controls[index].Focus();
+			}
+			else if (e.Key == Key.Enter)
+			{
+				MessageBox.Show(passwordBox1.Password, "입력한 비밀번호를 확인하세요", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+		}
+
+		// 비밀번호 수정
+		private void label2_KeyDown(object sender, KeyEventArgs e)
 		{
 			RenderInitialize();
 
@@ -95,7 +114,7 @@ namespace Dongjin.Windows.LoginWindow
 		}
 
 		// 로그인
-		private void label2_KeyDown(object sender, KeyEventArgs e)
+		private void label3_KeyDown(object sender, KeyEventArgs e)
 		{
 			RenderInitialize();
 
@@ -106,12 +125,12 @@ namespace Dongjin.Windows.LoginWindow
 			}
 			else if (e.Key == Key.Enter)
 			{
-				Login();			
+				Login();
 			}
 		}
 
 		// 작업 종료
-		private void label3_KeyDown(object sender, KeyEventArgs e)
+		private void label4_KeyDown(object sender, KeyEventArgs e)
 		{
 			RenderInitialize();
 
@@ -129,14 +148,14 @@ namespace Dongjin.Windows.LoginWindow
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			passwordBox0.Focus();
+			passwordBox1.Focus();
 		}
 
 		private async void Login()
 		{
 			try
 			{
-				var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox0.Password);
+				var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
 				DBAsyncConnectClass.Conn = new SQLiteAsyncConnection(options);
 				await DBAsyncConnectClass.Conn.CreateTableAsync<TEST>();
 				new MenuWindow.MenuWindow().Show();
@@ -157,19 +176,19 @@ namespace Dongjin.Windows.LoginWindow
 			{
 				if (passwordValidCheck == false)
 				{
-					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox0.Password);
+					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
 					DBAsyncConnectClass.Conn = new SQLiteAsyncConnection(options);
 					await DBAsyncConnectClass.Conn.CreateTableAsync<TEST>();
 					
 					passwordValidCheck = true;
 					MessageBox.Show("비밀번호가 확인되었습니다. 수정할 비밀번호를 입력 후 다시 진행해 주십시오.", "로그인 확인", MessageBoxButton.OK, MessageBoxImage.Information);
-					passwordBox0.Clear();
+					passwordBox1.Clear();
 				}
 				else
 				{
-					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox0.Password);
+					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
 					DBAsyncConnectClass.Conn = new SQLiteAsyncConnection(options);
-					await DBAsyncConnectClass.Conn.ExecuteAsync("PRAGMA rekey=" + passwordBox0.Password);
+					await DBAsyncConnectClass.Conn.ExecuteAsync("PRAGMA rekey=" + passwordBox1.Password);
 					await DBAsyncConnectClass.Conn.CreateTableAsync<TEST>();
 					MessageBox.Show("비밀번호 수정 완료", "비밀번호 수정 완료", MessageBoxButton.OK, MessageBoxImage.Information);
 				}
@@ -181,5 +200,6 @@ namespace Dongjin.Windows.LoginWindow
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
+
 	}
 }
