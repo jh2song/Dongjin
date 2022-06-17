@@ -48,7 +48,7 @@ namespace Dongjin.Windows.MenuWindow
 				return;
 
 			// 좌, 우 키를 눌렀을 때 그 전 레이블을 초기화하는 작업
-			if (e.Key == Key.Right || e.Key == Key.Left)
+			if (e.Key == Key.Right || e.Key == Key.Left || e.Key == Key.Tab)
 			{
 				labels[topIndex].TopLabel.Background = Brushes.Black;
 				labels[topIndex].TopLabel.Foreground = Brushes.Yellow;
@@ -83,6 +83,7 @@ namespace Dongjin.Windows.MenuWindow
 					break;
 
 				case (Key.Right):
+				case (Key.Tab):
 					topIndex++;
 					if (topIndex >= 6)
 						topIndex = 0;
