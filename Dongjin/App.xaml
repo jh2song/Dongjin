@@ -27,5 +27,18 @@
             <Setter Property="Margin" Value="15 5 15 5"/>
             <Setter Property="Foreground" Value="Pink"/>
         </Style>
+
+        <Style TargetType="TextBox" x:Key="clientStyle">
+            <Setter Property="MaxLines" Value="1"/>
+            <Setter Property="MaxLength" Value="2"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        </Style>
     </Application.Resources>
 </Application>

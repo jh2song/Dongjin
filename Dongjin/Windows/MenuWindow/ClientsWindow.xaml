@@ -40,6 +40,27 @@
             Grid.Row="0"
             />
 
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            >
+            <Label>처리일:</Label>
+            <TextBox 
+                Style="{StaticResource clientStyle}"
+                />
+            <Label>/</Label>
+            <TextBox 
+                Style="{StaticResource clientStyle}"
+                />
+            <Label>/</Label>
+            <TextBox 
+                Style="{StaticResource clientStyle}"
+                />
+            
+            <Grid.Row>1</Grid.Row>
+        </StackPanel>
+        
         <Border
             BorderThickness="2 2 2 2"
             BorderBrush="White"
