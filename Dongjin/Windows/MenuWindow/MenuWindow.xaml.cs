@@ -74,7 +74,10 @@ namespace Dongjin.Windows.MenuWindow
 
 				case (Key.Enter):
 					if (underVisible == true)
+					{
+						underVisible = false;
 						NextSession();
+					}
 					else
 						underVisible = true;
 					break;
@@ -125,7 +128,11 @@ namespace Dongjin.Windows.MenuWindow
 
 		private void NextSession()
 		{
-			if (topIndex == 5 && underIndex == 0) // 작업마침
+			if (topIndex==0 && underIndex == 0) // 거래처등록
+			{
+				new ClientsWindow().Show();
+			}
+			else if (topIndex == 5 && underIndex == 0) // 작업마침
 			{
 				DBAsyncConnectClass.Conn.CloseAsync();
 				
