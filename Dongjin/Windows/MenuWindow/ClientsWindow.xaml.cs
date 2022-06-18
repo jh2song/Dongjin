@@ -17,16 +17,48 @@ namespace Dongjin.Windows.MenuWindow
 	/// </summary>
 	public partial class ClientsWindow : Window
 	{
+		private readonly List<TextBox> tbList = new List<TextBox>();
+		private int focusIdx;
+
 		public ClientsWindow()
 		{
 			InitializeComponent();
+
+			tbList.Add(tb1);
+			tbList.Add(tb2);
+			tbList.Add(tb3);
+			tbList.Add(tb4);
+
+			focusIdx = 0;
+			tbList[focusIdx].Focus();
 		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key==Key.Escape)
+			if (e.Key == Key.Escape)
 			{
 				Close();
+			}
+			else if (e.Key == Key.Enter)
+			{
+				if (tbList[focusIdx] == tb1)
+				{
+					tbList[focusIdx].Text = DateTime.Today.Year.ToString().Substring(2, 2);
+					focusIdx++;
+					tbList[focusIdx].Focus();
+				}
+				else if (tbList[focusIdx] == tb2)
+				{
+					tbList[focusIdx].Text = DateTime.Now.Month.ToString("00");
+					focusIdx++;
+					tbList[focusIdx].Focus();
+				}
+				else if (tbList[focusIdx] == tb3)
+				{
+					tbList[focusIdx].Text = DateTime.Now.Day.ToString("00");
+					focusIdx++;
+					tbList[focusIdx].Focus();
+				}
 			}
 		}
 	}

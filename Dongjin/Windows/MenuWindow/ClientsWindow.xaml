@@ -45,19 +45,45 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             >
-            <Label>처리일:</Label>
-            <TextBox 
+            <Label
+                Content="처리일:"
+                FontSize="32"
+                />
+            <TextBox
+                x:Name="tb1"
                 Style="{StaticResource clientStyle}"
                 />
-            <Label>/</Label>
-            <TextBox 
+            <Label
+                Content="/"
+                FontSize="32"
+                />
+            <TextBox
+                x:Name="tb2"
                 Style="{StaticResource clientStyle}"
                 />
-            <Label>/</Label>
-            <TextBox 
+            <Label
+                Content="/"
+                FontSize="32"
+                />
+            <TextBox
+                x:Name="tb3"
                 Style="{StaticResource clientStyle}"
                 />
-            
+
+            <Label
+                Content="        거래처코드:["
+                FontSize="32"
+                />
+            <TextBox
+                x:Name="tb4"
+                Style="{StaticResource clientStyle}"
+                MaxLength="4"
+                MinWidth="100"
+                />
+            <Label
+                Content="]"
+                FontSize="32"
+                />
             <Grid.Row>1</Grid.Row>
         </StackPanel>
         

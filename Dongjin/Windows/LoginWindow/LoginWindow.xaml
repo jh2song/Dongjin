@@ -45,6 +45,7 @@
                         FontWeight="Bold"
                         PasswordChar="*"
                         KeyDown="PB0_KeyDown"
+                        VerticalContentAlignment="Center"
                         />
 
                     <Label
