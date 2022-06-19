@@ -134,12 +134,6 @@
                    Grid.Row="2"
                    Grid.Column="0"
                     />
-            <Label x:Name="underLabel14" 
-                   Content="단가등록"
-                   Style="{StaticResource underLabelStyle}"
-                   Grid.Row="3"
-                   Grid.Column="0"
-                   />
 
             <Border x:Name="borderUnder1" 
                     BorderBrush="Cyan"
@@ -147,7 +141,7 @@
                 >
                 <Grid.Column>0</Grid.Column>
                 <Grid.Row>0</Grid.Row>
-                <Grid.RowSpan>4</Grid.RowSpan>
+                <Grid.RowSpan>3</Grid.RowSpan>
             </Border>
         </Grid>
 
@@ -229,14 +223,19 @@
                 Style="{StaticResource underLabelStyle}"
                 Grid.Row="2"
                 />
-
+            <Label x:Name="underLabel34" 
+                   Content="사입가수정"
+                   Style="{StaticResource underLabelStyle}"
+                   Grid.Row="3"
+                   />
+            
             <Border x:Name="borderUnder3" 
                 BorderBrush="Cyan"
                 BorderThickness="2 0 2 2"
                 >
                 <Grid.Column>2</Grid.Column>
                 <Grid.Row>0</Grid.Row>
-                <Grid.RowSpan>3</Grid.RowSpan>
+                <Grid.RowSpan>4</Grid.RowSpan>
             </Border>
         </Grid>
 
