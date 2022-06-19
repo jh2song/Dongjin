@@ -64,6 +64,7 @@
 
         <Style TargetType="TextBox" x:Key="clientsDetailStyle" BasedOn="{StaticResource clientStyle}">
             <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
         </Style>
     </Application.Resources>
 </Application>

@@ -53,7 +53,7 @@
                 x:Name="tb1"
                 MaxLines="1"
                 MaxLength="2"
-                MinWidth="50"
+                MinWidth="45"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -64,7 +64,7 @@
                 x:Name="tb2"
                 MaxLines="1"
                 MaxLength="2"
-                MinWidth="50"
+                MinWidth="45"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -75,7 +75,7 @@
                 x:Name="tb3"
                 MaxLines="1"
                 MaxLength="2"
-                MinWidth="50"
+                MinWidth="45"
                 Style="{StaticResource clientStyle}"
                 />
 
@@ -87,7 +87,8 @@
                 x:Name="tb4"
                 MaxLines="1"
                 MaxLength="4"
-                MinWidth="100"
+                MinWidth="80"
+                VerticalAlignment="Center"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -217,8 +218,223 @@
                     VerticalAlignment="Bottom"
                     />
             </StackPanel>
+            <Label
+                Grid.Row="5"
+                Grid.Column="0" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="6. 최종수금일:"
+                />
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Grid.Row="5"
+                Grid.Column="1"
+                >
+
+                <TextBox
+                    x:Name="tbDetail61"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="년"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail62"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="월"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail63"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                    />
+                <Label
+                    Content="일"
+                    VerticalAlignment="Bottom"
+                    />
+            </StackPanel>
+            <Label
+                Grid.Row="6"
+                Grid.Column="0" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="7. 최종환입일:"
+                />
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Grid.Row="6"
+                Grid.Column="1"
+                >
+
+                <TextBox
+                    x:Name="tbDetail71"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="년"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail72"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="월"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail73"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                    />
+                <Label
+                    Content="일"
+                    VerticalAlignment="Bottom"
+                    />
+            </StackPanel>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="8. 당일판매액:"
+                />
+            <TextBox
+                x:Name="tbDetail8"
+                Grid.Row="0"
+                Grid.Column="3"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="9. 당일입금액:"
+                />
+            <TextBox
+                x:Name="tbDetail9"
+                Grid.Row="1"
+                Grid.Column="3"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="2"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="10. 당일환입액:"
+                />
+            <TextBox
+                x:Name="tbDetail10"
+                Grid.Row="2"
+                Grid.Column="3"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="3"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="※. 당월출고액:"
+                />
+            <TextBox
+                x:Name="tbDetail11"
+                Grid.Row="3"
+                Grid.Column="3"
+                Focusable="False"
+                BorderBrush="Transparent"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="4"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="※. 당월입금액:"
+                />
+            <TextBox
+                x:Name="tbDetail12"
+                Grid.Row="4"
+                Grid.Column="3"
+                Focusable="False"
+                BorderBrush="Transparent"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="5"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="※. 당월환입액:"
+                />
+            <TextBox
+                x:Name="tbDetail13"
+                Grid.Row="5"
+                Grid.Column="3"
+                Focusable="False"
+                BorderBrush="Transparent"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="6"
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="※. 전월말미수:"
+                />
+            <TextBox
+                x:Name="tbDetail14"
+                Grid.Row="6"
+                Grid.Column="3"
+                Focusable="False"
+                BorderBrush="Transparent"
+                Style="{StaticResource clientsDetailStyle}"
+                />
         </Grid>
-        
+
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.Row="3"
+            >
+            <Label
+                Content="항목수정(1-10)  :  전부삭제(D)  :  당일분삭제(T)  :  무시(ESC)  :  계속(Enter)  :  종료(E) --> "
+                />
+            <TextBox
+                x:Name="tbInput"
+                MaxLines="2"
+                MinWidth="50"
+                Style="{StaticResource clientStyle}"
+                />
+        </StackPanel>
+
         <Border
             BorderThickness="2 2 2 2"
             BorderBrush="White"
