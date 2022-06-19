@@ -54,6 +54,7 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                KeyUp="TB1_KeyUp"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -65,6 +66,8 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                KeyUp="TB2_KeyUp"
+                KeyDown="TB2_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -76,6 +79,8 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                KeyUp="TB3_KeyUp"
+                KeyDown="TB3_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
 
@@ -89,6 +94,7 @@
                 MaxLength="4"
                 MinWidth="80"
                 VerticalAlignment="Center"
+                KeyDown="TB4_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -189,6 +195,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -200,6 +207,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -211,11 +219,13 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
                     Content="일"
                     VerticalAlignment="Bottom"
+                    Focusable="False"
                     />
             </StackPanel>
             <Label
@@ -238,6 +248,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -249,6 +260,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -260,6 +272,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
@@ -287,6 +300,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -298,6 +312,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -309,6 +324,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    Focusable="False"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
@@ -328,6 +344,7 @@
                 x:Name="tbDetail8"
                 Grid.Row="0"
                 Grid.Column="3"
+                Focusable="False"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -341,6 +358,7 @@
                 x:Name="tbDetail9"
                 Grid.Row="1"
                 Grid.Column="3"
+                Focusable="False"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -354,6 +372,7 @@
                 x:Name="tbDetail10"
                 Grid.Row="2"
                 Grid.Column="3"
+                Focusable="False"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -425,7 +444,7 @@
             Grid.Row="3"
             >
             <Label
-                Content="항목수정(1-10)  :  전부삭제(D)  :  당일분삭제(T)  :  무시(ESC)  :  계속(Enter)  :  종료(E) --> "
+                Content="항목수정(1-10)  :  전부삭제(D)  :  무시(ESC)  :  계속(Enter)  --> "
                 />
             <TextBox
                 x:Name="tbInput"

@@ -86,7 +86,7 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			RenderInitialize();
 
-			if (e.Key == Key.Tab)
+			if (e.Key == Key.Tab || e.Key == Key.Right)
 			{
 				index++;
 				controls[index].Focus();
@@ -95,6 +95,12 @@ namespace Dongjin.Windows.LoginWindow
 			{
 				MessageBox.Show(passwordBox1.Password, "입력한 비밀번호를 확인하세요", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+			else if (e.Key == Key.Left)
+			{
+				index--;
+				controls[index].Focusable = true;
+				controls[index].Focus();
+			}
 		}
 
 		// 비밀번호 수정
@@ -102,7 +108,7 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			RenderInitialize();
 
-			if (e.Key == Key.Tab)
+			if (e.Key == Key.Tab || e.Key == Key.Right)
 			{
 				index++;
 				controls[index].Focus();
@@ -111,6 +117,11 @@ namespace Dongjin.Windows.LoginWindow
 			{
 				UpdatePassword();
 			}
+			else if (e.Key == Key.Left)
+			{
+				index--;
+				controls[index].Focus();
+			}
 		}
 
 		// 로그인
@@ -118,7 +129,7 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			RenderInitialize();
 
-			if (e.Key == Key.Tab)
+			if (e.Key == Key.Tab || e.Key == Key.Right)
 			{
 				index++;
 				controls[index].Focus();
@@ -127,6 +138,11 @@ namespace Dongjin.Windows.LoginWindow
 			{
 				Login();
 			}
+			else if (e.Key == Key.Left)
+			{
+				index--;
+				controls[index].Focus();
+			}
 		}
 
 		// 작업 종료
@@ -134,7 +150,7 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			RenderInitialize();
 
-			if (e.Key == Key.Tab)
+			if (e.Key == Key.Tab || e.Key == Key.Right)
 			{
 				index = 0;
 				controls[index].Focusable = true;
@@ -143,6 +159,11 @@ namespace Dongjin.Windows.LoginWindow
 			else if (e.Key == Key.Enter)
 			{
 				Close();
+			}
+			else if (e.Key == Key.Left)
+			{
+				index--;
+				controls[index].Focus();
 			}
 		}
 

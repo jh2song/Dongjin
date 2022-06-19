@@ -20,7 +20,7 @@
                 <Label
                     FontSize="20"
                     >
-                    로그인 화면 (모니터 해상도는 FHD(1920x1080)를 사용해야 합니다. 탭 키로 이동하세요)
+                    로그인 화면 (모니터 해상도는 FHD를 사용해야 합니다. 탭 키, 좌우 방향키로 이동하세요)
                 </Label>
             </GroupBox.Header>
             <Grid>
@@ -36,7 +36,9 @@
                     Grid.Row="0"
                     >
                     
-                    <Label Content="비밀번호: "/>
+                    <Label 
+                        Content="비밀번호: "
+                        />
 
                     <PasswordBox
                         x:Name="passwordBox1"
@@ -53,7 +55,7 @@
                     <Label
                         x:Name="label1"
                         Content="비밀번호 확인"
-                        Margin="50 0 0 0"
+                        Margin="100 0 0 0"
                         KeyDown="label1_KeyDown"
                         Focusable="True"
                         />

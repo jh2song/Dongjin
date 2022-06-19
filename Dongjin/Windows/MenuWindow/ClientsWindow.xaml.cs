@@ -17,20 +17,31 @@ namespace Dongjin.Windows.MenuWindow
 	/// </summary>
 	public partial class ClientsWindow : Window
 	{
-		private readonly List<TextBox> tbList = new List<TextBox>();
+		private readonly List<TextBox> TopTBList = new List<TextBox>();
+		private readonly List<TextBox> MiddleTBList = new List<TextBox>();
 		private int focusIdx;
 
 		public ClientsWindow()
 		{
 			InitializeComponent();
 
-			tbList.Add(tb1);
-			tbList.Add(tb2);
-			tbList.Add(tb3);
-			tbList.Add(tb4);
-
+			SetList();
+			
 			focusIdx = 0;
-			tbList[focusIdx].Focus();
+			TopTBList[focusIdx].Focus();
+		}
+
+		private void SetList()
+		{
+			TopTBList.Add(tb1);
+			TopTBList.Add(tb2);
+			TopTBList.Add(tb3);
+			TopTBList.Add(tb4);
+
+			MiddleTBList.Add(tbDetail1);
+			MiddleTBList.Add(tbDetail2);
+			MiddleTBList.Add(tbDetail3);
+			MiddleTBList.Add(tbDetail4);
 		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -41,25 +52,61 @@ namespace Dongjin.Windows.MenuWindow
 			}
 			else if (e.Key == Key.Enter)
 			{
-				if (tbList[focusIdx] == tb1)
+				if (TopTBList[focusIdx] == tb1)
 				{
-					tbList[focusIdx].Text = DateTime.Today.Year.ToString().Substring(2, 2);
+					TopTBList[focusIdx].Text = DateTime.Today.Year.ToString().Substring(2, 2);
 					focusIdx++;
-					tbList[focusIdx].Focus();
+					TopTBList[focusIdx].Focus();
 				}
-				else if (tbList[focusIdx] == tb2)
+				else if (TopTBList[focusIdx] == tb2)
 				{
-					tbList[focusIdx].Text = DateTime.Now.Month.ToString("00");
+					TopTBList[focusIdx].Text = DateTime.Now.Month.ToString("00");
 					focusIdx++;
-					tbList[focusIdx].Focus();
+					TopTBList[focusIdx].Focus();
 				}
-				else if (tbList[focusIdx] == tb3)
+				else if (TopTBList[focusIdx] == tb3)
 				{
-					tbList[focusIdx].Text = DateTime.Now.Day.ToString("00");
+					TopTBList[focusIdx].Text = DateTime.Now.Day.ToString("00");
 					focusIdx++;
-					tbList[focusIdx].Focus();
+					TopTBList[focusIdx].Focus();
 				}
 			}
+		}
+
+		private void TB1_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (tb1.Text.Length >= 2)
+				tb2.Focus();
+		}
+
+		private void TB2_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (tb2.Text.Length >= 2)
+				tb3.Focus();
+		}
+
+		private void TB3_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (tb3.Text.Length >= 2)
+				tb4.Focus();
+		}
+
+		private void TB2_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Back && tb2.Text == "")
+				tb1.Focus();
+		}
+
+		private void TB3_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Back && tb3.Text == "")
+				tb2.Focus();
+		}
+
+		private void TB4_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Back && tb4.Text == "")
+				tb3.Focus();
 		}
 	}
 }
