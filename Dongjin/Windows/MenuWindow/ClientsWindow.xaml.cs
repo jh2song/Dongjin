@@ -76,37 +76,50 @@ namespace Dongjin.Windows.MenuWindow
 		private void TB1_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (tb1.Text.Length >= 2)
-				tb2.Focus();
+			{
+				focusIdx++;
+				TopTBList[focusIdx].Focus();
+			}
 		}
 
 		private void TB2_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (tb2.Text.Length >= 2)
-				tb3.Focus();
+			{
+				focusIdx++;
+				TopTBList[focusIdx].Focus();
+			}
+			if (tb2.Text.Length == 0 && e.Key == Key.Back)
+			{
+				focusIdx--;
+				TopTBList[focusIdx].Focus();
+				TopTBList[focusIdx].Select(tb1.Text.Length, 0);
+			}
 		}
 
 		private void TB3_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (tb3.Text.Length >= 2)
-				tb4.Focus();
+			{
+				focusIdx++;
+				TopTBList[focusIdx].Focus();
+			}
+			if (tb3.Text.Length == 0 && e.Key == Key.Back)
+			{
+				focusIdx--;
+				TopTBList[focusIdx].Focus();
+				TopTBList[focusIdx].Select(tb2.Text.Length, 0);
+			}
 		}
 
-		private void TB2_KeyDown(object sender, KeyEventArgs e)
+		private void TB4_KeyUp(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Back && tb2.Text == "")
-				tb1.Focus();
-		}
-
-		private void TB3_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Back && tb3.Text == "")
-				tb2.Focus();
-		}
-
-		private void TB4_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Back && tb4.Text == "")
-				tb3.Focus();
+			if (tb4.Text.Length == 0 && e.Key == Key.Back)
+			{
+				focusIdx--;
+				TopTBList[focusIdx].Focus();
+				TopTBList[focusIdx].Select(tb3.Text.Length, 0);
+			}
 		}
 	}
 }

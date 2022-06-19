@@ -67,7 +67,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 KeyUp="TB2_KeyUp"
-                KeyDown="TB2_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -80,7 +79,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 KeyUp="TB3_KeyUp"
-                KeyDown="TB3_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
 
@@ -94,7 +92,7 @@
                 MaxLength="4"
                 MinWidth="80"
                 VerticalAlignment="Center"
-                KeyDown="TB4_KeyDown"
+                KeyUp="TB4_KeyUp"
                 Style="{StaticResource clientStyle}"
                 />
             <Label

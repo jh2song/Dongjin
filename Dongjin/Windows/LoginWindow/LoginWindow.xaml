@@ -18,10 +18,8 @@
         <GroupBox Width="1080" Height="500">
             <GroupBox.Header>
                 <Label
-                    FontSize="20"
-                    >
-                    로그인 화면 (모니터 해상도는 FHD를 사용해야 합니다. 탭 키, 좌우 방향키로 이동하세요)
-                </Label>
+                    Content="로그인 화면"
+                    />
             </GroupBox.Header>
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,6 +35,7 @@
                     >
                     
                     <Label 
+                        VerticalAlignment="Center"
                         Content="비밀번호: "
                         />
 
@@ -51,14 +50,6 @@
                         KeyDown="PB0_KeyDown"
                         VerticalContentAlignment="Center"
                         />
-
-                    <Label
-                        x:Name="label1"
-                        Content="비밀번호 확인"
-                        Margin="100 0 0 0"
-                        KeyDown="label1_KeyDown"
-                        Focusable="True"
-                        />
                 </StackPanel>
                 
                 <Grid
@@ -68,14 +59,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label
-                        x:Name="label2"
-                        Content="비밀번호 수정"
+                        x:Name="label1"
+                        Content="비밀번호확인"
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="0"
+                        KeyDown="label1_KeyDown"
+                        Focusable="True"
+                        />
+                    <Label
+                        x:Name="label2"
+                        Content="비밀번호수정"
+                        VerticalAlignment="Top"
+                        FontSize="32"
+                        Grid.Column="1"
                         KeyDown="label2_KeyDown"
                         Focusable="True"
                         />
@@ -84,16 +85,16 @@
                         Content="로그인"
                         VerticalAlignment="Top"
                         FontSize="32"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         KeyDown="label3_KeyDown"
                         Focusable="True"
                         />
                     <Label
                         x:Name="label4"
-                        Content="작업 종료"
+                        Content="작업종료"
                         VerticalAlignment="Top"
                         FontSize="32"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         KeyDown="label4_KeyDown"
                         Focusable="True"
                         />
