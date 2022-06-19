@@ -51,6 +51,9 @@
                 />
             <TextBox
                 x:Name="tb1"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="50"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -59,6 +62,9 @@
                 />
             <TextBox
                 x:Name="tb2"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="50"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -67,6 +73,9 @@
                 />
             <TextBox
                 x:Name="tb3"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="50"
                 Style="{StaticResource clientStyle}"
                 />
 
@@ -76,9 +85,10 @@
                 />
             <TextBox
                 x:Name="tb4"
-                Style="{StaticResource clientStyle}"
+                MaxLines="1"
                 MaxLength="4"
                 MinWidth="100"
+                Style="{StaticResource clientStyle}"
                 />
             <Label
                 Content="]"
@@ -86,6 +96,128 @@
                 />
             <Grid.Row>1</Grid.Row>
         </StackPanel>
+
+        <Grid Margin="50 50 50 50">
+            <Grid.Row>2</Grid.Row>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="1. 상호:"
+                />
+            <TextBox
+                x:Name="tbDetail1"
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="2. 전화번호:"
+                />
+            <TextBox
+                x:Name="tbDetail2"
+                Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="3. 현재미수금:"
+                />
+            <TextBox
+                x:Name="tbDetail3"
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="4. 단가(%)구분:"
+                />
+            <TextBox
+                x:Name="tbDetail4"
+                Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource clientsDetailStyle}"
+                />
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="5. 최종거래일:"
+                />
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Grid.Row="4"
+                Grid.Column="1"
+                >
+
+                <TextBox
+                    x:Name="tbDetail51"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="년"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail52"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                />
+                <Label
+                    Content="월"
+                    VerticalAlignment="Bottom"
+                    />
+                <TextBox
+                    x:Name="tbDetail53"
+                    MaxLines="1"
+                    MaxLength="2"
+                    MinWidth="50"
+                    Style="{StaticResource clientStyle}"
+                    />
+                <Label
+                    Content="일"
+                    VerticalAlignment="Bottom"
+                    />
+            </StackPanel>
+        </Grid>
         
         <Border
             BorderThickness="2 2 2 2"

@@ -17,7 +17,9 @@
     <Grid>
         <GroupBox Width="1080" Height="500">
             <GroupBox.Header>
-                <Label>
+                <Label
+                    FontSize="20"
+                    >
                     로그인 화면 (모니터 해상도는 FHD(1920x1080)를 사용해야 합니다. 탭 키로 이동하세요)
                 </Label>
             </GroupBox.Header>
