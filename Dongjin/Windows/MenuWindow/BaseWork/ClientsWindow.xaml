@@ -11,7 +11,7 @@
         WindowStyle="None"
         Background="Black"
         Title="ClientsWindow"
-        KeyDown="Window_KeyDown">
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -30,16 +30,7 @@
             Background="White"
             Grid.Row="0"
             />
-
-        <Label
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Content="ESC: 종료"
-            FontSize="28"
-            Foreground="Black"
-            Grid.Row="0"
-            />
-
+        
         <StackPanel
             Orientation="Horizontal"
             VerticalAlignment="Center"
@@ -67,7 +58,6 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                KeyUp="TB2_KeyUp"
                 Focusable="False"
                 Foreground="Red"
                 Style="{StaticResource clientStyle}"
@@ -81,7 +71,6 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                KeyUp="TB3_KeyUp"
                 Focusable="False"
                 Foreground="Red"
                 Style="{StaticResource clientStyle}"
