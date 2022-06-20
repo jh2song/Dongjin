@@ -34,7 +34,7 @@
         <Label
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Content="F1: 도움말 / ESC: 종료"
+            Content="ESC: 종료"
             FontSize="28"
             Foreground="Black"
             Grid.Row="0"
