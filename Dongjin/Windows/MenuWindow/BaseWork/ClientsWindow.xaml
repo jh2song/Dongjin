@@ -54,7 +54,8 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                KeyUp="TB1_KeyUp"
+                Focusable="False"
+                Foreground="Red"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -67,6 +68,8 @@
                 MaxLength="2"
                 MinWidth="45"
                 KeyUp="TB2_KeyUp"
+                Focusable="False"
+                Foreground="Red"
                 Style="{StaticResource clientStyle}"
                 />
             <Label
@@ -79,6 +82,8 @@
                 MaxLength="2"
                 MinWidth="45"
                 KeyUp="TB3_KeyUp"
+                Focusable="False"
+                Foreground="Red"
                 Style="{StaticResource clientStyle}"
                 />
 

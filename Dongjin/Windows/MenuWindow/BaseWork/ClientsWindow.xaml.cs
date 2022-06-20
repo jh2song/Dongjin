@@ -26,8 +26,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			InitializeComponent();
 
 			SetList();
-			
-			focusIdx = 0;
+
+			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
+			tb2.Text = DateTime.Now.Month.ToString("00");
+			tb3.Text = DateTime.Now.Day.ToString("00");
+
+			focusIdx = 3;
 			TopTBList[focusIdx].Focus();
 		}
 
