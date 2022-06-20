@@ -130,9 +130,13 @@ namespace Dongjin.Windows.MenuWindow
 
 		private void NextSession()
 		{
-			if (topIndex==0 && underIndex == 0) // 거래처등록
+			if (topIndex == 0 && underIndex == 0) // 거래처등록
 			{
 				new ClientsWindow().Show();
+			}
+			else if (topIndex == 0 && underIndex == 1) // 제품등록
+			{
+				new ProductWindow().Show();
 			}
 			else if (topIndex == 5 && underIndex == 0) // 작업마침
 			{
