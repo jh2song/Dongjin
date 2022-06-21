@@ -126,6 +126,7 @@
                 x:Name="tbDetail1"
                 Grid.Row="0"
                 Grid.Column="1"
+                KeyDown="tbDetail1_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -139,6 +140,7 @@
                 x:Name="tbDetail2"
                 Grid.Row="1"
                 Grid.Column="1"
+                KeyDown="tbDetail2_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -152,6 +154,7 @@
                 x:Name="tbDetail3"
                 Grid.Row="2"
                 Grid.Column="1"
+                KeyDown="tbDetail3_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -165,6 +168,7 @@
                 x:Name="tbDetail4"
                 Grid.Row="3"
                 Grid.Column="1"
+                KeyDown="tbDetail4_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
