@@ -49,20 +49,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
-				if (IsThereInTable())
-				{
-					// 명령어 칸으로 이동
-				}
-				else
-				{
-					// 1. 상호 부터 새로 입력
-				}
+				IsThereInTable();
 			}
 		}
 
-		private bool IsThereInTable()
+		async private void IsThereInTable()
 		{
-			throw new NotImplementedException();
+			
 		}
 	}
 }

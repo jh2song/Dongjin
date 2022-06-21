@@ -211,6 +211,8 @@ namespace Dongjin.Windows.LoginWindow
 					DBAsyncConnectClass.Conn = new SQLiteAsyncConnection(options);
 					await DBAsyncConnectClass.Conn.ExecuteAsync("PRAGMA rekey=" + passwordBox1.Password);
 					await DBAsyncConnectClass.Conn.CreateTableAsync<TEST>();
+
+					passwordValidCheck = false;
 					MessageBox.Show("비밀번호 수정 완료", "비밀번호 수정 완료", MessageBoxButton.OK, MessageBoxImage.Information);
 				}
 			}
