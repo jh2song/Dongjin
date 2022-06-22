@@ -220,7 +220,7 @@ namespace Dongjin.Windows.LoginWindow
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: previousPassword);
 					conn = new SQLiteAsyncConnection(options);
-					await conn.ExecuteAsync(query: "PRAGMA rekey=" + passwordBox1.Password);
+					await conn.ExecuteAsync(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
 					await conn.CreateTableAsync<TEST>();
 
 					passwordValidCheck = false;
@@ -242,11 +242,11 @@ namespace Dongjin.Windows.LoginWindow
 
 		private void PasswordBox1_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			Regex regex = new Regex("[0-9]+");
-			if (!regex.IsMatch(e.Text))
-			{
-				e.Handled = true;
-			}
+			//Regex regex = new Regex("[0-9]+");
+			//if (!regex.IsMatch(e.Text))
+			//{
+			//	e.Handled = true;
+			//}
 		}
 	}
 }
