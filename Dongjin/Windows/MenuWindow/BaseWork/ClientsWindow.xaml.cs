@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Dongjin.Classes;
 using Dongjin.Table;
 using SQLite;
@@ -41,7 +42,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			tb4.Focus();
 		}
 
-		private void SetList()
+		public void SetList()
 		{
 		}
 
@@ -61,48 +62,58 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
-		private void NextSession()
+		public async void NextSession()
 		{
-			Task.Factory.StartNew(() =>
+			await conn.CreateTableAsync<Client>();
+
+			string tb4Text = tb4.Text;
+
+			List<Client> client =
+				await conn.Table<Client>().Where(c => c.Code.Equals(tb4Text)).ToListAsync();
+
+
+			if (client.Count == 0)
 			{
-				this.syscContext.Post((a) =>
+				tbDetail1.Dispatcher.Invoke(() =>
 				{
-					conn.CreateTableAsync<Client>();
+					tbDetail1.Focus();
+				});
+			}
+			else
+			{
+				await SetTextBox(tbDetail1, client[0].Name);
+				await SetTextBox(tbDetail2, client[0].Phone);
+				await SetTextBox(tbDetail3, client[0].CurrentLeftMoney.ToString());
+				await SetTextBox(tbDetail4, client[0].PercentCode.ToString());
+				await SetTextBox(tbDetail51, client[0].LastTransactionDate.Year.ToString().Substring(2, 2));
+				await SetTextBox(tbDetail52, client[0].LastTransactionDate.Month.ToString("00"));
+				await SetTextBox(tbDetail53, client[0].LastTransactionDate.Day.ToString("00"));
+				await SetTextBox(tbDetail61, client[0].LastMoneyComeDate.Year.ToString().Substring(2, 2));
+				await SetTextBox(tbDetail62, client[0].LastMoneyComeDate.Month.ToString("00"));
+				await SetTextBox(tbDetail63, client[0].LastMoneyComeDate.Day.ToString("00"));
+				await SetTextBox(tbDetail71, client[0].LastReturnDate.Year.ToString().Substring(2, 2));
+				await SetTextBox(tbDetail72, client[0].LastReturnDate.Month.ToString("00"));
+				await SetTextBox(tbDetail73, client[0].LastReturnDate.Day.ToString("00"));
+				await SetTextBox(tbDetail8, client[0].TodaySellMoney.ToString());
+				await SetTextBox(tbDetail9, client[0].TodayDepositMoney.ToString());
+				await SetTextBox(tbDetail10, client[0].TodayReturnMoney.ToString());
 
-					var client =
-						conn.Table<Client>().Where(c => c.Code.Equals(tb4.Text)).ToListAsync();
-					
 
-					if (client == null)
-					{
-						this.tbDetail1.Focus();
-					}
-					else
-					{
-						this.tbDetail1.Text = client.Name;
-						this.tbDetail2.Text = client.Phone;
-						this.tbDetail3.Text = client.CurrentLeftMoney.ToString();
-						this.tbDetail4.Text = client.PercentCode.ToString();
-						this.tbDetail51.Text = client.LastTransactionDate.Year.ToString().Substring(2, 2);
-						this.tbDetail52.Text = client.LastTransactionDate.Month.ToString("00");
-						this.tbDetail53.Text = client.LastTransactionDate.Day.ToString("00");
-						this.tbDetail61.Text = client.LastMoneyComeDate.Year.ToString().Substring(2, 2);
-						this.tbDetail62.Text = client.LastMoneyComeDate.Month.ToString("00");
-						this.tbDetail63.Text = client.LastMoneyComeDate.Day.ToString("00");
-						this.tbDetail71.Text = client.LastReturnDate.Year.ToString().Substring(2, 2);
-						this.tbDetail72.Text = client.LastReturnDate.Month.ToString("00");
-						this.tbDetail73.Text = client.LastReturnDate.Day.ToString("00");
-						this.tbDetail8.Text = client.TodaySellMoney.ToString();
-						this.tbDetail9.Text = client.TodayDepositMoney.ToString();
-						this.tbDetail10.Text = client.TodayReturnMoney.ToString();
+				tbcmd.Dispatcher.Invoke(() => 
+				{
+					tbcmd.Focus();
+				});
+			}
+		}
 
-						this.tbInput.Focus();
-					}
-				}
-				, null);
+		internal async Task SetTextBox(TextBox tb, string s)
+		{
+			tb.Dispatcher.Invoke(() =>
+			{
+				tb.Text = s;
 			});
-			
 
+			await Task.Delay(50);
 		}
 
 		private void tbDetail1_KeyDown(object sender, KeyEventArgs e)
@@ -144,7 +155,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private void tbDetail4_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				tbInput.Focus();
+				tbcmd.Focus();
 
 			if (e.Key == Key.Escape)
 			{

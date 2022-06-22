@@ -443,7 +443,7 @@
                 Content="항목수정(1-10)  :  전부삭제(D)  :  무시(ESC)  :  계속(Enter)  --> "
                 />
             <TextBox
-                x:Name="tbInput"
+                x:Name="tbcmd"
                 MaxLines="2"
                 MinWidth="50"
                 Style="{StaticResource clientStyle}"
