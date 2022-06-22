@@ -46,7 +46,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 		}
 
-		private void TB4_KeyUp(object sender, KeyEventArgs e)
+		private void TB4_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
 			{
@@ -164,5 +164,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			if (e.Key == Key.Tab)
+			{
+				e.Handled = true;
+			}
+			else
+			{
+				base.OnKeyDown(e);
+			}
+		}
 	}
 }
