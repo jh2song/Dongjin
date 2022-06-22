@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,12 +27,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	{
 		private SQLiteAsyncConnection conn;
 		private SynchronizationContext syscContext;
-
+		List<TextBox> textBoxes = new List<TextBox>();
+		
 		public ClientsWindow()
 		{
 			InitializeComponent();
 
-			conn = DBAsyncConnectClass.Conn;
+			conn = Classes.DB.Conn;
 			syscContext = SynchronizationContext.Current;
 
 			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
@@ -40,10 +42,22 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			// 거래처코드에 포커싱
 			tb4.Focus();
+
+			SetList();
 		}
 
 		public void SetList()
 		{
+			textBoxes.Add(tbDetail1);
+			textBoxes.Add(tbDetail2);
+			textBoxes.Add(tbDetail3);
+			textBoxes.Add(tbDetail4);
+			textBoxes.Add(tbDetail51);
+			textBoxes.Add(tbDetail61);
+			textBoxes.Add(tbDetail71);
+			textBoxes.Add(tbDetail8);
+			textBoxes.Add(tbDetail9);
+			textBoxes.Add(tbDetail10);
 		}
 
 		private void TB4_KeyDown(object sender, KeyEventArgs e)
@@ -174,6 +188,142 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				base.OnKeyDown(e);
 			}
+		}
+
+		private void TBcmd_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				int updateNumber = int.Parse(tbcmd.Text);
+				if (updateNumber >= 1 && updateNumber <= 10)
+				{
+					textBoxes[updateNumber - 1].Focus();
+				}
+				else if (tbcmd.Text == "D" || tbcmd.Text == "d")
+				{
+					try
+					{
+						// 데이터베이스에서 삭제
+						conn.CreateTableAsync<Client>();
+						conn.ExecuteAsync("DELETE FROM Client WHERE Code = ?;", int.Parse(tb4.Text));
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("데이터베이스 삭제에 오류가 발생하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+						Debug.WriteLine(ex.ToString());
+					}
+				}
+				else
+				{
+					try
+					{
+						// 데이터베이스에 저장
+						Client client = new Client()
+						{
+							Code = int.Parse(tb4.Text),
+							Name = tbDetail1.Text,
+							Phone = tbDetail2.Text,
+							CurrentLeftMoney = int.Parse(tbDetail3.Text),
+							PercentCode = int.Parse(tbDetail4.Text),
+							LastTransactionDate = DateTime.Parse(tbDetail51.Text + "-" + tbDetail52.Text + "-" + tbDetail53.Text),
+							LastMoneyComeDate = DateTime.Parse(tbDetail61.Text + "-" + tbDetail62.Text + "-" + tbDetail63.Text),
+							LastReturnDate = DateTime.Parse(tbDetail71.Text + "-" + tbDetail72.Text + "-" + tbDetail73.Text),
+							TodaySellMoney = int.Parse(tbDetail8.Text),
+							TodayDepositMoney = int.Parse(tbDetail9.Text),
+							TodayReturnMoney = int.Parse(tbDetail10.Text)
+						};
+
+						conn.CreateTableAsync<Client>();
+						conn.InsertAsync(client);
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("데이터베이스 저장에 오류가 발생하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+						Debug.WriteLine(ex.ToString());
+					}
+				}
+			}
+			else if (e.Key == Key.Escape)
+			{
+
+			}
+		}
+
+		private void tbDetail51_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail52.Focus();
+		}
+
+		private void tbDetail52_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail53.Focus();
+		}
+
+		private void tbDetail53_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void tbDetail61_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail62.Focus();
+		}
+
+		private void tbDetail62_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail63.Focus();
+		}
+
+		private void tbDetail63_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void tbDetail71_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail72.Focus();
+		}
+
+		private void tbDetail72_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbDetail73.Focus();
+		}
+
+		private void tbDetail73_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void tbDetail8_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void tbDetail9_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void tbDetail10_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+				tbcmd.Focus();
+		}
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			conn?.CloseAsync();
 		}
 	}
 }

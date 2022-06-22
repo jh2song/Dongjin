@@ -11,6 +11,7 @@
         WindowStyle="None"
         Background="Black"
         Title="ClientsWindow"
+        Closed="Window_Closed"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -191,7 +192,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail51_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -203,7 +204,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail52_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -215,13 +216,12 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail53_KeyDown"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
                     Content="일"
                     VerticalAlignment="Bottom"
-                    Focusable="False"
                     />
             </StackPanel>
             <Label
@@ -244,7 +244,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail61_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -256,7 +256,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail62_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -268,7 +268,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail63_KeyDown"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
@@ -296,7 +296,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail71_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -308,7 +308,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail72_KeyDown"
                     Style="{StaticResource clientStyle}"
                 />
                 <Label
@@ -320,7 +320,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Focusable="False"
+                    KeyDown="tbDetail73_KeyDown"
                     Style="{StaticResource clientStyle}"
                     />
                 <Label
@@ -340,7 +340,7 @@
                 x:Name="tbDetail8"
                 Grid.Row="0"
                 Grid.Column="3"
-                Focusable="False"
+                KeyDown="tbDetail8_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -354,7 +354,7 @@
                 x:Name="tbDetail9"
                 Grid.Row="1"
                 Grid.Column="3"
-                Focusable="False"
+                KeyDown="tbDetail9_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -368,7 +368,7 @@
                 x:Name="tbDetail10"
                 Grid.Row="2"
                 Grid.Column="3"
-                Focusable="False"
+                KeyDown="tbDetail10_KeyDown"
                 Style="{StaticResource clientsDetailStyle}"
                 />
             <Label
@@ -382,7 +382,6 @@
                 x:Name="tbDetail11"
                 Grid.Row="3"
                 Grid.Column="3"
-                Focusable="False"
                 BorderBrush="Transparent"
                 Style="{StaticResource clientsDetailStyle}"
                 />
@@ -397,7 +396,6 @@
                 x:Name="tbDetail12"
                 Grid.Row="4"
                 Grid.Column="3"
-                Focusable="False"
                 BorderBrush="Transparent"
                 Style="{StaticResource clientsDetailStyle}"
                 />
@@ -412,7 +410,6 @@
                 x:Name="tbDetail13"
                 Grid.Row="5"
                 Grid.Column="3"
-                Focusable="False"
                 BorderBrush="Transparent"
                 Style="{StaticResource clientsDetailStyle}"
                 />
@@ -427,7 +424,6 @@
                 x:Name="tbDetail14"
                 Grid.Row="6"
                 Grid.Column="3"
-                Focusable="False"
                 BorderBrush="Transparent"
                 Style="{StaticResource clientsDetailStyle}"
                 />
@@ -446,6 +442,7 @@
                 x:Name="tbcmd"
                 MaxLines="2"
                 MinWidth="50"
+                KeyDown="TBcmd_KeyDown"
                 Style="{StaticResource clientStyle}"
                 />
         </StackPanel>

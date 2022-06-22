@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Dongjin.Classes
 {
-	class DBAsyncConnectClass
+	class DB
 	{
 		public static SQLiteAsyncConnection Conn { get; set; }
 	}

@@ -13,6 +13,7 @@
         Background="Black"
         KeyDown="Window_KeyDown"
         Loaded="Window_Loaded"
+        Closed="Window_Closed"
         >
     <Grid>
         <GroupBox Width="1080" Height="500">
@@ -77,7 +78,7 @@
                         VerticalAlignment="Top"
                         FontSize="32"
                         Grid.Column="1"
-                        KeyDown="label2_KeyDown"
+                        KeyDown="Label2_KeyDown"
                         Focusable="True"
                         />
                     <Label
