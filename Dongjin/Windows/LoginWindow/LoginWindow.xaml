@@ -48,6 +48,7 @@
                         FontSize="20"
                         FontWeight="Bold"
                         PasswordChar="*"
+                        PreviewTextInput="PasswordBox1_PreviewTextInput"
                         KeyDown="PB0_KeyDown"
                         VerticalContentAlignment="Center"
                         />

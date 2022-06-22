@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using SQLite;
 using Dongjin.Table;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Dongjin.Windows.LoginWindow
 {
@@ -195,7 +196,7 @@ namespace Dongjin.Windows.LoginWindow
 
 		bool passwordValidCheck = false;
 		string previousPassword = "";
-		private async Task UpdatePassword()
+		private async void UpdatePassword()
 		{
 			try
 			{
@@ -204,7 +205,7 @@ namespace Dongjin.Windows.LoginWindow
 					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
 					conn = new SQLiteAsyncConnection(options);
 					await conn.CreateTableAsync<TEST>();
-					
+
 					passwordValidCheck = true;
 					previousPassword = passwordBox1.Password;
 					MessageBox.Show("비밀번호가 확인되었습니다. 수정할 비밀번호를 입력 후 다시 진행해 주십시오.", "로그인 확인", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -219,8 +220,7 @@ namespace Dongjin.Windows.LoginWindow
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: previousPassword);
 					conn = new SQLiteAsyncConnection(options);
-					
-					await conn.ExecuteAsync("PRAGMA rekey='?';" , passwordBox1.Password);
+					await conn.ExecuteAsync(query: "PRAGMA rekey=" + passwordBox1.Password);
 					await conn.CreateTableAsync<TEST>();
 
 					passwordValidCheck = false;
@@ -237,7 +237,16 @@ namespace Dongjin.Windows.LoginWindow
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
-			conn.CloseAsync();
+			// conn?.CloseAsync();
+		}
+
+		private void PasswordBox1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			Regex regex = new Regex("[0-9]+");
+			if (!regex.IsMatch(e.Text))
+			{
+				e.Handled = true;
+			}
 		}
 	}
 }

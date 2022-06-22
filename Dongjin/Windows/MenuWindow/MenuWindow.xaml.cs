@@ -140,8 +140,6 @@ namespace Dongjin.Windows.MenuWindow
 			}
 			else if (topIndex == 5 && underIndex == 0) // 작업마침
 			{
-				DB.Conn?.CloseAsync();
-				
 				Close();
 			}
 		}
@@ -236,7 +234,7 @@ namespace Dongjin.Windows.MenuWindow
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
-			DB.Conn?.CloseAsync();
+			// DB.Conn?.CloseAsync();
 		}
 	}
 }
