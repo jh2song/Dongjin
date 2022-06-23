@@ -54,11 +54,21 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			textBoxes.Add(tbDetail3);
 			textBoxes.Add(tbDetail4);
 			textBoxes.Add(tbDetail51);
+			textBoxes.Add(tbDetail52);
+			textBoxes.Add(tbDetail53);
 			textBoxes.Add(tbDetail61);
+			textBoxes.Add(tbDetail62);
+			textBoxes.Add(tbDetail63);
 			textBoxes.Add(tbDetail71);
+			textBoxes.Add(tbDetail72);
+			textBoxes.Add(tbDetail73);
 			textBoxes.Add(tbDetail8);
 			textBoxes.Add(tbDetail9);
 			textBoxes.Add(tbDetail10);
+			textBoxes.Add(tbDetail11);
+			textBoxes.Add(tbDetail12);
+			textBoxes.Add(tbDetail13);
+			textBoxes.Add(tbDetail14);
 		}
 
 		private void TB4_KeyDown(object sender, KeyEventArgs e)
@@ -295,17 +305,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						{
 							client.TodayReturnMoney = target;
 						}
-						// Code = int.Parse(tb4.Text),
-						//	Name = tbDetail1.Text,
-						//	Phone = tbDetail2.Text,
-						//	CurrentLeftMoney = int.Parse(tbDetail3.Text),
-						//	PercentCode = int.Parse(tbDetail4.Text),
-						//	LastTransactionDate = DateTime.Parse(tbDetail51.Text + "-" + tbDetail52.Text + "-" + tbDetail53.Text),
-						//	LastMoneyComeDate = DateTime.Parse(tbDetail61.Text + "-" + tbDetail62.Text + "-" + tbDetail63.Text),
-						//	LastReturnDate = DateTime.Parse(tbDetail71.Text + "-" + tbDetail72.Text + "-" + tbDetail73.Text),
-						//	TodaySellMoney = int.Parse(tbDetail8.Text),
-						//	TodayDepositMoney = int.Parse(tbDetail9.Text),
-						//	TodayReturnMoney = int.Parse(tbDetail10.Text)
 
 						conn.CreateTableAsync<Client>();
 						conn.InsertAsync(client);
@@ -319,8 +318,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 			else if (e.Key == Key.Escape)
 			{
-				Close();
-				new ClientsWindow();
+				foreach (TextBox tb in textBoxes)
+					tb.Text = "";
+				tbcmd.Text = "";
+				tb4.Text = "";
+				tb4.Focus();
 			}
 		}
 
