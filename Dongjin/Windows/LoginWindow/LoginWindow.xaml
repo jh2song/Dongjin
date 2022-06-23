@@ -13,7 +13,6 @@
         Background="Black"
         KeyDown="Window_KeyDown"
         Loaded="Window_Loaded"
-        Closed="Window_Closed"
         >
     <Grid>
         <GroupBox Width="1080" Height="500">
@@ -48,7 +47,6 @@
                         FontSize="20"
                         FontWeight="Bold"
                         PasswordChar="*"
-                        PreviewTextInput="PasswordBox1_PreviewTextInput"
                         KeyDown="PB0_KeyDown"
                         VerticalContentAlignment="Center"
                         />

@@ -39,6 +39,15 @@ namespace Dongjin.Windows.MenuWindow
 			DateRender();
 
 			SetList();
+
+			TestFunction();
+		}
+
+		public async void TestFunction()
+		{
+			await DB.Conn.CreateTableAsync<Table.Client>();
+			// await DB.Conn.ExecuteAsync($"DELETE FROM Client WHERE Code = {1001};");
+			// await DB .Conn.CloseAsync();
 		}
 
 		// 기존에 그린것을 초기화
@@ -230,11 +239,6 @@ namespace Dongjin.Windows.MenuWindow
 			grids.Add(null);
 			grids.Add(null);
 			grids.Add(underGrid6);
-		}
-
-		private void Window_Closed(object sender, EventArgs e)
-		{
-			// DB.Conn?.CloseAsync();
 		}
 	}
 }

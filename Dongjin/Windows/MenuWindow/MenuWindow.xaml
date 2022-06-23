@@ -12,7 +12,6 @@
         Background="Black"
         KeyUp="Window_KeyUp"
         KeyDown="Window_KeyDown"
-        Closed="Window_Closed"
         >
     <Grid Margin="50 0 50 0">
         <Grid.ColumnDefinitions>

@@ -27,12 +27,10 @@ namespace Dongjin.Windows.LoginWindow
 	{
 		private List<Control> controls = new List<Control>();
 		private int index = 0;
-		SQLiteAsyncConnection conn;
 
 		public LoginWindow()
 		{
 			InitializeComponent();
-			conn = DB.Conn;
 
 			controls.Add(passwordBox1);
 			controls.Add(label1);
@@ -181,14 +179,14 @@ namespace Dongjin.Windows.LoginWindow
 			try
 			{
 				var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
-				conn = new SQLiteAsyncConnection(options);
-				await conn.CreateTableAsync<TEST>();
+				DB.Conn = new SQLiteAsyncConnection(options);
+				await DB.Conn.CreateTableAsync<TEST>();
 				new MenuWindow.MenuWindow().Show();
 				Close();
 			}
 			catch (SQLiteException ex)
 			{
-				await conn.CloseAsync();
+				await DB.Conn.CloseAsync();
 				Console.WriteLine(ex);
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -203,8 +201,8 @@ namespace Dongjin.Windows.LoginWindow
 				if (passwordValidCheck == false)
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
-					conn = new SQLiteAsyncConnection(options);
-					await conn.CreateTableAsync<TEST>();
+					DB.Conn = new SQLiteAsyncConnection(options);
+					await DB.Conn.CreateTableAsync<TEST>();
 
 					passwordValidCheck = true;
 					previousPassword = passwordBox1.Password;
@@ -219,9 +217,9 @@ namespace Dongjin.Windows.LoginWindow
 				else
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: previousPassword);
-					conn = new SQLiteAsyncConnection(options);
-					await conn.ExecuteAsync(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
-					await conn.CreateTableAsync<TEST>();
+					DB.Conn = new SQLiteAsyncConnection(options);
+					await DB.Conn.ExecuteAsync(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
+					await DB.Conn.CreateTableAsync<TEST>();
 
 					passwordValidCheck = false;
 					MessageBox.Show("비밀번호 수정 완료", "비밀번호 수정 완료", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -229,24 +227,10 @@ namespace Dongjin.Windows.LoginWindow
 			}
 			catch (SQLiteException ex)
 			{
-				await conn.CloseAsync();
+				await DB.Conn.CloseAsync();
 				Console.WriteLine(ex);
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
-		}
-
-		private void Window_Closed(object sender, EventArgs e)
-		{
-			// conn?.CloseAsync();
-		}
-
-		private void PasswordBox1_PreviewTextInput(object sender, TextCompositionEventArgs e)
-		{
-			//Regex regex = new Regex("[0-9]+");
-			//if (!regex.IsMatch(e.Text))
-			//{
-			//	e.Handled = true;
-			//}
 		}
 	}
 }

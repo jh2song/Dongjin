@@ -28,7 +28,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private SQLiteAsyncConnection conn;
 		private SynchronizationContext syscContext;
 		List<TextBox> textBoxes = new List<TextBox>();
-		
+		private bool onDBByCode = true;
+
 		public ClientsWindow()
 		{
 			InitializeComponent();
@@ -88,6 +89,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (client.Count == 0)
 			{
+				onDBByCode = false;
 				tbDetail1.Dispatcher.Invoke(() =>
 				{
 					tbDetail1.Focus();
@@ -99,13 +101,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				await SetTextBox(tbDetail2, client[0].Phone);
 				await SetTextBox(tbDetail3, client[0].CurrentLeftMoney.ToString());
 				await SetTextBox(tbDetail4, client[0].PercentCode.ToString());
-				await SetTextBox(tbDetail51, client[0].LastTransactionDate.Year.ToString().Substring(2, 2));
+				string target = client[0].LastTransactionDate.Year.ToString("0000");
+				await SetTextBox(tbDetail51, target.Substring(2, 2));
 				await SetTextBox(tbDetail52, client[0].LastTransactionDate.Month.ToString("00"));
 				await SetTextBox(tbDetail53, client[0].LastTransactionDate.Day.ToString("00"));
-				await SetTextBox(tbDetail61, client[0].LastMoneyComeDate.Year.ToString().Substring(2, 2));
+				target = client[0].LastMoneyComeDate.Year.ToString("0000");
+				await SetTextBox(tbDetail61, target.Substring(2, 2));
 				await SetTextBox(tbDetail62, client[0].LastMoneyComeDate.Month.ToString("00"));
 				await SetTextBox(tbDetail63, client[0].LastMoneyComeDate.Day.ToString("00"));
-				await SetTextBox(tbDetail71, client[0].LastReturnDate.Year.ToString().Substring(2, 2));
+				target = client[0].LastReturnDate.Year.ToString("0000");
+				await SetTextBox(tbDetail71, target.Substring(2, 2));
 				await SetTextBox(tbDetail72, client[0].LastReturnDate.Month.ToString("00"));
 				await SetTextBox(tbDetail73, client[0].LastReturnDate.Day.ToString("00"));
 				await SetTextBox(tbDetail8, client[0].TodaySellMoney.ToString());
@@ -169,7 +174,34 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private void tbDetail4_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
+			{
+				if (onDBByCode == false)
+				{
+					tbDetail51.Text = "00";
+					tbDetail52.Text = "00";
+					tbDetail53.Text = "00";
+					tbDetail61.Text = "00";
+					tbDetail62.Text = "00";
+					tbDetail63.Text = "00";
+					tbDetail71.Text = "00";
+					tbDetail72.Text = "00";
+					tbDetail73.Text = "00";
+					tbDetail8.Text = "0";
+					tbDetail9.Text = "0";
+					tbDetail10.Text = "0";
+					tbDetail11.Text = "0";
+					tbDetail12.Text = "0";
+					tbDetail13.Text = "0";
+					tbDetail14.Text = "0";
+				}
+
+				if (tbDetail3.Text == "")
+					tbDetail3.Text = "0";
+				if (tbDetail4.Text == "")
+					tbDetail4.Text = "8";
+
 				tbcmd.Focus();
+			}
 
 			if (e.Key == Key.Escape)
 			{
@@ -194,7 +226,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				int updateNumber = int.Parse(tbcmd.Text);
+				int updateNumber;
+				int.TryParse(tbcmd.Text, out updateNumber);
+
 				if (updateNumber >= 1 && updateNumber <= 10)
 				{
 					textBoxes[updateNumber - 1].Focus();
@@ -218,20 +252,60 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					try
 					{
 						// 데이터베이스에 저장
-						Client client = new Client()
+						Client client = new Client();
+						int target;
+
+						// 프로퍼티를 초기화 했으므로 (C# High-Version)
+						// 만일의 상황을 대비해 이렇게 코딩함
+						if (int.TryParse(tb4.Text, out target))
 						{
-							Code = int.Parse(tb4.Text),
-							Name = tbDetail1.Text,
-							Phone = tbDetail2.Text,
-							CurrentLeftMoney = int.Parse(tbDetail3.Text),
-							PercentCode = int.Parse(tbDetail4.Text),
-							LastTransactionDate = DateTime.Parse(tbDetail51.Text + "-" + tbDetail52.Text + "-" + tbDetail53.Text),
-							LastMoneyComeDate = DateTime.Parse(tbDetail61.Text + "-" + tbDetail62.Text + "-" + tbDetail63.Text),
-							LastReturnDate = DateTime.Parse(tbDetail71.Text + "-" + tbDetail72.Text + "-" + tbDetail73.Text),
-							TodaySellMoney = int.Parse(tbDetail8.Text),
-							TodayDepositMoney = int.Parse(tbDetail9.Text),
-							TodayReturnMoney = int.Parse(tbDetail10.Text)
-						};
+							client.Code = target;
+						}
+						if (tbDetail1.Text != "")
+						{
+							client.Name = tbDetail1.Text;
+						}
+						if (tbDetail2.Text != "")
+						{
+							client.Phone = tbDetail2.Text;
+						}
+						if (int.TryParse(tbDetail3.Text, out target))
+						{
+							client.CurrentLeftMoney = target;
+						}
+						if (int.TryParse(tbDetail4.Text, out target))
+						{
+							client.PercentCode = target;
+						}
+						if (tbDetail51.Text != "00" && tbDetail52.Text != "00" && tbDetail53.Text != "00")
+							client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
+						if (tbDetail61.Text != "00" && tbDetail62.Text != "00" && tbDetail63.Text != "00")
+							client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
+						if (tbDetail71.Text != "00" && tbDetail72.Text != "00" && tbDetail73.Text != "00")
+							client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
+						if (int.TryParse(tbDetail8.Text, out target))
+						{
+							client.TodaySellMoney = target;
+						}
+						if (int.TryParse(tbDetail9.Text, out target))
+						{
+							client.TodayDepositMoney = target;
+						}
+						if (int.TryParse(tbDetail10.Text, out target))
+						{
+							client.TodayReturnMoney = target;
+						}
+						// Code = int.Parse(tb4.Text),
+						//	Name = tbDetail1.Text,
+						//	Phone = tbDetail2.Text,
+						//	CurrentLeftMoney = int.Parse(tbDetail3.Text),
+						//	PercentCode = int.Parse(tbDetail4.Text),
+						//	LastTransactionDate = DateTime.Parse(tbDetail51.Text + "-" + tbDetail52.Text + "-" + tbDetail53.Text),
+						//	LastMoneyComeDate = DateTime.Parse(tbDetail61.Text + "-" + tbDetail62.Text + "-" + tbDetail63.Text),
+						//	LastReturnDate = DateTime.Parse(tbDetail71.Text + "-" + tbDetail72.Text + "-" + tbDetail73.Text),
+						//	TodaySellMoney = int.Parse(tbDetail8.Text),
+						//	TodayDepositMoney = int.Parse(tbDetail9.Text),
+						//	TodayReturnMoney = int.Parse(tbDetail10.Text)
 
 						conn.CreateTableAsync<Client>();
 						conn.InsertAsync(client);
@@ -245,7 +319,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 			else if (e.Key == Key.Escape)
 			{
-
+				Close();
+				new ClientsWindow();
 			}
 		}
 
@@ -319,11 +394,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
-		}
-
-		private void Window_Closed(object sender, EventArgs e)
-		{
-			conn?.CloseAsync();
 		}
 	}
 }
