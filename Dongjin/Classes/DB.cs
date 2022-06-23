@@ -7,6 +7,6 @@ namespace Dongjin.Classes
 {
 	class DB
 	{
-		public static SQLiteAsyncConnection Conn { get; set; }
+		public static SQLiteConnection Conn { get; set; }
 	}
 }

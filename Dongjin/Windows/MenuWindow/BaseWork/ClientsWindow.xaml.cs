@@ -25,7 +25,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	/// </summary>
 	public partial class ClientsWindow : Window
 	{
-		private SQLiteAsyncConnection conn;
+		private SQLiteConnection conn;
 		private SynchronizationContext syscContext;
 		List<TextBox> textBoxes = new List<TextBox>();
 		private bool onDBByCode = true;
@@ -34,7 +34,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			InitializeComponent();
 
-			conn = Classes.DB.Conn;
+			conn = DB.Conn;
 			syscContext = SynchronizationContext.Current;
 
 			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
@@ -87,14 +87,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
-		public async void NextSession()
+		public void NextSession()
 		{
-			await conn.CreateTableAsync<Client>();
+			conn.CreateTable<Client>();
 
 			string tb4Text = tb4.Text;
 
 			List<Client> client =
-				await conn.Table<Client>().Where(c => c.Code.Equals(tb4Text)).ToListAsync();
+				conn.Table<Client>().Where(c => c.Code.Equals(tb4Text)).ToList();
 
 
 			if (client.Count == 0)
@@ -107,25 +107,25 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 			else
 			{
-				await SetTextBox(tbDetail1, client[0].Name);
-				await SetTextBox(tbDetail2, client[0].Phone);
-				await SetTextBox(tbDetail3, client[0].CurrentLeftMoney.ToString());
-				await SetTextBox(tbDetail4, client[0].PercentCode.ToString());
+				SetTextBox(tbDetail1, client[0].Name);
+				SetTextBox(tbDetail2, client[0].Phone);
+				SetTextBox(tbDetail3, client[0].CurrentLeftMoney.ToString());
+				SetTextBox(tbDetail4, client[0].PercentCode.ToString());
 				string target = client[0].LastTransactionDate.Year.ToString("0000");
-				await SetTextBox(tbDetail51, target.Substring(2, 2));
-				await SetTextBox(tbDetail52, client[0].LastTransactionDate.Month.ToString("00"));
-				await SetTextBox(tbDetail53, client[0].LastTransactionDate.Day.ToString("00"));
+				SetTextBox(tbDetail51, target.Substring(2, 2));
+				SetTextBox(tbDetail52, client[0].LastTransactionDate.Month.ToString("00"));
+				SetTextBox(tbDetail53, client[0].LastTransactionDate.Day.ToString("00"));
 				target = client[0].LastMoneyComeDate.Year.ToString("0000");
-				await SetTextBox(tbDetail61, target.Substring(2, 2));
-				await SetTextBox(tbDetail62, client[0].LastMoneyComeDate.Month.ToString("00"));
-				await SetTextBox(tbDetail63, client[0].LastMoneyComeDate.Day.ToString("00"));
+				SetTextBox(tbDetail61, target.Substring(2, 2));
+				SetTextBox(tbDetail62, client[0].LastMoneyComeDate.Month.ToString("00"));
+				SetTextBox(tbDetail63, client[0].LastMoneyComeDate.Day.ToString("00"));
 				target = client[0].LastReturnDate.Year.ToString("0000");
-				await SetTextBox(tbDetail71, target.Substring(2, 2));
-				await SetTextBox(tbDetail72, client[0].LastReturnDate.Month.ToString("00"));
-				await SetTextBox(tbDetail73, client[0].LastReturnDate.Day.ToString("00"));
-				await SetTextBox(tbDetail8, client[0].TodaySellMoney.ToString());
-				await SetTextBox(tbDetail9, client[0].TodayDepositMoney.ToString());
-				await SetTextBox(tbDetail10, client[0].TodayReturnMoney.ToString());
+				SetTextBox(tbDetail71, target.Substring(2, 2));
+				SetTextBox(tbDetail72, client[0].LastReturnDate.Month.ToString("00"));
+				SetTextBox(tbDetail73, client[0].LastReturnDate.Day.ToString("00"));
+				SetTextBox(tbDetail8, client[0].TodaySellMoney.ToString());
+				SetTextBox(tbDetail9, client[0].TodayDepositMoney.ToString());
+				SetTextBox(tbDetail10, client[0].TodayReturnMoney.ToString());
 
 
 				tbcmd.Dispatcher.Invoke(() => 
@@ -135,14 +135,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
-		internal async Task SetTextBox(TextBox tb, string s)
+		internal void SetTextBox(TextBox tb, string s)
 		{
 			tb.Dispatcher.Invoke(() =>
 			{
 				tb.Text = s;
 			});
 
-			await Task.Delay(50);
+			Task.Delay(50);
 		}
 
 		private void tbDetail1_KeyDown(object sender, KeyEventArgs e)
@@ -248,8 +248,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					try
 					{
 						// 데이터베이스에서 삭제
-						conn.CreateTableAsync<Client>();
-						conn.ExecuteAsync("DELETE FROM Client WHERE Code = ?;", int.Parse(tb4.Text));
+						conn.CreateTable<Client>();
+						conn.Execute("DELETE FROM Client WHERE Code = ?;", int.Parse(tb4.Text));
 					}
 					catch (Exception ex)
 					{
@@ -306,8 +306,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							client.TodayReturnMoney = target;
 						}
 
-						conn.CreateTableAsync<Client>();
-						conn.InsertAsync(client);
+						conn.CreateTable<Client>();
+						conn.Insert(client);
 					}
 					catch (Exception ex)
 					{

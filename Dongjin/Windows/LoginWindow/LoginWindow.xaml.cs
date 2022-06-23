@@ -174,19 +174,19 @@ namespace Dongjin.Windows.LoginWindow
 			passwordBox1.Focus();
 		}
 
-		private async void Login()
+		private void Login()
 		{
 			try
 			{
 				var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
-				DB.Conn = new SQLiteAsyncConnection(options);
-				await DB.Conn.CreateTableAsync<TEST>();
+				DB.Conn = new SQLiteConnection(options);
+				DB.Conn.CreateTable<TEST>();
 				new MenuWindow.MenuWindow().Show();
 				Close();
 			}
 			catch (SQLiteException ex)
 			{
-				await DB.Conn.CloseAsync();
+				DB.Conn.Close();
 				Console.WriteLine(ex);
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -201,8 +201,8 @@ namespace Dongjin.Windows.LoginWindow
 				if (passwordValidCheck == false)
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
-					DB.Conn = new SQLiteAsyncConnection(options);
-					await DB.Conn.CreateTableAsync<TEST>();
+					DB.Conn = new SQLiteConnection(options);
+					DB.Conn.CreateTable<TEST>();
 
 					passwordValidCheck = true;
 					previousPassword = passwordBox1.Password;
@@ -217,9 +217,9 @@ namespace Dongjin.Windows.LoginWindow
 				else
 				{
 					var options = new SQLiteConnectionString(App.databasePath, true, key: previousPassword);
-					DB.Conn = new SQLiteAsyncConnection(options);
-					await DB.Conn.ExecuteAsync(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
-					await DB.Conn.CreateTableAsync<TEST>();
+					DB.Conn = new SQLiteConnection(options);
+					DB.Conn.Execute(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
+					DB.Conn.CreateTable<TEST>();
 
 					passwordValidCheck = false;
 					MessageBox.Show("비밀번호 수정 완료", "비밀번호 수정 완료", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -227,7 +227,7 @@ namespace Dongjin.Windows.LoginWindow
 			}
 			catch (SQLiteException ex)
 			{
-				await DB.Conn.CloseAsync();
+				DB.Conn.Close();
 				Console.WriteLine(ex);
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}

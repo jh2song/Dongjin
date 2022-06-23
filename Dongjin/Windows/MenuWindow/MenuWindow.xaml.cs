@@ -43,9 +43,9 @@ namespace Dongjin.Windows.MenuWindow
 			TestFunction();
 		}
 
-		public async void TestFunction()
+		public void TestFunction()
 		{
-			await DB.Conn.CreateTableAsync<Table.Client>();
+			DB.Conn.CreateTable<Table.Client>();
 			// await DB.Conn.ExecuteAsync($"DELETE FROM Client WHERE Code = {1001};");
 			// await DB .Conn.CloseAsync();
 		}
