@@ -183,6 +183,7 @@ namespace Dongjin.Windows.LoginWindow
 				DB.Conn.CreateTable<TEST>();
 				new MenuWindow.MenuWindow().Show();
 				Close();
+
 			}
 			catch (SQLiteException ex)
 			{
