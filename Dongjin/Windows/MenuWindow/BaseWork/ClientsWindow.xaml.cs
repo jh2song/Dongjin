@@ -29,7 +29,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private SynchronizationContext syscContext;
 		List<TextBox> textBoxes = new List<TextBox>();
 		private bool onDBByCode = true;
-		private bool commanding = false;
+		private bool UpdateCommanding = false;
 
 		public ClientsWindow()
 		{
@@ -133,7 +133,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				if (commanding)
+				if (UpdateCommanding)
 				{
 					tbcmd.Text = "";
 					tbcmd.Focus();
@@ -150,7 +150,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail1.Text = "";
 				else
 				{
-					if (commanding)
+					if (UpdateCommanding)
 						tbcmd.Focus();
 					else
 						tb4.Focus();
@@ -162,7 +162,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				if (commanding)
+				if (UpdateCommanding)
 				{
 					tbcmd.Text = "";
 					tbcmd.Focus();
@@ -179,7 +179,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail2.Text = "";
 				else
 				{
-					if (commanding)
+					if (UpdateCommanding)
 						tbcmd.Focus();
 					else
 						tbDetail1.Focus();
@@ -191,7 +191,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				if (commanding)
+				if (UpdateCommanding)
 				{
 					tbcmd.Text = "";
 					tbcmd.Focus();
@@ -208,7 +208,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail3.Text = "";
 				else
 				{
-					if (commanding)
+					if (UpdateCommanding)
 						tbcmd.Focus();
 					else
 						tbDetail2.Focus();
@@ -220,7 +220,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				if (commanding)
+				if (UpdateCommanding)
 				{
 					tbcmd.Text = "";
 					tbcmd.Focus();
@@ -238,7 +238,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail4.Text = "";
 				else
 				{
-					if (commanding)
+					if (UpdateCommanding)
 						tbcmd.Focus();
 					else
 						tbDetail3.Focus();
@@ -250,15 +250,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (onDBByCode == false)
 			{
-				tbDetail51.Text = "00";
-				tbDetail52.Text = "00";
-				tbDetail53.Text = "00";
-				tbDetail61.Text = "00";
-				tbDetail62.Text = "00";
-				tbDetail63.Text = "00";
-				tbDetail71.Text = "00";
-				tbDetail72.Text = "00";
-				tbDetail73.Text = "00";
+				tbDetail51.Text = "01";
+				tbDetail52.Text = "01";
+				tbDetail53.Text = "01";
+				tbDetail61.Text = "01";
+				tbDetail62.Text = "01";
+				tbDetail63.Text = "01";
+				tbDetail71.Text = "01";
+				tbDetail72.Text = "01";
+				tbDetail73.Text = "01";
 				tbDetail8.Text = "0";
 				tbDetail9.Text = "0";
 				tbDetail10.Text = "0";
@@ -289,8 +289,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void TBcmd_KeyDown(object sender, KeyEventArgs e)
 		{
-			commanding = true;
-
 			if (e.Key == Key.Enter)
 			{
 				int updateNumber;
@@ -298,6 +296,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				if (updateNumber >= 1 && updateNumber <= 10)
 				{
+					UpdateCommanding = true;
 					tbcmd.Text = "";
 					textBoxes[updateNumber - 1].Focus();
 				}
@@ -312,8 +311,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							conn.Execute($"DELETE FROM Client WHERE Code = `{parsedCode}`;");
 						
 						onDBByCode = false;
-						commanding = false;
-						InitializeDetails();
+						UpdateCommanding = false;
+						foreach (TextBox tb in textBoxes)
+							tb.Text = "";
+						tbcmd.Text = "";
+						tb4.Text = "";
 						tb4.Focus();
 					}
 					catch (Exception ex)
@@ -352,12 +354,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						{
 							client.PercentCode = target;
 						}
-						if (tbDetail51.Text != "00" && tbDetail52.Text != "00" && tbDetail53.Text != "00")
-							client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
-						if (tbDetail61.Text != "00" && tbDetail62.Text != "00" && tbDetail63.Text != "00")
-							client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
-						if (tbDetail71.Text != "00" && tbDetail72.Text != "00" && tbDetail73.Text != "00")
-							client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
+						client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
+						client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
+						client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
 						if (int.TryParse(tbDetail8.Text, out target))
 						{
 							client.TodaySellMoney = target;
@@ -372,11 +371,18 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						}
 
 						conn.CreateTable<Client>();
-						conn.Insert(client);
+						var targetClient = conn.Find<Client>(client.Code);
+						if (targetClient == null)
+							conn.Insert(client);
+						else
+							conn.Update(client);
 
-						commanding = false;
+						UpdateCommanding = false;
 						onDBByCode = false;
-						InitializeDetails();
+						foreach (TextBox tb in textBoxes)
+							tb.Text = "";
+						tbcmd.Text = "";
+						tb4.Text = "";
 						tb4.Focus();
 					}
 					catch (Exception ex)
