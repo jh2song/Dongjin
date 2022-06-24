@@ -308,7 +308,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						conn.CreateTable<Client>();
 						int parsedCode;
 						if (int.TryParse(tb4.Text, out parsedCode))
-							conn.Execute($"DELETE FROM Client WHERE Code = `{parsedCode}`;");
+							conn.Execute($"DELETE FROM Client WHERE Code = {parsedCode};");
 						
 						onDBByCode = false;
 						UpdateCommanding = false;
