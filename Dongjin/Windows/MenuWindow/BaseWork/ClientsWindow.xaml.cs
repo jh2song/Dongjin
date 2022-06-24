@@ -298,7 +298,39 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					UpdateCommanding = true;
 					tbcmd.Text = "";
-					textBoxes[updateNumber - 1].Focus();
+					switch (updateNumber)
+					{
+						case 1:
+							tbDetail1.Focus();
+							break;
+						case 2:
+							tbDetail2.Focus();
+							break;
+						case 3:
+							tbDetail3.Focus();
+							break;
+						case 4:
+							tbDetail4.Focus();
+							break;
+						case 5:
+							tbDetail51.Focus();
+							break;
+						case 6:
+							tbDetail61.Focus();
+							break;
+						case 7:
+							tbDetail71.Focus();
+							break;
+						case 8:
+							tbDetail8.Focus();
+							break;
+						case 9:
+							tbDetail9.Focus();
+							break;
+						case 10:
+							tbDetail10.Focus();
+							break;
+					}
 				}
 				else if (tbcmd.Text == "D" || tbcmd.Text == "d")
 				{
