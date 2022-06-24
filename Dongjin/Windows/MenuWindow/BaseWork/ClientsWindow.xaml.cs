@@ -29,6 +29,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private SynchronizationContext syscContext;
 		List<TextBox> textBoxes = new List<TextBox>();
 		private bool onDBByCode = true;
+		private bool commanding = false;
 
 		public ClientsWindow()
 		{
@@ -100,84 +101,118 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			if (client.Count == 0)
 			{
 				onDBByCode = false;
-				tbDetail1.Dispatcher.Invoke(() =>
-				{
-					tbDetail1.Focus();
-				});
+				tbDetail1.Focus();
 			}
 			else
 			{
-				SetTextBox(tbDetail1, client[0].Name);
-				SetTextBox(tbDetail2, client[0].Phone);
-				SetTextBox(tbDetail3, client[0].CurrentLeftMoney.ToString());
-				SetTextBox(tbDetail4, client[0].PercentCode.ToString());
+				tbDetail1.Text = client[0].Name;
+				tbDetail2.Text = client[0].Phone;
+				tbDetail3.Text = client[0].CurrentLeftMoney.ToString();
+				tbDetail4.Text = client[0].PercentCode.ToString();
 				string target = client[0].LastTransactionDate.Year.ToString("0000");
-				SetTextBox(tbDetail51, target.Substring(2, 2));
-				SetTextBox(tbDetail52, client[0].LastTransactionDate.Month.ToString("00"));
-				SetTextBox(tbDetail53, client[0].LastTransactionDate.Day.ToString("00"));
+				tbDetail51.Text = target.Substring(2, 2);
+				tbDetail52.Text = client[0].LastTransactionDate.Month.ToString("00");
+				tbDetail53.Text = client[0].LastTransactionDate.Day.ToString("00");
 				target = client[0].LastMoneyComeDate.Year.ToString("0000");
-				SetTextBox(tbDetail61, target.Substring(2, 2));
-				SetTextBox(tbDetail62, client[0].LastMoneyComeDate.Month.ToString("00"));
-				SetTextBox(tbDetail63, client[0].LastMoneyComeDate.Day.ToString("00"));
+				tbDetail61.Text = target.Substring(2, 2);
+				tbDetail62.Text = client[0].LastMoneyComeDate.Month.ToString("00");
+				tbDetail63.Text = client[0].LastMoneyComeDate.Day.ToString("00");
 				target = client[0].LastReturnDate.Year.ToString("0000");
-				SetTextBox(tbDetail71, target.Substring(2, 2));
-				SetTextBox(tbDetail72, client[0].LastReturnDate.Month.ToString("00"));
-				SetTextBox(tbDetail73, client[0].LastReturnDate.Day.ToString("00"));
-				SetTextBox(tbDetail8, client[0].TodaySellMoney.ToString());
-				SetTextBox(tbDetail9, client[0].TodayDepositMoney.ToString());
-				SetTextBox(tbDetail10, client[0].TodayReturnMoney.ToString());
-
-
-				tbcmd.Dispatcher.Invoke(() => 
-				{
-					tbcmd.Focus();
-				});
+				tbDetail71.Text = target.Substring(2, 2);
+				tbDetail72.Text = client[0].LastReturnDate.Month.ToString("00");
+				tbDetail73.Text = client[0].LastReturnDate.Day.ToString("00");
+				tbDetail8.Text = client[0].TodaySellMoney.ToString();
+				tbDetail9.Text = client[0].TodayDepositMoney.ToString();
+				tbDetail10.Text = client[0].TodayReturnMoney.ToString();
+				
+				tbcmd.Focus();
 			}
-		}
-
-		internal void SetTextBox(TextBox tb, string s)
-		{
-			tb.Dispatcher.Invoke(() =>
-			{
-				tb.Text = s;
-			});
-
-			Task.Delay(50);
 		}
 
 		private void tbDetail1_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				tbDetail2.Focus();
+			{
+				if (commanding)
+				{
+					tbcmd.Text = "";
+					tbcmd.Focus();
+				}
+				else
+				{
+					tbDetail2.Focus();
+				}
+			}
 
 			if (e.Key == Key.Escape)
 			{
-				tbDetail1.Text = "";
-				tb4.Focus();
+				if (tbDetail1.Text != "")
+					tbDetail1.Text = "";
+				else
+				{
+					if (commanding)
+						tbcmd.Focus();
+					else
+						tb4.Focus();
+				}
 			}
 		}
 
 		private void tbDetail2_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				tbDetail3.Focus();
+			{
+				if (commanding)
+				{
+					tbcmd.Text = "";
+					tbcmd.Focus();
+				}
+				else
+				{
+					tbDetail3.Focus();
+				}
+			}
 
 			if (e.Key == Key.Escape)
 			{
-				tbDetail2.Text = "";
-				tb1.Focus();
+				if (tbDetail2.Text != "")
+					tbDetail2.Text = "";
+				else
+				{
+					if (commanding)
+						tbcmd.Focus();
+					else
+						tbDetail1.Focus();
+				}
 			}
 		}
 
 		private void tbDetail3_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
-				tbDetail4.Focus();
+			{
+				if (commanding)
+				{
+					tbcmd.Text = "";
+					tbcmd.Focus();
+				}
+				else
+				{
+					tbDetail4.Focus();
+				}
+			}
 
 			if (e.Key == Key.Escape)
 			{
-				tbDetail3.Text = "";
-				tb2.Focus();
+				if (tbDetail3.Text != "")
+					tbDetail3.Text = "";
+				else
+				{
+					if (commanding)
+						tbcmd.Focus();
+					else
+						tbDetail2.Focus();
+				}
 			}
 		}
 
@@ -185,39 +220,59 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 			{
-				if (onDBByCode == false)
+				if (commanding)
 				{
-					tbDetail51.Text = "00";
-					tbDetail52.Text = "00";
-					tbDetail53.Text = "00";
-					tbDetail61.Text = "00";
-					tbDetail62.Text = "00";
-					tbDetail63.Text = "00";
-					tbDetail71.Text = "00";
-					tbDetail72.Text = "00";
-					tbDetail73.Text = "00";
-					tbDetail8.Text = "0";
-					tbDetail9.Text = "0";
-					tbDetail10.Text = "0";
-					tbDetail11.Text = "0";
-					tbDetail12.Text = "0";
-					tbDetail13.Text = "0";
-					tbDetail14.Text = "0";
+					tbcmd.Text = "";
+					tbcmd.Focus();
 				}
-
-				if (tbDetail3.Text == "")
-					tbDetail3.Text = "0";
-				if (tbDetail4.Text == "")
-					tbDetail4.Text = "8";
-
-				tbcmd.Focus();
+				else
+				{
+					InitializeDetails();
+					tbcmd.Focus();
+				}
 			}
 
 			if (e.Key == Key.Escape)
 			{
-				tbDetail4.Text = "";
-				tb3.Focus();
+				if (tbDetail4.Text != "")
+					tbDetail4.Text = "";
+				else
+				{
+					if (commanding)
+						tbcmd.Focus();
+					else
+						tbDetail3.Focus();
+				}
 			}
+		}
+
+		private void InitializeDetails()
+		{
+			if (onDBByCode == false)
+			{
+				tbDetail51.Text = "00";
+				tbDetail52.Text = "00";
+				tbDetail53.Text = "00";
+				tbDetail61.Text = "00";
+				tbDetail62.Text = "00";
+				tbDetail63.Text = "00";
+				tbDetail71.Text = "00";
+				tbDetail72.Text = "00";
+				tbDetail73.Text = "00";
+				tbDetail8.Text = "0";
+				tbDetail9.Text = "0";
+				tbDetail10.Text = "0";
+				tbDetail11.Text = "0";
+				tbDetail12.Text = "0";
+				tbDetail13.Text = "0";
+				tbDetail14.Text = "0";
+			}
+
+			if (tbDetail3.Text == "")
+				tbDetail3.Text = "0";
+			if (tbDetail4.Text == "")
+				tbDetail4.Text = "8";
+
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)
@@ -234,6 +289,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void TBcmd_KeyDown(object sender, KeyEventArgs e)
 		{
+			commanding = true;
+
 			if (e.Key == Key.Enter)
 			{
 				int updateNumber;
@@ -241,6 +298,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				if (updateNumber >= 1 && updateNumber <= 10)
 				{
+					tbcmd.Text = "";
 					textBoxes[updateNumber - 1].Focus();
 				}
 				else if (tbcmd.Text == "D" || tbcmd.Text == "d")
@@ -249,7 +307,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					{
 						// 데이터베이스에서 삭제
 						conn.CreateTable<Client>();
-						conn.Execute("DELETE FROM Client WHERE Code = ?;", int.Parse(tb4.Text));
+						int parsedCode;
+						if (int.TryParse(tb4.Text, out parsedCode))
+							conn.Execute($"DELETE FROM Client WHERE Code = `{parsedCode}`;");
+						
+						onDBByCode = false;
+						commanding = false;
+						InitializeDetails();
+						tb4.Focus();
 					}
 					catch (Exception ex)
 					{
@@ -308,6 +373,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 						conn.CreateTable<Client>();
 						conn.Insert(client);
+
+						commanding = false;
+						onDBByCode = false;
+						InitializeDetails();
+						tb4.Focus();
 					}
 					catch (Exception ex)
 					{
@@ -330,72 +400,168 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Enter)
 				tbDetail52.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail51.Text != "")
+					tbDetail51.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 
 		private void tbDetail52_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbDetail53.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail52.Text != "")
+					tbDetail52.Text = "";
+				else
+					tbDetail51.Focus();
+			}
 		}
 
 		private void tbDetail53_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail53.Text != "")
+					tbDetail53.Text = "";
+				else
+					tbDetail52.Focus();
+			}
 		}
 
 		private void tbDetail61_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbDetail62.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail61.Text != "")
+					tbDetail61.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 
 		private void tbDetail62_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbDetail63.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail62.Text != "")
+					tbDetail62.Text = "";
+				else
+					tbDetail61.Focus();
+			}
 		}
 
 		private void tbDetail63_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail63.Text != "")
+					tbDetail63.Text = "";
+				else
+					tbDetail62.Focus();
+			}
 		}
 
 		private void tbDetail71_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbDetail72.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail71.Text != "")
+					tbDetail71.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 
 		private void tbDetail72_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbDetail73.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail72.Text != "")
+					tbDetail72.Text = "";
+				else
+					tbDetail71.Focus();
+			}
 		}
 
 		private void tbDetail73_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail73.Text != "")
+					tbDetail73.Text = "";
+				else
+					tbDetail72.Focus();
+			}
 		}
 
 		private void tbDetail8_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail8.Text != "")
+					tbDetail8.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 
 		private void tbDetail9_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail9.Text != "")
+					tbDetail9.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 
 		private void tbDetail10_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
 				tbcmd.Focus();
+
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail10.Text != "")
+					tbDetail10.Text = "";
+				else
+					tbcmd.Focus();
+			}
 		}
 	}
 }

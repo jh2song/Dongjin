@@ -194,7 +194,7 @@ namespace Dongjin.Windows.LoginWindow
 
 		bool passwordValidCheck = false;
 		string previousPassword = "";
-		private async void UpdatePassword()
+		private void UpdatePassword()
 		{
 			try
 			{
