@@ -12,7 +12,7 @@ namespace Dongjin.Table
 		public string Name { get; set; } = "";
 		public string Phone { get; set; } = "";
 		public int CurrentLeftMoney { get; set; } = 0;
-		public int PercentCode { get; set; } = 8;
+		public int PercentCode { get; set; } = 0;
 		public DateTime LastTransactionDate { get; set; } = DateTime.MinValue;
 		public DateTime LastMoneyComeDate { get; set; } = DateTime.MinValue;
 		public DateTime LastReturnDate { get; set; } = DateTime.MinValue;
