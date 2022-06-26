@@ -271,7 +271,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			if (tbDetail3.Text == "")
 				tbDetail3.Text = "0";
 			if (tbDetail4.Text == "")
-				tbDetail4.Text = "8";
+				tbDetail4.Text = "0";
 
 		}
 
