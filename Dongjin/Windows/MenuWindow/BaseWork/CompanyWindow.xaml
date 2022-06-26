@@ -52,24 +52,35 @@
             <StackPanel
                 Grid.Column="0"
                 Orientation="Horizontal"
+                VerticalAlignment="Center"
                 >
                 <Label
                     Content="회사코드: "
                 />
                 <TextBox
                     x:Name="TB1"
+                    MaxLines="1"
+                    MaxLength="4"
+                    MinWidth="80"
+                    Style="{StaticResource detailStyle}"
+                    KeyDown="TB1_KeyDown"
                 />
             </StackPanel>
 
             <StackPanel
                 Grid.Column="1"
                 Orientation="Horizontal"
+                VerticalAlignment="Center"
                 >
                 <Label
                     Content="회사명: "
                 />
                 <TextBox
                     x:Name="TB2"
+                    MaxLines="1"
+                    MinWidth="1400"
+                    Style="{StaticResource detailStyle}"
+                    KeyDown="TB2_KeyDown"
                 />
             </StackPanel>
         </Grid>
@@ -86,7 +97,10 @@
             <TextBox
                 x:Name="TBCmd"
                 MaxLines="1"
+                MaxLength="1"
                 MinWidth="50"
+                Style="{StaticResource detailStyle}"
+                KeyDown="TBCmd_KeyDown"
                 />
         </StackPanel>
 

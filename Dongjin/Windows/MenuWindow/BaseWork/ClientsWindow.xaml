@@ -92,6 +92,7 @@
                 MaxLength="4"
                 MinWidth="80"
                 VerticalAlignment="Center"
+                Style="{StaticResource detailStyle}"
                 KeyDown="TB4_KeyDown"
                 />
             <Label

@@ -48,35 +48,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			MiddleTBList.Add(tbDetail4);
 		}
 
-		private void Window_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Escape)
-			{
-				Close();
-			}
-			else if (e.Key == Key.Enter)
-			{
-				if (TopTBList[focusIdx] == tb1)
-				{
-					TopTBList[focusIdx].Text = DateTime.Today.Year.ToString().Substring(2, 2);
-					focusIdx++;
-					TopTBList[focusIdx].Focus();
-				}
-				else if (TopTBList[focusIdx] == tb2)
-				{
-					TopTBList[focusIdx].Text = DateTime.Now.Month.ToString("00");
-					focusIdx++;
-					TopTBList[focusIdx].Focus();
-				}
-				else if (TopTBList[focusIdx] == tb3)
-				{
-					TopTBList[focusIdx].Text = DateTime.Now.Day.ToString("00");
-					focusIdx++;
-					TopTBList[focusIdx].Focus();
-				}
-			}
-		}
-
 		private void TB1_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (tb1.Text.Length >= 2)
