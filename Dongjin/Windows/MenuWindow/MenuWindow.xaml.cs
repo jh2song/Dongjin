@@ -143,11 +143,18 @@ namespace Dongjin.Windows.MenuWindow
 			{
 				new ClientsWindow().Show();
 			}
-			else if (topIndex == 0 && underIndex == 1) // 제품등록
+
+			if (topIndex == 0 && underIndex == 1) // 제품등록
 			{
 				new ProductWindow().Show();
 			}
-			else if (topIndex == 5 && underIndex == 0) // 작업마침
+			
+			if (topIndex == 0 && underIndex == 3) // 회사등록
+			{
+				new CompanyWindow().Show();
+			}
+
+			if (topIndex == 5 && underIndex == 0) // 작업마침
 			{
 				Close();
 			}
@@ -210,7 +217,7 @@ namespace Dongjin.Windows.MenuWindow
 
 			LabelClass top2 = new LabelClass();
 			top2.TopLabel = topLabel2;
-			top2.UnderLabels = new List<Label>() { underLabel21, underLabel22 };
+			top2.UnderLabels = new List<Label>() { underLabel21 };
 			labels.Add(top2);
 
 			LabelClass top3 = new LabelClass();

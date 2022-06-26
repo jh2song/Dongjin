@@ -35,7 +35,7 @@
         <Label
             HorizontalAlignment="Right"
             VerticalAlignment="Center"
-            Content="F5: 도움말 / ESC: 종료"
+            Content="F5: 도움말"
             FontSize="28"
             Foreground="Black"
             Grid.Row="0"
@@ -56,7 +56,6 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                Style="{StaticResource clientStyle}"
                 Focusable="False"
                 Foreground="Red"
                 KeyUp="TB1_KeyUp"
@@ -69,7 +68,6 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                Style="{StaticResource clientStyle}"
                 Focusable="False"
                 Foreground="Red"
                 KeyUp="TB2_KeyUp"
@@ -82,7 +80,6 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
-                Style="{StaticResource clientStyle}"
                 Focusable="False"
                 Foreground="Red"
                 KeyUp="TB3_KeyUp"
@@ -98,7 +95,6 @@
                 MaxLines="1"
                 MaxLength="4"
                 MinWidth="80"
-                Style="{StaticResource clientStyle}"
                 KeyUp="TB4_KeyUp"
                 />
             <Label
@@ -109,7 +105,6 @@
                 MaxLines="1"
                 MinWidth="500"
                 Focusable="False"
-                Style="{StaticResource clientStyle}"
                 />
             <Label
                 Content=")"
@@ -124,7 +119,6 @@
                 MaxLines="1"
                 MinWidth="500"
                 HorizontalContentAlignment="Left"
-                Style="{StaticResource clientStyle}"
                 />
             
             <Grid.Row>1</Grid.Row>
@@ -160,7 +154,7 @@
                 x:Name="tbDetail1"
                 Grid.Row="0"
                 Grid.Column="1"
-                Style="{StaticResource clientsDetailStyle}"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="1"
@@ -173,7 +167,7 @@
                 x:Name="tbDetail2"
                 Grid.Row="1"
                 Grid.Column="1"
-                Style="{StaticResource clientsDetailStyle}"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="2"
@@ -186,7 +180,7 @@
                 x:Name="tbDetail3"
                 Grid.Row="2"
                 Grid.Column="1"
-                Style="{StaticResource clientsDetailStyle}"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="3"
@@ -199,7 +193,7 @@
                 x:Name="tbDetail4"
                 Grid.Row="3"
                 Grid.Column="1"
-                Style="{StaticResource clientsDetailStyle}"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="4"
@@ -212,7 +206,7 @@
                 x:Name="tbDetail5"
                 Grid.Row="3"
                 Grid.Column="1"
-                Style="{StaticResource clientsDetailStyle}"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="5"
@@ -234,7 +228,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                 />
                 <Label
                     Content="년"
@@ -245,7 +238,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                 />
                 <Label
                     Content="월"
@@ -256,7 +248,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                     />
                 <Label
                     Content="일"
@@ -283,7 +274,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                 />
                 <Label
                     Content="년"
@@ -294,7 +284,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                 />
                 <Label
                     Content="월"
@@ -305,7 +294,6 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
-                    Style="{StaticResource clientStyle}"
                     />
                 <Label
                     Content="일"
