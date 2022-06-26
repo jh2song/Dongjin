@@ -134,6 +134,12 @@
                    Grid.Row="2"
                    Grid.Column="0"
                     />
+            <Label x:Name="underLabel14"
+                   Content="회사등록"
+                   Style="{StaticResource underLabelStyle}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   />
 
             <Border x:Name="borderUnder1" 
                     BorderBrush="Cyan"
@@ -141,7 +147,7 @@
                 >
                 <Grid.Column>0</Grid.Column>
                 <Grid.Row>0</Grid.Row>
-                <Grid.RowSpan>3</Grid.RowSpan>
+                <Grid.RowSpan>4</Grid.RowSpan>
             </Border>
         </Grid>
 

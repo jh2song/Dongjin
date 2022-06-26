@@ -205,7 +205,7 @@ namespace Dongjin.Windows.MenuWindow
 		{
 			LabelClass top1 = new LabelClass();
 			top1.TopLabel = topLabel1;
-			top1.UnderLabels = new List<Label>() { underLabel11, underLabel12, underLabel13};
+			top1.UnderLabels = new List<Label>() { underLabel11, underLabel12, underLabel13, underLabel14};
 			labels.Add(top1);
 
 			LabelClass top2 = new LabelClass();
