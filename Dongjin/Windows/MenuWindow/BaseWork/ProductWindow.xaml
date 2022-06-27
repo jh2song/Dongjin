@@ -109,7 +109,7 @@
                 Content=")"
                 />
             <Label
-                Content="제품코드"
+                Content="제품코드/바코드"
                 Foreground="Black"
                 Background="White"
                 />
@@ -199,7 +199,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Content="5. 재고총액:"
+                Content="※. 재고총액:"
                 />
             <TextBox
                 x:Name="tbDetail5"
