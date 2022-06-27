@@ -42,7 +42,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
-				TB2.Text = GetNameByCode();
+				TB2.Text = GetNameByCode(TB1.Text);
 
 				if (TB2.Text == "")
 				{
@@ -106,12 +106,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
-		private string GetNameByCode()
+		public static string GetNameByCode(string code)
 		{
-			_conn.CreateTable<Company>();
+			DB.Conn.CreateTable<Company>();
 
 			List<Company> company =
-				_conn.Table<Company>().Where(c => c.Code.Equals(TB1.Text)).ToList();
+				DB.Conn.Table<Company>().Where(c => c.Code.Equals(code)).ToList();
 
 			if (company.Count > 0)
 			{ 

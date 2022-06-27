@@ -17,83 +17,58 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	/// </summary>
 	public partial class ProductWindow : Window
 	{
-		private readonly List<TextBox> TopTBList = new List<TextBox>();
-		private readonly List<TextBox> MiddleTBList = new List<TextBox>();
-		private int focusIdx;
-
 		public ProductWindow()
 		{
 			InitializeComponent();
-
-			SetList();
 
 			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
 			tb2.Text = DateTime.Now.Month.ToString("00");
 			tb3.Text = DateTime.Now.Day.ToString("00");
 
-			focusIdx = 3;
-			TopTBList[focusIdx].Focus();
+			tb4.Focus();
 		}
 
-		private void SetList()
+		private void TB4_KeyDown(object sender, KeyEventArgs e)
 		{
-			TopTBList.Add(tb1);
-			TopTBList.Add(tb2);
-			TopTBList.Add(tb3);
-			TopTBList.Add(tb4);
-
-			MiddleTBList.Add(tbDetail1);
-			MiddleTBList.Add(tbDetail2);
-			MiddleTBList.Add(tbDetail3);
-			MiddleTBList.Add(tbDetail4);
-		}
-
-		private void TB1_KeyUp(object sender, KeyEventArgs e)
-		{
-			if (tb1.Text.Length >= 2)
+			if (e.Key == Key.Escape)
 			{
-				focusIdx++;
-				TopTBList[focusIdx].Focus();
+				if (tb4.Text == "")
+					Close();
+				else
+					tb4.Text = "";
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				string ret = CompanyWindow.GetNameByCode(tb4.Text);
+				if (ret == "")
+				{
+					tb4.Text = "";
+				}
+				else
+				{
+					tb5.Text = ret;
+					tb6.Focus();
+				}
 			}
 		}
 
-		private void TB2_KeyUp(object sender, KeyEventArgs e)
+		private void TB6_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (tb2.Text.Length >= 2)
+			if (e.Key == Key.Escape)
 			{
-				focusIdx++;
-				TopTBList[focusIdx].Focus();
+				if (tb6.Text == "")
+				{
+					tb5.Text = "";
+					tb4.Focus();
+				}
+				else
+					tb6.Text = "";
 			}
-			if (tb2.Text.Length == 0 && e.Key == Key.Back)
-			{
-				focusIdx--;
-				TopTBList[focusIdx].Focus();
-				TopTBList[focusIdx].Select(tb1.Text.Length, 0);
-			}
-		}
 
-		private void TB3_KeyUp(object sender, KeyEventArgs e)
-		{
-			if (tb3.Text.Length >= 2)
+			if (e.Key == Key.Enter)
 			{
-				focusIdx++;
-				TopTBList[focusIdx].Focus();
-			}
-			if (tb3.Text.Length == 0 && e.Key == Key.Back)
-			{
-				focusIdx--;
-				TopTBList[focusIdx].Focus();
-				TopTBList[focusIdx].Select(tb2.Text.Length, 0);
-			}
-		}
 
-		private void TB4_KeyUp(object sender, KeyEventArgs e)
-		{
-			if (tb4.Text.Length == 0 && e.Key == Key.Back)
-			{
-				focusIdx--;
-				TopTBList[focusIdx].Focus();
-				TopTBList[focusIdx].Select(tb3.Text.Length, 0);
 			}
 		}
 	}

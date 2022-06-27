@@ -57,7 +57,6 @@
                 MinWidth="45"
                 Focusable="False"
                 Foreground="Red"
-                KeyUp="TB1_KeyUp"
                 />
             <Label
                 Content="/"
@@ -69,7 +68,6 @@
                 MinWidth="45"
                 Focusable="False"
                 Foreground="Red"
-                KeyUp="TB2_KeyUp"
                 />
             <Label
                 Content="/"
@@ -81,7 +79,6 @@
                 MinWidth="45"
                 Focusable="False"
                 Foreground="Red"
-                KeyUp="TB3_KeyUp"
                 />
 
             <Label
@@ -94,7 +91,9 @@
                 MaxLines="1"
                 MaxLength="4"
                 MinWidth="80"
-                KeyUp="TB4_KeyUp"
+                Margin="10 0 0 0"
+                Style="{StaticResource detailStyle}"
+                KeyDown="TB4_KeyDown"
                 />
             <Label
                 Content="("
@@ -104,6 +103,7 @@
                 MaxLines="1"
                 MinWidth="500"
                 Focusable="False"
+                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Content=")"
@@ -117,7 +117,8 @@
                 x:Name="tb6"
                 MaxLines="1"
                 MinWidth="500"
-                HorizontalContentAlignment="Left"
+                Style="{StaticResource detailStyle}"
+                KeyDown="TB6_KeyDown"
                 />
             
             <Grid.Row>1</Grid.Row>
