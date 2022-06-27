@@ -68,7 +68,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
-
+				
 			}
 		}
 	}
