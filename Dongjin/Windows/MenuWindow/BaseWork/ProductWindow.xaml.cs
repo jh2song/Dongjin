@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Dongjin.Classes;
+using Dongjin.Table;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -66,10 +69,232 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tb6.Text = "";
 			}
 
+			if (e.Key == Key.Enter && tb6.Text != "")
+			{
+				if (IsOnTheProduct(tb6.Text))
+				{
+					SPOnTheProduct.Visibility = Visibility.Visible;
+					TBCmdOn.Focus();
+				}
+				else 
+				{
+					tbDetail1.Focus();
+				}
+			}
+		}
+
+		private bool IsOnTheProduct(string code)
+		{
+			DB.Conn.CreateTable<Product>();
+
+			List<Product> products = DB.Conn.Table<Product>().Where(c => c.Code.Equals(code)).ToList();
+
+			if (products.Count == 0)
+				return false;
+			else
+				return true;
+		}
+
+		private void TBDetail1_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail1.Text == "")
+				{
+					tb6.Focus();
+				}
+				else
+				{
+					tbDetail1.Text = "";
+				}
+			}
+
 			if (e.Key == Key.Enter)
 			{
-				
+				tbDetail2.Focus();
 			}
+		}
+
+		private void TBDetail2_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail2.Text == "")
+				{
+					tbDetail1.Focus();
+				}
+				else
+				{
+					tbDetail2.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				tbDetail3.Focus();
+			}
+		}
+
+		private void TBDetail3_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail3.Text == "")
+				{
+					tbDetail2.Focus();
+				}
+				else
+				{
+					tbDetail3.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				tbDetail4.Focus();
+			}
+		}
+
+		private void TBDetail4_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (tbDetail4.Text == "")
+				{
+					tbDetail3.Focus();
+				}
+				else
+				{
+					tbDetail4.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				SPOffTheProduct.Visibility = Visibility.Visible;
+				SPOffTheProduct.Focus();
+			}
+		}
+
+		private void TBCmdOn_KeyDown(object sender, KeyEventArgs e)
+		{
+			int cmd;
+
+			if (e.Key == Key.Enter)
+			{
+				if (int.TryParse(TBCmdOn.Text, out cmd) == true) // 항목 수정
+				{
+					switch (cmd)
+					{
+						case 1:
+							tbDetail1.Focus();
+							break;
+						case 2:
+							tbDetail2.Focus();
+							break;
+						case 3:
+							tbDetail3.Focus();
+							break;
+						case 4:
+							tbDetail4.Focus();
+							break;
+					}
+				}
+				else if (TBCmdOn.Text == "D" || TBCmdOn.Text == "d") // 삭제
+				{
+					DeleteProductDB(tb6.Text);
+					SPOnTheProduct.Visibility = Visibility.Hidden;
+				}
+				else if (TBCmdOn.Text == "E" || TBCmdOn.Text == "e") // 종료
+				{
+					Close();
+				}
+				else // 계속
+				{
+					SaveProductDB();
+					EraseDetail();
+					TBCmdOn.Text = "";
+					SPOnTheProduct.Visibility = Visibility.Hidden;
+				}
+			}
+
+			if (e.Key == Key.Escape)
+			{
+				if (TBCmdOn.Text != "")
+					TBCmdOn.Text = "";
+				else // 무시(ESC)
+				{
+					EraseDetail();
+					SPOnTheProduct.Visibility = Visibility.Hidden;
+				}
+			}
+
+		}
+
+		private void SaveProductDB()
+		{
+			try
+			{
+				Product product = new Product();
+				int target;
+
+				product.Code = tb6.Text;
+				if (int.TryParse(tb4.Text, out target))
+				{
+					product.CompanyCode = target;
+				}
+				product.Name = tbDetail1.Text;
+				if (int.TryParse(tbDetail2.Text, out target))
+				{
+					product.Price = target;
+				}
+				if (int.TryParse(tbDetail3.Text, out target))
+				{
+					product.DepositAmount = target;
+				}
+				if (int.TryParse(tbDetail4.Text, out target))
+				{
+					product.BoughtMoney = target;
+				}
+
+				DB.Conn.CreateTable<Product>();
+				var targetProduct = DB.Conn.Find<Product>(product.Code);
+				if (targetProduct == null)
+					DB.Conn.Insert(product);
+				else
+					DB.Conn.Update(product);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("데이터베이스 저장에 오류가 발생하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				Debug.WriteLine(ex.ToString());
+			}
+		}
+
+		private void EraseDetail()
+		{
+			tbDetail1.Text = tbDetail2.Text = tbDetail3.Text = tbDetail4.Text =
+				tbDetail5.Text = tbDetail61.Text = tbDetail62.Text = tbDetail63.Text =
+				tbDetail71.Text = tbDetail72.Text = tbDetail73.Text = "";
+		}
+
+		private void DeleteProductDB(string text)
+		{
+			try
+			{
+				DB.Conn.CreateTable<Product>();
+				DB.Conn.Execute($"DELETE FROM Product WHERE Code = '{tb6.Text}'");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("데이터베이스 삭제에 오류가 발생하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				Debug.WriteLine(ex.ToString());
+			}
+		}
+
+		private void TBCmdOff_KeyDown(object sender, KeyEventArgs e)
+		{
+
 		}
 	}
 }

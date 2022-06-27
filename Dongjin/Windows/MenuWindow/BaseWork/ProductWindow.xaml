@@ -155,6 +155,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Style="{StaticResource detailStyle}"
+                KeyDown="TBDetail1_KeyDown"
                 />
             <Label
                 Grid.Row="1"
@@ -168,6 +169,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Style="{StaticResource detailStyle}"
+                KeyDown="TBDetail2_KeyDown"
                 />
             <Label
                 Grid.Row="2"
@@ -181,6 +183,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Style="{StaticResource detailStyle}"
+                KeyDown="TBDetail3_KeyDown"
                 />
             <Label
                 Grid.Row="3"
@@ -194,6 +197,7 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 Style="{StaticResource detailStyle}"
+                KeyDown="TBDetail4_KeyDown"
                 />
             <Label
                 Grid.Row="4"
@@ -301,6 +305,44 @@
                     />
             </StackPanel>
         </Grid>
+
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.Row="3"
+            x:Name="SPOnTheProduct"
+            Visibility="Hidden"
+            >
+            <Label
+                Content="항목수정(1-4)  :  무시(ESC)  :  삭제(D)  :  계속(Enter)  :  종료(E)  --> "
+                />
+            <TextBox
+                x:Name="TBCmdOn"
+                MaxLines="1"
+                MinWidth="50"
+                KeyDown="TBCmdOn_KeyDown"
+                />
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.Row="3"
+            x:Name="SPOffTheProduct"
+            Visibility="Hidden"
+            >
+            <Label
+                Content="항목수정(1-4)  무시(ESC)  :  계속(Enter)  :  종료(E)  --> "
+                />
+            <TextBox
+                x:Name="TBCmdOff"
+                MaxLines="1"
+                MinWidth="50"
+                KeyDown="TBCmdOff_KeyDown"
+                />
+        </StackPanel>
+        
         
         <Border
             BorderThickness="2 2 2 2"
