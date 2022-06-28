@@ -101,10 +101,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				List<Product> products = DB.Conn.Table<Product>().Where(c => c.Code.Equals(code)).ToList();
 
 				tbDetail1.Text = products[0].Name;
-				tbDetail2.Text = products[0].Price.ToString();
+				tbDetail2.Text = String.Format("{0:#,0}", products[0].Price);
 				tbDetail3.Text = products[0].LeftAmount.ToString();
-				tbDetail4.Text = products[0].BoughtMoney.ToString();
-				tbDetail5.Text = products[0].TotalDepositMoney.ToString();
+				tbDetail4.Text = String.Format("{0:#,0}", products[0].BoughtMoney);
+				tbDetail5.Text = String.Format("{0:#,0}", products[0].TotalDepositMoney);
 			}
 			catch (Exception ex)
 			{
@@ -323,7 +323,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					product.CompanyCode = target;
 				}
 				product.Name = tbDetail1.Text;
-				if (int.TryParse(tbDetail2.Text, out target))
+				if (int.TryParse(tbDetail2.Text.Replace(",", ""), out target))
 				{
 					product.Price = target;
 				}
@@ -331,11 +331,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					product.LeftAmount = target;
 				}
-				if (int.TryParse(tbDetail4.Text, out target))
+				if (int.TryParse(tbDetail4.Text.Replace(",", ""), out target))
 				{
 					product.BoughtMoney = target;
 				}
-				if (int.TryParse(tbDetail5.Text, out target))
+				if (int.TryParse(tbDetail5.Text.Replace(",", ""), out target))
 				{
 					product.TotalDepositMoney = target;
 				}
