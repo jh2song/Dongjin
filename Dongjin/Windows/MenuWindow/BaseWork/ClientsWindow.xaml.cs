@@ -38,14 +38,18 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			conn = DB.Conn;
 			syscContext = SynchronizationContext.Current;
 
-			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
-			tb2.Text = DateTime.Now.Month.ToString("00");
-			tb3.Text = DateTime.Now.Day.ToString("00");
+			SetDate();
 
 			// 거래처코드에 포커싱
 			tb4.Focus();
-
 			SetList();
+		}
+
+		private void SetDate()
+		{
+			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
+			tb2.Text = DateTime.Now.Month.ToString("00");
+			tb3.Text = DateTime.Now.Day.ToString("00");
 		}
 
 		public void SetList()
@@ -124,7 +128,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail8.Text = client[0].TodaySellMoney.ToString();
 				tbDetail9.Text = client[0].TodayDepositMoney.ToString();
 				tbDetail10.Text = client[0].TodayReturnMoney.ToString();
-				
+				tbDetail11.Text = client[0].MonthReleaseMoney.ToString();
+				tbDetail12.Text = client[0].MonthDepositMoney.ToString();
+				tbDetail13.Text = client[0].MonthReturnMoney.ToString();
+				tbDetail14.Text = client[0].PrevMonthLeftMoney.ToString();
+
 				tbcmd.Focus();
 			}
 		}
