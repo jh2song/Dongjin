@@ -24,11 +24,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			InitializeComponent();
 
+			SetDate();
+
+			tb4.Focus();
+		}
+
+		private void SetDate()
+		{
 			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
 			tb2.Text = DateTime.Now.Month.ToString("00");
 			tb3.Text = DateTime.Now.Day.ToString("00");
-
-			tb4.Focus();
 		}
 
 		private void TB4_KeyDown(object sender, KeyEventArgs e)
@@ -73,6 +78,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (IsOnTheProduct(tb6.Text))
 				{
+					ShowDetail(tb6.Text);
 					SPOnTheProduct.Visibility = Visibility.Visible;
 					TBCmdOn.Focus();
 				}
@@ -80,6 +86,27 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					tbDetail1.Focus();
 				}
+			}
+		}
+
+		private void ShowDetail(string code)
+		{
+			try
+			{
+				DB.Conn.CreateTable<Product>();
+
+				List<Product> products = DB.Conn.Table<Product>().Where(c => c.Code.Equals(code)).ToList();
+
+				tbDetail1.Text = products[0].Name;
+				tbDetail2.Text = products[0].Price.ToString();
+				tbDetail3.Text = products[0].LeftAmount.ToString();
+				tbDetail4.Text = products[0].BoughtMoney.ToString();
+				tbDetail5.Text = products[0].TotalDepositMoney.ToString();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("데이터베이스에서 불러오는데 실패하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				Debug.WriteLine(ex);
 			}
 		}
 
@@ -131,6 +158,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
+				if (tbDetail2.Text == "")
+					tbDetail2.Text = "0";
 				tbDetail3.Focus();
 			}
 		}
@@ -151,6 +180,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
+				if (tbDetail3.Text == "")
+					tbDetail3.Text = "0";
 				tbDetail4.Focus();
 			}
 		}
@@ -171,8 +202,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
+				if (tbDetail4.Text == "")
+					tbDetail4.Text = "0";
+				tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+
 				SPOffTheProduct.Visibility = Visibility.Visible;
-				SPOffTheProduct.Focus();
+				TBCmdOff.Focus();
 			}
 		}
 
@@ -184,6 +219,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (int.TryParse(TBCmdOn.Text, out cmd) == true) // 항목 수정
 				{
+					TBCmdOn.Text = "";
 					switch (cmd)
 					{
 						case 1:
@@ -203,7 +239,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				else if (TBCmdOn.Text == "D" || TBCmdOn.Text == "d") // 삭제
 				{
 					DeleteProductDB(tb6.Text);
+					TBCmdOn.Text = "";
+					EraseDetail();
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					tb6.Focus();
 				}
 				else if (TBCmdOn.Text == "E" || TBCmdOn.Text == "e") // 종료
 				{
@@ -215,6 +254,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					EraseDetail();
 					TBCmdOn.Text = "";
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					tb6.Focus();
 				}
 			}
 
@@ -226,6 +266,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					EraseDetail();
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					tb6.Focus();
 				}
 			}
 
@@ -250,11 +291,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 				if (int.TryParse(tbDetail3.Text, out target))
 				{
-					product.DepositAmount = target;
+					product.LeftAmount = target;
 				}
 				if (int.TryParse(tbDetail4.Text, out target))
 				{
 					product.BoughtMoney = target;
+				}
+				if (int.TryParse(tbDetail5.Text, out target))
+				{
+					product.TotalDepositMoney = target;
 				}
 
 				DB.Conn.CreateTable<Product>();
@@ -274,8 +319,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private void EraseDetail()
 		{
 			tbDetail1.Text = tbDetail2.Text = tbDetail3.Text = tbDetail4.Text =
-				tbDetail5.Text = tbDetail61.Text = tbDetail62.Text = tbDetail63.Text =
-				tbDetail71.Text = tbDetail72.Text = tbDetail73.Text = "";
+				tbDetail5.Text = "";
 		}
 
 		private void DeleteProductDB(string text)
@@ -294,7 +338,54 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void TBCmdOff_KeyDown(object sender, KeyEventArgs e)
 		{
+			int cmd;
 
+			if (e.Key == Key.Enter)
+			{
+				if (int.TryParse(TBCmdOff.Text, out cmd) == true) // 항목 수정
+				{
+					TBCmdOff.Text = "";
+					switch (cmd)
+					{
+						case 1:
+							tbDetail1.Focus();
+							break;
+						case 2:
+							tbDetail2.Focus();
+							break;
+						case 3:
+							tbDetail3.Focus();
+							break;
+						case 4:
+							tbDetail4.Focus();
+							break;
+					}
+				}
+				else if (TBCmdOff.Text == "E" || TBCmdOff.Text == "e") // 종료
+				{
+					Close();
+				}
+				else // 계속
+				{
+					SaveProductDB();
+					EraseDetail();
+					TBCmdOff.Text = "";
+					SPOffTheProduct.Visibility = Visibility.Hidden;
+					tb6.Focus();
+				}
+			}
+
+			if (e.Key == Key.Escape)
+			{
+				if (TBCmdOff.Text != "")
+					TBCmdOff.Text = "";
+				else // 무시(ESC)
+				{
+					EraseDetail();
+					SPOffTheProduct.Visibility = Visibility.Hidden;
+					tb6.Focus();
+				}
+			}
 		}
 	}
 }

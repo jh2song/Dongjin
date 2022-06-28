@@ -17,7 +17,7 @@ namespace Dongjin.Table
 		// 단가
 		public int Price { get; set; } = 0;
 		// 재고량
-		public int DepositAmount { get; set; } = 0;
+		public int LeftAmount { get; set; } = 0;
 		// 사입단가
 		public int BoughtMoney { get; set; } = 0;
 		// 재고총액

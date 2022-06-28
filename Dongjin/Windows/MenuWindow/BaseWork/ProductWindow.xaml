@@ -117,6 +117,7 @@
                 x:Name="tb6"
                 MaxLines="1"
                 MinWidth="500"
+                Margin="10 0 0 0"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TB6_KeyDown"
                 />
@@ -208,102 +209,10 @@
                 />
             <TextBox
                 x:Name="tbDetail5"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="1"
                 Style="{StaticResource detailStyle}"
                 />
-            <Label
-                Grid.Row="5"
-                Grid.Column="0" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Content="※. 최종입고일:"
-                />
-            <StackPanel
-                Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
-                Grid.Row="5"
-                Grid.Column="1"
-                >
-
-                <TextBox
-                    x:Name="tbDetail61"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                />
-                <Label
-                    Content="년"
-                    VerticalAlignment="Bottom"
-                    />
-                <TextBox
-                    x:Name="tbDetail62"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                />
-                <Label
-                    Content="월"
-                    VerticalAlignment="Bottom"
-                    />
-                <TextBox
-                    x:Name="tbDetail63"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                    />
-                <Label
-                    Content="일"
-                    VerticalAlignment="Bottom"
-                    />
-            </StackPanel>
-            <Label
-                Grid.Row="6"
-                Grid.Column="0" 
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Content="※. 최종출고일:"
-                />
-            <StackPanel
-                Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
-                Grid.Row="6"
-                Grid.Column="1"
-                >
-
-                <TextBox
-                    x:Name="tbDetail71"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                />
-                <Label
-                    Content="년"
-                    VerticalAlignment="Bottom"
-                    />
-                <TextBox
-                    x:Name="tbDetail72"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                />
-                <Label
-                    Content="월"
-                    VerticalAlignment="Bottom"
-                    />
-                <TextBox
-                    x:Name="tbDetail73"
-                    MaxLines="1"
-                    MaxLength="2"
-                    MinWidth="50"
-                    />
-                <Label
-                    Content="일"
-                    VerticalAlignment="Bottom"
-                    />
-            </StackPanel>
         </Grid>
 
         <StackPanel
