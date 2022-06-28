@@ -184,7 +184,7 @@
                 >
                 <Grid.Column>1</Grid.Column>
                 <Grid.Row>0</Grid.Row>
-                <Grid.RowSpan>2</Grid.RowSpan>
+                <Grid.RowSpan>1</Grid.RowSpan>
             </Border>
         </Grid>
 

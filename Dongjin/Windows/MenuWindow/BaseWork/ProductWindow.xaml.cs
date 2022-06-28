@@ -20,6 +20,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	/// </summary>
 	public partial class ProductWindow : Window
 	{
+		private bool isUpdateing = false;
+
 		public ProductWindow()
 		{
 			InitializeComponent();
@@ -80,6 +82,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					ShowDetail(tb6.Text);
 					SPOnTheProduct.Visibility = Visibility.Visible;
+					isUpdateing = false;
 					TBCmdOn.Focus();
 				}
 				else 
@@ -138,7 +141,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
-				tbDetail2.Focus();
+				if (!isUpdateing)
+					tbDetail2.Focus();
+				else if (SPOnTheProduct.Visibility == Visibility.Visible)
+					TBCmdOn.Focus();
+				else
+					TBCmdOff.Focus();
 			}
 		}
 
@@ -160,7 +168,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (tbDetail2.Text == "")
 					tbDetail2.Text = "0";
-				tbDetail3.Focus();
+				if (!isUpdateing)
+					tbDetail3.Focus();
+				else if (SPOnTheProduct.Visibility == Visibility.Visible)
+					TBCmdOn.Focus();
+				else
+					TBCmdOff.Focus();
+
 			}
 		}
 
@@ -182,7 +196,18 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (tbDetail3.Text == "")
 					tbDetail3.Text = "0";
-				tbDetail4.Focus();
+				if (!isUpdateing)
+					tbDetail4.Focus();
+				else if (SPOnTheProduct.Visibility == Visibility.Visible)
+				{
+					tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+					TBCmdOn.Focus();
+				}
+				else
+				{
+					tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+					TBCmdOff.Focus();
+				}
 			}
 		}
 
@@ -206,8 +231,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail4.Text = "0";
 				tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
 
-				SPOffTheProduct.Visibility = Visibility.Visible;
-				TBCmdOff.Focus();
+				if (!isUpdateing)
+				{
+					SPOffTheProduct.Visibility = Visibility.Visible;
+					TBCmdOff.Focus();
+				}
+				else if (SPOnTheProduct.Visibility == Visibility.Visible)
+					TBCmdOn.Focus();
+				else
+					TBCmdOff.Focus();
+
 			}
 		}
 
@@ -223,15 +256,19 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					switch (cmd)
 					{
 						case 1:
+							isUpdateing = true;
 							tbDetail1.Focus();
 							break;
 						case 2:
+							isUpdateing = true;
 							tbDetail2.Focus();
 							break;
 						case 3:
+							isUpdateing = true;
 							tbDetail3.Focus();
 							break;
 						case 4:
+							isUpdateing = true;
 							tbDetail4.Focus();
 							break;
 					}
@@ -242,11 +279,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					TBCmdOn.Text = "";
 					EraseDetail();
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					isUpdateing = false;
 					tb6.Focus();
-				}
-				else if (TBCmdOn.Text == "E" || TBCmdOn.Text == "e") // 종료
-				{
-					Close();
 				}
 				else // 계속
 				{
@@ -266,9 +300,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					EraseDetail();
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					isUpdateing = false;
 					tb6.Focus();
 				}
 			}
+
+			if (e.Key == Key.E)
+				Close();
 
 		}
 
@@ -348,22 +386,22 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					switch (cmd)
 					{
 						case 1:
+							isUpdateing = true;
 							tbDetail1.Focus();
 							break;
 						case 2:
+							isUpdateing = true;
 							tbDetail2.Focus();
 							break;
 						case 3:
+							isUpdateing = true;
 							tbDetail3.Focus();
 							break;
 						case 4:
+							isUpdateing = true;
 							tbDetail4.Focus();
 							break;
 					}
-				}
-				else if (TBCmdOff.Text == "E" || TBCmdOff.Text == "e") // 종료
-				{
-					Close();
 				}
 				else // 계속
 				{
@@ -371,6 +409,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					EraseDetail();
 					TBCmdOff.Text = "";
 					SPOffTheProduct.Visibility = Visibility.Hidden;
+					isUpdateing = false;
 					tb6.Focus();
 				}
 			}
@@ -383,9 +422,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					EraseDetail();
 					SPOffTheProduct.Visibility = Visibility.Hidden;
+					isUpdateing = false;
 					tb6.Focus();
 				}
 			}
+
+			if (e.Key == Key.E)
+				Close();
 		}
 	}
 }
