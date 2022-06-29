@@ -149,6 +149,11 @@ namespace Dongjin.Windows.MenuWindow
 				new ProductWindow().Show();
 			}
 			
+			if (topIndex == 0 && underIndex == 2)
+			{
+				new DiscountWindow().Show();
+			}
+
 			if (topIndex == 0 && underIndex == 3) // 회사등록
 			{
 				new CompanyWindow().Show();
