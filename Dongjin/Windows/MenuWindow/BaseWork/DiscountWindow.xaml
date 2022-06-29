@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.BaseWork"
         mc:Ignorable="d"
-        Title="DiscountWindow" Height="450" Width="800">
+        Width="1920"
+        Height="1080"
+        WindowState="Maximized"
+        WindowStyle="None"
+        Background="Black"
+        Title="DiscountWindow"
+        >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Margin="0 0 0 10"
+            Content="&lt;&lt;&lt;     할인율 마스터 입력     >>>"
+            FontSize="40"
+            Foreground="black"
+            Background="White"
+            Grid.Row="0"
+        />
+
+        <Label
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Content="F5: 도움말"
+            FontSize="28"
+            Foreground="Black"
+            Grid.Row="0"
+        />
     </Grid>
 </Window>

@@ -24,7 +24,7 @@
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Center"
             Margin="0 0 0 10"
-            Content="&lt;&lt;&lt;     제품 마스터     >>>"
+            Content="&lt;&lt;&lt;     제품 마스터 입력     >>>"
             FontSize="40"
             Foreground="black"
             Background="White"
