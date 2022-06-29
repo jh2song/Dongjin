@@ -82,7 +82,7 @@
                 />
 
             <Label
-                Content="회사코드"
+                Content="브랜드코드"
                 Foreground="Black"
                 Background="White"
                 />

@@ -108,10 +108,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		public static string GetNameByCode(string code)
 		{
-			DB.Conn.CreateTable<Company>();
+			DB.Conn.CreateTable<Brand>();
 
-			List<Company> company =
-				DB.Conn.Table<Company>().Where(c => c.Code.Equals(code)).ToList();
+			List<Brand> company =
+				DB.Conn.Table<Brand>().Where(c => c.Code.Equals(code)).ToList();
 
 			if (company.Count > 0)
 			{ 
@@ -125,7 +125,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				_conn.CreateTable<Company>();
+				_conn.CreateTable<Brand>();
 				int parsedCode;
 				if (int.TryParse(TB1.Text, out parsedCode))
 					_conn.Execute($"DELETE FROM Company WHERE Code = {parsedCode};");
@@ -141,11 +141,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				Company company = new Company();
+				Brand company = new Brand();
 				company.Code = int.Parse(TB1.Text);
 				company.Name = TB2.Text;
 
-				var targetCompany = _conn.Find<Company>(company.Code);
+				var targetCompany = _conn.Find<Brand>(company.Code);
 				if (targetCompany == null)
 					_conn.Insert(company);
 				else

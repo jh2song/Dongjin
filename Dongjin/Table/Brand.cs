@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dongjin.Table
 {
-	class Company
+	class Brand
 	{
 		[PrimaryKey]
 		public int Code { get; set; }

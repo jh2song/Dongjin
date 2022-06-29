@@ -24,7 +24,7 @@
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Center"
             Margin="0 0 0 10"
-            Content="&lt;&lt;&lt;     회사 마스터 입력     >>>"
+            Content="&lt;&lt;&lt;     브랜드 마스터 입력     >>>"
             FontSize="40"
             Foreground="black"
             Background="White"
@@ -55,7 +55,7 @@
                 VerticalAlignment="Center"
                 >
                 <Label
-                    Content="회사코드: "
+                    Content="브랜드코드: "
                 />
                 <TextBox
                     x:Name="TB1"
@@ -73,7 +73,7 @@
                 VerticalAlignment="Center"
                 >
                 <Label
-                    Content="회사명: "
+                    Content="브랜드명: "
                 />
                 <TextBox
                     x:Name="TB2"
