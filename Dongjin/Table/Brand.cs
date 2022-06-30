@@ -8,7 +8,7 @@ namespace Dongjin.Table
 	class Brand
 	{
 		[PrimaryKey]
-		public int Code { get; set; }
-		public string Name { get; set; }
+		public int BrandCode { get; set; }
+		public string BrandName { get; set; }
 	}
 }

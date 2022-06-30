@@ -111,11 +111,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			DB.Conn.CreateTable<Brand>();
 
 			List<Brand> company =
-				DB.Conn.Table<Brand>().Where(c => c.Code.Equals(code)).ToList();
+				DB.Conn.Table<Brand>().Where(c => c.BrandCode.Equals(code)).ToList();
 
 			if (company.Count > 0)
 			{ 
-				return company[0].Name;
+				return company[0].BrandName;
 			}
 			
 			return "";
@@ -142,10 +142,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			try
 			{
 				Brand company = new Brand();
-				company.Code = int.Parse(TB1.Text);
-				company.Name = TB2.Text;
+				company.BrandCode = int.Parse(TB1.Text);
+				company.BrandName = TB2.Text;
 
-				var targetCompany = _conn.Find<Brand>(company.Code);
+				var targetCompany = _conn.Find<Brand>(company.BrandCode);
 				if (targetCompany == null)
 					_conn.Insert(company);
 				else
