@@ -25,6 +25,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			InitializeComponent();
 
+			DG.IsReadOnly = true;
+
 			CodeTB.Focus();
 		}
 

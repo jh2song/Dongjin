@@ -70,15 +70,17 @@
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="VerticalGridLinesBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2 0 2 0"/>
         </Style>
 
         <Style TargetType="DataGridCell">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style>
         
@@ -90,8 +92,7 @@
             <Setter Property="FontSize" Value="30"/>
 
             <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="2 2 2 2"/>
-            <Setter Property="Margin" Value="-1 -1 -1 0"/>
+            <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
         
