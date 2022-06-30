@@ -73,25 +73,27 @@
         </StackPanel>
 
         <DataGrid
-            Margin="10 0 10 10"
+            x:Name="DG"
+            Margin="10 0 10 0"
             >
             <Grid.Row>2</Grid.Row>
-            
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="브랜드코드" Width="*"/>
                 <DataGridTextColumn Header="브랜드명" Width="5*"/>
                 <DataGridTextColumn Header="할인율" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        
         <Border
-            BorderThickness="2 2 2 2"
+            BorderThickness="2 2 2 0"
             BorderBrush="White"
             Margin="10 0 10 0"
             >
             <Grid.Row>1</Grid.Row>
         </Border>
         <Border
-            BorderThickness="2 0 2 0"
+            BorderThickness="0 0 0 0"
             BorderBrush="White"
             Margin="10 0 10 0"
             >

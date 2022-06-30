@@ -70,16 +70,20 @@
         <Style TargetType="DataGrid">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="White"/>
         </Style>
 
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="BorderBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="0 0 2 2"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
             <Setter Property="FontSize" Value="30"/>
+
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="2 2 2 2"/>
+            <Setter Property="Margin" Value="-1 -1 -1 0"/>
         </Style>
+        
     </Application.Resources>
 </Application>
