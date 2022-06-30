@@ -55,6 +55,7 @@
                 MaxLines="1"
                 MaxLength="4"
                 MinWidth="80"
+                KeyUp="CodeTB_KeyUp"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -65,6 +66,7 @@
                 MaxLines="1"
                 MinWidth="600"
                 Focusable="False"
+                KeyUp="DiscountNameTB_KeyUp"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -75,14 +77,18 @@
         <DataGrid
             x:Name="DG"
             Margin="10 0 10 0"
+            RowHeaderWidth="0"
+            AutoGenerateColumns="False"
+            Focusable="False"
             >
             <Grid.Row>2</Grid.Row>
-
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="브랜드코드" Width="*"/>
-                <DataGridTextColumn Header="브랜드명" Width="5*"/>
-                <DataGridTextColumn Header="할인율" Width="*"/>
+                <DataGridTextColumn Header="브랜드코드" Binding="{Binding BrandCode}" Width="*"/>
+                <DataGridTextColumn Header="브랜드명" Binding="{Binding BrandName}" Width="5*"/>
+                <DataGridTextColumn Header="할인율" Binding="{Binding DiscountRate}" Width="*"/>
             </DataGrid.Columns>
+            
         </DataGrid>
         
         <Border

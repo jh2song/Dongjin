@@ -9,15 +9,15 @@ namespace Dongjin.Table
 	{
 		// 할인율코드
 		[Indexed(Name = "CompositeKey", Order = 1, Unique = true)]
-		public int Code { get; set; }
+		public int DiscountCode { get; set; }
 		// 할인율명
-		public int DiscountName { get; set; }
+		public string DiscountName { get; set; }
 		// 브랜드코드
 		[Indexed(Name = "CompositeKey", Order = 2, Unique = true)]
 		public int BrandCode { get; set; }
 		// 브랜드명
 		public string BrandName { get; set; }
 		// 할인율
-		public double DiscountRate { get; set; }
+		public double DiscountRate { get; set; } = 100.00;
 	}
 }

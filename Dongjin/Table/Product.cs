@@ -9,7 +9,7 @@ namespace Dongjin.Table
 	{
 		// 제품코드/바코드
 		[PrimaryKey]
-		public string Code { get; set; }
+		public string ProductCode { get; set; }
 		// 회사코드
 		public int CompanyCode { get; set; }
 		// 제품명

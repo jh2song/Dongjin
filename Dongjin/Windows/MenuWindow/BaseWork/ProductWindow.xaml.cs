@@ -98,7 +98,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				DB.Conn.CreateTable<Product>();
 
-				List<Product> products = DB.Conn.Table<Product>().Where(c => c.Code.Equals(code)).ToList();
+				List<Product> products = DB.Conn.Table<Product>().Where(c => c.ProductCode.Equals(code)).ToList();
 
 				tbDetail1.Text = products[0].Name;
 				tbDetail2.Text = String.Format("{0:#,0}", products[0].Price);
@@ -117,7 +117,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			DB.Conn.CreateTable<Product>();
 
-			List<Product> products = DB.Conn.Table<Product>().Where(c => c.Code.Equals(code)).ToList();
+			List<Product> products = DB.Conn.Table<Product>().Where(c => c.ProductCode.Equals(code)).ToList();
 
 			if (products.Count == 0)
 				return false;
@@ -317,7 +317,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				Product product = new Product();
 				int target;
 
-				product.Code = tb6.Text;
+				product.ProductCode = tb6.Text;
 				if (int.TryParse(tb4.Text, out target))
 				{
 					product.CompanyCode = target;
@@ -341,7 +341,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 
 				DB.Conn.CreateTable<Product>();
-				var targetProduct = DB.Conn.Find<Product>(product.Code);
+				var targetProduct = DB.Conn.Find<Product>(product.ProductCode);
 				if (targetProduct == null)
 					DB.Conn.Insert(product);
 				else
