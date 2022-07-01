@@ -65,7 +65,6 @@
                 x:Name="DiscountNameTB"
                 MaxLines="1"
                 MinWidth="600"
-                Focusable="False"
                 KeyUp="DiscountNameTB_KeyUp"
                 Style="{StaticResource detailStyle}"
                 />
@@ -76,13 +75,16 @@
 
         <DataGrid
             x:Name="DG"
-            Margin="10 -1 10 0"
+            Margin="10 0 10 0"
             RowHeaderWidth="0"
             AutoGenerateColumns="False"
-            Focusable="False"
+            VerticalScrollBarVisibility="Hidden"
+            CanUserAddRows="False"
+            CellEditEnding="DG_CellEditEnding"
             >
             <Grid.Row>2</Grid.Row>
-
+            <Grid.RowSpan>2</Grid.RowSpan>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding BrandCode, StringFormat=\{0:D4\}}" Width="*">
                     <DataGridTextColumn.Header>
@@ -113,7 +115,7 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Border
             BorderThickness="2 2 2 0"
             BorderBrush="White"
@@ -128,12 +130,12 @@
             >
             <Grid.Row>2</Grid.Row>
         </Border>-->
-        <Border
-            BorderThickness="2 2 2 2"
+        <!--<Border
+            BorderThickness="2 0 2 2"
             BorderBrush="White"
             Margin="10 0 10 10"
             >
             <Grid.Row>3</Grid.Row>
-        </Border>
+        </Border>-->
     </Grid>
 </Window>

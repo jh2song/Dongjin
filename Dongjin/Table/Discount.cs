@@ -7,13 +7,14 @@ namespace Dongjin.Table
 {
 	class Discount
 	{
+		// PK를 위한 코드
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
 		// 할인율코드
-		[Indexed(Name = "CompositeKey", Order = 1, Unique = true)]
 		public int DiscountCode { get; set; }
 		// 할인율명
 		public string DiscountName { get; set; }
 		// 브랜드코드
-		[Indexed(Name = "CompositeKey", Order = 2, Unique = true)]
 		public int BrandCode { get; set; }
 		// 브랜드명
 		public string BrandName { get; set; }

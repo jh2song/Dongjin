@@ -2,6 +2,7 @@
 using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,8 +25,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		public DiscountWindow()
 		{
 			InitializeComponent();
-
-			DG.IsReadOnly = true;
 
 			CodeTB.Focus();
 		}
@@ -73,8 +72,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (DiscountNameTB.Text == "")
 				{
-					DiscountNameTB.Focusable = false;
 					CodeTB.Focus();
+					DiscountNameTB.Focusable = false;
 				}
 				else
 					DiscountNameTB.Text = "";
@@ -82,7 +81,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter && DiscountNameTB.Text != "")
 			{
-				DiscountNameTB.Focusable = false;
 				SaveNewDiscount();
 			}
 		}
@@ -105,12 +103,47 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					discount.BrandName = brand.BrandName;
 
 					_discounts.Add(discount);
-					DG.Items.Add(discount);
 				}
+
+				DB.Conn.CreateTable<Discount>();
+				DB.Conn.InsertAll(_discounts);
+
+				DG.ItemsSource = _discounts;
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
+				Debug.WriteLine(ex);
 				MessageBox.Show("입력이 잘못되었습니다", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void DG_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+		{
+			try
+			{
+				int y = e.Row.GetIndex();
+				int x = e.Column.DisplayIndex;
+
+				Discount updatedDiscount = _discounts[y];
+				switch (x)
+				{
+					case 0:
+						updatedDiscount.DiscountCode = int.Parse((e.EditingElement as TextBox).Text);
+						break;
+					case 1:
+						updatedDiscount.DiscountName = (e.EditingElement as TextBox).Text;
+						break;
+					case 2:
+						updatedDiscount.DiscountRate = double.Parse((e.EditingElement as TextBox).Text);
+						break;
+				}
+
+				DB.Conn.Update(updatedDiscount);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				// 메시지박스 출력
 			}
 		}
 	}
