@@ -21,6 +21,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	public partial class DiscountWindow : Window
 	{
 		List<Discount> _discounts;
+		private bool _noInDB;
 
 		public DiscountWindow()
 		{
@@ -55,14 +56,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (_discounts.Count == 0)
 			{
+				_noInDB = true;
 				DiscountNameTB.Focusable = true;
 				DiscountNameTB.Focus();
 				return;
 			}
 
-
+			_noInDB = false;
 			DiscountNameTB.Text = _discounts[0].DiscountName;
-
+			DiscountNameTB.Focus();
 			DG.ItemsSource = _discounts;
 		}
 
@@ -81,7 +83,24 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter && DiscountNameTB.Text != "")
 			{
-				SaveNewDiscount();
+				if (_noInDB)
+					SaveNewDiscount();
+				else
+					UpdateDiscountName();
+			}
+		}
+
+		private void UpdateDiscountName()
+		{
+			try
+			{
+				DB.Conn.CreateTable<Discount>();
+				DB.Conn.Execute($"UPDATE Discount SET DiscountName = '{DiscountNameTB.Text}' WHERE DiscountCode = {int.Parse(CodeTB.Text)};");
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				// 메시지 박스
 			}
 		}
 
