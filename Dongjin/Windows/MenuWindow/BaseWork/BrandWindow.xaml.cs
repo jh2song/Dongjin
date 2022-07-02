@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace Dongjin.Windows.MenuWindow.BaseWork
 {
@@ -125,10 +126,17 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				_conn.CreateTable<Brand>();
 				int parsedCode;
 				if (int.TryParse(TB1.Text, out parsedCode))
+				{
+					////// 할인율에서 이 브랜드 쓰는거 삭제 ///////
+					_conn.CreateTable<Discount>();
+					_conn.Execute($"DELETE FROM Discount WHERE BrandCode = {parsedCode};");
+					////////////////////////////////////////////
+
+					_conn.CreateTable<Brand>();
 					_conn.Execute($"DELETE FROM Brand WHERE BrandCode = {parsedCode};");
+				}
 			}
 			catch (Exception ex)
 			{
@@ -145,16 +153,83 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				brand.BrandCode = int.Parse(TB1.Text);
 				brand.BrandName = TB2.Text;
 
-				var targetCompany = _conn.Find<Brand>(brand.BrandCode);
-				if (targetCompany == null)
+				var targetBrand = _conn.Find<Brand>(brand.BrandCode);
+				if (targetBrand == null)
+				{
+					InsertAllDiscount(brand);
 					_conn.Insert(brand);
+				}
 				else
+				{
+					UpdateAllDiscount(brand);
 					_conn.Update(brand);
-			}	
+				}
+			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine(ex.ToString());
 				MessageBox.Show("데이터베이스 저장에 오류가 발생하였습니다", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void InsertAllDiscount(Brand brand)
+		{
+			try
+			{
+				var discounts = _conn.Table<Discount>().ToList();
+
+				var discountsGrouped = (from d in discounts
+										group d by new { d.ID, d.DiscountCode, d.DiscountName }
+									   into grp
+										select new
+										{
+											grp.Key.ID,
+											grp.Key.DiscountCode,
+											grp.Key.DiscountName
+										}).ToList();
+
+				foreach (var discount in discountsGrouped)
+				{
+					Discount inserted = new Discount();
+					inserted.ID = discount.ID;
+					inserted.DiscountCode = discount.DiscountCode;
+					inserted.DiscountName = discount.DiscountName;
+					inserted.BrandCode = brand.BrandCode;
+					inserted.BrandName = brand.BrandName;
+					_conn.CreateTable<Discount>();
+					_conn.Insert(inserted);
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				MessageBox.Show("입력이 잘못되었습니다.", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void UpdateAllDiscount(Brand brand)
+		{
+			try
+			{
+				var discounts = _conn.Table<Discount>().Where(d => d.BrandCode.Equals(brand.BrandCode)).ToList();
+
+				foreach (var dc in discounts)
+				{
+					Discount discount = new Discount();
+					discount.ID = dc.ID;
+					discount.DiscountCode = dc.DiscountCode;
+					discount.DiscountName = dc.DiscountName;
+					discount.BrandCode = dc.BrandCode;
+					discount.BrandName = brand.BrandName;
+					discount.DiscountRate = dc.DiscountRate;
+					_conn.CreateTable<Discount>();
+					_conn.Update(discount);
+				}
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex);
+				MessageBox.Show("수정이 잘못되었습니다.", "수정 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
