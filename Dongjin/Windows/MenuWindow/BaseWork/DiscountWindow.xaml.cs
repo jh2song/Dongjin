@@ -2,6 +2,7 @@
 using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -26,6 +27,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		public DiscountWindow()
 		{
 			InitializeComponent();
+
 			CodeTB.Focus();
 		}
 
@@ -64,6 +66,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			_noInDB = false;
 			DiscountNameTB.Text = _discounts[0].DiscountName;
 			DiscountNameTB.Focus();
+			_discounts.Sort();
 			DG.ItemsSource = _discounts;
 		}
 
@@ -122,11 +125,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 					_discounts.Add(discount);
 				}
-
+				_discounts.Sort();
 				DB.Conn.CreateTable<Discount>();
 				DB.Conn.InsertAll(_discounts);
 
 				DG.ItemsSource = _discounts;
+				_noInDB = false;
 			}
 			catch (Exception ex)
 			{
