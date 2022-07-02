@@ -86,7 +86,7 @@
             <Grid.RowSpan>2</Grid.RowSpan>
             
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding BrandCode, StringFormat=\{0:D4\}}" Width="*">
+                <DataGridTextColumn Binding="{Binding BrandCode, StringFormat=\{0:D4\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             브랜드코드
@@ -96,7 +96,7 @@
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding BrandName}" Width="2*">
+                <DataGridTextColumn Binding="{Binding BrandName}" IsReadOnly="True" Width="2*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             브 랜 드 명 ( 브 랜 드 기 호 )
@@ -106,7 +106,7 @@
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding DiscountRate, StringFormat=\{0:n2\}}" Width="*">
+                <DataGridTextColumn Binding="{Binding DiscountRate, StringFormat=\{0:n2\}}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             할인율

@@ -187,7 +187,6 @@ namespace Dongjin.Windows.LoginWindow
 			}
 			catch (SQLiteException ex)
 			{
-				DB.Conn.Close();
 				Console.WriteLine(ex);
 				MessageBox.Show("비밀번호가 잘못되었습니다.", "로그인 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}

@@ -128,7 +128,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				_conn.CreateTable<Brand>();
 				int parsedCode;
 				if (int.TryParse(TB1.Text, out parsedCode))
-					_conn.Execute($"DELETE FROM Company WHERE Code = {parsedCode};");
+					_conn.Execute($"DELETE FROM Brand WHERE BrandCode = {parsedCode};");
 			}
 			catch (Exception ex)
 			{
@@ -141,15 +141,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				Brand company = new Brand();
-				company.BrandCode = int.Parse(TB1.Text);
-				company.BrandName = TB2.Text;
+				Brand brand = new Brand();
+				brand.BrandCode = int.Parse(TB1.Text);
+				brand.BrandName = TB2.Text;
 
-				var targetCompany = _conn.Find<Brand>(company.BrandCode);
+				var targetCompany = _conn.Find<Brand>(brand.BrandCode);
 				if (targetCompany == null)
-					_conn.Insert(company);
+					_conn.Insert(brand);
 				else
-					_conn.Update(company);
+					_conn.Update(brand);
 			}	
 			catch (Exception ex)
 			{

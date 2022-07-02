@@ -10,7 +10,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="Black"
-        Title="CompanyWindow"
+        Title="BrandWindow"
         >
     <Grid>
         <Grid.RowDefinitions>

@@ -26,7 +26,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		public DiscountWindow()
 		{
 			InitializeComponent();
-
 			CodeTB.Focus();
 		}
 
