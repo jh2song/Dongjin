@@ -71,6 +71,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					tb5.Text = "";
 					tb4.Focus();
+					tb4.Select(tb4.Text.Length, 0);
 				}
 				else
 					tb6.Text = "";
@@ -132,6 +133,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				if (tbDetail1.Text == "")
 				{
 					tb6.Focus();
+					tb6.Select(tb6.Text.Length, 0);
 				}
 				else
 				{
@@ -157,6 +159,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				if (tbDetail2.Text == "")
 				{
 					tbDetail1.Focus();
+					tbDetail1.Select(tbDetail1.Text.Length, 0);
 				}
 				else
 				{
@@ -185,6 +188,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				if (tbDetail3.Text == "")
 				{
 					tbDetail2.Focus();
+					tbDetail2.Select(tbDetail2.Text.Length, 0);
 				}
 				else
 				{
@@ -218,6 +222,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				if (tbDetail4.Text == "")
 				{
 					tbDetail3.Focus();
+					tbDetail3.Select(tbDetail3.Text.Length, 0);
 				}
 				else
 				{

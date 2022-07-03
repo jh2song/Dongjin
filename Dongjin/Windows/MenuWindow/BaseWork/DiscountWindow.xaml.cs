@@ -67,6 +67,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			_noInDB = false;
 			DiscountNameTB.Text = _discounts[0].DiscountName;
+			DiscountNameTB.Select(DiscountNameTB.Text.Length, 0);
+
 			DiscountNameTB.Focus();
 			DG.ItemsSource = _discounts;
 		}
@@ -162,6 +164,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 
 				DB.Conn.Update(updatedDiscount);
+
+				DiscountNameTB.Focus();
+				DiscountNameTB.Select(DiscountNameTB.Text.Length, 0);
 			}
 			catch (Exception ex)
 			{

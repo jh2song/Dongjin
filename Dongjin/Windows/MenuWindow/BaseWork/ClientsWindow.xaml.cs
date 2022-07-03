@@ -310,33 +310,43 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					{
 						case 1:
 							tbDetail1.Focus();
+							tbDetail1.Select(tbDetail1.Text.Length, 0);
 							break;
 						case 2:
 							tbDetail2.Focus();
+							tbDetail2.Select(tbDetail2.Text.Length, 0);
 							break;
 						case 3:
 							tbDetail3.Focus();
+							tbDetail3.Select(tbDetail3.Text.Length, 0);
 							break;
 						case 4:
 							tbDetail4.Focus();
+							tbDetail4.Select(tbDetail4.Text.Length, 0);
 							break;
 						case 5:
 							tbDetail51.Focus();
+							tbDetail51.Select(tbDetail51.Text.Length, 0);
 							break;
 						case 6:
 							tbDetail61.Focus();
+							tbDetail61.Select(tbDetail61.Text.Length, 0);
 							break;
 						case 7:
 							tbDetail71.Focus();
+							tbDetail71.Select(tbDetail71.Text.Length, 0);
 							break;
 						case 8:
 							tbDetail8.Focus();
+							tbDetail8.Select(tbDetail8.Text.Length, 0);
 							break;
 						case 9:
 							tbDetail9.Focus();
+							tbDetail9.Select(tbDetail9.Text.Length, 0);
 							break;
 						case 10:
 							tbDetail10.Focus();
+							tbDetail10.Select(tbDetail10.Text.Length, 0);
 							break;
 					}
 				}

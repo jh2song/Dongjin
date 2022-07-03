@@ -83,6 +83,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				if (TBCmd.Text == "")
 				{
 					TB2.Focus();
+					TB2.Select(TB2.Text.Length, 0);
 				}
 				else
 				{
