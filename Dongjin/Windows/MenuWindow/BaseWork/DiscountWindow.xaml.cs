@@ -24,6 +24,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	{
 		List<Discount> _discounts;
 		private bool _noInDB;
+		private bool isEdited = false;
 
 		public DiscountWindow()
 		{
@@ -81,6 +82,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void DiscountNameTB_KeyUp(object sender, KeyEventArgs e)
 		{
+			if (isEdited)
+			{
+				isEdited = false;
+				return;
+			}	
+
 			if (e.Key == Key.Escape)
 			{
 				if (DiscountNameTB.Text == "")
@@ -152,6 +159,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
+				isEdited = true;
 				int y = e.Row.GetIndex();
 				int x = e.Column.DisplayIndex;
 
@@ -170,7 +178,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 
 				DB.Conn.Update(updatedDiscount);
-
 				DiscountNameTB.Focus();
 				DiscountNameTB.Select(DiscountNameTB.Text.Length, 0);
 			}
