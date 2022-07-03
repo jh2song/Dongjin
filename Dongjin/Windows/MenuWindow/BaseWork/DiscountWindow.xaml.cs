@@ -55,6 +55,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			_discounts =
 				DB.Conn.Table<Discount>().Where(d => d.DiscountCode.Equals(codeText)).ToList();
 
+			_discounts.Sort();
+
 			if (_discounts.Count == 0)
 			{
 				_noInDB = true;
@@ -66,7 +68,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			_noInDB = false;
 			DiscountNameTB.Text = _discounts[0].DiscountName;
 			DiscountNameTB.Focus();
-			_discounts.Sort();
 			DG.ItemsSource = _discounts;
 		}
 
