@@ -93,6 +93,7 @@
                 MinWidth="80"
                 Margin="10 0 0 0"
                 Style="{StaticResource detailStyle}"
+                PreviewTextInput="tb4_PreviewTextInput"
                 KeyDown="TB4_KeyDown"
                 />
             <Label

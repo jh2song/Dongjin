@@ -1,4 +1,4 @@
-﻿<Window x:Class="Dongjin.Windows.MenuWindow.BaseWork.CompanyWindow"
+﻿<Window x:Class="Dongjin.Windows.MenuWindow.BaseWork.BrandWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -63,6 +63,7 @@
                     MaxLength="4"
                     MinWidth="80"
                     Style="{StaticResource detailStyle}"
+                    PreviewTextInput="TB1_PreviewTextInput"
                     KeyDown="TB1_KeyDown"
                 />
             </StackPanel>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,6 +77,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			textBoxes.Add(tbDetail14);
 		}
 
+		private void tb4_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
 		private void TB4_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -111,7 +117,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				tbDetail1.Text = client[0].Name;
 				tbDetail2.Text = client[0].Phone;
-				tbDetail3.Text = client[0].CurrentLeftMoney.ToString();
+				tbDetail3.Text = String.Format("{0:#,0}",client[0].CurrentLeftMoney).ToString();
 				tbDetail4.Text = client[0].PercentCode.ToString();
 				string target = client[0].LastTransactionDate.Year.ToString("0000");
 				tbDetail51.Text = target.Substring(2, 2);
@@ -125,13 +131,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail71.Text = target.Substring(2, 2);
 				tbDetail72.Text = client[0].LastReturnDate.Month.ToString("00");
 				tbDetail73.Text = client[0].LastReturnDate.Day.ToString("00");
-				tbDetail8.Text = client[0].TodaySellMoney.ToString();
-				tbDetail9.Text = client[0].TodayDepositMoney.ToString();
-				tbDetail10.Text = client[0].TodayReturnMoney.ToString();
-				tbDetail11.Text = client[0].MonthReleaseMoney.ToString();
-				tbDetail12.Text = client[0].MonthDepositMoney.ToString();
-				tbDetail13.Text = client[0].MonthReturnMoney.ToString();
-				tbDetail14.Text = client[0].PrevMonthLeftMoney.ToString();
+				tbDetail8.Text = String.Format("{0:#,0}", client[0].TodaySellMoney).ToString();
+				tbDetail9.Text = String.Format("{0:#,0}", client[0].TodayDepositMoney).ToString();
+				tbDetail10.Text = String.Format("{0:#,0}", client[0].TodayReturnMoney).ToString();
+				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthReleaseMoney).ToString();
+				tbDetail12.Text = String.Format("{0:#,0}", client[0].MonthDepositMoney).ToString();
+				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthReturnMoney).ToString();
+				tbDetail14.Text = String.Format("{0:#,0}", client[0].PrevMonthLeftMoney).ToString();
 
 				tbcmd.Focus();
 			}
@@ -396,7 +402,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						{
 							client.Phone = tbDetail2.Text;
 						}
-						if (int.TryParse(tbDetail3.Text, out target))
+						if (int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
 						{
 							client.CurrentLeftMoney = target;
 						}
@@ -407,15 +413,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
 						client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
 						client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
-						if (int.TryParse(tbDetail8.Text, out target))
+						if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
 						{
 							client.TodaySellMoney = target;
 						}
-						if (int.TryParse(tbDetail9.Text, out target))
+						if (int.TryParse(tbDetail9.Text.Replace(",", ""), out target))
 						{
 							client.TodayDepositMoney = target;
 						}
-						if (int.TryParse(tbDetail10.Text, out target))
+						if (int.TryParse(tbDetail10.Text.Replace(",", ""), out target))
 						{
 							client.TodayReturnMoney = target;
 						}
@@ -618,6 +624,76 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				else
 					tbcmd.Focus();
 			}
+		}
+
+		private void tbDetail3_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
+		}
+
+		private void tbDetail4_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail51_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail52_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail53_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail61_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail62_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail63_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail71_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail72_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail73_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void tbDetail8_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
+		}
+
+		private void tbDetail9_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
+		}
+
+		private void tbDetail10_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
 		}
 	}
 }

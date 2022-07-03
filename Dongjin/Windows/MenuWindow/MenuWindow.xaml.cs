@@ -156,7 +156,7 @@ namespace Dongjin.Windows.MenuWindow
 
 			if (topIndex == 0 && underIndex == 3) // 회사등록
 			{
-				new CompanyWindow().Show();
+				new BrandWindow().Show();
 			}
 
 			if (topIndex == 5 && underIndex == 0) // 작업마침

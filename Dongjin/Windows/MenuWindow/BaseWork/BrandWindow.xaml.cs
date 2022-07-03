@@ -14,21 +14,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
+using System.Text.RegularExpressions;
+using RegexClass = Dongjin.Classes.RegexClass;
 
 namespace Dongjin.Windows.MenuWindow.BaseWork
 {
 	/// <summary>
 	/// Interaction logic for CompanyWindow.xaml
 	/// </summary>
-	public partial class CompanyWindow : Window
+	public partial class BrandWindow : Window
 	{
 		private SQLiteConnection _conn;
-		public CompanyWindow()
+		public BrandWindow()
 		{
 			InitializeComponent();
 
 			_conn = DB.Conn;
 			TB1.Focus();
+		}
+
+		private void TB1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 
 		private void TB1_KeyDown(object sender, KeyEventArgs e)
@@ -233,5 +240,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				MessageBox.Show("수정이 잘못되었습니다.", "수정 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
+
 	}
 }

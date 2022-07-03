@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -38,6 +39,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			tb3.Text = DateTime.Now.Day.ToString("00");
 		}
 
+		private void tb4_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
 		private void TB4_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -50,7 +56,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (e.Key == Key.Enter)
 			{
-				string ret = CompanyWindow.GetNameByCode(tb4.Text);
+				string ret = BrandWindow.GetNameByCode(tb4.Text);
 				if (ret == "")
 				{
 					tb4.Text = "";
@@ -435,5 +441,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			if (e.Key == Key.E)
 				Close();
 		}
+
 	}
 }

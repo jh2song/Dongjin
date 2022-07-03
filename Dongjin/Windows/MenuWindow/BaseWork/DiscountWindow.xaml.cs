@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,6 +30,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			InitializeComponent();
 
 			CodeTB.Focus();
+		}
+
+		private void CodeTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 
 		private void CodeTB_KeyUp(object sender, KeyEventArgs e)
@@ -174,5 +180,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				// 메시지박스 출력
 			}
 		}
+
 	}
 }

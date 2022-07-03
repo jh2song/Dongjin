@@ -93,6 +93,7 @@
                 MinWidth="80"
                 VerticalAlignment="Center"
                 Style="{StaticResource detailStyle}"
+                PreviewTextInput="tb4_PreviewTextInput"
                 KeyDown="TB4_KeyDown"
                 />
             <Label
@@ -161,6 +162,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 KeyDown="tbDetail3_KeyDown"
+                PreviewTextInput="tbDetail3_PreviewTextInput"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -175,6 +177,7 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 KeyDown="tbDetail4_KeyDown"
+                PreviewTextInput="tbDetail4_PreviewTextInput"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -197,6 +200,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail51_PreviewTextInput"
                     KeyDown="tbDetail51_KeyDown"
                 />
                 <Label
@@ -208,6 +212,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail52_PreviewTextInput"
                     KeyDown="tbDetail52_KeyDown"
                 />
                 <Label
@@ -219,6 +224,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail53_PreviewTextInput"
                     KeyDown="tbDetail53_KeyDown"
                     />
                 <Label
@@ -246,6 +252,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail61_PreviewTextInput"
                     KeyDown="tbDetail61_KeyDown"
                 />
                 <Label
@@ -257,6 +264,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail62_PreviewTextInput"
                     KeyDown="tbDetail62_KeyDown"
                 />
                 <Label
@@ -268,6 +276,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail63_PreviewTextInput"
                     KeyDown="tbDetail63_KeyDown"
                     />
                 <Label
@@ -295,6 +304,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail71_PreviewTextInput"
                     KeyDown="tbDetail71_KeyDown"
                 />
                 <Label
@@ -306,6 +316,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail72_PreviewTextInput"
                     KeyDown="tbDetail72_KeyDown"
                 />
                 <Label
@@ -317,6 +328,7 @@
                     MaxLines="1"
                     MaxLength="2"
                     MinWidth="50"
+                    PreviewTextInput="tbDetail73_PreviewTextInput"
                     KeyDown="tbDetail73_KeyDown"
                     />
                 <Label
@@ -336,6 +348,7 @@
                 x:Name="tbDetail8"
                 Grid.Row="0"
                 Grid.Column="3"
+                PreviewTextInput="tbDetail8_PreviewTextInput"
                 KeyDown="tbDetail8_KeyDown"
                 Style="{StaticResource detailStyle}"
                 />
@@ -350,6 +363,7 @@
                 x:Name="tbDetail9"
                 Grid.Row="1"
                 Grid.Column="3"
+                PreviewTextInput="tbDetail9_PreviewTextInput"
                 KeyDown="tbDetail9_KeyDown"
                 Style="{StaticResource detailStyle}"
                 />
@@ -364,6 +378,7 @@
                 x:Name="tbDetail10"
                 Grid.Row="2"
                 Grid.Column="3"
+                PreviewTextInput="tbDetail10_PreviewTextInput"
                 KeyDown="tbDetail10_KeyDown"
                 Style="{StaticResource detailStyle}"
                 />
