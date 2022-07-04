@@ -185,6 +185,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				Debug.WriteLine(ex);
 				// 메시지박스 출력
+				MessageBox.Show("표에 문제가 발생하였습니다.", "표 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 

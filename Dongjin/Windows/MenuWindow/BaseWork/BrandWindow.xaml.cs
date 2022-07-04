@@ -184,14 +184,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
+				_conn.CreateTable<Discount>();
 				var discounts = _conn.Table<Discount>().ToList();
 
 				var discountsGrouped = (from d in discounts
-										group d by new { d.ID, d.DiscountCode, d.DiscountName }
+										group d by new { d.DiscountCode, d.DiscountName }
 									   into grp
 										select new
 										{
-											grp.Key.ID,
 											grp.Key.DiscountCode,
 											grp.Key.DiscountName
 										}).ToList();
@@ -199,12 +199,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				foreach (var discount in discountsGrouped)
 				{
 					Discount inserted = new Discount();
-					inserted.ID = discount.ID;
 					inserted.DiscountCode = discount.DiscountCode;
 					inserted.DiscountName = discount.DiscountName;
 					inserted.BrandCode = brand.BrandCode;
 					inserted.BrandName = brand.BrandName;
-					_conn.CreateTable<Discount>();
 					_conn.Insert(inserted);
 				}
 			}
@@ -219,6 +217,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
+				_conn.CreateTable<Discount>();
 				var discounts = _conn.Table<Discount>().Where(d => d.BrandCode.Equals(brand.BrandCode)).ToList();
 
 				foreach (var dc in discounts)
@@ -230,7 +229,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					discount.BrandCode = dc.BrandCode;
 					discount.BrandName = brand.BrandName;
 					discount.DiscountRate = dc.DiscountRate;
-					_conn.CreateTable<Discount>();
 					_conn.Update(discount);
 				}
 			}
