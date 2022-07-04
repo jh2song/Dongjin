@@ -1,5 +1,6 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Windows.MenuWindow.BaseWork;
+using Dongjin.Windows.MenuWindow.CheckWork;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -149,14 +150,19 @@ namespace Dongjin.Windows.MenuWindow
 				new ProductWindow().Show();
 			}
 			
-			if (topIndex == 0 && underIndex == 2)
+			if (topIndex == 0 && underIndex == 2) // 할인율등록
 			{
 				new DiscountWindow().Show();
 			}
 
-			if (topIndex == 0 && underIndex == 3) // 회사등록
+			if (topIndex == 0 && underIndex == 3) // 브랜드등록
 			{
 				new BrandWindow().Show();
+			}
+
+			if (topIndex == 2 && underIndex == 3) // 사입가 수정
+			{
+				new BuyingPercentUpdateWindow().Show();
 			}
 
 			if (topIndex == 5 && underIndex == 0) // 작업마침

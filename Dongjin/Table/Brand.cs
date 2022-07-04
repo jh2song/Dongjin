@@ -10,5 +10,6 @@ namespace Dongjin.Table
 		[PrimaryKey]
 		public int BrandCode { get; set; }
 		public string BrandName { get; set; }
+		public double BuyingPercent { get; set; } = 100.00;
 	}
 }
