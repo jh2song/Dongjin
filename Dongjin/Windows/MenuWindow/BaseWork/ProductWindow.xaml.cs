@@ -407,7 +407,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			try
 			{
 				DB.Conn.CreateTable<Product>();
-				DB.Conn.Execute($"DELETE FROM Product WHERE Code = '{tb6.Text}'");
+				DB.Conn.Execute($"DELETE FROM Product WHERE ProductCode = '{tb6.Text}'");
 			}
 			catch (Exception ex)
 			{

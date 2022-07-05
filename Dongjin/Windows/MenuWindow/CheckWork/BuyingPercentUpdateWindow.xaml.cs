@@ -36,6 +36,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 				DB.Conn.CreateTable<Brand>();
 
 				brands = DB.Conn.Table<Brand>().ToList();
+				brands.Sort();
 
 				DG.ItemsSource = brands;
 			}
