@@ -156,6 +156,7 @@
                 x:Name="tbDetail1"
                 Grid.Row="0"
                 Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail1_KeyDown"
                 />
@@ -170,6 +171,7 @@
                 x:Name="tbDetail2"
                 Grid.Row="1"
                 Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail2_KeyDown"
                 />
@@ -184,6 +186,7 @@
                 x:Name="tbDetail3"
                 Grid.Row="2"
                 Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail3_KeyDown"
                 />
@@ -198,6 +201,7 @@
                 x:Name="tbDetail4"
                 Grid.Row="3"
                 Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail4_KeyDown"
                 />
@@ -212,6 +216,7 @@
                 x:Name="tbDetail5"
                 Grid.Row="4"
                 Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Style="{StaticResource detailStyle}"
                 />
         </Grid>

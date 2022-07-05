@@ -110,7 +110,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail1.Text = products[0].Name;
 				tbDetail2.Text = String.Format("{0:#,0}", products[0].Price);
 				tbDetail3.Text = products[0].LeftAmount.ToString();
-				tbDetail4.Text = String.Format("{0:#,0}", products[0].BoughtMoney);
+				tbDetail4.Text = String.Format("{0:#,0}", products[0].BuyingPrice);
 				tbDetail5.Text = String.Format("{0:#,0}", products[0].TotalDepositMoney);
 			}
 			catch (Exception ex)
@@ -206,8 +206,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (tbDetail3.Text == "")
 					tbDetail3.Text = "0";
+
 				if (!isUpdateing)
+				{
+					tbDetail4.Text = CalculateBuyingPrice(tb4.Text, tbDetail2.Text);
+					tbDetail4.Select(tbDetail4.Text.Length, 0);
 					tbDetail4.Focus();
+				}
 				else if (SPOnTheProduct.Visibility == Visibility.Visible)
 				{
 					tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
@@ -219,6 +224,27 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					TBCmdOff.Focus();
 				}
 			}
+		}
+
+		private string CalculateBuyingPrice(string brandCodeStr, string priceStr)
+		{
+			int brandCode = int.Parse(brandCodeStr);
+			int ret = int.Parse(priceStr);
+
+			try
+			{
+				DB.Conn.CreateTable<Brand>();
+				var list = DB.Conn.Table<Brand>().Where(b => b.BrandCode.Equals(brandCode)).ToList();
+
+				ret = (int)((double)ret * (list[0].BuyingPercent / 100.0));
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+				MessageBox.Show("사입단가를 자동으로 계산하는데 실패하였습니다.", "브랜드 DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+
+			return ret.ToString();
 		}
 
 		private void TBDetail4_KeyDown(object sender, KeyEventArgs e)
@@ -268,18 +294,22 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					{
 						case 1:
 							isUpdateing = true;
+							tbDetail1.Select(tbDetail1.Text.Length, 0);
 							tbDetail1.Focus();
 							break;
 						case 2:
 							isUpdateing = true;
+							tbDetail2.Select(tbDetail2.Text.Length, 0);
 							tbDetail2.Focus();
 							break;
 						case 3:
 							isUpdateing = true;
+							tbDetail3.Select(tbDetail3.Text.Length, 0);
 							tbDetail3.Focus();
 							break;
 						case 4:
 							isUpdateing = true;
+							tbDetail4.Select(tbDetail4.Text.Length, 0);
 							tbDetail4.Focus();
 							break;
 					}
@@ -299,6 +329,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					EraseDetail();
 					TBCmdOn.Text = "";
 					SPOnTheProduct.Visibility = Visibility.Hidden;
+					isUpdateing = false;
 					tb6.Focus();
 				}
 			}
@@ -344,7 +375,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 				if (int.TryParse(tbDetail4.Text.Replace(",", ""), out target))
 				{
-					product.BoughtMoney = target;
+					product.BuyingPrice = target;
 				}
 				if (int.TryParse(tbDetail5.Text.Replace(",", ""), out target))
 				{
@@ -398,18 +429,22 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					{
 						case 1:
 							isUpdateing = true;
+							tbDetail1.Select(tbDetail1.Text.Length, 0);
 							tbDetail1.Focus();
 							break;
 						case 2:
 							isUpdateing = true;
+							tbDetail2.Select(tbDetail2.Text.Length, 0);
 							tbDetail2.Focus();
 							break;
 						case 3:
 							isUpdateing = true;
+							tbDetail3.Select(tbDetail3.Text.Length, 0);
 							tbDetail3.Focus();
 							break;
 						case 4:
 							isUpdateing = true;
+							tbDetail4.Select(tbDetail4.Text.Length, 0);
 							tbDetail4.Focus();
 							break;
 					}
