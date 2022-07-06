@@ -20,6 +20,24 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		public TransactionWindow()
 		{
 			InitializeComponent();
+
+			ChoiceTB.Focus();
+		}
+
+		private void ChoiceTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (ChoiceTB.Text == "")
+				{
+					Close();
+				}
+				else
+				{
+					ChoiceTB.Text = "";
+				}
+			}
+
 		}
 	}
 }
