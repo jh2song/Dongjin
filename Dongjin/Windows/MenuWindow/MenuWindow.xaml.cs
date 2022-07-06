@@ -1,6 +1,7 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Windows.MenuWindow.BaseWork;
 using Dongjin.Windows.MenuWindow.CheckWork;
+using Dongjin.Windows.MenuWindow.DailyWork;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -158,6 +159,11 @@ namespace Dongjin.Windows.MenuWindow
 			if (topIndex == 0 && underIndex == 3) // 브랜드등록
 			{
 				new BrandWindow().Show();
+			}
+
+			if (topIndex == 1 && underIndex == 0) // 입출고전표
+			{
+				new TransactionWindow().Show();
 			}
 
 			if (topIndex == 2 && underIndex == 3) // 사입가 수정
