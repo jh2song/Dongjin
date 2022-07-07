@@ -46,7 +46,7 @@
             HorizontalAlignment="Center"
             >
             <Label
-                Content="처리일:"
+                Content="처리일: "
                 FontSize="32"
                 />
             <TextBox
@@ -83,7 +83,7 @@
                 />
 
             <Label
-                Content="        거래처코드:["
+                Content="        거래처코드: ["
                 FontSize="32"
                 />
             <TextBox

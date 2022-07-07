@@ -41,13 +41,83 @@
             Margin="20 0 20 0"
             >
             <Label
-                Content="전표구분: "
+                Content="1. 전표구분: "
                 />
             <TextBox
                 x:Name="ChoiceTB"
                 VerticalContentAlignment="Center"
                 MaxLength="1"
+                MinWidth="25"
+                HorizontalContentAlignment="Left"
                 KeyUp="ChoiceTB_KeyUp"
+                />
+
+
+            <Label
+                x:Name="Row1ChoiceLabel"
+                Content="1: 출고 2: (덤) 3: 환입"
+                Background="White"
+                Foreground="Black"
+                Margin="30 0 30 0"
+                />
+
+            <StackPanel
+                Orientation="Horizontal"
+                >
+                <Label
+                    Content="2. 처리일: "
+                    />
+                <TextBox
+                        x:Name="YearTB"
+                        MaxLines="1"
+                        MaxLength="2"
+                        MinWidth="45"
+                        />
+                <Label
+                        Content="/"
+                        />
+                <TextBox
+                        x:Name="MonthTB"
+                        MaxLines="1"
+                        MaxLength="2"
+                        MinWidth="45"
+                        />
+                <Label
+                        Content="/"
+                    />
+                <TextBox
+                        x:Name="DayTB"
+                        MaxLines="1"
+                        MaxLength="2"
+                        MinWidth="45"
+                        />
+            </StackPanel>
+
+            <Label
+                Margin="30 0 0 0"
+                Content="3. 거래처코드: "
+                />
+
+            <TextBox
+                x:Name="ClientCodeTB"
+                MaxLines="1"
+                MaxLength="4"
+                MinWidth="80"
+                HorizontalContentAlignment="Left"
+                />
+
+            <Label
+                Content="("
+                />
+            <TextBox
+                x:Name="ClientName"
+                MaxLines="1"
+                MinWidth="500"
+                Focusable="False"
+                Style="{StaticResource detailStyle}"
+                />
+            <Label
+                Content=")"
                 />
         </StackPanel>
 

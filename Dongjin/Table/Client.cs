@@ -9,9 +9,9 @@ namespace Dongjin.Table
 	{
 		// 거래처코드
 		[PrimaryKey]
-		public int Code { get; set; }
+		public int ClientCode { get; set; }
 		// 상호
-		public string Name { get; set; } = "";
+		public string ClientName { get; set; } = "";
 		// 전화번호
 		public string Phone { get; set; } = "";
 		// 현재미수금

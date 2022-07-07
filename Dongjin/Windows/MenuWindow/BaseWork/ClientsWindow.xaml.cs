@@ -105,7 +105,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			string tb4Text = tb4.Text;
 
 			List<Client> client =
-				conn.Table<Client>().Where(c => c.Code.Equals(tb4Text)).ToList();
+				conn.Table<Client>().Where(c => c.ClientCode.Equals(tb4Text)).ToList();
 
 
 			if (client.Count == 0)
@@ -115,7 +115,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 			else
 			{
-				tbDetail1.Text = client[0].Name;
+				tbDetail1.Text = client[0].ClientName;
 				tbDetail2.Text = client[0].Phone;
 				tbDetail3.Text = String.Format("{0:#,0}",client[0].CurrentLeftMoney).ToString();
 				tbDetail4.Text = client[0].PercentCode.ToString();
@@ -364,7 +364,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						conn.CreateTable<Client>();
 						int parsedCode;
 						if (int.TryParse(tb4.Text, out parsedCode))
-							conn.Execute($"DELETE FROM Client WHERE Code = {parsedCode};");
+							conn.Execute($"DELETE FROM Client WHERE ClientCode = {parsedCode};");
 						
 						onDBByCode = false;
 						UpdateCommanding = false;
@@ -392,11 +392,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						// 만일의 상황을 대비해 이렇게 코딩함
 						if (int.TryParse(tb4.Text, out target))
 						{
-							client.Code = target;
+							client.ClientCode = target;
 						}
 						if (tbDetail1.Text != "")
 						{
-							client.Name = tbDetail1.Text;
+							client.ClientName = tbDetail1.Text;
 						}
 						if (tbDetail2.Text != "")
 						{
@@ -427,7 +427,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						}
 
 						conn.CreateTable<Client>();
-						var targetClient = conn.Find<Client>(client.Code);
+						var targetClient = conn.Find<Client>(client.ClientCode);
 						if (targetClient == null)
 							conn.Insert(client);
 						else
