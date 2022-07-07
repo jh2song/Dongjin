@@ -387,7 +387,7 @@
                 Grid.Column="2"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Content="※. 당월출고액:"
+                Content="※. 당월판매액:"
                 />
             <TextBox
                 x:Name="tbDetail11"

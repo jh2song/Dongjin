@@ -134,7 +134,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail8.Text = String.Format("{0:#,0}", client[0].TodaySellMoney).ToString();
 				tbDetail9.Text = String.Format("{0:#,0}", client[0].TodayDepositMoney).ToString();
 				tbDetail10.Text = String.Format("{0:#,0}", client[0].TodayReturnMoney).ToString();
-				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthReleaseMoney).ToString();
+				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthSellMoney).ToString();
 				tbDetail12.Text = String.Format("{0:#,0}", client[0].MonthDepositMoney).ToString();
 				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthReturnMoney).ToString();
 				tbDetail14.Text = String.Format("{0:#,0}", client[0].PrevMonthLeftMoney).ToString();

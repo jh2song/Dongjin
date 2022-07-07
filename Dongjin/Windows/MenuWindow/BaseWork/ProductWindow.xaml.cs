@@ -362,7 +362,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				product.ProductCode = tb6.Text;
 				if (int.TryParse(tb4.Text, out target))
 				{
-					product.CompanyCode = target;
+					product.BrandCode = target;
 				}
 				product.Name = tbDetail1.Text;
 				if (int.TryParse(tbDetail2.Text.Replace(",", ""), out target))

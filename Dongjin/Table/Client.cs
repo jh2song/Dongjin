@@ -30,8 +30,8 @@ namespace Dongjin.Table
 		public int TodayDepositMoney { get; set; } = 0;
 		// 당일환입액
 		public int TodayReturnMoney { get; set; } = 0;
-		// 당월출고액
-		public int MonthReleaseMoney { get; set; } = 0;
+		// 당월판매액
+		public int MonthSellMoney { get; set; } = 0;
 		// 당월입금액
 		public int MonthDepositMoney { get; set; } = 0;
 		// 당월환입액
