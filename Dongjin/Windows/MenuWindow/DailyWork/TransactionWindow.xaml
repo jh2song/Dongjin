@@ -49,6 +49,7 @@
                 MaxLength="1"
                 MinWidth="25"
                 HorizontalContentAlignment="Left"
+                PreviewTextInput="ChoiceTB_PreviewTextInput"
                 KeyUp="ChoiceTB_KeyUp"
                 />
 

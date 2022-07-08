@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Dongjin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -38,6 +40,16 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 			}
 
+			if (e.Key == Key.Enter)
+			{
+				
+			}
+
+		}
+
+		private void ChoiceTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotUnderboundNumber(e.Text, 1, 3);
 		}
 	}
 }

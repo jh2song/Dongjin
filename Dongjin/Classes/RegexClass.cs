@@ -18,5 +18,15 @@ namespace Dongjin.Classes
 			Regex regex = new Regex("[^0-9\b,]+");
 			return regex.IsMatch(str);
 		}
+
+		static public bool NotUnderboundNumber(string str, int start, int end)
+		{
+			string regexPattern = "";
+			for (int i = start; i <= end; i++)
+				regexPattern += i.ToString();
+
+			Regex regex = new Regex($"[^{regexPattern}\b]+");
+			return regex.IsMatch(str);
+		}
 	}
 }
