@@ -19,6 +19,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 	/// </summary>
 	public partial class TransactionWindow : Window
 	{
+		private int choice;
+
 		public TransactionWindow()
 		{
 			InitializeComponent();
@@ -42,14 +44,61 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.Enter)
 			{
-				
-			}
+				if (ChoiceTB.Text == "")
+					return;
 
+				choice = int.Parse(ChoiceTB.Text);
+
+				YearTB.Focus();
+			}
 		}
 
 		private void ChoiceTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			e.Handled = RegexClass.NotUnderboundNumber(e.Text, 1, 3);
+		}
+
+		private void YearTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void MonthTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void DayTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void YearTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (YearTB.Text == "")
+				{
+					ChoiceTB.Text = "";
+					ChoiceTB.Focus();
+				}
+				else
+				{
+					YearTB.Text = "";
+				}
+			}
+
+			if
+		}
+
+		private void MonthTB_KeyUp(object sender, KeyEventArgs e)
+		{
+
+		}
+
+		private void DayTB_KeyUp(object sender, KeyEventArgs e)
+		{
+
 		}
 	}
 }
