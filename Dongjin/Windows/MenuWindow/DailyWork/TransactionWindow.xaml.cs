@@ -174,6 +174,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					return;
 
 				// do - something
+				PrevMonthLeftMoneyTB.Text = foundClient.PrevMonthLeftMoney.ToString();
+				MonthSellMoneyTB.Text = foundClient.MonthSellMoney.ToString();
+				MonthDepositMoneyTB.Text = foundClient.MonthDepositMoney.ToString();
+				MonthReturnMoneyTB.Text = foundClient.MonthReturnMoney.ToString();
+				LastTransactionDateTB.Text = foundClient.LastTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
+					+ foundClient.LastTransactionDate.Month.ToString("00") + "/" 
+					+ foundClient.LastTransactionDate.Day.ToString("00");
 			}
 		}
 
