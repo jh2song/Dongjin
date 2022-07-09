@@ -1,6 +1,8 @@
 ﻿using Dongjin.Classes;
+using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -20,6 +22,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 	public partial class TransactionWindow : Window
 	{
 		private int choice;
+		private Client foundClient;
 
 		public TransactionWindow()
 		{
@@ -145,6 +148,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			}
 		}
 
+		private void ClientCodeTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
 		private void ClientCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -162,8 +170,42 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.Enter)
 			{
-				
+				if (!ShowNameByCode(ClientCodeTB.Text))
+					return;
+
+				// do - something
 			}
 		}
+
+		private bool ShowNameByCode(string codeStr)
+		{
+			int parsedCode;
+			if (int.TryParse(codeStr, out parsedCode))
+			{
+				try
+				{
+					DB.Conn.CreateTable<Client>();
+					foundClient = DB.Conn.Find<Client>(c => c.ClientCode == parsedCode);
+					if (foundClient == null)
+						return false;
+					else
+					{
+						ClientNameTB.Text = foundClient.ClientName;
+						return true;
+					}
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex.ToString());
+					MessageBox.Show("거래처 DB에서 오류가 발생했습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 	}
 }
