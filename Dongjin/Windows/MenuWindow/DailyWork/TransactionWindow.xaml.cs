@@ -88,17 +88,82 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 			}
 
-			if
+			if (e.Key == Key.Enter)
+			{
+				if (YearTB.Text.Length < 2)
+					YearTB.Text = DateTime.Now.Year.ToString().Substring(2, 2);
+
+				MonthTB.Focus();
+			}
 		}
 
 		private void MonthTB_KeyUp(object sender, KeyEventArgs e)
 		{
+			if (e.Key == Key.Escape)
+			{
+				if (MonthTB.Text == "")
+				{
+					YearTB.Text = "";
+					YearTB.Focus();
+				}
+				else
+				{
+					MonthTB.Text = "";
+				}
+			}
 
+			if (e.Key == Key.Enter)
+			{
+				if (MonthTB.Text.Length < 2)
+					MonthTB.Text = DateTime.Now.Month.ToString("00");
+
+				DayTB.Focus();
+			}
 		}
 
 		private void DayTB_KeyUp(object sender, KeyEventArgs e)
 		{
+			if (e.Key == Key.Escape)
+			{
+				if (DayTB.Text == "")
+				{
+					MonthTB.Text = "";
+					MonthTB.Focus();
+				}
+				else
+				{
+					DayTB.Text = "";
+				}
+			}
 
+			if (e.Key == Key.Enter)
+			{
+				if (DayTB.Text.Length < 2)
+					DayTB.Text = DateTime.Now.Day.ToString("00");
+
+				ClientCodeTB.Focus();
+			}
+		}
+
+		private void ClientCodeTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (ClientCodeTB.Text == "")
+				{
+					DayTB.Text = "";
+					DayTB.Focus();
+				}
+				else
+				{
+					ClientCodeTB.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				
+			}
 		}
 	}
 }

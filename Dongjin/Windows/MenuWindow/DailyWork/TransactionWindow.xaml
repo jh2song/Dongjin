@@ -111,6 +111,7 @@
                 MaxLength="4"
                 MinWidth="80"
                 HorizontalContentAlignment="Left"
+                KeyUp="ClientCodeTB_KeyUp"
                 />
 
             <Label
