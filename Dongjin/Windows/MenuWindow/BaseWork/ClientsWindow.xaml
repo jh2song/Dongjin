@@ -132,6 +132,7 @@
                 x:Name="tbDetail1"
                 Grid.Row="0"
                 Grid.Column="1"
+                MinWidth="430"
                 KeyDown="tbDetail1_KeyDown"
                 Style="{StaticResource detailStyle}"
                 />
@@ -145,6 +146,7 @@
                 x:Name="tbDetail2"
                 Grid.Row="1"
                 Grid.Column="1"
+                MinWidth="430"
                 KeyDown="tbDetail2_KeyDown"
                 Style="{StaticResource detailStyle}"
                 />
@@ -158,6 +160,7 @@
                 x:Name="tbDetail3"
                 Grid.Row="2"
                 Grid.Column="1"
+                MinWidth="430"
                 KeyDown="tbDetail3_KeyDown"
                 PreviewTextInput="tbDetail3_PreviewTextInput"
                 Style="{StaticResource detailStyle}"
@@ -172,6 +175,7 @@
                 x:Name="tbDetail4"
                 Grid.Row="3"
                 Grid.Column="1"
+                MinWidth="430"
                 KeyDown="tbDetail4_KeyDown"
                 PreviewTextInput="tbDetail4_PreviewTextInput"
                 Style="{StaticResource detailStyle}"
@@ -325,6 +329,7 @@
                 x:Name="tbDetail8"
                 Grid.Row="0"
                 Grid.Column="3"
+                MinWidth="430"
                 PreviewTextInput="tbDetail8_PreviewTextInput"
                 KeyDown="tbDetail8_KeyDown"
                 />
@@ -338,6 +343,7 @@
                 x:Name="tbDetail9"
                 Grid.Row="1"
                 Grid.Column="3"
+                MinWidth="430"
                 PreviewTextInput="tbDetail9_PreviewTextInput"
                 KeyDown="tbDetail9_KeyDown"
                 />
@@ -351,6 +357,7 @@
                 x:Name="tbDetail10"
                 Grid.Row="2"
                 Grid.Column="3"
+                MinWidth="430"
                 PreviewTextInput="tbDetail10_PreviewTextInput"
                 KeyDown="tbDetail10_KeyDown"
                 />
@@ -364,6 +371,7 @@
                 x:Name="tbDetail11"
                 Grid.Row="3"
                 Grid.Column="3"
+                MinWidth="430"
                 BorderBrush="Transparent"
                 Style="{StaticResource detailStyle}"
                 />
@@ -377,6 +385,7 @@
                 x:Name="tbDetail12"
                 Grid.Row="4"
                 Grid.Column="3"
+                MinWidth="430"
                 BorderBrush="Transparent"
                 Style="{StaticResource detailStyle}"
                 />
@@ -390,6 +399,7 @@
                 x:Name="tbDetail13"
                 Grid.Row="5"
                 Grid.Column="3"
+                MinWidth="430"
                 BorderBrush="Transparent"
                 Style="{StaticResource detailStyle}"
                 />
@@ -403,6 +413,7 @@
                 x:Name="tbDetail14"
                 Grid.Row="6"
                 Grid.Column="3"
+                MinWidth="430"
                 BorderBrush="Transparent"
                 Style="{StaticResource detailStyle}"
                 />
