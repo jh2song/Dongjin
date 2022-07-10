@@ -149,7 +149,6 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="1. 제품명:"
                 />
             <TextBox
@@ -157,6 +156,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail1_KeyDown"
                 />
@@ -164,7 +164,6 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="2. 단가:"
                 />
             <TextBox
@@ -172,6 +171,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail2_KeyDown"
                 />
@@ -179,7 +179,6 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="3. 재고량:"
                 />
             <TextBox
@@ -187,6 +186,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail3_KeyDown"
                 />
@@ -194,7 +194,6 @@
                 Grid.Row="3"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="4. 사입단가:"
                 />
             <TextBox
@@ -202,6 +201,7 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail4_KeyDown"
                 />
@@ -209,7 +209,6 @@
                 Grid.Row="4"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="※. 재고총액:"
                 />
             <TextBox
@@ -217,6 +216,7 @@
                 Grid.Row="4"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 />
         </Grid>

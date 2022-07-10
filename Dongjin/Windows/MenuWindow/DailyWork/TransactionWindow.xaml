@@ -48,6 +48,7 @@
                 VerticalContentAlignment="Center"
                 MaxLength="1"
                 MinWidth="25"
+                Style="{StaticResource detailStyle}"
                 HorizontalContentAlignment="Left"
                 PreviewTextInput="ChoiceTB_PreviewTextInput"
                 KeyUp="ChoiceTB_KeyUp"
@@ -73,6 +74,7 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
+                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="YearTB_PreviewTextInput"
                         KeyUp="YearTB_KeyUp"
                         />
@@ -84,6 +86,7 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
+                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="MonthTB_PreviewTextInput"
                         KeyUp="MonthTB_KeyUp"
                         />
@@ -95,6 +98,7 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
+                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="DayTB_PreviewTextInput"
                         KeyUp="DayTB_KeyUp"
                         />
@@ -110,6 +114,7 @@
                 MaxLines="1"
                 MaxLength="4"
                 MinWidth="80"
+                Style="{StaticResource detailStyle}"
                 HorizontalContentAlignment="Left"
                 PreviewTextInput="ClientCodeTB_PreviewTextInput"
                 KeyUp="ClientCodeTB_KeyUp"

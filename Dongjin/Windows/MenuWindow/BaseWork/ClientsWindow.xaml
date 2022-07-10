@@ -126,7 +126,6 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="1. 상호:"
                 />
             <TextBox
@@ -140,7 +139,6 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="2. 전화번호:"
                 />
             <TextBox
@@ -154,7 +152,6 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="3. 현재미수금:"
                 />
             <TextBox
@@ -169,7 +166,6 @@
                 Grid.Row="3"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="4. 단가(%)구분:"
                 />
             <TextBox
@@ -184,13 +180,10 @@
                 Grid.Row="4"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="5. 최종거래일:"
                 />
             <StackPanel
                 Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
                 Grid.Row="4"
                 Grid.Column="1"
                 >
@@ -199,50 +192,44 @@
                     x:Name="tbDetail51"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail51_PreviewTextInput"
                     KeyDown="tbDetail51_KeyDown"
                 />
                 <Label
                     Content="년"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail52"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail52_PreviewTextInput"
                     KeyDown="tbDetail52_KeyDown"
                 />
                 <Label
                     Content="월"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail53"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail53_PreviewTextInput"
                     KeyDown="tbDetail53_KeyDown"
                     />
                 <Label
                     Content="일"
-                    VerticalAlignment="Bottom"
                     />
             </StackPanel>
             <Label
                 Grid.Row="5"
                 Grid.Column="0" 
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="6. 최종수금일:"
                 />
             <StackPanel
                 Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
                 Grid.Row="5"
                 Grid.Column="1"
                 >
@@ -251,50 +238,44 @@
                     x:Name="tbDetail61"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail61_PreviewTextInput"
                     KeyDown="tbDetail61_KeyDown"
                 />
                 <Label
                     Content="년"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail62"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail62_PreviewTextInput"
                     KeyDown="tbDetail62_KeyDown"
                 />
                 <Label
                     Content="월"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail63"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail63_PreviewTextInput"
                     KeyDown="tbDetail63_KeyDown"
                     />
                 <Label
                     Content="일"
-                    VerticalAlignment="Bottom"
                     />
             </StackPanel>
             <Label
                 Grid.Row="6"
                 Grid.Column="0" 
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="7. 최종환입일:"
                 />
             <StackPanel
                 Orientation="Horizontal"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
                 Grid.Row="6"
                 Grid.Column="1"
                 >
@@ -303,37 +284,34 @@
                     x:Name="tbDetail71"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail71_PreviewTextInput"
                     KeyDown="tbDetail71_KeyDown"
                 />
                 <Label
                     Content="년"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail72"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail72_PreviewTextInput"
                     KeyDown="tbDetail72_KeyDown"
                 />
                 <Label
                     Content="월"
-                    VerticalAlignment="Bottom"
                     />
                 <TextBox
                     x:Name="tbDetail73"
                     MaxLines="1"
                     MaxLength="2"
-                    MinWidth="50"
+                    MinWidth="45"
                     PreviewTextInput="tbDetail73_PreviewTextInput"
                     KeyDown="tbDetail73_KeyDown"
                     />
                 <Label
                     Content="일"
-                    VerticalAlignment="Bottom"
                     />
             </StackPanel>
 
@@ -341,7 +319,6 @@
                 Grid.Row="0"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="8. 당일판매액:"
                 />
             <TextBox
@@ -350,13 +327,11 @@
                 Grid.Column="3"
                 PreviewTextInput="tbDetail8_PreviewTextInput"
                 KeyDown="tbDetail8_KeyDown"
-                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="1"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="9. 당일입금액:"
                 />
             <TextBox
@@ -365,13 +340,11 @@
                 Grid.Column="3"
                 PreviewTextInput="tbDetail9_PreviewTextInput"
                 KeyDown="tbDetail9_KeyDown"
-                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="2"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="10. 당일환입액:"
                 />
             <TextBox
@@ -380,13 +353,11 @@
                 Grid.Column="3"
                 PreviewTextInput="tbDetail10_PreviewTextInput"
                 KeyDown="tbDetail10_KeyDown"
-                Style="{StaticResource detailStyle}"
                 />
             <Label
                 Grid.Row="3"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="※. 당월판매액:"
                 />
             <TextBox
@@ -400,7 +371,6 @@
                 Grid.Row="4"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="※. 당월입금액:"
                 />
             <TextBox
@@ -414,7 +384,6 @@
                 Grid.Row="5"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="※. 당월환입액:"
                 />
             <TextBox
@@ -428,7 +397,6 @@
                 Grid.Row="6"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
                 Content="※. 전월말미수:"
                 />
             <TextBox
