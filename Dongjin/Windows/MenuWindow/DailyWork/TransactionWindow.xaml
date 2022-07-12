@@ -329,6 +329,14 @@
                 Focusable="False"
                 />
 
+            <TextBox
+                x:Name="CurrentLeftMoneyTB"
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Left"
+                Grid.Column="1"
+                Focusable="False"
+                />
+
             <Border 
                 BorderThickness="0 0 2 0"
                 BorderBrush="White"

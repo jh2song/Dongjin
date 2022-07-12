@@ -29,7 +29,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private SQLiteConnection conn;
 		private SynchronizationContext syscContext;
 		List<TextBox> textBoxes = new List<TextBox>();
-		private bool onDBByCode = true;
+		private bool isOnDBByCode = true;
 		private bool UpdateCommanding = false;
 
 		public ClientsWindow()
@@ -110,7 +110,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			if (client.Count == 0)
 			{
-				onDBByCode = false;
+				isOnDBByCode = false;
 				tbDetail1.Focus();
 			}
 			else
@@ -119,28 +119,33 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail2.Text = client[0].Phone;
 				tbDetail3.Text = String.Format("{0:#,0}",client[0].CurrentLeftMoney).ToString();
 				tbDetail4.Text = client[0].PercentCode.ToString();
-				string target = client[0].LastTransactionDate.Year.ToString("0000");
-				tbDetail51.Text = target.Substring(2, 2);
-				tbDetail52.Text = client[0].LastTransactionDate.Month.ToString("00");
-				tbDetail53.Text = client[0].LastTransactionDate.Day.ToString("00");
-				target = client[0].LastMoneyComeDate.Year.ToString("0000");
-				tbDetail61.Text = target.Substring(2, 2);
-				tbDetail62.Text = client[0].LastMoneyComeDate.Month.ToString("00");
-				tbDetail63.Text = client[0].LastMoneyComeDate.Day.ToString("00");
-				target = client[0].LastReturnDate.Year.ToString("0000");
-				tbDetail71.Text = target.Substring(2, 2);
-				tbDetail72.Text = client[0].LastReturnDate.Month.ToString("00");
-				tbDetail73.Text = client[0].LastReturnDate.Day.ToString("00");
+				//string target = client[0].LastTransactionDate.Year.ToString("0000");
+				//tbDetail51.Text = target.Substring(2, 2);
+				//tbDetail52.Text = client[0].LastTransactionDate.Month.ToString("00");
+				//tbDetail53.Text = client[0].LastTransactionDate.Day.ToString("00");
+				//target = client[0].LastMoneyComeDate.Year.ToString("0000");
+				//tbDetail61.Text = target.Substring(2, 2);
+				//tbDetail62.Text = client[0].LastMoneyComeDate.Month.ToString("00");
+				//tbDetail63.Text = client[0].LastMoneyComeDate.Day.ToString("00");
+				//target = client[0].LastReturnDate.Year.ToString("0000");
+				//tbDetail71.Text = target.Substring(2, 2);
+				//tbDetail72.Text = client[0].LastReturnDate.Month.ToString("00");
+				//tbDetail73.Text = client[0].LastReturnDate.Day.ToString("00");
 				tbDetail8.Text = String.Format("{0:#,0}", client[0].TodaySellMoney).ToString();
 				tbDetail9.Text = String.Format("{0:#,0}", client[0].TodayDepositMoney).ToString();
 				tbDetail10.Text = String.Format("{0:#,0}", client[0].TodayReturnMoney).ToString();
 				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthSellMoney).ToString();
 				tbDetail12.Text = String.Format("{0:#,0}", client[0].MonthDepositMoney).ToString();
 				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthReturnMoney).ToString();
-				tbDetail14.Text = String.Format("{0:#,0}", client[0].PrevMonthLeftMoney).ToString();
+				tbDetail14.Text = GetPrevLeftMoney();
 
 				tbcmd.Focus();
 			}
+		}
+
+		private string GetPrevLeftMoney()
+		{
+			throw new NotImplementedException();
 		}
 
 		private void tbDetail1_KeyDown(object sender, KeyEventArgs e)
@@ -262,7 +267,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void InitializeDetails()
 		{
-			if (onDBByCode == false)
+			if (isOnDBByCode == false)
 			{
 				tbDetail51.Text = "01";
 				tbDetail52.Text = "01";
@@ -366,7 +371,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						if (int.TryParse(tb4.Text, out parsedCode))
 							conn.Execute($"DELETE FROM Client WHERE ClientCode = {parsedCode};");
 						
-						onDBByCode = false;
+						isOnDBByCode = false;
 						UpdateCommanding = false;
 						foreach (TextBox tb in textBoxes)
 							tb.Text = "";
@@ -410,9 +415,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						{
 							client.PercentCode = target;
 						}
-						client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
-						client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
-						client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
+						//client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
+						//client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
+						//client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
 						if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
 						{
 							client.TodaySellMoney = target;
@@ -434,7 +439,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							conn.Update(client);
 
 						UpdateCommanding = false;
-						onDBByCode = false;
+						isOnDBByCode = false;
 						foreach (TextBox tb in textBoxes)
 							tb.Text = "";
 						tbcmd.Text = "";

@@ -170,17 +170,49 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.Enter)
 			{
+				// false: 거래처코드가 거래처 DB에 등록되어있지 않음
+				// true: 거래처코드가 거래처 DB에 등록되어있음
 				if (!ShowNameByCode(ClientCodeTB.Text))
 					return;
 
 				// do - something
-				PrevMonthLeftMoneyTB.Text = foundClient.PrevMonthLeftMoney.ToString();
+				PrevMonthLeftMoneyTB.Text = GetPrevMonthLeftMoney();
 				MonthSellMoneyTB.Text = foundClient.MonthSellMoney.ToString();
 				MonthDepositMoneyTB.Text = foundClient.MonthDepositMoney.ToString();
 				MonthReturnMoneyTB.Text = foundClient.MonthReturnMoney.ToString();
-				LastTransactionDateTB.Text = foundClient.LastTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
-					+ foundClient.LastTransactionDate.Month.ToString("00") + "/" 
-					+ foundClient.LastTransactionDate.Day.ToString("00");
+				//LastTransactionDateTB.Text = foundClient.LastTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
+				//	+ foundClient.LastTransactionDate.Month.ToString("00") + "/" 
+				//	+ foundClient.LastTransactionDate.Day.ToString("00");
+			}
+		}
+
+		private string GetPrevMonthLeftMoney()
+		{
+			try
+			{
+				DB.Conn.CreateTable<Transaction>();
+
+				int inputClientCode = int.Parse(ClientCodeTB.Text);
+
+				DateTime today = DateTime.Today;
+				DateTime month = new DateTime(today.Year, today.Month, 1);
+				DateTime last = month.AddDays(-1);
+
+				var history = DB.Conn.Table<Transaction>()
+					.Where(t => t.ClientCode == inputClientCode &&
+					t.TransactionDate <= last)
+					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
+
+				if (history == null)
+					return "0";
+				else
+					return history.CurrentLeftMoney.ToString();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+				MessageBox.Show("전월말미수를 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				return "-1";
 			}
 		}
 
