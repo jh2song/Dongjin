@@ -230,7 +230,7 @@
                 Grid.Row="5"
                 Grid.Column="0" 
                 HorizontalAlignment="Left"
-                Content="6. 최종수금일:"
+                Content="6. 최종입금일:"
                 />
             <StackPanel
                 Orientation="Horizontal"
@@ -330,6 +330,7 @@
                 Grid.Row="0"
                 Grid.Column="3"
                 MinWidth="430"
+                Style="{StaticResource detailStyle}"
                 PreviewTextInput="tbDetail8_PreviewTextInput"
                 KeyDown="tbDetail8_KeyDown"
                 />
@@ -344,6 +345,7 @@
                 Grid.Row="1"
                 Grid.Column="3"
                 MinWidth="430"
+                Style="{StaticResource detailStyle}"
                 PreviewTextInput="tbDetail9_PreviewTextInput"
                 KeyDown="tbDetail9_KeyDown"
                 />
@@ -358,6 +360,7 @@
                 Grid.Row="2"
                 Grid.Column="3"
                 MinWidth="430"
+                Style="{StaticResource detailStyle}"
                 PreviewTextInput="tbDetail10_PreviewTextInput"
                 KeyDown="tbDetail10_KeyDown"
                 />
@@ -372,7 +375,7 @@
                 Grid.Row="3"
                 Grid.Column="3"
                 MinWidth="430"
-                BorderBrush="Transparent"
+                Focusable="False"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -386,7 +389,7 @@
                 Grid.Row="4"
                 Grid.Column="3"
                 MinWidth="430"
-                BorderBrush="Transparent"
+                Focusable="False"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -400,7 +403,7 @@
                 Grid.Row="5"
                 Grid.Column="3"
                 MinWidth="430"
-                BorderBrush="Transparent"
+                Focusable="False"
                 Style="{StaticResource detailStyle}"
                 />
             <Label
@@ -414,7 +417,7 @@
                 Grid.Row="6"
                 Grid.Column="3"
                 MinWidth="430"
-                BorderBrush="Transparent"
+                Focusable="False"
                 Style="{StaticResource detailStyle}"
                 />
         </Grid>

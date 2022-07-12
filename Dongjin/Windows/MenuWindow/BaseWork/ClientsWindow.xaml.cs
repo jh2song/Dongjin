@@ -119,24 +119,24 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail2.Text = client[0].Phone;
 				tbDetail3.Text = String.Format("{0:#,0}",client[0].CurrentLeftMoney).ToString();
 				tbDetail4.Text = client[0].PercentCode.ToString();
-				//string target = client[0].LastTransactionDate.Year.ToString("0000");
-				//tbDetail51.Text = target.Substring(2, 2);
-				//tbDetail52.Text = client[0].LastTransactionDate.Month.ToString("00");
-				//tbDetail53.Text = client[0].LastTransactionDate.Day.ToString("00");
-				//target = client[0].LastMoneyComeDate.Year.ToString("0000");
-				//tbDetail61.Text = target.Substring(2, 2);
-				//tbDetail62.Text = client[0].LastMoneyComeDate.Month.ToString("00");
-				//tbDetail63.Text = client[0].LastMoneyComeDate.Day.ToString("00");
-				//target = client[0].LastReturnDate.Year.ToString("0000");
-				//tbDetail71.Text = target.Substring(2, 2);
-				//tbDetail72.Text = client[0].LastReturnDate.Month.ToString("00");
-				//tbDetail73.Text = client[0].LastReturnDate.Day.ToString("00");
+				string target = client[0].FinalTransactionDate.Year.ToString("0000");
+				tbDetail51.Text = target.Substring(2, 2);
+				tbDetail52.Text = client[0].FinalTransactionDate.Month.ToString("00");
+				tbDetail53.Text = client[0].FinalTransactionDate.Day.ToString("00");
+				target = client[0].FinalDepositDate.Year.ToString("0000");
+				tbDetail61.Text = target.Substring(2, 2);
+				tbDetail62.Text = client[0].FinalDepositDate.Month.ToString("00");
+				tbDetail63.Text = client[0].FinalDepositDate.Day.ToString("00");
+				target = client[0].FinalRefundDate.Year.ToString("0000");
+				tbDetail71.Text = target.Substring(2, 2);
+				tbDetail72.Text = client[0].FinalRefundDate.Month.ToString("00");
+				tbDetail73.Text = client[0].FinalRefundDate.Day.ToString("00");
 				tbDetail8.Text = String.Format("{0:#,0}", client[0].TodaySellMoney).ToString();
 				tbDetail9.Text = String.Format("{0:#,0}", client[0].TodayDepositMoney).ToString();
 				tbDetail10.Text = String.Format("{0:#,0}", client[0].TodayReturnMoney).ToString();
 				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthSellMoney).ToString();
 				tbDetail12.Text = String.Format("{0:#,0}", client[0].MonthDepositMoney).ToString();
-				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthReturnMoney).ToString();
+				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthRetundMoney).ToString();
 				tbDetail14.Text = GetPrevLeftMoney();
 
 				tbcmd.Focus();
@@ -145,7 +145,32 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private string GetPrevLeftMoney()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				DB.Conn.CreateTable<Transaction>();
+
+				int inputClientCode = int.Parse(tb4.Text);
+
+				DateTime today = DateTime.Today;
+				DateTime month = new DateTime(today.Year, today.Month, 1);
+				DateTime last = month.AddDays(-1);
+
+				var history = DB.Conn.Table<Transaction>()
+					.Where(t => t.ClientCode == inputClientCode &&
+					t.TransactionDate <= last)
+					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
+
+				if (history == null)
+					return "0";
+				else
+					return history.CurrentLeftMoney.ToString();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+				MessageBox.Show("전월말미수를 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				return "-1";
+			}
 		}
 
 		private void tbDetail1_KeyDown(object sender, KeyEventArgs e)

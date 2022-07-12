@@ -209,8 +209,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				if (!isUpdateing)
 				{
-					tbDetail4.Text = CalculateBuyingPrice(tb4.Text, tbDetail2.Text);
-					tbDetail4.Select(tbDetail4.Text.Length, 0);
 					tbDetail4.Focus();
 				}
 				else if (SPOnTheProduct.Visibility == Visibility.Visible)
@@ -229,8 +227,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private string CalculateBuyingPrice(string brandCodeStr, string priceStr)
 		{
 			int brandCode = int.Parse(brandCodeStr);
-			int ret = int.Parse(priceStr);
-
+			int ret = int.Parse(priceStr.Replace(",",""));
+			
 			try
 			{
 				DB.Conn.CreateTable<Brand>();
@@ -477,5 +475,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				Close();
 		}
 
+		private void tbDetail4_GotFocus(object sender, RoutedEventArgs e)
+		{
+			tbDetail4.Text = CalculateBuyingPrice(tb4.Text, tbDetail2.Text);
+			tbDetail4.Select(tbDetail4.Text.Length, 0);
+		}
 	}
 }

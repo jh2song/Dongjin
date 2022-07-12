@@ -18,6 +18,12 @@ namespace Dongjin.Table
 		public int CurrentLeftMoney { get; set; } = 0;
 		// 4. 단가(%)구분
 		public int PercentCode { get; set; } = 0;
+		// 5. 최종거래일
+		public DateTime FinalTransactionDate { get; set; } = DateTime.MinValue;
+		// 6. 최종입금일
+		public DateTime FinalDepositDate { get; set; } = DateTime.MinValue;
+		// 7. 최종환입일
+		public DateTime FinalRefundDate { get; set; } = DateTime.MinValue;
 		// 8. 당일판매액
 		public int TodaySellMoney { get; set; } = 0;
 		// 9. 당일입금액
@@ -29,6 +35,6 @@ namespace Dongjin.Table
 		// 12. 당월입금액
 		public int MonthDepositMoney { get; set; } = 0;
 		// 13. 당월환입액
-		public int MonthReturnMoney { get; set; } = 0;
+		public int MonthRetundMoney { get; set; } = 0;
 	}
 }

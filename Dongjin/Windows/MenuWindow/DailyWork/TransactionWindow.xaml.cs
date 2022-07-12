@@ -179,7 +179,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				PrevMonthLeftMoneyTB.Text = GetPrevMonthLeftMoney();
 				MonthSellMoneyTB.Text = foundClient.MonthSellMoney.ToString();
 				MonthDepositMoneyTB.Text = foundClient.MonthDepositMoney.ToString();
-				MonthReturnMoneyTB.Text = foundClient.MonthReturnMoney.ToString();
+				MonthReturnMoneyTB.Text = foundClient.MonthRetundMoney.ToString();
 				//LastTransactionDateTB.Text = foundClient.LastTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
 				//	+ foundClient.LastTransactionDate.Month.ToString("00") + "/" 
 				//	+ foundClient.LastTransactionDate.Day.ToString("00");
