@@ -165,6 +165,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 				else
 				{
+					ClientNameTB.Text = "";
 					ClientCodeTB.Text = "";
 				}
 			}
@@ -201,9 +202,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				MonthSellMoneyTB.Text = foundClient.MonthSellMoney.ToString();
 				MonthDepositMoneyTB.Text = foundClient.MonthDepositMoney.ToString();
 				MonthReturnMoneyTB.Text = foundClient.MonthRetundMoney.ToString();
-				//LastTransactionDateTB.Text = foundClient.LastTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
-				//	+ foundClient.LastTransactionDate.Month.ToString("00") + "/" 
-				//	+ foundClient.LastTransactionDate.Day.ToString("00");
+				LastTransactionDateTB.Text = foundClient.FinalTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
+					+ foundClient.FinalTransactionDate.Month.ToString("00") + "/" 
+					+ foundClient.FinalTransactionDate.Day.ToString("00");
+
+				CurrentLeftMoneyTB.Text = (int.Parse(PrevMonthLeftMoneyTB.Text)
+					+ int.Parse(MonthSellMoneyTB.Text)
+					- int.Parse(MonthDepositMoneyTB.Text)
+					- int.Parse(MonthReturnMoneyTB.Text)).ToString();
 			}
 		}
 
