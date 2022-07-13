@@ -23,6 +23,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 	{
 		private int choice;
 		private Client foundClient;
+		private bool bubble;
 
 		public TransactionWindow()
 		{
@@ -170,6 +171,26 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.Enter)
 			{
+				e.Handled = true;
+				if (choice == 2)
+				{
+					var check = MessageBox.Show("(덤)전표가 맞습니까?", "확인", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+					bubble = true;
+					if (check == MessageBoxResult.Cancel)
+					{
+						return;
+					}
+				}
+				else if (choice == 3)
+				{
+					var check = MessageBox.Show("환입전표가 맞습니까?", "확인", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+					bubble = true;
+					if (check == MessageBoxResult.Cancel)
+					{
+						return;
+					}
+				}
+
 				// false: 거래처코드가 거래처 DB에 등록되어있지 않음
 				// true: 거래처코드가 거래처 DB에 등록되어있음
 				if (!ShowNameByCode(ClientCodeTB.Text))
@@ -246,5 +267,15 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			}
 		}
 
+		// block bubbling
+		private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+			if (bubble)
+			{
+				e.Handled = true;
+				bubble = false;
+				return;
+			}
+		}
 	}
 }

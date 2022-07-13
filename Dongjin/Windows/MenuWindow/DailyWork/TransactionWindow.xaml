@@ -11,6 +11,7 @@
         WindowStyle="None"
         Background="Black"
         Title="TransactionWindow"
+        PreviewKeyUp="Window_PreviewKeyUp"
         >
     <Grid>
         <Grid.RowDefinitions>
