@@ -332,8 +332,9 @@
 
             <TextBox
                 x:Name="CurrentLeftMoneyTB"
-                HorizontalAlignment="Left"
-                HorizontalContentAlignment="Left"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Right"
+                Margin="0 0 30 0"
                 Grid.Column="1"
                 Focusable="False"
                 />
@@ -346,6 +347,27 @@
                 <Grid.ColumnSpan>2</Grid.ColumnSpan>
             </Border>
         </Grid>
+
+        <StackPanel
+            x:Name="AppendStackPanel"
+            Visibility="Hidden"
+            Grid.Row="7"
+            Orientation="Horizontal"
+            Margin="30 10 30 10"
+            >
+            <Label
+                VerticalAlignment="Center"
+                Background="White"
+                Foreground="Black"
+                Content="계속: Enter / 1차추가: 1 / 2차추가: 2"
+                />
+            <TextBox
+                VerticalAlignment="Center"
+                x:Name="AppendTB"
+                KeyUp="AppendTB_KeyUp"
+                PreviewTextInput="AppendTB_PreviewTextInput"
+                />
+        </StackPanel>
         
         <Border
             BorderThickness="2 2 2 2"
@@ -392,7 +414,7 @@
         <Border
             BorderThickness="2 0 2 2"
             BorderBrush="White"
-            Margin="10 0 10 10"
+            Margin="10 0 10 0"
             >
             <Grid.Row>7</Grid.Row>
         </Border>

@@ -24,6 +24,7 @@ namespace Dongjin.Table
 		public int Price { get; set; }
 		// 추가옵션 (0: 기본 / 1: 추가1 / 2: 추가2)
 		public int AddOption { get; set; }
+
 		// 현재 미수
 		public int CurrentLeftMoney { get; set; }
 	}

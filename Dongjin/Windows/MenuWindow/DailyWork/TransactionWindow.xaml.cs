@@ -210,7 +210,36 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					+ int.Parse(MonthSellMoneyTB.Text)
 					- int.Parse(MonthDepositMoneyTB.Text)
 					- int.Parse(MonthReturnMoneyTB.Text)).ToString();
+
+				if (IsOnDBByChoiceDateCode()) // 전표가 이미 남아있는 상황
+				{
+
+				}
+				else // 새로 전표 찍어야 되는 상황
+				{
+
+				}
 			}
+		}
+
+		private bool IsOnDBByChoiceDateCode()
+		{
+			DB.Conn.CreateTable<Transaction>();
+
+			// 쿼리를 위한 준비물
+			int choice = int.Parse(ChoiceTB.Text);
+			DateTime dateTime = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
+			int code = int.Parse(ClientCodeTB.Text);
+
+			List<Transaction> trans = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
+			t.TransactionDate == dateTime &&
+			t.ClientCode == code
+			).ToList();
+
+			if (trans.Count > 0)
+				return true;
+			else
+				return false;
 		}
 
 		private string GetPrevMonthLeftMoney()
@@ -282,6 +311,33 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				bubble = false;
 				return;
 			}
+		}
+
+		private void AppendTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (AppendTB.Text == "")
+				{
+					AppendStackPanel.Visibility = Visibility.Hidden;
+					ClientCodeTB.Text = "";
+					ClientCodeTB.Focus();
+				}
+				else
+				{
+					AppendTB.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				// do something
+			}
+		}
+
+		private void AppendTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 	}
 }
