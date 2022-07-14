@@ -13,7 +13,7 @@ namespace Dongjin.Table
 		// 브랜드코드
 		public int BrandCode { get; set; }
 		// 제품명
-		public string Name { get; set; } = "";
+		public string ProductName { get; set; } = "";
 		// 단가
 		public int Price { get; set; } = 0;
 		// 재고량

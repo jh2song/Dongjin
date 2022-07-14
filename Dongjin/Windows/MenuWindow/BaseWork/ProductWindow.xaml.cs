@@ -107,7 +107,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				List<Product> products = DB.Conn.Table<Product>().Where(c => c.ProductCode.Equals(code)).ToList();
 
-				tbDetail1.Text = products[0].Name;
+				tbDetail1.Text = products[0].ProductName;
 				tbDetail2.Text = String.Format("{0:#,0}", products[0].Price);
 				tbDetail3.Text = products[0].LeftAmount.ToString();
 				tbDetail4.Text = String.Format("{0:#,0}", products[0].BuyingPrice);
@@ -362,7 +362,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					product.BrandCode = target;
 				}
-				product.Name = tbDetail1.Text;
+				product.ProductName = tbDetail1.Text;
 				if (int.TryParse(tbDetail2.Text.Replace(",", ""), out target))
 				{
 					product.Price = target;

@@ -26,6 +26,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private Client foundClient;
 		private bool bubble;
 		private int appendChoice;
+		private string productName;
+		private int productCount;
+		private Product productObject;
+		private double productDiscountRate;
 
 		public TransactionWindow()
 		{
@@ -367,7 +371,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					PrintOptionLB.Visibility = Visibility.Visible;
 					InputProductAndOptionGrid.Visibility = Visibility.Hidden;
 					ClientCodeTB.Text = "";
-					ClientNameTB.Text = "";
+					ProductNameTB.Text = "";
 					ClientCodeTB.Focus();
 				}
 				else
@@ -406,7 +410,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 				if (IsOnProductDBByCode(ProductCodeTB.Text))
 				{
-					
+					ProductNameTB.Visibility = Visibility.Visible;
+
+					// 수량
+					ProductCountTB.Visibility = Visibility.Visible;
+					ProductCountTB.Focus();
 				}
 				else // 제품을 전표에 입력했는데 제품이 없는 경우
 				{
@@ -418,6 +426,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					}
 
 					new ProductWindow().Show();
+					return;
 				}
 			}
 		}
@@ -425,12 +434,86 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private bool IsOnProductDBByCode(string productCode)
 		{
 			DB.Conn.CreateTable<Product>();
-			var found = DB.Conn.Find<Product>(p => p.ProductCode == productCode);
+			productObject = DB.Conn.Find<Product>(p => p.ProductCode == productCode);
 
-			if (found != null)
+			if (productObject != null)
+			{
+				productName = ProductNameTB.Text = productObject.ProductName;
 				return true;
+			}
 			else
 				return false;
 		}
+
+		private void ProductCountTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (ProductCountTB.Text == "")
+				{
+					ProductCountTB.Visibility = Visibility.Hidden;
+					ProductCodeTB.Text = "";
+					ProductCodeTB.Focus();
+				}
+				else
+				{
+					ProductCountTB.Text = "";
+				}
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				if (ProductCountTB.Text == "")
+				{
+					ProductCountTB.Text = "0";
+					productCount = 0;
+				}
+				else
+				{
+					productCount = int.Parse(ProductCountTB.Text);
+				}
+
+				DiscountPercentTB.Visibility = Visibility.Visible;
+				DiscountPercentTB.Focus();
+			}
+		}
+
+		private void DiscountPercentTB_KeyUp(object sender, KeyEventArgs e)
+		{
+
+		}
+
+		private void DiscountPercentTB_GotFocus(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				var query = DB.Conn.Query<Discount>(
+					@"SELECT a.DiscountRate
+					FROM Discount a, Product b
+					WHERE a.BrandCode = b.BrandCode
+					AND b.ProductCode = ?", productObject.ProductCode
+					).ToArray();
+				
+				productDiscountRate = query[0].DiscountRate;
+				DiscountPercentTB.Text = productDiscountRate.ToString("F2");
+				DiscountPercentTB.Select(DiscountPercentTB.Text.Length, 0);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+				// mes box 
+			}
+		}
+
+		private void ProductCountTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void DiscountPercentTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
+		}
+
 	}
 }

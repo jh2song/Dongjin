@@ -402,7 +402,32 @@
                 HorizontalAlignment="Center"
                 Grid.Column="1"
                 x:Name="ProductNameTB"
+                MinWidth="1200"
+                Focusable="False"
                 Visibility="Hidden"
+                />
+
+            <TextBox
+                x:Name="ProductCountTB"
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                MinWidth="45"
+                Style="{StaticResource detailStyle}"
+                Visibility="Hidden"
+                PreviewTextInput="ProductCountTB_PreviewTextInput"
+                KeyUp="ProductCountTB_KeyUp"
+                />
+
+            <TextBox
+                x:Name="DiscountPercentTB"
+                Grid.Column="3"
+                HorizontalAlignment="Center"
+                MinWidth="110"
+                Style="{StaticResource detailStyle}"
+                Visibility="Hidden"
+                GotFocus="DiscountPercentTB_GotFocus"
+                PreviewTextInput="DiscountPercentTB_PreviewTextInput"
+                KeyUp="DiscountPercentTB_KeyUp"
                 />
 
             <Label
