@@ -1,5 +1,6 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Table;
+using Dongjin.Windows.MenuWindow.BaseWork;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private int choice;
 		private Client foundClient;
 		private bool bubble;
+		private int appendChoice;
 
 		public TransactionWindow()
 		{
@@ -211,13 +213,20 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					- int.Parse(MonthDepositMoneyTB.Text)
 					- int.Parse(MonthReturnMoneyTB.Text)).ToString();
 
+
 				if (IsOnDBByChoiceDateCode()) // 전표가 이미 남아있는 상황
 				{
+					// Datagrid를 표시해야함
 
+					// 추가 선택을 고르게함
+					AppendStackPanel.Visibility = Visibility.Visible;
+					AppendTB.Focus();
 				}
 				else // 새로 전표 찍어야 되는 상황
 				{
-
+					appendChoice = 0;
+					InputProductAndOptionGrid.Visibility = Visibility.Visible;
+					ProductCodeTB.Focus();
 				}
 			}
 		}
@@ -332,12 +341,96 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			if (e.Key == Key.Enter)
 			{
 				// do something
+				if (AppendTB.Text == "")
+					appendChoice = 0;
+				else
+					appendChoice = int.Parse(AppendTB.Text);
+
+				AppendTB.Text = "";
+				AppendStackPanel.Visibility = Visibility.Hidden;
+				InputProductAndOptionGrid.Visibility = Visibility.Visible;
+				ProductCodeTB.Focus();
 			}
 		}
 
 		private void AppendTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void ProductCodeTB_KeyUp(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (ProductCodeTB.Text == "")
+				{
+					PrintOptionLB.Visibility = Visibility.Visible;
+					InputProductAndOptionGrid.Visibility = Visibility.Hidden;
+					ClientCodeTB.Text = "";
+					ClientNameTB.Text = "";
+					ClientCodeTB.Focus();
+				}
+				else
+					ProductCodeTB.Text = "";
+			}
+
+			if (e.Key == Key.Enter)
+			{
+				PrintOptionLB.Visibility = Visibility.Hidden;
+				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
+				{
+
+					return;
+				}
+				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
+				{
+
+					return;
+				}
+				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
+				{
+
+					return;
+				}
+				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
+				{
+
+					return;
+				}
+				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")
+				{
+
+					return;
+				}
+
+
+				if (IsOnProductDBByCode(ProductCodeTB.Text))
+				{
+					
+				}
+				else // 제품을 전표에 입력했는데 제품이 없는 경우
+				{
+					var check = MessageBox.Show("제품이 데이터베이스에 없습니다. 등록하러 가시겠습니까?", "DB에 없음", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+					bubble = true;
+					if (check == MessageBoxResult.Cancel)
+					{
+						return;
+					}
+
+					new ProductWindow().Show();
+				}
+			}
+		}
+
+		private bool IsOnProductDBByCode(string productCode)
+		{
+			DB.Conn.CreateTable<Product>();
+			var found = DB.Conn.Find<Product>(p => p.ProductCode == productCode);
+
+			if (found != null)
+				return true;
+			else
+				return false;
 		}
 	}
 }

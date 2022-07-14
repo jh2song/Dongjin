@@ -363,11 +363,59 @@
                 />
             <TextBox
                 VerticalAlignment="Center"
+                MinLines="1"
+                MinWidth="25"
                 x:Name="AppendTB"
                 KeyUp="AppendTB_KeyUp"
                 PreviewTextInput="AppendTB_PreviewTextInput"
                 />
         </StackPanel>
+        <Grid
+            x:Name="InputProductAndOptionGrid"
+            Visibility="Hidden"
+            Grid.Row="7"
+            Margin="30 10 30 10"
+            >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Grid.Column="0"
+                MinWidth="500"
+                Style="{StaticResource detailStyle}"
+                x:Name="ProductCodeTB"
+                KeyUp="ProductCodeTB_KeyUp"
+                />
+
+            <TextBox
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Grid.Column="1"
+                x:Name="ProductNameTB"
+                Visibility="Hidden"
+                />
+
+            <Label
+                Grid.ColumnSpan="7"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Background="White"
+                Foreground="Black"
+                x:Name="PrintOptionLB"
+                Content="인쇄: (P) / 추가1: (P1) / 추가2: (P2) / 전부: (P0) / 입출금: (I)"
+                />
+        </Grid>
+        
         
         <Border
             BorderThickness="2 2 2 2"
