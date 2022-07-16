@@ -46,10 +46,8 @@
                 />
             <TextBox
                 x:Name="ChoiceTB"
-                VerticalContentAlignment="Center"
                 MaxLength="1"
                 MinWidth="25"
-                Style="{StaticResource detailStyle}"
                 HorizontalContentAlignment="Left"
                 PreviewTextInput="ChoiceTB_PreviewTextInput"
                 KeyUp="ChoiceTB_KeyUp"
@@ -75,7 +73,6 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
-                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="YearTB_PreviewTextInput"
                         KeyUp="YearTB_KeyUp"
                         />
@@ -87,7 +84,6 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
-                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="MonthTB_PreviewTextInput"
                         KeyUp="MonthTB_KeyUp"
                         />
@@ -99,7 +95,6 @@
                         MaxLines="1"
                         MaxLength="2"
                         MinWidth="45"
-                        Style="{StaticResource detailStyle}"
                         PreviewTextInput="DayTB_PreviewTextInput"
                         KeyUp="DayTB_KeyUp"
                         />
@@ -116,7 +111,6 @@
                 MaxLength="4"
                 MinWidth="80"
                 Style="{StaticResource detailStyle}"
-                HorizontalContentAlignment="Left"
                 PreviewTextInput="ClientCodeTB_PreviewTextInput"
                 KeyUp="ClientCodeTB_KeyUp"
                 />
@@ -410,9 +404,7 @@
             <TextBox
                 x:Name="ProductCountTB"
                 Grid.Column="2"
-                HorizontalAlignment="Center"
-                MinWidth="45"
-                Style="{StaticResource detailStyle}"
+                MinWidth="70"
                 Visibility="Hidden"
                 PreviewTextInput="ProductCountTB_PreviewTextInput"
                 KeyUp="ProductCountTB_KeyUp"
@@ -421,9 +413,7 @@
             <TextBox
                 x:Name="DiscountPercentTB"
                 Grid.Column="3"
-                HorizontalAlignment="Center"
                 MinWidth="110"
-                Style="{StaticResource detailStyle}"
                 Visibility="Hidden"
                 GotFocus="DiscountPercentTB_GotFocus"
                 PreviewTextInput="DiscountPercentTB_PreviewTextInput"
