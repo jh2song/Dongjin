@@ -607,9 +607,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					DB.Conn.Insert(transaction);
 				}
 
-				List<Transaction> list = DB.Conn.Table<Transaction>().ToList();
 				DG.ItemsSource = null;
-				DG.ItemsSource = list;
+				DG.ItemsSource = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
+																			t.TransactionDate == transactionDate &&
+																			t.ClientCode == clientCode).ToList();
 			}
 			catch (Exception ex)
 			{
