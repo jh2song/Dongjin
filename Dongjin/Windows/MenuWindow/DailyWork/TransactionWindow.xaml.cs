@@ -561,7 +561,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void ProductCountTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+			e.Handled = RegexClass.NotNumericBackspaceMinus(e.Text);
 		}
 
 		private void DiscountPercentTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -609,7 +609,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (isThere != null) // 이미 똑같은 경우의 제품이 Datagrid와 DB에 올라와 있음
 				{
 					isThere.ProductCount += transaction.ProductCount;
-					DB.Conn.Update(isThere);
+					if (isThere.ProductCount == 0)
+						DB.Conn.Delete<Transaction>(isThere.ID);
+					else
+						DB.Conn.Update(isThere);
 				}
 				else
 				{

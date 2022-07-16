@@ -13,6 +13,12 @@ namespace Dongjin.Classes
 			return regex.IsMatch(str);
 		}
 
+		static public bool NotNumericBackspaceMinus(string str)
+		{
+			Regex regex = new Regex("[^0-9\b-]+");
+			return regex.IsMatch(str);
+		}
+
 		static public bool NotNumericBackspaceComma(string str)
 		{
 			Regex regex = new Regex("[^0-9\b,]+");
