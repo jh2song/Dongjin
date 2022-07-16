@@ -424,7 +424,16 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 					return;
 				}
+				if (ProductCodeTB.Text == "DDD" || ProductCodeTB.Text == "ddd")
+				{
+					List<Transaction> prevData = DG.ItemsSource as List<Transaction>;
+					foreach (Transaction data in prevData)
+						DB.Conn.Delete<Transaction>(data.ID);
 
+					DG.ItemsSource = null;
+					ProductCodeTB.Text = "";
+					return;
+				}
 
 				if (IsOnProductDBByCode(ProductCodeTB.Text))
 				{
