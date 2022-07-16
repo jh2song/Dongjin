@@ -48,7 +48,6 @@
                 x:Name="ChoiceTB"
                 MaxLength="1"
                 MinWidth="25"
-                HorizontalContentAlignment="Left"
                 PreviewTextInput="ChoiceTB_PreviewTextInput"
                 KeyUp="ChoiceTB_KeyUp"
                 />
@@ -410,16 +409,24 @@
                 KeyUp="ProductCountTB_KeyUp"
                 />
 
-            <TextBox
-                x:Name="DiscountPercentTB"
+            <StackPanel
+                x:Name="DiscountPercentStackPanel"
                 Grid.Column="3"
-                MinWidth="110"
                 Visibility="Hidden"
-                GotFocus="DiscountPercentTB_GotFocus"
-                PreviewTextInput="DiscountPercentTB_PreviewTextInput"
-                KeyUp="DiscountPercentTB_KeyUp"
-                />
-
+                Orientation="Horizontal"
+                >
+                <TextBox
+                    x:Name="DiscountPercentTB"
+                    MinWidth="110"
+                    GotFocus="DiscountPercentTB_GotFocus"
+                    PreviewTextInput="DiscountPercentTB_PreviewTextInput"
+                    KeyUp="DiscountPercentTB_KeyUp"
+                    />
+                <Label
+                    Content="%"
+                    />
+            </StackPanel>
+            
             <Label
                 Grid.ColumnSpan="7"
                 VerticalAlignment="Center"

@@ -465,15 +465,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			{
 				if (ProductCountTB.Text == "")
 				{
-					ProductCountTB.Text = "0";
-					productCount = 0;
+					return;
 				}
 				else
 				{
 					productCount = int.Parse(ProductCountTB.Text);
 				}
 
-				DiscountPercentTB.Visibility = Visibility.Visible;
+				DiscountPercentStackPanel.Visibility = Visibility.Visible;
 				DiscountPercentTB.Focus();
 			}
 		}
@@ -512,7 +511,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void DiscountPercentTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotNumericBackspaceComma(e.Text);
+			e.Handled = RegexClass.NotNumericBackspaceDot(e.Text);
 		}
 
 	}
