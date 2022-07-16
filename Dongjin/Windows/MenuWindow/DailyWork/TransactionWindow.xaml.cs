@@ -371,7 +371,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					PrintOptionLB.Visibility = Visibility.Visible;
 					InputProductAndOptionGrid.Visibility = Visibility.Hidden;
 					ClientCodeTB.Text = "";
-					ProductNameTB.Text = "";
+					ClientNameTB.Text = "";
 					ClientCodeTB.Focus();
 				}
 				else
@@ -453,6 +453,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				{
 					ProductCountTB.Visibility = Visibility.Hidden;
 					ProductCodeTB.Text = "";
+					ProductNameTB.Text = "";
 					ProductCodeTB.Focus();
 				}
 				else
@@ -479,7 +480,32 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void DiscountPercentTB_KeyUp(object sender, KeyEventArgs e)
 		{
+			if (e.Key == Key.Escape)
+			{
+				if (DiscountPercentTB.Text == "")
+				{
+					DiscountPercentTB.Visibility = Visibility.Hidden;
+					DiscountPercentLB.Visibility = Visibility.Hidden;
+					ProductCountTB.Text = "";
+					ProductCountTB.Focus();
+				}
+				else
+				{
+					DiscountPercentTB.Text = "";
+				}
+			}
 
+			if (e.Key == Key.Enter)
+			{
+				if (double.TryParse(DiscountPercentTB.Text, out productDiscountRate))
+				{
+					UpdateDB();
+				}
+				else
+				{
+					return;
+				}
+			}
 		}
 
 		private void DiscountPercentTB_GotFocus(object sender, RoutedEventArgs e)
@@ -514,5 +540,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			e.Handled = RegexClass.NotNumericBackspaceDot(e.Text);
 		}
 
+		private void UpdateDB()
+		{
+			
+			return;
+		}
 	}
 }

@@ -423,14 +423,14 @@
                     KeyUp="DiscountPercentTB_KeyUp"
                     />
                 <Label
+                    x:Name="DiscountPercentLB"
                     Content="%"
                     />
             </StackPanel>
             
             <Label
                 Grid.ColumnSpan="7"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Center"
                 Background="White"
                 Foreground="Black"
                 x:Name="PrintOptionLB"
