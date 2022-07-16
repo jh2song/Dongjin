@@ -300,6 +300,59 @@
                 />
         </Grid>
 
+        <!-- DataGrid -->
+        <DataGrid
+            x:Name="DG"
+            Margin="10 0 10 0"
+            RowHeaderWidth="0"
+            AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Hidden"
+            CanUserAddRows="False"
+            HeadersVisibility="None"
+            Visibility="Hidden"
+            >
+            <Grid.Row>5</Grid.Row>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ProductCode}" IsReadOnly="True" Width="4*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DiscountedPrice}" IsReadOnly="True" Width="3*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Width="3*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
         <Grid
             Grid.Row="6"
             >
@@ -461,7 +514,7 @@
             <Grid.Row>3</Grid.Row>
         </Border>
         <Border
-            BorderThickness="2 0 2 2"
+            BorderThickness="2 0 2 0"
             BorderBrush="White"
             Margin="10 0 10 0"
             >

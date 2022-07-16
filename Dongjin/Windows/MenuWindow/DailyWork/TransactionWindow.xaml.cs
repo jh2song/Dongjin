@@ -30,6 +30,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private int productCount;
 		private Product productObject;
 		private double productDiscountRate;
+		private DateTime transactionDate;
+		private int currentLeftMoney;
+		private int clientCode;
 
 		public TransactionWindow()
 		{
@@ -179,6 +182,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			if (e.Key == Key.Enter)
 			{
 				e.Handled = true;
+
+				transactionDate = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
+
 				if (choice == 2)
 				{
 					var check = MessageBox.Show("(덤)전표가 맞습니까?", "확인", MessageBoxButton.OKCancel, MessageBoxImage.Question);
@@ -212,16 +218,29 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					+ foundClient.FinalTransactionDate.Month.ToString("00") + "/" 
 					+ foundClient.FinalTransactionDate.Day.ToString("00");
 
-				CurrentLeftMoneyTB.Text = (int.Parse(PrevMonthLeftMoneyTB.Text)
+				currentLeftMoney = int.Parse(PrevMonthLeftMoneyTB.Text)
 					+ int.Parse(MonthSellMoneyTB.Text)
 					- int.Parse(MonthDepositMoneyTB.Text)
-					- int.Parse(MonthReturnMoneyTB.Text)).ToString();
+					- int.Parse(MonthReturnMoneyTB.Text);
+				CurrentLeftMoneyTB.Text = (currentLeftMoney).ToString();
 
-
+				clientCode = int.Parse(ClientCodeTB.Text);
 				if (IsOnDBByChoiceDateCode()) // 전표가 이미 남아있는 상황
 				{
 					// Datagrid를 표시해야함
-
+					try
+					{
+						DB.Conn.CreateTable<Transaction>();
+						DG.ItemsSource = null;
+						DG.ItemsSource = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
+																			t.TransactionDate == transactionDate &&
+																			t.ClientCode == clientCode).ToList();
+						DG.Visibility = Visibility.Visible;
+					}
+					catch (Exception ex)
+					{
+						Debug.WriteLine(ex.ToString());
+					}
 					// 추가 선택을 고르게함
 					AppendStackPanel.Visibility = Visibility.Visible;
 					AppendTB.Focus();
@@ -241,11 +260,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			// 쿼리를 위한 준비물
 			int choice = int.Parse(ChoiceTB.Text);
-			DateTime dateTime = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
 			int code = int.Parse(ClientCodeTB.Text);
 
 			List<Transaction> trans = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
-			t.TransactionDate == dateTime &&
+			t.TransactionDate == transactionDate &&
 			t.ClientCode == code
 			).ToList();
 
@@ -263,7 +281,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 				int inputClientCode = int.Parse(ClientCodeTB.Text);
 
-				DateTime today = DateTime.Today;
+				DateTime today = transactionDate;
 				DateTime month = new DateTime(today.Year, today.Month, 1);
 				DateTime last = month.AddDays(-1);
 
@@ -499,6 +517,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			{
 				if (double.TryParse(DiscountPercentTB.Text, out productDiscountRate))
 				{
+					// Datagrid를 표시해야 함
+					DG.Visibility = Visibility.Visible;
 					UpdateDB();
 				}
 				else
@@ -542,7 +562,60 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void UpdateDB()
 		{
-			
+			try
+			{
+				Transaction transaction = new Transaction();
+				transaction.Choice = choice;
+				transaction.TransactionDate = transactionDate;
+				transaction.ClientCode = clientCode;
+				transaction.ProductCode = productObject.ProductCode;
+				transaction.ProductName = productObject.ProductName;
+				transaction.ProductCount = productCount;
+				transaction.Price = productObject.Price;
+				transaction.DiscountedPrice = (int)((double)transaction.Price * productDiscountRate / 100.00);
+				switch (appendChoice)
+				{
+					case 0:
+						transaction.AppendOption0 = 1;
+						break;
+					case 1:
+						transaction.AppendOption1 = 1;
+						break;
+					case 2:
+						transaction.AppendOption2 = 1;
+						break;
+				}
+				transaction.CurrentLeftMoney = currentLeftMoney + transaction.DiscountedPrice;
+
+				DB.Conn.CreateTable<Transaction>();
+				var isThere = DB.Conn.Table<Transaction>().Where(t => t.Choice == transaction.Choice &&
+												t.TransactionDate == transaction.TransactionDate &&
+												t.ClientCode == transaction.ClientCode &&
+												t.ProductCode == transaction.ProductCode &&
+												t.DiscountedPrice == transaction.DiscountedPrice &&
+												t.AppendOption0 == transaction.AppendOption0 &&
+												t.AppendOption1 == transaction.AppendOption1 &&
+												t.AppendOption2 == transaction.AppendOption2).FirstOrDefault();
+
+				if (isThere != null) // 이미 똑같은 경우의 제품이 Datagrid와 DB에 올라와 있음
+				{
+					isThere.ProductCount += transaction.ProductCount;
+					DB.Conn.Update(isThere);
+				}
+				else
+				{
+					DB.Conn.Insert(transaction);
+				}
+
+				List<Transaction> list = DB.Conn.Table<Transaction>().ToList();
+				DG.ItemsSource = null;
+				DG.ItemsSource = list;
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex.ToString());
+				MessageBox.Show("표에 데이터를 입력하는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 			return;
 		}
 	}
