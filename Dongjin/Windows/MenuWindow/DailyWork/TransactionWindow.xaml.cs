@@ -377,7 +377,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void AppendTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+			e.Handled = RegexClass.NotUnderboundNumber(e.Text, 1, 2);
 		}
 
 		private void ProductCodeTB_KeyUp(object sender, KeyEventArgs e)
@@ -511,8 +511,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			{
 				if (DiscountPercentTB.Text == "")
 				{
-					DiscountPercentTB.Visibility = Visibility.Hidden;
-					DiscountPercentLB.Visibility = Visibility.Hidden;
+					DiscountPercentStackPanel.Visibility= Visibility.Hidden;
 					ProductCountTB.Text = "";
 					ProductCountTB.Focus();
 				}
@@ -619,10 +618,33 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					DB.Conn.Insert(transaction);
 				}
 
+				DB.Conn.CreateTable<Client>();
+				Client client = DB.Conn.Table<Client>().Where(c => c.ClientCode == clientCode).FirstOrDefault();
+
+				if (choice == 1)
+				{
+					client.MonthSellMoney += transaction.DiscountedPrice * transaction.ProductCount;
+					client.CurrentLeftMoney += transaction.DiscountedPrice * transaction.ProductCount;
+				}
+
+				if (choice == 3)
+				{
+					client.MonthRetundMoney += transaction.DiscountedPrice * transaction.ProductCount;
+					client.CurrentLeftMoney -= transaction.DiscountedPrice * transaction.ProductCount;
+
+					client.FinalRefundDate = transactionDate;
+				}
+				client.FinalTransactionDate = transactionDate;
+
+
 				DG.ItemsSource = null;
 				DG.ItemsSource = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
 																			t.TransactionDate == transactionDate &&
 																			t.ClientCode == clientCode).ToList();
+
+				ProductCodeTB.Text = ProductNameTB.Text = ProductCountTB.Text = DiscountPercentTB.Text = "";
+				ProductCountTB.Visibility = DiscountPercentStackPanel.Visibility = Visibility.Hidden;
+				ProductCodeTB.Focus();
 			}
 			catch (Exception ex)
 			{

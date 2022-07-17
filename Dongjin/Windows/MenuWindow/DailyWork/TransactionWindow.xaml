@@ -405,9 +405,10 @@
                 VerticalAlignment="Center"
                 Background="White"
                 Foreground="Black"
-                Content="계속: Enter / 1차추가: 1 / 2차추가: 2"
+                Content="계속: Enter / 1차추가: 1 / 2차추가: 2 ==>"
                 />
             <TextBox
+                Margin="10 0 0 0"
                 VerticalAlignment="Center"
                 MinLines="1"
                 MinWidth="25"
