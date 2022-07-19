@@ -624,18 +624,22 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (choice == 1)
 				{
 					client.MonthSellMoney += transaction.DiscountedPrice * transaction.ProductCount;
+					MonthSellMoneyTB.Text = client.MonthSellMoney.ToString();
 					client.CurrentLeftMoney += transaction.DiscountedPrice * transaction.ProductCount;
+					CurrentLeftMoneyTB.Text = client.CurrentLeftMoney.ToString();
 				}
 
 				if (choice == 3)
 				{
 					client.MonthRetundMoney += transaction.DiscountedPrice * transaction.ProductCount;
+					MonthReturnMoneyTB.Text = client.MonthRetundMoney.ToString();
 					client.CurrentLeftMoney -= transaction.DiscountedPrice * transaction.ProductCount;
+					CurrentLeftMoneyTB.Text = client.CurrentLeftMoney.ToString();
 
 					client.FinalRefundDate = transactionDate;
 				}
 				client.FinalTransactionDate = transactionDate;
-
+				LastTransactionDateTB.Text = client.FinalTransactionDate.ToString();
 
 				DG.ItemsSource = null;
 				DG.ItemsSource = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
