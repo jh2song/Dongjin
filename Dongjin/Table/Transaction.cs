@@ -24,15 +24,15 @@ namespace Dongjin.Table
 		// 수량
 		public int ProductCount { get; set; }
 		// 금액
-		public int DiscountedPrice { get; set; }
+		public int ProductDiscountPrice { get; set; }
 		// 정가액
-		public int Price { get; set; }
+		public int ProductPrice { get; set; }
 		// 추가옵션 (0: 기본 / 1: 추가1 / 2: 추가2)
 		public int AppendOption0 { get; set; } = 0;
 		public int AppendOption1 { get; set; } = 0;
 		public int AppendOption2 { get; set; } = 0;
 
 		// 현재 미수
-		public int CurrentLeftMoney { get; set; }
+		
 	}
 }

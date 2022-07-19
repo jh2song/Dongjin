@@ -25,16 +25,16 @@ namespace Dongjin.Table
 		// 7. 최종환입일
 		public DateTime FinalRefundDate { get; set; } = DateTime.MinValue;
 		// 8. 당일판매액
-		public int TodaySellMoney { get; set; } = 0;
+
 		// 9. 당일입금액
-		public int TodayDepositMoney { get; set; } = 0;
+
 		// 10. 당일환입액
-		public int TodayReturnMoney { get; set; } = 0;
+
 		// 11. 당월판매액
-		public int MonthSellMoney { get; set; } = 0;
+		
 		// 12. 당월입금액
-		public int MonthDepositMoney { get; set; } = 0;
+		
 		// 13. 당월환입액
-		public int MonthRetundMoney { get; set; } = 0;
+		
 	}
 }

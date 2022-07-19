@@ -131,13 +131,21 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail71.Text = target.Substring(2, 2);
 				tbDetail72.Text = client[0].FinalRefundDate.Month.ToString("00");
 				tbDetail73.Text = client[0].FinalRefundDate.Day.ToString("00");
-				tbDetail8.Text = String.Format("{0:#,0}", client[0].TodaySellMoney).ToString();
-				tbDetail9.Text = String.Format("{0:#,0}", client[0].TodayDepositMoney).ToString();
-				tbDetail10.Text = String.Format("{0:#,0}", client[0].TodayReturnMoney).ToString();
-				tbDetail11.Text = String.Format("{0:#,0}", client[0].MonthSellMoney).ToString();
-				tbDetail12.Text = String.Format("{0:#,0}", client[0].MonthDepositMoney).ToString();
-				tbDetail13.Text = String.Format("{0:#,0}", client[0].MonthRetundMoney).ToString();
-				tbDetail14.Text = GetPrevLeftMoney();
+				try
+				{
+					tbDetail8.Text = String.Format("{0:#,0}", todaySellMoney).ToString();
+					tbDetail9.Text = String.Format("{0:#,0}", todayDepositMoney).ToString();
+					tbDetail10.Text = String.Format("{0:#,0}", todayReturnMoney).ToString();
+					tbDetail11.Text = String.Format("{0:#,0}", monthSellMoney).ToString();
+					tbDetail12.Text = String.Format("{0:#,0}", monthDepositMoney).ToString();
+					tbDetail13.Text = String.Format("{0:#,0}", monthRefundMoney).ToString();
+					tbDetail14.Text = GetPrevLeftMoney();
+				}
+				catch (Exception)
+				{
+
+				}
+				
 
 				tbcmd.Focus();
 			}
@@ -147,16 +155,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				DB.Conn.CreateTable<Transaction>();
-
-				int inputClientCode = int.Parse(tb4.Text);
-
-				DateTime today = DateTime.Today;
+				DateTime today = DateTime.Now;
 				DateTime month = new DateTime(today.Year, today.Month, 1);
 				DateTime last = month.AddDays(-1);
 
-				var history = DB.Conn.Table<Transaction>()
-					.Where(t => t.ClientCode == inputClientCode &&
+				DB.Conn.CreateTable<ClientLedger>();
+
+				var history = DB.Conn.Table<ClientLedger>()
+					.Where(t => t.ClientCode == int.Parse(tb4.Text) &&
 					t.TransactionDate <= last)
 					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
 

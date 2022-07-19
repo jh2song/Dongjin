@@ -204,6 +204,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					}
 				}
 
+				clientCode = int.Parse(ClientCodeTB.Text);
+
 				// false: 거래처코드가 거래처 DB에 등록되어있지 않음
 				// true: 거래처코드가 거래처 DB에 등록되어있음
 				if (!ShowNameByCode(ClientCodeTB.Text))
@@ -211,9 +213,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 				// do - something
 				PrevMonthLeftMoneyTB.Text = GetPrevMonthLeftMoney();
-				MonthSellMoneyTB.Text = foundClient.MonthSellMoney.ToString();
-				MonthDepositMoneyTB.Text = foundClient.MonthDepositMoney.ToString();
-				MonthReturnMoneyTB.Text = foundClient.MonthRetundMoney.ToString();
+				MonthSellMoneyTB.Text = GetMonthSellMoney().ToString();
+				MonthDepositMoneyTB.Text = GetMonthDepositMoney().ToString();
+				MonthReturnMoneyTB.Text = GetMonthRefundMoney().ToString();
 				LastTransactionDateTB.Text = foundClient.FinalTransactionDate.Year.ToString("0000").Substring(2, 2) + "/" 
 					+ foundClient.FinalTransactionDate.Month.ToString("00") + "/" 
 					+ foundClient.FinalTransactionDate.Day.ToString("00");
@@ -224,7 +226,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					- int.Parse(MonthReturnMoneyTB.Text);
 				CurrentLeftMoneyTB.Text = (currentLeftMoney).ToString();
 
-				clientCode = int.Parse(ClientCodeTB.Text);
 				if (IsOnDBByChoiceDateCode()) // 전표가 이미 남아있는 상황
 				{
 					// Datagrid를 표시해야함
@@ -254,6 +255,69 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			}
 		}
 
+		private int GetMonthSellMoney()
+		{
+			int ret = 0;
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month).ToList();
+
+				foreach (var element in list)
+				{
+					ret += element.TodaySellMoney;
+				}
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("당월판매액을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return ret;
+		}
+
+		private int GetMonthDepositMoney()
+		{
+			int ret = 0;
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month).ToList();
+
+				foreach (var element in list)
+				{
+					ret += element.TodayDepositMoney;
+				}
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("당월입금액을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return ret;
+		}
+
+		private int GetMonthRefundMoney()
+		{
+			int ret = 0;
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month).ToList();
+
+				foreach (var element in list)
+				{
+					ret += element.TodayRefundMoney;
+				}
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("당월환입액을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return ret;
+		}
+
 		private bool IsOnDBByChoiceDateCode()
 		{
 			DB.Conn.CreateTable<Transaction>();
@@ -277,16 +341,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		{
 			try
 			{
-				DB.Conn.CreateTable<Transaction>();
-
-				int inputClientCode = int.Parse(ClientCodeTB.Text);
-
 				DateTime today = transactionDate;
 				DateTime month = new DateTime(today.Year, today.Month, 1);
 				DateTime last = month.AddDays(-1);
 
-				var history = DB.Conn.Table<Transaction>()
-					.Where(t => t.ClientCode == inputClientCode &&
+				DB.Conn.CreateTable<ClientLedger>();
+
+				var history = DB.Conn.Table<ClientLedger>()
+					.Where(t => t.ClientCode == clientCode &&
 					t.TransactionDate <= last)
 					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
 
@@ -572,83 +634,57 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		{
 			try
 			{
-				Transaction transaction = new Transaction();
-				transaction.Choice = choice;
-				transaction.TransactionDate = transactionDate;
-				transaction.ClientCode = clientCode;
-				transaction.ProductCode = productObject.ProductCode;
-				transaction.ProductName = productObject.ProductName;
-				transaction.ProductCount = productCount;
-				transaction.Price = productObject.Price;
-				transaction.DiscountedPrice = (int)((double)transaction.Price * productDiscountRate / 100.00);
+				// Transaction 테이블 수정
+				DB.Conn.CreateTable<Transaction>();
+				Transaction ts = new Transaction();
+				ts.Choice = choice;
+				ts.TransactionDate = transactionDate;
+				ts.ClientCode = clientCode;
+				ts.ProductCode = productObject.ProductCode;
+				ts.ProductName = productObject.ProductName;
+				ts.ProductCount = productCount;
+				ts.ProductPrice = productObject.Price;
+				ts.ProductDiscountPrice = (int)((double)ts.ProductPrice * productDiscountRate / 100.00);
 				switch (appendChoice)
 				{
 					case 0:
-						transaction.AppendOption0 = 1;
+						ts.AppendOption0 = 1;
 						break;
 					case 1:
-						transaction.AppendOption1 = 1;
+						ts.AppendOption1 = 1;
 						break;
 					case 2:
-						transaction.AppendOption2 = 1;
+						ts.AppendOption2 = 1;
 						break;
 				}
-				transaction.CurrentLeftMoney = currentLeftMoney + transaction.DiscountedPrice;
-
-				DB.Conn.CreateTable<Transaction>();
-				var isThere = DB.Conn.Table<Transaction>().Where(t => t.Choice == transaction.Choice &&
-												t.TransactionDate == transaction.TransactionDate &&
-												t.ClientCode == transaction.ClientCode &&
-												t.ProductCode == transaction.ProductCode &&
-												t.DiscountedPrice == transaction.DiscountedPrice &&
-												t.AppendOption0 == transaction.AppendOption0 &&
-												t.AppendOption1 == transaction.AppendOption1 &&
-												t.AppendOption2 == transaction.AppendOption2).FirstOrDefault();
-
-				if (isThere != null) // 이미 똑같은 경우의 제품이 Datagrid와 DB에 올라와 있음
+				DB.Conn.Insert(ts);
+				// LeftMoneyLedger 테이블 수정
+				DB.Conn.CreateTable<ClientLedger>();
+				ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
+																	&& cl.TransactionDate == transactionDate).FirstOrDefault();
+				if (cl == null)
 				{
-					isThere.ProductCount += transaction.ProductCount;
-					if (isThere.ProductCount == 0)
-						DB.Conn.Delete<Transaction>(isThere.ID);
-					else
-						DB.Conn.Update(isThere);
-				}
-				else
-				{
-					DB.Conn.Insert(transaction);
+					cl = new ClientLedger();
+					cl.ClientCode = clientCode;
+					cl.TransactionDate = transactionDate;
 				}
 
-				DB.Conn.CreateTable<Client>();
-				Client client = DB.Conn.Table<Client>().Where(c => c.ClientCode == clientCode).FirstOrDefault();
-
-				if (choice == 1)
+				if (choice == 1) // 출고
 				{
-					client.MonthSellMoney += transaction.DiscountedPrice * transaction.ProductCount;
-					MonthSellMoneyTB.Text = client.MonthSellMoney.ToString();
-					client.CurrentLeftMoney += transaction.DiscountedPrice * transaction.ProductCount;
-					CurrentLeftMoneyTB.Text = client.CurrentLeftMoney.ToString();
+					cl.TodaySellMoney += ts.ProductCount * ts.ProductDiscountPrice;
+					cl.CurrentLeftMoney += ts.ProductCount * ts.ProductDiscountPrice;
+					DB.Conn.Update(cl.ID);
 				}
-
-				if (choice == 3)
+				if (choice == 2) // 덤
 				{
-					client.MonthRetundMoney += transaction.DiscountedPrice * transaction.ProductCount;
-					MonthReturnMoneyTB.Text = client.MonthRetundMoney.ToString();
-					client.CurrentLeftMoney -= transaction.DiscountedPrice * transaction.ProductCount;
-					CurrentLeftMoneyTB.Text = client.CurrentLeftMoney.ToString();
-
-					client.FinalRefundDate = transactionDate;
+					// nothing what i do
 				}
-				client.FinalTransactionDate = transactionDate;
-				LastTransactionDateTB.Text = client.FinalTransactionDate.ToString();
-
-				DG.ItemsSource = null;
-				DG.ItemsSource = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
-																			t.TransactionDate == transactionDate &&
-																			t.ClientCode == clientCode).ToList();
-
-				ProductCodeTB.Text = ProductNameTB.Text = ProductCountTB.Text = DiscountPercentTB.Text = "";
-				ProductCountTB.Visibility = DiscountPercentStackPanel.Visibility = Visibility.Hidden;
-				ProductCodeTB.Focus();
+				if (choice == 3) // 환입
+				{
+					cl.TodayRefundMoney += ts.ProductCount * ts.ProductDiscountPrice;
+					cl.CurrentLeftMoney -= ts.ProductCount * ts.ProductDiscountPrice;
+					DB.Conn.Update(cl.ID);
+				}
 			}
 			catch (Exception ex)
 			{
