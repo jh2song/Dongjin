@@ -14,7 +14,7 @@ namespace Dongjin.Table
 		// 거래일자
 		public DateTime TransactionDate { get; set; }
 		// 전일 미수
-		public int YesterdayLeftMoney { get; set; }
+		
 		// 금일 판매
 		public int TodaySellMoney { get; set; }
 		// 금일 환입
