@@ -14,15 +14,15 @@ namespace Dongjin.Table
 		// 거래일자
 		public DateTime TransactionDate { get; set; }
 		// 전일 미수
-		
+
 		// 금일 판매
-		public int TodaySellMoney { get; set; }
+		public int TodaySellMoney { get; set; } = 0;
 		// 금일 환입
-		public int TodayRefundMoney { get; set; }
+		public int TodayRefundMoney { get; set; } = 0;
 		// 금일 입금
-		public int TodayDepositMoney { get; set; }
+		public int TodayDepositMoney { get; set; } = 0;
 		// 현재 미수
-		public int CurrentLeftMoney { get; set; }
+		public int CurrentLeftMoney { get; set; } = 0;
 		// 금액
 		public int Price { get; set; }
 	}
