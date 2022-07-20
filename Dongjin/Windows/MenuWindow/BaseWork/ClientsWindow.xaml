@@ -323,7 +323,7 @@
                 Grid.Row="0"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                Content="8. 당일판매액:"
+                Content="※. 당일판매액:"
                 />
             <TextBox
                 x:Name="tbDetail8"
@@ -338,7 +338,7 @@
                 Grid.Row="1"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                Content="9. 당일입금액:"
+                Content="※. 당일입금액:"
                 />
             <TextBox
                 x:Name="tbDetail9"
@@ -353,7 +353,7 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 HorizontalAlignment="Left"
-                Content="10. 당일환입액:"
+                Content="※. 당일환입액:"
                 />
             <TextBox
                 x:Name="tbDetail10"
