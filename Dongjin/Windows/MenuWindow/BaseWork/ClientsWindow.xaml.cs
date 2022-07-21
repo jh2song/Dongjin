@@ -455,6 +455,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					try
 					{
+						DB.Conn.CreateTable<ClientLedger>();
+						ClientLedger cl = DB.Conn.Table<ClientLedger>().ToList()
+							.Where(c1 => c1.ClientCode == clientCode)
+							.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
+						if (cl != null)
+						{
+							cl.CurrentLeftMoney = int.Parse((tbDetail3.Text).Replace(",", "."))
+							DB.Conn.Update(cl);
+						}
+
 						// 데이터베이스에 저장
 						Client client = new Client();
 						int target;
@@ -472,10 +482,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						if (tbDetail2.Text != "")
 						{
 							client.Phone = tbDetail2.Text;
-						}
-						if (int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
-						{
-							client.CurrentLeftMoney = target;
 						}
 						if (int.TryParse(tbDetail4.Text, out target))
 						{

@@ -14,8 +14,6 @@ namespace Dongjin.Table
 		public string ClientName { get; set; } = "";
 		// 2. 전화번호
 		public string Phone { get; set; } = "";
-		// 3. 현재미수금
-		public int CurrentLeftMoney { get; set; } = 0;
 		// 4. 단가(%)구분
 		public int PercentCode { get; set; } = 0;
 		// 5. 최종거래일
