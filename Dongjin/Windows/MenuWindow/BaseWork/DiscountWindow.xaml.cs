@@ -24,7 +24,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	{
 		List<Discount> _discounts;
 		private bool _noInDB;
-		private bool isEdited = false;
 
 		public DiscountWindow()
 		{
@@ -76,20 +75,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			DiscountNameTB.Text = _discounts[0].DiscountName;
 			DiscountNameTB.Select(DiscountNameTB.Text.Length, 0);
 
+			DiscountNameTB.Focusable = true;
 			DiscountNameTB.Focus();
 			DG.ItemsSource = _discounts;
 		}
 
 		private void DiscountNameTB_KeyUp(object sender, KeyEventArgs e)
 		{
-			if (isEdited)
-			{
-				isEdited = false;
-				return;
-			}	
-
 			if (e.Key == Key.Escape)
 			{
+				DG.ItemsSource = null;
 				if (DiscountNameTB.Text == "")
 				{
 					CodeTB.Focus();
@@ -114,6 +109,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				DB.Conn.CreateTable<Discount>();
 				DB.Conn.Execute($"UPDATE Discount SET DiscountName = '{DiscountNameTB.Text}' WHERE DiscountCode = {int.Parse(CodeTB.Text)};");
+				MessageBox.Show("할인율 이름이 변경되었습니다.", "할인율 변경", MessageBoxButton.OK);
 			}
 			catch (Exception ex)
 			{
@@ -159,7 +155,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			try
 			{
-				isEdited = true;
 				int y = e.Row.GetIndex();
 				int x = e.Column.DisplayIndex;
 

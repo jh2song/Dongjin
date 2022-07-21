@@ -4,6 +4,7 @@ using Dongjin.Windows.MenuWindow.BaseWork;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -261,8 +262,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			try
 			{
 				DB.Conn.CreateTable<ClientLedger>();
-				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
-														cl.TransactionDate.Month == transactionDate.Month).ToList();
+				var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month);
 
 				foreach (var element in list)
 				{
@@ -282,8 +283,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			try
 			{
 				DB.Conn.CreateTable<ClientLedger>();
-				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
-														cl.TransactionDate.Month == transactionDate.Month).ToList();
+				var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month);
 
 				foreach (var element in list)
 				{
@@ -303,8 +304,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			try
 			{
 				DB.Conn.CreateTable<ClientLedger>();
-				var list = DB.Conn.Table<ClientLedger>().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
-														cl.TransactionDate.Month == transactionDate.Month).ToList();
+				var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.TransactionDate.Year == transactionDate.Year &&
+														cl.TransactionDate.Month == transactionDate.Month);
 
 				foreach (var element in list)
 				{
@@ -453,6 +454,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					ClientCodeTB.Text = "";
 					ClientNameTB.Text = "";
 					ClientCodeTB.Focus();
+					DG.ItemsSource = null;
+					DG.Visibility = Visibility.Hidden;
 				}
 				else
 					ProductCodeTB.Text = "";
@@ -574,7 +577,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (DiscountPercentTB.Text == "")
 				{
 					DiscountPercentStackPanel.Visibility= Visibility.Hidden;
-					ProductCountTB.Text = "";
+					ProductCodeTB.Text = ProductCountTB.Text = DiscountPercentTB.Text = "";
+					DiscountPercentStackPanel.Visibility = Visibility.Hidden;
+					ProductCountTB.Visibility = Visibility.Hidden;
 					ProductCountTB.Focus();
 				}
 				else
@@ -643,8 +648,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				ts.ProductCode = productObject.ProductCode;
 				ts.ProductName = productObject.ProductName;
 				ts.ProductCount = productCount;
-				ts.ProductPrice = productObject.Price;
-				ts.ProductDiscountPrice = (int)((double)ts.ProductPrice * productDiscountRate / 100.00);
+				ts.Price = productObject.Price * productCount;
+				ts.DiscountPrice = (int)((double)ts.Price * productDiscountRate / 100.00);
 				switch (appendChoice)
 				{
 					case 0:
@@ -671,9 +676,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 				if (choice == 1) // 출고
 				{
-					cl.TodaySellMoney += ts.ProductCount * ts.ProductDiscountPrice;
-					cl.CurrentLeftMoney += ts.ProductCount * ts.ProductDiscountPrice;
-					DB.Conn.Update(cl.ID);
+					cl.TodaySellMoney += ts.ProductCount * ts.DiscountPrice;
+					cl.CurrentLeftMoney += ts.ProductCount * ts.DiscountPrice;
+					DB.Conn.Update(cl);
 				}
 				if (choice == 2) // 덤
 				{
@@ -681,10 +686,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 				if (choice == 3) // 환입
 				{
-					cl.TodayRefundMoney += ts.ProductCount * ts.ProductDiscountPrice;
-					cl.CurrentLeftMoney -= ts.ProductCount * ts.ProductDiscountPrice;
-					DB.Conn.Update(cl.ID);
+					cl.TodayRefundMoney += ts.ProductCount * ts.DiscountPrice;
+					cl.CurrentLeftMoney -= ts.ProductCount * ts.DiscountPrice;
+					DB.Conn.Update(cl);
 				}
+
+				// Datagrid에 표시
+				DG.Items.Add(ts);
 			}
 			catch (Exception ex)
 			{

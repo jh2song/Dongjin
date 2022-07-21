@@ -329,7 +329,7 @@
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding DiscountedPrice}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding DiscountPrice}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>

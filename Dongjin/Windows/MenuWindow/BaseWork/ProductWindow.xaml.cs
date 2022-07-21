@@ -213,12 +213,12 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 				else if (SPOnTheProduct.Visibility == Visibility.Visible)
 				{
-					tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+					tbDetail5.Text = String.Format("{0:#,0}",(int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text.Replace(",",""))));
 					TBCmdOn.Focus();
 				}
 				else
 				{
-					tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+					tbDetail5.Text = String.Format("{0:#,0}", (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text.Replace(",",""))));
 					TBCmdOff.Focus();
 				}
 			}
@@ -264,7 +264,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				if (tbDetail4.Text == "")
 					tbDetail4.Text = "0";
-				tbDetail5.Text = (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text)).ToString();
+				tbDetail5.Text = String.Format("{0:#,0}", (int.Parse(tbDetail3.Text) * int.Parse(tbDetail4.Text.Replace(",", ""))));
 
 				if (!isUpdateing)
 				{

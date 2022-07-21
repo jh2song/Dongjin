@@ -118,7 +118,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				tbDetail1.Text = client[0].ClientName;
 				tbDetail2.Text = client[0].Phone;
-				tbDetail3.Text = String.Format("{0:#,0}",client[0].CurrentLeftMoney).ToString();
+				tbDetail3.Text = String.Format("{0:#,0}", int.Parse(GetPrevLeftMoney())).ToString();
 				tbDetail4.Text = client[0].PercentCode.ToString();
 				string target = client[0].FinalTransactionDate.Year.ToString("0000");
 				tbDetail51.Text = target.Substring(2, 2);
@@ -455,17 +455,18 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				{
 					try
 					{
+						// 데이터베이스에 저장
+
 						DB.Conn.CreateTable<ClientLedger>();
 						ClientLedger cl = DB.Conn.Table<ClientLedger>().ToList()
 							.Where(c1 => c1.ClientCode == clientCode)
 							.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
 						if (cl != null)
 						{
-							cl.CurrentLeftMoney = int.Parse((tbDetail3.Text).Replace(",", "."))
+							cl.CurrentLeftMoney = int.Parse((tbDetail3.Text).Replace(",", "."));
 							DB.Conn.Update(cl);
 						}
 
-						// 데이터베이스에 저장
 						Client client = new Client();
 						int target;
 

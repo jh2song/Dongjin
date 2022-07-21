@@ -24,9 +24,9 @@ namespace Dongjin.Table
 		// 수량
 		public int ProductCount { get; set; }
 		// 금액
-		public int ProductDiscountPrice { get; set; }
+		public int DiscountPrice { get; set; }
 		// 정가액
-		public int ProductPrice { get; set; }
+		public int Price { get; set; }
 		// 추가옵션 (0: 기본 / 1: 추가1 / 2: 추가2)
 		public int AppendOption0 { get; set; } = 0;
 		public int AppendOption1 { get; set; } = 0;
