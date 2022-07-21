@@ -31,6 +31,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		List<TextBox> textBoxes = new List<TextBox>();
 		private bool isOnDBByCode = true;
 		private bool UpdateCommanding = false;
+		private int clientCode;
 
 		public ClientsWindow()
 		{
@@ -133,12 +134,46 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail73.Text = client[0].FinalRefundDate.Day.ToString("00");
 				try
 				{
+					clientCode = client[0].ClientCode;
+
+					int todaySellMoney = 0;
+					int todayDepositMoney = 0;
+					int todayRefundMoney = 0;
+
+					DB.Conn.CreateTable<ClientLedger>();
+					ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode &&
+														cl.TransactionDate == DateTime.Now).FirstOrDefault();
+
+					if (cl != null)
+					{
+						todaySellMoney = cl.TodaySellMoney;
+						todayDepositMoney = cl.TodayDepositMoney;
+						todayRefundMoney = cl.TodayRefundMoney;
+					}
+
 					tbDetail8.Text = String.Format("{0:#,0}", todaySellMoney).ToString();
 					tbDetail9.Text = String.Format("{0:#,0}", todayDepositMoney).ToString();
-					tbDetail10.Text = String.Format("{0:#,0}", todayReturnMoney).ToString();
+					tbDetail10.Text = String.Format("{0:#,0}", todayRefundMoney).ToString();;
+
+					int monthSellMoney = 0;
+					int monthDepositMoney = 0;
+					int monthRefundMoney = 0;
+					
+					DB.Conn.CreateTable<ClientLedger>();
+					var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode &&
+																	cl.TransactionDate.Month == DateTime.Now.Month);
+
+					foreach (ClientLedger cl2 in list)
+					{
+						monthSellMoney += cl2.TodaySellMoney;
+						monthDepositMoney += cl2.TodayDepositMoney;
+						monthRefundMoney += cl2.TodayRefundMoney;
+					}
+
 					tbDetail11.Text = String.Format("{0:#,0}", monthSellMoney).ToString();
 					tbDetail12.Text = String.Format("{0:#,0}", monthDepositMoney).ToString();
 					tbDetail13.Text = String.Format("{0:#,0}", monthRefundMoney).ToString();
+					
 					tbDetail14.Text = GetPrevLeftMoney();
 				}
 				catch (Exception)
@@ -161,8 +196,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				DB.Conn.CreateTable<ClientLedger>();
 
-				var history = DB.Conn.Table<ClientLedger>()
-					.Where(t => t.ClientCode == int.Parse(tb4.Text) &&
+				var history = DB.Conn.Table<ClientLedger>().ToList()
+					.Where(t => t.ClientCode == clientCode &&
 					t.TransactionDate <= last)
 					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
 
@@ -449,18 +484,18 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						//client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
 						//client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
 						//client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
-						if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
-						{
-							client.TodaySellMoney = target;
-						}
-						if (int.TryParse(tbDetail9.Text.Replace(",", ""), out target))
-						{
-							client.TodayDepositMoney = target;
-						}
-						if (int.TryParse(tbDetail10.Text.Replace(",", ""), out target))
-						{
-							client.TodayReturnMoney = target;
-						}
+						//if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
+						//{
+						//	client.TodaySellMoney = target;
+						//}
+						//if (int.TryParse(tbDetail9.Text.Replace(",", ""), out target))
+						//{
+						//	client.TodayDepositMoney = target;
+						//}
+						//if (int.TryParse(tbDetail10.Text.Replace(",", ""), out target))
+						//{
+						//	client.TodayReturnMoney = target;
+						//}
 
 						conn.CreateTable<Client>();
 						var targetClient = conn.Find<Client>(client.ClientCode);
