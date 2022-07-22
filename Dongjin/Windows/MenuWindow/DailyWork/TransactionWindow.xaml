@@ -385,6 +385,27 @@
                 Focusable="False"
                 />
 
+            <TextBox
+                x:Name="TotalCountTB"
+                Text="0"
+                Grid.Column="2"
+                Focusable="False"
+                />
+
+            <TextBox
+                x:Name="TotalDiscountPriceTB"
+                Text="0"
+                Grid.Column="3"
+                Focusable="False"
+                />
+
+            <TextBox
+                x:Name="TotalPriceTB"
+                Text="0"
+                Grid.Column="4"
+                Focusable="False"
+                />
+
             <Border 
                 BorderThickness="0 0 2 0"
                 BorderBrush="White"
