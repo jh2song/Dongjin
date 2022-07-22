@@ -678,7 +678,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				{
 					cl.TodaySellMoney += ts.ProductCount * ts.DiscountPrice;
 					cl.CurrentLeftMoney += ts.ProductCount * ts.DiscountPrice;
-					DB.Conn.Update(cl);
+					CurrentLeftMoneyTB.Text = cl.CurrentLeftMoney.ToString();
+					var affected = DB.Conn.Update(cl);
+					if (affected == 0)
+						DB.Conn.Insert(cl);
 				}
 				if (choice == 2) // 덤
 				{
@@ -688,7 +691,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				{
 					cl.TodayRefundMoney += ts.ProductCount * ts.DiscountPrice;
 					cl.CurrentLeftMoney -= ts.ProductCount * ts.DiscountPrice;
-					DB.Conn.Update(cl);
+					CurrentLeftMoneyTB.Text = cl.CurrentLeftMoney.ToString();
+					var affected = DB.Conn.Update(cl);
+					if (affected == 0)
+						DB.Conn.Insert(cl);
 				}
 
 				// Datagrid에 표시
