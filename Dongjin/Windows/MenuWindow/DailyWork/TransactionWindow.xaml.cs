@@ -471,8 +471,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				{
 					PrintOptionLB.Visibility = Visibility.Visible;
 					InputProductAndOptionGrid.Visibility = Visibility.Hidden;
-					ClientCodeTB.Text = "";
-					ClientNameTB.Text = "";
+					PrevMonthLeftMoneyTB.Text = MonthSellMoneyTB.Text = MonthDepositMoneyTB.Text = MonthRefundMoneyTB.Text = 
+						CurrentLeftMoneyTB.Text =  
+						ClientCodeTB.Text = ClientNameTB.Text = "";
+					TotalCountTB.Text = TotalDiscountPriceTB.Text = TotalPriceTB.Text = "0";
 					ClientCodeTB.Focus();
 					DG.ItemsSource = null;
 					DG.Visibility = Visibility.Hidden;
@@ -520,10 +522,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 						DB.Conn.Delete<Transaction>(data.ID);
 
 						DB.Conn.CreateTable<ClientLedger>();
-						var targetCl = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode &&
-																	cl.TransactionDate == transactionDate).FirstOrDefault();
-						DB.Conn.Delete<ClientLedger>(targetCl);
 					}
+					var target = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode &&
+																	cl.TransactionDate == transactionDate).FirstOrDefault();
+					DB.Conn.Delete<ClientLedger>(target.ID);
 
 					DG.ItemsSource = null;
 					ProductCodeTB.Text = "";
@@ -822,12 +824,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 
 				// Datagrid에 표시
+				DG.Items.Add(ts);
 				DB.Conn.CreateTable<Transaction>();
 				var list = DB.Conn.Table<Transaction>().ToList().Where(t => t.Choice == choice &&
 																				t.ClientCode == clientCode &&
 																				t.TransactionDate == transactionDate)
 					.OrderBy(t => t.ProductCode);
-				DG.ItemsSource = list;
+				
 
 				int totalCount = 0;
 				int totalDiscountPrice = 0;

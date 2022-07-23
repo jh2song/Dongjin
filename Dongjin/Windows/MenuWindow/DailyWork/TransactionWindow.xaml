@@ -324,17 +324,17 @@
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
+                <DataGridTextColumn Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="2*">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding DiscountPrice}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
