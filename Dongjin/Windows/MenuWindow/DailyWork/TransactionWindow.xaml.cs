@@ -593,6 +593,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					cl.ClientCode = clientCode;
 					cl.TransactionDate = transactionDate;
 					cl.TodayDepositMoney = depositMoney;
+					cl.CurrentLeftMoney -= depositMoney;
 					DB.Conn.Insert(cl);
 				}
 				else
