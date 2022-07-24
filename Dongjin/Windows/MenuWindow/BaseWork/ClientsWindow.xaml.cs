@@ -31,7 +31,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		List<TextBox> textBoxes = new List<TextBox>();
 		private bool isOnDBByCode = true;
 		private bool UpdateCommanding = false;
-		private int clientCode;
+		private int _clientCode;
+		private ClientLedger _lastClientLedger = null;
+		private DateTime _nowDate;
 
 		public ClientsWindow()
 		{
@@ -52,6 +54,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			tb1.Text = DateTime.Now.Year.ToString().Substring(2, 2);
 			tb2.Text = DateTime.Now.Month.ToString("00");
 			tb3.Text = DateTime.Now.Day.ToString("00");
+
+			_nowDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 		}
 
 		public void SetList()
@@ -93,7 +97,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tb4.Text = "";
 			}
 
-			if (e.Key == Key.Enter)
+			if (e.Key == Key.Enter && int.TryParse(tb4.Text, out _clientCode))
 			{
 				NextSession();
 			}
@@ -118,7 +122,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			{
 				tbDetail1.Text = client[0].ClientName;
 				tbDetail2.Text = client[0].Phone;
-				tbDetail3.Text = String.Format("{0:#,0}", int.Parse(GetPrevLeftMoney())).ToString();
+				tbDetail3.Text = String.Format("{0:#,0}", GetCurrentLeftMoney());
 				tbDetail4.Text = client[0].PercentCode.ToString();
 				string target = client[0].FinalTransactionDate.Year.ToString("0000");
 				tbDetail51.Text = target.Substring(2, 2);
@@ -134,15 +138,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				tbDetail73.Text = client[0].FinalRefundDate.Day.ToString("00");
 				try
 				{
-					clientCode = client[0].ClientCode;
+					_clientCode = client[0].ClientCode;
 
 					int todaySellMoney = 0;
 					int todayDepositMoney = 0;
 					int todayRefundMoney = 0;
 
 					DB.Conn.CreateTable<ClientLedger>();
-					ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode &&
-														cl.TransactionDate == DateTime.Now).FirstOrDefault();
+					ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == _clientCode &&
+														cl.TransactionDate == _nowDate).FirstOrDefault();
 
 					if (cl != null)
 					{
@@ -160,7 +164,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					int monthRefundMoney = 0;
 					
 					DB.Conn.CreateTable<ClientLedger>();
-					var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode &&
+					var list = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == _clientCode &&
 																	cl.TransactionDate.Month == DateTime.Now.Month);
 
 					foreach (ClientLedger cl2 in list)
@@ -174,7 +178,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbDetail12.Text = String.Format("{0:#,0}", monthDepositMoney).ToString();
 					tbDetail13.Text = String.Format("{0:#,0}", monthRefundMoney).ToString();
 					
-					tbDetail14.Text = GetPrevLeftMoney();
+					tbDetail14.Text = String.Format("{0:#,0}", GetPrevLeftMoney());
 				}
 				catch (Exception)
 				{
@@ -184,6 +188,25 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 				tbcmd.Focus();
 			}
+		}
+
+		private int GetCurrentLeftMoney()
+		{
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				_lastClientLedger = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == _clientCode)
+					.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
+
+				if (_lastClientLedger != null)
+					return _lastClientLedger.CurrentLeftMoney;
+
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("현재미수금을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return 0;
 		}
 
 		private string GetPrevLeftMoney()
@@ -197,7 +220,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				DB.Conn.CreateTable<ClientLedger>();
 
 				var history = DB.Conn.Table<ClientLedger>().ToList()
-					.Where(t => t.ClientCode == clientCode &&
+					.Where(t => t.ClientCode == _clientCode &&
 					t.TransactionDate <= last)
 					.OrderByDescending(d => d.TransactionDate).FirstOrDefault();
 
@@ -274,7 +297,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void tbDetail3_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Enter)
+			if (e.Key == Key.Enter && tbDetail3.Text != "0" && _lastClientLedger == null)
+			{
+				MessageBox.Show("거래처 첫 등록이라 현재미수금을 설정할 수 없습니다.", "논리적 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+				tbDetail3.Text = "0";
+				tbDetail4.Focus();
+			}
+
+			if (e.Key == Key.Enter && _lastClientLedger != null)
 			{
 				if (UpdateCommanding)
 				{
@@ -427,7 +457,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							break;
 					}
 				}
-				else if (tbcmd.Text == "D" || tbcmd.Text == "d")
+				else if (tbcmd.Text == "D" || tbcmd.Text == "d" && isOnDBByCode == true)
 				{
 					try
 					{
@@ -436,7 +466,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						int parsedCode;
 						if (int.TryParse(tb4.Text, out parsedCode))
 							conn.Execute($"DELETE FROM Client WHERE ClientCode = {parsedCode};");
-						
+
+						conn.CreateTable<ClientLedger>();
+						conn.Delete(_lastClientLedger);
+
 						isOnDBByCode = false;
 						UpdateCommanding = false;
 						foreach (TextBox tb in textBoxes)
@@ -459,7 +492,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 						DB.Conn.CreateTable<ClientLedger>();
 						ClientLedger cl = DB.Conn.Table<ClientLedger>().ToList()
-							.Where(c1 => c1.ClientCode == clientCode)
+							.Where(c1 => c1.ClientCode == _clientCode)
 							.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
 						if (cl != null)
 						{
@@ -484,25 +517,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						{
 							client.Phone = tbDetail2.Text;
 						}
+
 						if (int.TryParse(tbDetail4.Text, out target))
 						{
 							client.PercentCode = target;
 						}
-						//client.LastTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
-						//client.LastMoneyComeDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
-						//client.LastReturnDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
-						//if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
-						//{
-						//	client.TodaySellMoney = target;
-						//}
-						//if (int.TryParse(tbDetail9.Text.Replace(",", ""), out target))
-						//{
-						//	client.TodayDepositMoney = target;
-						//}
-						//if (int.TryParse(tbDetail10.Text.Replace(",", ""), out target))
-						//{
-						//	client.TodayReturnMoney = target;
-						//}
+						client.FinalTransactionDate = new DateTime(int.Parse(tbDetail51.Text), int.Parse(tbDetail52.Text), int.Parse(tbDetail53.Text));
+						client.FinalDepositDate = new DateTime(int.Parse(tbDetail61.Text), int.Parse(tbDetail62.Text), int.Parse(tbDetail63.Text));
+						client.FinalRefundDate = new DateTime(int.Parse(tbDetail71.Text), int.Parse(tbDetail72.Text), int.Parse(tbDetail73.Text));
+						
 
 						conn.CreateTable<Client>();
 						var targetClient = conn.Find<Client>(client.ClientCode);
@@ -511,6 +534,16 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						else
 							conn.Update(client);
 
+
+						// ClientLedger Update
+						conn.CreateTable<ClientLedger>();
+						if(_lastClientLedger != null && int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
+						{
+							_lastClientLedger.CurrentLeftMoney = target;
+							conn.Update(_lastClientLedger);
+						}
+
+						// 사후 처리
 						UpdateCommanding = false;
 						isOnDBByCode = false;
 						foreach (TextBox tb in textBoxes)
