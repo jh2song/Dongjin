@@ -32,7 +32,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private Product productObject;
 		private double productDiscountRate;
 		private DateTime transactionDate;
-		private int currentLeftMoney;
 		private int clientCode;
 
 		public TransactionWindow()
@@ -217,7 +216,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					return;
 
 				// do - something
-				PrevMonthLeftMoneyTB.Text = String.Format("{0:#,0}", GetPrevMonthLeftMoney());
 				MonthSellMoneyTB.Text = String.Format("{0:#,0}", GetMonthSellMoney());
 				MonthDepositMoneyTB.Text = String.Format("{0:#,0}", GetMonthDepositMoney());
 				MonthRefundMoneyTB.Text = String.Format("{0:#,0}", GetMonthRefundMoney());
@@ -225,11 +223,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					+ foundClient.FinalTransactionDate.Month.ToString("00") + "/" 
 					+ foundClient.FinalTransactionDate.Day.ToString("00");
 
-				currentLeftMoney = int.Parse(PrevMonthLeftMoneyTB.Text.Replace(",",""))
-					+ int.Parse(MonthSellMoneyTB.Text.Replace(",", ""))
-					- int.Parse(MonthDepositMoneyTB.Text.Replace(",", ""))
-					- int.Parse(MonthRefundMoneyTB.Text.Replace(",", ""));
-				CurrentLeftMoneyTB.Text = String.Format("{0:#,0}", (currentLeftMoney));
+				CurrentLeftMoneyTB.Text = String.Format("{0:#,0}", GetCurrentLeftMoney());
+
+				int prevMonthLeftMoney = int.Parse(CurrentLeftMoneyTB.Text.Replace(",", "")) -
+					int.Parse(MonthSellMoneyTB.Text.Replace(",", "")) +
+					int.Parse(MonthDepositMoneyTB.Text.Replace(",", "")) +
+					int.Parse(MonthRefundMoneyTB.Text.Replace(",", ""));
+				PrevMonthLeftMoneyTB.Text = String.Format("{0:#,0}", prevMonthLeftMoney);
 
 				if (IsOnDBByChoiceDateCode()) // 전표가 이미 남아있는 상황
 				{
@@ -274,6 +274,24 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					ProductCodeTB.Focus();
 				}
 			}
+		}
+
+		private int GetCurrentLeftMoney()
+		{
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				ClientLedger cl = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode)
+					.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
+
+				if (cl != null)
+					return cl.CurrentLeftMoney;
+			}
+			catch (Exception)
+			{
+
+			}
+			return 0;
 		}
 
 		private int GetMonthSellMoney()
@@ -436,6 +454,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					AppendStackPanel.Visibility = Visibility.Hidden;
 					ClientCodeTB.Text = "";
 					ClientCodeTB.Focus();
+
+					PrevMonthLeftMoneyTB.Text = MonthSellMoneyTB.Text = MonthDepositMoneyTB.Text = MonthRefundMoneyTB.Text =
+						CurrentLeftMoneyTB.Text =
+						ClientCodeTB.Text = ClientNameTB.Text = "";
+					TotalCountTB.Text = TotalDiscountPriceTB.Text = TotalPriceTB.Text = "0";
+					ClientCodeTB.Focus();
+					DG.ItemsSource = null;
+					DG.Visibility = Visibility.Hidden;
 				}
 				else
 				{
@@ -572,8 +598,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.Enter && int.TryParse(DepositTB.Text, out depositMoney))
 			{
-				CurrentLeftMoneyTB.Text = String.Format("{0:#,0", (int.Parse(CurrentLeftMoneyTB.Text.Replace(",","")) - depositMoney));
-				MonthDepositMoneyTB.Text = String.Format("{0:#,0", (int.Parse(MonthDepositMoneyTB.Text.Replace(",", "")) + depositMoney));
+				CurrentLeftMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(CurrentLeftMoneyTB.Text.Replace(",", "")) - depositMoney));
+				MonthDepositMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthDepositMoneyTB.Text.Replace(",", "")) + depositMoney));
 				DepositDB(depositMoney);
 				ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Visible;
 				DepositLB.Visibility = DepositTB.Visibility = Visibility.Hidden;
@@ -604,6 +630,12 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					cl.CurrentLeftMoney -= depositMoney;
 					DB.Conn.Update(cl);
 				}
+
+				DB.Conn.CreateTable<Client>();
+				Client c = DB.Conn.Table<Client>().ToList().Where(c => c.ClientCode == clientCode).FirstOrDefault();
+				c.FinalTransactionDate = transactionDate;
+				c.FinalDepositDate = transactionDate;
+				DB.Conn.Update(c);
 			}
 			catch (Exception)
 			{
@@ -805,6 +837,12 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					var affected = DB.Conn.Update(cl);
 					if (affected == 0)
 						DB.Conn.Insert(cl);
+
+
+					DB.Conn.CreateTable<Client>();
+					Client c = DB.Conn.Table<Client>().ToList().Where(c => c.ClientCode == clientCode).FirstOrDefault();
+					c.FinalTransactionDate = transactionDate;
+					DB.Conn.Update(c);
 				}
 				if (choice == 2) // 덤
 				{
@@ -821,16 +859,26 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					var affected = DB.Conn.Update(cl);
 					if (affected == 0)
 						DB.Conn.Insert(cl);
+
+
+					DB.Conn.CreateTable<Client>();
+					Client c = DB.Conn.Table<Client>().ToList().Where(c => c.ClientCode == clientCode).FirstOrDefault();
+					c.FinalTransactionDate = transactionDate;
+					c.FinalRefundDate = transactionDate;
+					DB.Conn.Update(c);
 				}
 
 				// Datagrid에 표시
-				DG.Items.Add(ts);
 				DB.Conn.CreateTable<Transaction>();
 				var list = DB.Conn.Table<Transaction>().ToList().Where(t => t.Choice == choice &&
 																				t.ClientCode == clientCode &&
 																				t.TransactionDate == transactionDate)
+					.OrderBy(t => t.AppendOption0)
+					.OrderBy(t => t.AppendOption1)
+					.OrderBy(t => t.AppendOption2)
 					.OrderBy(t => t.ProductCode);
-				
+				DG.ItemsSource = null;
+				DG.ItemsSource = list;
 
 				int totalCount = 0;
 				int totalDiscountPrice = 0;
