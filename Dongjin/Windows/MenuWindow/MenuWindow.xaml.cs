@@ -166,6 +166,21 @@ namespace Dongjin.Windows.MenuWindow
 				new TransactionWindow().Show();
 			}
 
+			if (topIndex == 2 && underIndex == 0) // 미수금 현황
+			{
+
+			}
+
+			if (topIndex == 2 && underIndex == 1) // 거래처 원장
+			{
+				new ClientLedgerWindow().Show();
+			}
+
+			if (topIndex == 2 && underIndex == 2) // 과별거래실적
+			{
+
+			}
+
 			if (topIndex == 2 && underIndex == 3) // 사입가 수정
 			{
 				new BuyingPercentUpdateWindow().Show();
