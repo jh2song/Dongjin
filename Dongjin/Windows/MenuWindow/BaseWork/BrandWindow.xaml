@@ -31,15 +31,6 @@
             Grid.Row="0"
             />
         
-        <Label
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Content="F5: 도움말"
-            FontSize="28"
-            Foreground="Black"
-            Grid.Row="0"
-            />
-        
         <Grid
             Grid.Row="1"
             Margin="50 0 50 0"

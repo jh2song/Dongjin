@@ -31,15 +31,6 @@
             Grid.Row="0"
             />
 
-        <Label
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Content="F5: 도움말"
-            FontSize="28"
-            Foreground="Black"
-            Grid.Row="0"
-            />
-
         <StackPanel
             Orientation="Horizontal"
             VerticalAlignment="Center"
@@ -55,7 +46,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
             <Label
                 Content="/"
@@ -67,7 +57,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
             <Label
                 Content="/"
@@ -79,7 +68,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
 
             <Label
