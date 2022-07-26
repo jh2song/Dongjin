@@ -168,7 +168,7 @@ namespace Dongjin.Windows.MenuWindow
 
 			if (topIndex == 2 && underIndex == 0) // 미수금 현황
 			{
-
+				new LeftMoneyStatusWindow().Show();
 			}
 
 			if (topIndex == 2 && underIndex == 1) // 거래처 원장
@@ -178,7 +178,7 @@ namespace Dongjin.Windows.MenuWindow
 
 			if (topIndex == 2 && underIndex == 2) // 과별거래실적
 			{
-
+				new ResultByDepartmentWindow().Show();
 			}
 
 			if (topIndex == 2 && underIndex == 3) // 사입가 수정
