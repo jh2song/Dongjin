@@ -104,30 +104,51 @@
             <Grid.Row>2</Grid.Row>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding BrandCode, StringFormat=\{0:D4\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn Binding="{Binding BrandCode}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
-                            브랜드코드
+                            처리일자
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding BrandName}" IsReadOnly="True" Width="2*">
+                <DataGridTextColumn Binding="{Binding BrandName}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
-                            브 랜 드 명 ( 브 랜 드 기 호 )
+                            전일 미수
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding BuyingPercent, StringFormat=\{0:n2\}}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn Binding="{Binding BuyingPercent}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
-                            사입율
+                            금일 판매
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding BuyingPercent}" IsReadOnly="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            금일 환입
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding BuyingPercent}" IsReadOnly="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            금일 입금
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding BuyingPercent}" IsReadOnly="False" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            현재 미수
                         </TextBox>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
