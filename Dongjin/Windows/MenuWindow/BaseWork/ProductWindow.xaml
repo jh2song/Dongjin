@@ -47,7 +47,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
             <Label
                 Content="/"
@@ -58,7 +57,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
             <Label
                 Content="/"
@@ -69,7 +67,6 @@
                 MaxLength="2"
                 MinWidth="45"
                 Focusable="False"
-                Foreground="Red"
                 />
 
             <Label
