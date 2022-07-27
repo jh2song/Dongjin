@@ -76,7 +76,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ClientName}" IsReadOnly="True" Width="5*">
@@ -95,27 +95,39 @@
                             &lt;%>
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding CurrentLeftMoney}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             미 수 금
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding FinalDepositDate}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding FinalDepositDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             종수금일
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding FinalTransactionDate}" IsReadOnly="True" Width="3*">
+                <DataGridTextColumn Binding="{Binding FinalTransactionDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             종거래일
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Phone}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.Header>
@@ -123,6 +135,9 @@
                             전화번호
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
