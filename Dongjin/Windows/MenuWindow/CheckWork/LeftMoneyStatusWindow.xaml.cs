@@ -12,14 +12,56 @@ using System.Windows.Shapes;
 
 namespace Dongjin.Windows.MenuWindow.CheckWork
 {
-	/// <summary>
-	/// Interaction logic for LeftMoneyStatusWindow.xaml
-	/// </summary>
 	public partial class LeftMoneyStatusWindow : Window
 	{
+		private int _departmentCode;
+
 		public LeftMoneyStatusWindow()
 		{
 			InitializeComponent();
+
+			DepartmentCodeTB.Focus();
+		}
+
+		private void DepartmentCodeTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape)
+			{
+				if (DepartmentCodeTB.Text == "")
+				{
+					Close();
+				}
+				if (DepartmentCodeTB.Text != "")
+				{
+					DepartmentCodeTB.Text = "";
+				}
+			}
+
+			// 1~8 
+			if (e.Key == Key.Enter && int.TryParse(DepartmentCodeTB.Text, out _departmentCode))
+			{
+				if (_departmentCode >= 1 && _departmentCode <= 8)
+				{
+					
+				}
+				if (_departmentCode == 9)
+				{
+
+				}
+			}
+
+			// P1-P8
+			if (e.Key == Key.Enter && 
+				(DepartmentCodeTB.Text.Length == 2 && 
+				(DepartmentCodeTB.Text[0] == 'p' || DepartmentCodeTB.Text[0] == 'P') &&
+				int.TryParse(DepartmentCodeTB.Text.Substring(1), out _departmentCode)))
+			{
+				if (_departmentCode < 1 || _departmentCode > 8)
+					return;
+
+
+			}
+
 		}
 	}
 }
