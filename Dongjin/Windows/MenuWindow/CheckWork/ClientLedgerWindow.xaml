@@ -45,6 +45,7 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                PreviewTextInput="YearTB_PreviewTextInput"
                 />
             <Label
                 Content="/"
@@ -54,6 +55,7 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                PreviewTextInput="MonthTB_PreviewTextInput"
                 />
             <Label
                 Content="/"
@@ -63,6 +65,7 @@
                 MaxLines="1"
                 MaxLength="2"
                 MinWidth="45"
+                PreviewTextInput="DayTB_PreviewTextInput"
                 />
 
             <Label
@@ -76,6 +79,7 @@
                 MinWidth="80"
                 VerticalAlignment="Center"
                 Style="{StaticResource detailStyle}"
+                PreviewTextInput="ClientCodeTB_PreviewTextInput"
                 />
             
             <Label

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dongjin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,28 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		public ClientLedgerWindow()
 		{
 			InitializeComponent();
+
+			YearTB.Focus();
+		}
+
+		private void YearTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void MonthTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void DayTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+		}
+
+		private void ClientCodeTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 	}
 }
