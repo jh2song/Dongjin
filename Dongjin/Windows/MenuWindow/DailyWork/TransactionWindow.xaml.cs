@@ -645,7 +645,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void DepositTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+			e.Handled = RegexClass.NotNumericBackspaceMinus(e.Text);
 		}
 
 		private bool IsOnProductDBByCode(string productCode)
