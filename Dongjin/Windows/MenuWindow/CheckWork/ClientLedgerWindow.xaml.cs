@@ -44,5 +44,78 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		{
 			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
+
+		private void YearTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && YearTB.Text == "")
+			{
+				Close();
+			}
+			if (e.Key == Key.Escape && YearTB.Text != "")
+			{
+				YearTB.Text = "";
+			}
+
+			if (e.Key == Key.Enter && YearTB.Text.Length < 2)
+			{
+				YearTB.Text = DateTime.Now.Year.ToString().Substring(2, 2);
+				MonthTB.Focus();
+			}
+			if (e.Key == Key.Enter && YearTB.Text.Length == 2)
+			{
+				MonthTB.Focus();
+			}
+		}
+
+		private void MonthTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && MonthTB.Text == "")
+			{
+				YearTB.Text = "";
+				YearTB.Focus();
+			}
+			if (e.Key == Key.Escape && MonthTB.Text != "")
+			{
+				MonthTB.Text = "";
+			}
+
+			if (e.Key == Key.Enter && MonthTB.Text.Length < 2)
+			{
+				MonthTB.Text = DateTime.Now.Month.ToString("00");
+				DayTB.Focus();
+			}
+			if (e.Key == Key.Enter && MonthTB.Text.Length == 2)
+			{
+				DayTB.Focus();
+			}
+		}
+
+		private void DayTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && DayTB.Text == "")
+			{
+				MonthTB.Text = "";
+				MonthTB.Focus();
+			}
+			if (e.Key == Key.Escape && DayTB.Text != "")
+			{
+				DayTB.Text = "";
+			}
+
+			if (e.Key == Key.Enter && DayTB.Text.Length < 2)
+			{
+				DayTB.Text = DateTime.Now.Day.ToString("00");
+				ClientCodeTB.Focus();
+			}
+			if (e.Key == Key.Enter && DayTB.Text.Length == 2)
+			{
+				ClientCodeTB.Focus();
+			}
+		}
+
+		private void ClientCodeTB_KeyDown(object sender, KeyEventArgs e)
+		{
+
+		}
 	}
 }
