@@ -50,7 +50,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 				}
 				if (_departmentCode == 9)
 				{
-
+					ShowSumDatagrid();
 				}
 			}
 
@@ -89,12 +89,16 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 				DB.Conn.CreateTable<Client>();
 				DB.Conn.CreateTable<ClientLedger>();
 
-				var query =
-				from a in DB.Conn.Table<Client>()
-				join b in DB.Conn.Table<ClientLedger>()
-				on a.ClientCode equals b.ClientCode
-				orderby b.TransactionDate descending
-				select new { a.ClientCode, a.ClientName, a.PercentCode, b.CurrentLeftMoney, a.FinalDepositDate, a.FinalTransactionDate, a.Phone };
+				var query = DB.Conn.Query<LeftMoneyStatus>(
+@"
+SELECT a.ClientCode, a.ClientName, a.PercentCode, b.CurrentLeftMoney, a.FinalDepositDate, a.FinalTransactionDate, a.Phone
+FROM Client AS a, ClientLedger AS b, 
+	(SELECT ClientCode, MAX(TransactionDate) AS MaxTransactionDate 
+	FROM ClientLedger 
+	GROUP BY ClientCode) AS c					
+WHERE a.ClientCode = b.ClientCode AND b.TransactionDate = c.MaxTransactionDate;
+"
+					).ToList();
 
 				List<LeftMoneyStatus> lms = new List<LeftMoneyStatus>();
 				foreach (var item in query)
@@ -118,6 +122,18 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 			catch (Exception)
 			{
 				MessageBox.Show("표에 미수금현황을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void ShowSumDatagrid()
+		{
+			try
+			{
+				
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("과별합계를 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
