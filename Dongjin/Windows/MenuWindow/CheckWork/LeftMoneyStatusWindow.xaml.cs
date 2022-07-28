@@ -96,7 +96,7 @@ FROM Client AS a, ClientLedger AS b,
 	(SELECT ClientCode, MAX(TransactionDate) AS MaxTransactionDate 
 	FROM ClientLedger 
 	GROUP BY ClientCode) AS c					
-WHERE a.ClientCode = b.ClientCode AND b.TransactionDate = c.MaxTransactionDate;
+WHERE a.ClientCode = b.ClientCode AND b.ClientCode = c.ClientCode AND b.TransactionDate = c.MaxTransactionDate;
 "
 					).ToList();
 

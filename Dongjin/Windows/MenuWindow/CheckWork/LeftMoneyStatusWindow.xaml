@@ -112,7 +112,7 @@
                 <DataGridTextColumn Binding="{Binding FinalDepositDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
-                            종수금일
+                            종입금일
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
