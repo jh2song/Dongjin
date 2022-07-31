@@ -17,7 +17,7 @@ namespace Dongjin.Table
 		
 		// 전일 미수
 		// --> DB 저장 X 직접 계산
-
+		
 		// 금일 판매
 		public int TodaySellMoney { get; set; } = 0;
 		// 금일 환입

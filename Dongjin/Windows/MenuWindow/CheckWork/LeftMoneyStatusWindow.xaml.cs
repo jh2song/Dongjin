@@ -18,7 +18,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 	public partial class LeftMoneyStatusWindow : Window
 	{
 		private int _departmentCode;
-		private int _finalSumMoney;
+		private int? _finalSumMoney;
 
 		public LeftMoneyStatusWindow()
 		{
@@ -46,6 +46,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 			{
 				if (_departmentCode >= 1 && _departmentCode <= 8)
 				{
+					DG.BorderBrush = Brushes.White;
 					ShowDatagrid();
 				}
 				if (_departmentCode == 9)
@@ -71,12 +72,12 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		// Datagrid에 띄울 클래스 생성
 		class LeftMoneyStatus
 		{
-			public int ClientCode { get; set;}
+			public int? ClientCode { get; set; }
 			public string ClientName { get; set; }
-			public int PercentCode { get; set; }
-			public int CurrentLeftMoney { get; set; }
-			public DateTime FinalDepositDate { get; set; }
-			public DateTime FinalTransactionDate { get; set; }
+			public int? PercentCode { get; set; }
+			public int? CurrentLeftMoney { get; set; }
+			public DateTime? FinalDepositDate { get; set; }
+			public DateTime? FinalTransactionDate { get; set; }
 			public string Phone { get; set; }
 		}
 
@@ -103,6 +104,9 @@ WHERE a.ClientCode = b.ClientCode AND b.ClientCode = c.ClientCode AND b.Transact
 				List<LeftMoneyStatus> lms = new List<LeftMoneyStatus>();
 				foreach (var item in query)
 				{
+					if (item.ClientCode / 1000 != _departmentCode)
+						continue;
+
 					LeftMoneyStatus element = new LeftMoneyStatus();
 					element.ClientCode = item.ClientCode;
 					element.ClientName = item.ClientName;
@@ -124,17 +128,57 @@ WHERE a.ClientCode = b.ClientCode AND b.ClientCode = c.ClientCode AND b.Transact
 				MessageBox.Show("표에 미수금현황을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
-
+		
 		private void ShowSumDatagrid()
 		{
 			try
 			{
+				List<LeftMoneyStatus> bindingList = new List<LeftMoneyStatus>();
+				DB.Conn.CreateTable<ClientLedger>();
+				var all = DB.Conn.Query<ClientLedger>(
+@"
+SELECT a.ClientCode, a.CurrentLeftMoney
+FROM ClientLedger a, 
+	(
+	SELECT ClientCode, MAX(TransactionDate) as MaxTransactionDate
+	FROM ClientLedger
+	GROUP BY ClientCode
+	) b
+WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = b.MaxTransactionDate;
+"
+					).ToList();
+
+				_finalSumMoney = 0;
+				for (int i = 1; i <= 8; i++)
+				{
+					// 과별로 나눔
+					var splited = all.Where(cl => cl.ClientCode / 1000 == i).ToList();
+					LeftMoneyStatus status = new LeftMoneyStatus();
+
+					int leftMoneyGroupByClientCode = 0;
+					foreach (var item in splited)
+					{
+						leftMoneyGroupByClientCode += item.CurrentLeftMoney;
+					}
+
+					status.ClientName = "제 " + i.ToString() + " 과";
+					status.CurrentLeftMoney = leftMoneyGroupByClientCode;
+					bindingList.Add(status);
+
+					_finalSumMoney += leftMoneyGroupByClientCode;
+				}
+
+				DG.ItemsSource = null;
+				DG.ItemsSource = bindingList;
 				
+				FinalSumPriceTB.Text = String.Format("{0:#,0}", _finalSumMoney);
 			}
 			catch (Exception)
 			{
 				MessageBox.Show("과별합계를 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
+
+		
 	}
 }
