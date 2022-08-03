@@ -12,6 +12,80 @@
         WindowStyle="None"
         Background="Black">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            Margin="0 0 0 10"
+            Content="&lt;&lt;&lt;     과별 거래 실적 현황     >>>"
+            FontSize="40"
+            Foreground="black"
+            Background="White"
+            Grid.Row="0"
+            />
+
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+            <Label
+                Content="&lt;구분> (1)당일분 (2)과별집계: "
+                />
+            <TextBox
+                x:Name="ChoiceTB"
+                MaxLines="1"
+                MaxLength="1"
+                MinWidth="20"
+                KeyDown="ChoiceTB_KeyDown"
+                PreviewTextInput="ChoiceTB_PreviewTextInput"
+                />
+
+            <Label
+                Margin="200 0 0 0"
+                Content="처리일자: "
+                />
+            
+            <TextBox
+                x:Name="YearTB"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="45"
+                KeyDown="YearTB_KeyDown"
+                PreviewTextInput="YearTB_PreviewTextInput"
+                />
+            <Label
+                Content="년"
+                />
+            <TextBox
+                x:Name="MonthTB"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="45"
+                KeyDown="MonthTB_KeyDown"
+                PreviewTextInput="MonthTB_PreviewTextInput"
+                />
+            <Label
+                Content="월"
+                />
+            <TextBox
+                x:Name="DayTB"
+                MaxLines="1"
+                MaxLength="2"
+                MinWidth="45"
+                KeyDown="DayTB_KeyDown"
+                PreviewTextInput="DayTB_PreviewTextInput"
+                />
+            <Label
+                Content="일"
+                />
+        </StackPanel>
     </Grid>
 </Window>
