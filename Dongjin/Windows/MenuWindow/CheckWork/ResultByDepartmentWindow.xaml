@@ -43,7 +43,7 @@
                 x:Name="ChoiceTB"
                 MaxLines="1"
                 MaxLength="1"
-                MinWidth="20"
+                MinWidth="22"
                 KeyDown="ChoiceTB_KeyDown"
                 PreviewTextInput="ChoiceTB_PreviewTextInput"
                 />
@@ -87,5 +87,72 @@
                 Content="일"
                 />
         </StackPanel>
+
+        <DataGrid
+            x:Name="DG"
+            RowHeaderWidth="0"
+            AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Hidden"
+            CanUserAddRows="False"
+            >
+            <Grid.Row>2</Grid.Row>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ClientCode}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            코드
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ClientName}" IsReadOnly="True" Width="2*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            상ㅤㅤㅤㅤㅤㅤㅤㅤㅤ호
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding SellMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            판매 금액
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding RefundMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            환입 금액
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding DepositMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            입금 금액
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                    <DataGridTextColumn.Header>
+                        <TextBox Background="White" Foreground="Black">
+                            현재 미수
+                        </TextBox>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Border
+            BorderThickness="2"
+            BorderBrush="White"
+            Grid.Row="2"
+            />
     </Grid>
 </Window>

@@ -24,6 +24,8 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		public ResultByDepartmentWindow()
 		{
 			InitializeComponent();
+
+			ChoiceTB.Focus();
 		}
 
 		private void ChoiceTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -140,6 +142,18 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 
 					return;
 				}
+
+				if (_choice == 1)
+				{
+					
+				}
+
+				if (_choice == 2)
+				{
+
+				}
+
+				DayTB.Select(DayTB.Text.Length, 0);
 			}
 		}
 
