@@ -1,6 +1,8 @@
 ﻿using Dongjin.Classes;
+using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -119,6 +121,19 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		{
 			if (e.Key == Key.Escape)
 			{
+				// 아래 표들 초기화
+				DG.ItemsSource = null;
+				SumSellLB.Content = SumRefundLB.Content = SumDepositLB.Content = SumCurrentLeftMoneyLB.Content = "";
+				DG.Visibility = DGSub.Visibility = Visibility.Hidden;
+
+
+
+
+
+
+
+
+
 				if (DayTB.Text == "")
 				{
 					MonthTB.Text = "";
@@ -145,7 +160,8 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 
 				if (_choice == 1)
 				{
-					
+					DG.Visibility = DGSub.Visibility = Visibility.Visible;
+					ShowDatagrid();
 				}
 
 				if (_choice == 2)
@@ -170,6 +186,54 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 			}
 
 			return false;
+		}
+
+		class DatagridClass
+		{
+			public int ClientCode { get; set; }
+			public string ClientName { get; set; }
+			public int SellMoney { get; set; }
+			public int RefundMoney { get; set; }
+			public int DepositMoney { get; set; }
+			public int CurrentLeftMoney { get; set; }
+		}
+
+		private void ShowDatagrid()
+		{
+			try
+			{
+				DB.Conn.CreateTable<ClientLedger>();
+				DB.Conn.CreateTable<Client>();
+
+				var datagridData = DB.Conn.Query<DatagridClass>(@"
+SELECT a.ClientCode, b.ClientName, a.TodaySellMoney, a.TodayRefundMoney, a.TodayDepositMoney, a.CurrentLeftMoney
+FROM ClientLedger AS a, Client AS b
+WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
+;", _dateTime);
+
+				int sumSell = 0;
+				int sumRefund = 0;
+				int sumDeposit = 0;
+				int sumCurrentLeftMoney = 0;
+
+				foreach(DatagridClass datagridClass in datagridData)
+				{
+					sumSell += datagridClass.SellMoney;
+					sumRefund += datagridClass.RefundMoney;
+					sumDeposit += datagridClass.DepositMoney;
+					sumCurrentLeftMoney += datagridClass.CurrentLeftMoney;
+				}
+
+				SumSellLB.Content = String.Format("{0:#,0}", sumSell);
+				SumRefundLB.Content = String.Format("{0:#,0}", sumRefund);
+				SumDepositLB.Content = String.Format("{0:#,0}", sumDeposit);
+				SumCurrentLeftMoneyLB.Content = String.Format("{0:#,0}", sumCurrentLeftMoney);
+				DG.ItemsSource = datagridData;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 		}
 	}
 }

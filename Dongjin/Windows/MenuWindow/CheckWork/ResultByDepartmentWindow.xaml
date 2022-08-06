@@ -105,7 +105,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ClientName}" IsReadOnly="True" Width="2*">
@@ -118,36 +118,95 @@
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding SellMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn Binding="{Binding SellMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             판매 금액
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding RefundMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn Binding="{Binding RefundMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             환입 금액
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding DepositMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn Binding="{Binding DepositMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             입금 금액
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:n2\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             현재 미수
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid
+            x:Name="DGSub"
+            Grid.Row="3"
+            Visibility="Hidden"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Background="White"
+                />
+            <Label
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Foreground="Black"
+                Content ="&lt;&lt; 합 계 >>"
+                />
+            <Label
+                Grid.Column="2"
+                Foreground="Black"
+                x:Name="SumSellLB"
+                />
+            <Label
+                Grid.Column="3"
+                Foreground="Black"
+                x:Name="SumRefundLB"
+                />
+            <Label
+                Grid.Column="4"
+                Foreground="Black"
+                x:Name="SumDepositLB"
+                />
+            <Label
+                Grid.Column="5"
+                Foreground="Black"
+                x:Name="SumCurrentLeftMoneyLB"
+                />
+        </Grid>
         
         <Border
             BorderThickness="2"
