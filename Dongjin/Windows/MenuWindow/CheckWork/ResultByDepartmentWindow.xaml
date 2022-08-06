@@ -250,6 +250,8 @@
                 />
             <TextBox
                 Text="판매 금액"
+                HorizontalAlignment="Stretch"
+                Margin="10 10 10 0"
                 Focusable="False"
                 Background="White"
                 Foreground="Black"
@@ -258,6 +260,8 @@
                 />
             <TextBox
                 Text="환입 금액"
+                HorizontalAlignment="Stretch"
+                Margin="10 10 10 0"
                 Focusable="False"
                 Background="White"
                 Foreground="Black"
@@ -266,20 +270,313 @@
                 />
             <TextBox
                 Text="입금액"
+                HorizontalAlignment="Stretch"
+                Margin="10 10 10 0"
                 Focusable="False"
                 Background="White"
                 Foreground="Black"
                 Grid.Row="0"
                 Grid.Column="4"
                 />
+            <TextBox
+                Text="판매 수"
+                HorizontalAlignment="Stretch"
+                Margin="10 10 10 0"
+                Focusable="False"
+                Background="White"
+                Foreground="Black"
+                Grid.Row="0"
+                Grid.Column="5"
+                />
+            <TextBox
+                Text="환입 수"
+                HorizontalAlignment="Stretch"
+                Margin="10 10 10 0"
+                Focusable="False"
+                Background="White"
+                Foreground="Black"
+                Grid.Row="0"
+                Grid.Column="6"
+                />
+
+            <Label
+                Content="01과"
+                Grid.Row="1"
+                Grid.Column="1"
+                />
+            <Label
+                Content="02과"
+                Grid.Row="2"
+                Grid.Column="1"
+                />
+            <Label
+                Content="03과"
+                Grid.Row="3"
+                Grid.Column="1"
+                />
+            <Label
+                Content="04과"
+                Grid.Row="4"
+                Grid.Column="1"
+                />
+            <Label
+                Content="05과"
+                Grid.Row="5"
+                Grid.Column="1"
+                />
+            <Label
+                Content="06과"
+                Grid.Row="6"
+                Grid.Column="1"
+                />
+            <Label
+                Content="07과"
+                Grid.Row="7"
+                Grid.Column="1"
+                />
+            <Label
+                Content="합계"
+                Grid.Row="8"
+                Grid.Column="1"
+                />
+
+            <Label
+                Content="01과"
+                Grid.Row="9"
+                Grid.Column="1"
+                />
+            <Label
+                Content="02과"
+                Grid.Row="10"
+                Grid.Column="1"
+                />
+            <Label
+                Content="03과"
+                Grid.Row="11"
+                Grid.Column="1"
+                />
+            <Label
+                Content="04과"
+                Grid.Row="12"
+                Grid.Column="1"
+                />
+            <Label
+                Content="05과"
+                Grid.Row="13"
+                Grid.Column="1"
+                />
+            <Label
+                Content="06과"
+                Grid.Row="14"
+                Grid.Column="1"
+                />
+            <Label
+                Content="07과"
+                Grid.Row="15"
+                Grid.Column="1"
+                />
+            <Label
+                Content="합계"
+                Grid.Row="16"
+                Grid.Column="1"
+                />
+
+            <TextBox
+                Text="당일분"
+                Grid.Column="0"
+                Grid.Row="1"
+                Grid.RowSpan="8"
+                Background="White"
+                Foreground="Black"
+                Focusable="False"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                />
+            <TextBox
+                Text="월합계"
+                Grid.Column="0"
+                Grid.Row="9"
+                Grid.RowSpan="8"
+                Background="White"
+                Foreground="Black"
+                Focusable="False"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                />
             <!-- 잡다한 UI 끝-->
             
             
+            
+            <Label
+                x:Name="Today01SellMoneyLB"
+                Grid.Row="1"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today01RefundMoneyLB"
+                Grid.Row="1"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today01DepositMoneyLB"
+                Grid.Row="1"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today01SellCountLB"
+                Grid.Row="1"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today01RefundCountLB"
+                Grid.Row="1"
+                Grid.Column="6"
+                Content="test"
+                />
+            <Label
+                x:Name="Today02SellMoneyLB"
+                Grid.Row="2"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today02RefundMoneyLB"
+                Grid.Row="2"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today02DepositMoneyLB"
+                Grid.Row="2"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today02SellCountLB"
+                Grid.Row="2"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today02RefundCountLB"
+                Grid.Row="2"
+                Grid.Column="6"
+                Content="test"
+                />
+            <Label
+                x:Name="Today03SellMoneyLB"
+                Grid.Row="3"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today03RefundMoneyLB"
+                Grid.Row="3"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today03DepositMoneyLB"
+                Grid.Row="3"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today03SellCountLB"
+                Grid.Row="3"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today03RefundCountLB"
+                Grid.Row="3"
+                Grid.Column="6"
+                Content="test"
+                />
+            <Label
+                x:Name="Today04SellMoneyLB"
+                Grid.Row="4"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today04RefundMoneyLB"
+                Grid.Row="4"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today04DepositMoneyLB"
+                Grid.Row="4"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today04SellCountLB"
+                Grid.Row="4"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today04RefundCountLB"
+                Grid.Row="4"
+                Grid.Column="6"
+                Content="test"
+                />
+            <Label
+                x:Name="Today05SellMoneyLB"
+                Grid.Row="5"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today05RefundMoneyLB"
+                Grid.Row="5"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today05DepositMoneyLB"
+                Grid.Row="5"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today05SellCountLB"
+                Grid.Row="5"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today05RefundCountLB"
+                Grid.Row="5"
+                Grid.Column="6"
+                Content="test"
+                />
+
+
             <Border
                 BorderBrush="White"
                 BorderThickness="0 0 0 2"
                 Grid.Row="8"
-                Grid.ColumnSpan="7"
+                Grid.Column="1"
+                Grid.ColumnSpan="6"
+                />
+            <Border
+                BorderBrush="Black"
+                BorderThickness="0 0 0 2"
+                Grid.Row="8"
+                Grid.Column="0"
+                />
+            <Border
+                BorderBrush="White"
+                BorderThickness="0 0 2 0"
+                Grid.Column="1"
+                Grid.RowSpan="17"
                 />
             <Border
                 BorderBrush="White"
