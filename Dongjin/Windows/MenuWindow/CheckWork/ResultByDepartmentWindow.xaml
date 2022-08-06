@@ -89,6 +89,7 @@
         </StackPanel>
 
         <DataGrid
+            Visibility="Hidden"
             x:Name="DG"
             RowHeaderWidth="0"
             AutoGenerateColumns="False"
