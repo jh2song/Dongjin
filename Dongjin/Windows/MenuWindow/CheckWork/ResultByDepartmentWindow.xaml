@@ -406,190 +406,408 @@
             <!-- 잡다한 UI 끝-->
             
             
-            
             <Label
                 x:Name="Today01SellMoneyLB"
                 Grid.Row="1"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today01RefundMoneyLB"
                 Grid.Row="1"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today01DepositMoneyLB"
                 Grid.Row="1"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today01SellCountLB"
                 Grid.Row="1"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today01RefundCountLB"
                 Grid.Row="1"
                 Grid.Column="6"
-                Content="test"
                 />
             <Label
                 x:Name="Today02SellMoneyLB"
                 Grid.Row="2"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today02RefundMoneyLB"
                 Grid.Row="2"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today02DepositMoneyLB"
                 Grid.Row="2"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today02SellCountLB"
                 Grid.Row="2"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today02RefundCountLB"
                 Grid.Row="2"
                 Grid.Column="6"
-                Content="test"
                 />
             <Label
                 x:Name="Today03SellMoneyLB"
                 Grid.Row="3"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today03RefundMoneyLB"
                 Grid.Row="3"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today03DepositMoneyLB"
                 Grid.Row="3"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today03SellCountLB"
                 Grid.Row="3"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today03RefundCountLB"
                 Grid.Row="3"
                 Grid.Column="6"
-                Content="test"
                 />
             <Label
                 x:Name="Today04SellMoneyLB"
                 Grid.Row="4"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today04RefundMoneyLB"
                 Grid.Row="4"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today04DepositMoneyLB"
                 Grid.Row="4"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today04SellCountLB"
                 Grid.Row="4"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today04RefundCountLB"
                 Grid.Row="4"
                 Grid.Column="6"
-                Content="test"
                 />
             <Label
                 x:Name="Today05SellMoneyLB"
                 Grid.Row="5"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today05RefundMoneyLB"
                 Grid.Row="5"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today05DepositMoneyLB"
                 Grid.Row="5"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today05SellCountLB"
                 Grid.Row="5"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today05RefundCountLB"
                 Grid.Row="5"
                 Grid.Column="6"
-                Content="test"
                 />
             <Label
                 x:Name="Today06SellMoneyLB"
                 Grid.Row="6"
                 Grid.Column="2"
-                Content="test"
                 />
             <Label
                 x:Name="Today06RefundMoneyLB"
                 Grid.Row="6"
                 Grid.Column="3"
-                Content="test"
                 />
             <Label
                 x:Name="Today06DepositMoneyLB"
                 Grid.Row="6"
                 Grid.Column="4"
-                Content="test"
                 />
             <Label
                 x:Name="Today06SellCountLB"
                 Grid.Row="6"
                 Grid.Column="5"
-                Content="test"
                 />
             <Label
                 x:Name="Today06RefundCountLB"
                 Grid.Row="6"
                 Grid.Column="6"
-                Content="test"
+                />
+            <Label
+                x:Name="Today07SellMoneyLB"
+                Grid.Row="7"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Today07RefundMoneyLB"
+                Grid.Row="7"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Today07DepositMoneyLB"
+                Grid.Row="7"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Today07SellCountLB"
+                Grid.Row="7"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Today07RefundCountLB"
+                Grid.Row="7"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="TodayTotalSellMoneyLB"
+                Grid.Row="8"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="TodayTotalRefundMoneyLB"
+                Grid.Row="8"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="TodayTotalDepositMoneyLB"
+                Grid.Row="8"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="TodayTotalSellCountLB"
+                Grid.Row="8"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Today08RefundCountLB"
+                Grid.Row="8"
+                Grid.Column="6"
                 />
 
-            
-            
+            <Label
+                x:Name="Month01SellMoneyLB"
+                Grid.Row="9"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month01RefundMoneyLB"
+                Grid.Row="9"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month01DepositMoneyLB"
+                Grid.Row="9"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month01SellCountLB"
+                Grid.Row="9"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month01RefundCountLB"
+                Grid.Row="9"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month02SellMoneyLB"
+                Grid.Row="10"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month02RefundMoneyLB"
+                Grid.Row="10"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month02DepositMoneyLB"
+                Grid.Row="10"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month02SellCountLB"
+                Grid.Row="10"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month02RefundCountLB"
+                Grid.Row="10"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month03SellMoneyLB"
+                Grid.Row="11"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month03RefundMoneyLB"
+                Grid.Row="11"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month03DepositMoneyLB"
+                Grid.Row="11"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month03SellCountLB"
+                Grid.Row="11"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month03RefundCountLB"
+                Grid.Row="11"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month04SellMoneyLB"
+                Grid.Row="12"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month04RefundMoneyLB"
+                Grid.Row="12"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month04DepositMoneyLB"
+                Grid.Row="12"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month04SellCountLB"
+                Grid.Row="12"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month04RefundCountLB"
+                Grid.Row="12"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month05SellMoneyLB"
+                Grid.Row="13"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month05RefundMoneyLB"
+                Grid.Row="13"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month05DepositMoneyLB"
+                Grid.Row="13"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month05SellCountLB"
+                Grid.Row="13"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month05RefundCountLB"
+                Grid.Row="13"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month06SellMoneyLB"
+                Grid.Row="14"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month06RefundMoneyLB"
+                Grid.Row="14"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month06DepositMoneyLB"
+                Grid.Row="14"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month06SellCountLB"
+                Grid.Row="14"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month06RefundCountLB"
+                Grid.Row="14"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="Month07SellMoneyLB"
+                Grid.Row="15"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="Month07RefundMoneyLB"
+                Grid.Row="15"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="Month07DepositMoneyLB"
+                Grid.Row="15"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="Month07SellCountLB"
+                Grid.Row="15"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="Month07RefundCountLB"
+                Grid.Row="15"
+                Grid.Column="6"
+                />
+            <Label
+                x:Name="MonthTotalSellMoneyLB"
+                Grid.Row="16"
+                Grid.Column="2"
+                />
+            <Label
+                x:Name="MonthTotalRefundMoneyLB"
+                Grid.Row="16"
+                Grid.Column="3"
+                />
+            <Label
+                x:Name="MonthTotalDepositMoneyLB"
+                Grid.Row="16"
+                Grid.Column="4"
+                />
+            <Label
+                x:Name="MonthTotalSellCountLB"
+                Grid.Row="16"
+                Grid.Column="5"
+                />
+            <Label
+                x:Name="MonthTotalRefundCountLB"
+                Grid.Row="16"
+                Grid.Column="6"
+                />
+
             <Border
                 BorderBrush="White"
                 BorderThickness="0 0 0 2"
