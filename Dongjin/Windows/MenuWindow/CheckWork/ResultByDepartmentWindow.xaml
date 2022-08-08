@@ -209,7 +209,10 @@
                 />
         </Grid>
 
-        <Grid>
+        <Grid
+            x:Name="Option2Grid"
+            Visibility="Hidden"
+            >
             <Grid.Row>2</Grid.Row>
 
             <Grid.ColumnDefinitions>
@@ -269,7 +272,7 @@
                 Grid.Column="3"
                 />
             <TextBox
-                Text="입금액"
+                Text="입금 금액"
                 HorizontalAlignment="Stretch"
                 Margin="10 10 10 0"
                 Focusable="False"

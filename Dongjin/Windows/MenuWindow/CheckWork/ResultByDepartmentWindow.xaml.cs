@@ -125,14 +125,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 				DG.ItemsSource = null;
 				SumSellLB.Content = SumRefundLB.Content = SumDepositLB.Content = SumCurrentLeftMoneyLB.Content = "";
 				DG.Visibility = DGSub.Visibility = Visibility.Hidden;
-
-
-
-
-
-
-
-
+				Option2Grid.Visibility = Visibility.Hidden;
 
 				if (DayTB.Text == "")
 				{
@@ -166,7 +159,8 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 
 				if (_choice == 2)
 				{
-
+					Option2Grid.Visibility= Visibility.Visible;
+					ShowGrid();
 				}
 
 				DayTB.Select(DayTB.Text.Length, 0);
@@ -233,6 +227,28 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.ToString());
+			}
+		}
+
+		private void ShowGrid()
+		{
+			try
+			{
+				var today01Money = DB.Conn.Query(@"
+SELECT SUBSTR(ClientCode, 1, 1), SUM(
+FROM ClientLedger
+
+GROUP BY SUBSTR(ClientCode, 1, 1);
+");
+
+
+				Today01SellMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodaySellMoney));
+				Today01RefundMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodayRefundMoney));
+				Today01DepositMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodayDepositMoney));
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("과별집계 테이블을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}
