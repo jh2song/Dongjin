@@ -557,8 +557,39 @@
                 Grid.Column="6"
                 Content="test"
                 />
+            <Label
+                x:Name="Today06SellMoneyLB"
+                Grid.Row="6"
+                Grid.Column="2"
+                Content="test"
+                />
+            <Label
+                x:Name="Today06RefundMoneyLB"
+                Grid.Row="6"
+                Grid.Column="3"
+                Content="test"
+                />
+            <Label
+                x:Name="Today06DepositMoneyLB"
+                Grid.Row="6"
+                Grid.Column="4"
+                Content="test"
+                />
+            <Label
+                x:Name="Today06SellCountLB"
+                Grid.Row="6"
+                Grid.Column="5"
+                Content="test"
+                />
+            <Label
+                x:Name="Today06RefundCountLB"
+                Grid.Row="6"
+                Grid.Column="6"
+                Content="test"
+                />
 
-
+            
+            
             <Border
                 BorderBrush="White"
                 BorderThickness="0 0 0 2"
