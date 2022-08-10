@@ -605,7 +605,7 @@
                 Grid.Column="5"
                 />
             <Label
-                x:Name="Today08RefundCountLB"
+                x:Name="TodayTotalRefundCountLB"
                 Grid.Row="8"
                 Grid.Column="6"
                 />
