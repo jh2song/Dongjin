@@ -118,6 +118,9 @@ namespace Dongjin.Windows.MenuWindow
 						break;
 
 					underIndex--;
+					if (labels[topIndex].UnderLabels == null)
+						break;
+
 					if (underIndex < 0)
 						underIndex = labels[topIndex].UnderLabels.Count - 1;
 
@@ -130,6 +133,8 @@ namespace Dongjin.Windows.MenuWindow
 						break;
 
 					underIndex++;
+					if (labels[topIndex].UnderLabels == null)
+						break;
 					if (underIndex >= labels[topIndex].UnderLabels.Count)
 						underIndex = 0;
 
