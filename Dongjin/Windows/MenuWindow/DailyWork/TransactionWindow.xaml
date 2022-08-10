@@ -505,6 +505,7 @@
                 Visibility="Hidden"
                 PreviewTextInput="ProductCountTB_PreviewTextInput"
                 KeyUp="ProductCountTB_KeyUp"
+                GotFocus="ProductCountTB_GotFocus"
                 />
 
             <StackPanel

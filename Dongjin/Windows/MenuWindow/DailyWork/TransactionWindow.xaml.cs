@@ -903,5 +903,12 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			return;
 		}
 
+		private void ProductCountTB_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (ProductCountTB.Text == "")
+				ProductCountTB.Text = "1";
+
+			ProductCountTB.Select(ProductCodeTB.Text.Length, 0);
+		}
 	}
 }
