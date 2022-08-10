@@ -702,9 +702,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (DiscountPercentTB.Text == "")
 				{
 					DiscountPercentStackPanel.Visibility= Visibility.Hidden;
-					ProductCodeTB.Text = ProductCountTB.Text = DiscountPercentTB.Text = "";
+					ProductCountTB.Text = DiscountPercentTB.Text = "";
 					DiscountPercentStackPanel.Visibility = Visibility.Hidden;
-					ProductCountTB.Visibility = Visibility.Hidden;
 					ProductCountTB.Focus();
 				}
 				else
