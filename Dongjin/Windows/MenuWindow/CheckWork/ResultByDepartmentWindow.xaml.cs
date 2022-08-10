@@ -22,12 +22,45 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 	{
 		private int _choice;
 		private DateTime _dateTime;
+		private List<List<Label>> _labelControlList;
 
 		public ResultByDepartmentWindow()
 		{
 			InitializeComponent();
 
+			SetControlByList();
+
 			ChoiceTB.Focus();
+		}
+
+		private void SetControlByList()
+		{
+			_labelControlList = new List<List<Label>>();
+			List<Label> labels = new List<Label>();
+			labels.Add(Today01SellMoneyLB);
+			labels.Add(Today01RefundMoneyLB);
+			labels.Add(Today01DepositMoneyLB);
+			labels.Add(Today01SellCountLB);
+			labels.Add(Today01RefundCountLB);
+			_labelControlList.Add(labels);
+			labels.Clear();
+
+			labels.Add(Today02SellMoneyLB);
+			labels.Add(Today02RefundMoneyLB);
+			labels.Add(Today02DepositMoneyLB);
+			labels.Add(Today02SellCountLB);
+			labels.Add(Today02RefundCountLB);
+			_labelControlList.Add(labels);
+			labels.Clear();
+
+			labels.Add(Today03SellMoneyLB);
+			labels.Add(Today03RefundMoneyLB);
+			labels.Add(Today03DepositMoneyLB);
+			labels.Add(Today03SellCountLB);
+			labels.Add(Today03RefundCountLB);
+			_labelControlList.Add(labels);
+			labels.Clear();
+
 		}
 
 		private void ChoiceTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
