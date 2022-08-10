@@ -311,9 +311,9 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 		{
 			public int ClientCode { get; set; }
 			public string ClientName { get; set; }
-			public int SellMoney { get; set; }
-			public int RefundMoney { get; set; }
-			public int DepositMoney { get; set; }
+			public int TodaySellMoney { get; set; }
+			public int TodayRefundMoney { get; set; }
+			public int TodayDepositMoney { get; set; }
 			public int CurrentLeftMoney { get; set; }
 		}
 
@@ -337,9 +337,9 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 
 				foreach(DatagridClass datagridClass in datagridData)
 				{
-					sumSell += datagridClass.SellMoney;
-					sumRefund += datagridClass.RefundMoney;
-					sumDeposit += datagridClass.DepositMoney;
+					sumSell += datagridClass.TodaySellMoney;
+					sumRefund += datagridClass.TodayRefundMoney;
+					sumDeposit += datagridClass.TodayDepositMoney;
 					sumCurrentLeftMoney += datagridClass.CurrentLeftMoney;
 				}
 
@@ -381,6 +381,7 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 					_monthLabelList[i][j].Content = "0";
 
 			SetTodayContent();
+			SetMonthContent();
 		}
 
 		private void SetTodayContent()
@@ -388,13 +389,13 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 			try
 			{
 				var todayMoney = DB.Conn.Query<Money>(@"
-SELECT SUBSTR(ClientCode, 1, 1), SUM(TodaySellMoney), SUM(TodayRefundMoney), SUM(TodayDepositMoney)
+SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(TodaySellMoney) AS SellMoney, SUM(TodayRefundMoney) AS RefundMoney, SUM(TodayDepositMoney) AS DepositMoney
 FROM ClientLedger
 WHERE TransactionDate = ?
 GROUP BY SUBSTR(ClientCode, 1, 1);
 ", _dateTime);
 				var todayCount = DB.Conn.Query<Count>(@"
-SELECT SUBSTR(ClientCode, 1, 1), SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END), SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END)
+SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END) AS SellCount, SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END) AS RefundCount
 FROM Document
 WHERE TransactionDate = ?
 GROUP BY SUBSTR(ClientCode, 1, 1);
@@ -441,6 +442,71 @@ GROUP BY SUBSTR(ClientCode, 1, 1);
 				_todayLabelList.Last()[2].Content = String.Format("{0:#,0}", sumDepositMoney);
 				_todayLabelList.Last()[3].Content = String.Format("{0:#,0}", sumSellCount);
 				_todayLabelList.Last()[4].Content = String.Format("{0:#,0}", sumRefundCount);
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("당일분을 불러오는데 실패하였습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private void SetMonthContent()
+		{
+			try
+			{
+				var monthMoney = DB.Conn.Query<Money>(@"
+SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(TodaySellMoney) AS SellMoney, SUM(TodayRefundMoney) AS RefundMoney, SUM(TodayDepositMoney) AS DepositMoney
+FROM ClientLedger
+WHERE STRFTIME('%m', TransactionDate) = STRFTIME('%m', ?) AND STRFTIME('%Y', TransactionDate) = STRFTIME('%Y', ?)
+GROUP BY SUBSTR(ClientCode, 1, 1);
+", _dateTime, _dateTime);
+				var monthCount = DB.Conn.Query<Count>(@"
+SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END) AS SellCount, SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END) AS RefundCount
+FROM Document
+WHERE STRFTIME('%m', TransactionDate) = STRFTIME('%m', ?) AND STRFTIME('%Y', TransactionDate) = STRFTIME('%Y', ?)
+GROUP BY SUBSTR(ClientCode, 1, 1);
+", _dateTime, _dateTime);
+
+				int sumSellMoney = 0;
+				int sumRefundMoney = 0;
+				int sumDepositMoney = 0;
+				int sumSellCount = 0;
+				int sumRefundCount = 0;
+
+				foreach (Money money in monthMoney)
+				{
+					if (money.Department < 1 || money.Department > 7)
+						continue;
+
+					// 각 과의 판매 금액
+					_monthLabelList[money.Department - 1][0].Content = String.Format("{0:#,0}", money.SellMoney);
+					// 각 과의 환입 금액
+					_monthLabelList[money.Department - 1][1].Content = String.Format("{0:#,0}", money.RefundMoney);
+					// 각 과의 입금 금액
+					_monthLabelList[money.Department - 1][2].Content = String.Format("{0:#,0}", money.DepositMoney);
+
+					sumSellMoney += money.SellMoney;
+					sumRefundMoney += money.RefundMoney;
+					sumDepositMoney += money.DepositMoney;
+				}
+				foreach (Count count in monthCount)
+				{
+					if (count.Department < 1 || count.Department > 7)
+						continue;
+
+					// 각 과의 판매 수
+					_monthLabelList[count.Department - 1][3].Content = String.Format("{0:#,0}", count.SellCount);
+					// 각 과의 환입 수
+					_monthLabelList[count.Department - 1][4].Content = String.Format("{0:#,0}", count.RefundCount);
+
+					sumSellCount += count.SellCount;
+					sumRefundCount += count.RefundCount;
+				}
+
+				_monthLabelList.Last()[0].Content = String.Format("{0:#,0}", sumSellMoney);
+				_monthLabelList.Last()[1].Content = String.Format("{0:#,0}", sumRefundMoney);
+				_monthLabelList.Last()[2].Content = String.Format("{0:#,0}", sumDepositMoney);
+				_monthLabelList.Last()[3].Content = String.Format("{0:#,0}", sumSellCount);
+				_monthLabelList.Last()[4].Content = String.Format("{0:#,0}", sumRefundCount);
 			}
 			catch (Exception)
 			{

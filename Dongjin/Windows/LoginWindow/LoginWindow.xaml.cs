@@ -178,7 +178,7 @@ namespace Dongjin.Windows.LoginWindow
 		{
 			try
 			{
-				var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
+				var options = new SQLiteConnectionString(App.databasePath, false, key: passwordBox1.Password);
 				DB.Conn = new SQLiteConnection(options);
 				DB.Conn.CreateTable<TEST>();
 				new MenuWindow.MenuWindow().Show();
@@ -200,7 +200,7 @@ namespace Dongjin.Windows.LoginWindow
 			{
 				if (passwordValidCheck == false)
 				{
-					var options = new SQLiteConnectionString(App.databasePath, true, key: passwordBox1.Password);
+					var options = new SQLiteConnectionString(App.databasePath, false, key: passwordBox1.Password);
 					DB.Conn = new SQLiteConnection(options);
 					DB.Conn.CreateTable<TEST>();
 
