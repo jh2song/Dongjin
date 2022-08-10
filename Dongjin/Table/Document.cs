@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Dongjin.Table
 {
-	class Transaction
+	class Document
 	{
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
-		// 전표구분
+		// 전표구분 1. 출고 / 2. 덤 / 3. 환입
 		public int Choice { get; set; }
 		// 처리일
 		public DateTime TransactionDate { get; set; }

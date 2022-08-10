@@ -236,8 +236,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					// Datagrid를 표시해야함
 					try
 					{
-						DB.Conn.CreateTable<Transaction>();
-						var list = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
+						DB.Conn.CreateTable<Document>();
+						var list = DB.Conn.Table<Document>().Where(t => t.Choice == choice &&
 																			t.TransactionDate == transactionDate &&
 																			t.ClientCode == clientCode).ToList();
 						DG.ItemsSource = null;
@@ -359,13 +359,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private bool IsOnDBByChoiceDateCode()
 		{
-			DB.Conn.CreateTable<Transaction>();
+			DB.Conn.CreateTable<Document>();
 
 			// 쿼리를 위한 준비물
 			int choice = int.Parse(ChoiceTB.Text);
 			int code = int.Parse(ClientCodeTB.Text);
 
-			List<Transaction> trans = DB.Conn.Table<Transaction>().Where(t => t.Choice == choice &&
+			List<Document> trans = DB.Conn.Table<Document>().Where(t => t.Choice == choice &&
 			t.TransactionDate == transactionDate &&
 			t.ClientCode == code
 			).ToList();
@@ -541,11 +541,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 				if (ProductCodeTB.Text == "DDD" || ProductCodeTB.Text == "ddd")
 				{
-					List<Transaction> prevData = DG.ItemsSource as List<Transaction>;
-					foreach (Transaction data in prevData)
+					List<Document> prevData = DG.ItemsSource as List<Document>;
+					foreach (Document data in prevData)
 					{
-						DB.Conn.CreateTable<Transaction>();
-						DB.Conn.Delete<Transaction>(data.ID);
+						DB.Conn.CreateTable<Document>();
+						DB.Conn.Delete<Document>(data.ID);
 
 						DB.Conn.CreateTable<ClientLedger>();
 					}
@@ -771,9 +771,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			try
 			{
 				// Transaction 테이블 수정
-				DB.Conn.CreateTable<Transaction>();
+				DB.Conn.CreateTable<Document>();
 
-				Transaction ts = new Transaction();
+				Document ts = new Document();
 				ts.Choice = choice;
 				ts.TransactionDate = transactionDate;
 				ts.ClientCode = clientCode;
@@ -795,7 +795,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 						break;
 				}
 
-				Transaction realTransaction = DB.Conn.Table<Transaction>().ToList().Where(t => t.Choice == choice &&
+				Document realTransaction = DB.Conn.Table<Document>().ToList().Where(t => t.Choice == choice &&
 																t.TransactionDate == transactionDate &&
 																t.ClientCode == clientCode &&
 																t.ProductCode == productObject.ProductCode &&
@@ -869,8 +869,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 
 				// Datagrid에 표시
-				DB.Conn.CreateTable<Transaction>();
-				var list = DB.Conn.Table<Transaction>().ToList().Where(t => t.Choice == choice &&
+				DB.Conn.CreateTable<Document>();
+				var list = DB.Conn.Table<Document>().ToList().Where(t => t.Choice == choice &&
 																				t.ClientCode == clientCode &&
 																				t.TransactionDate == transactionDate)
 					.OrderBy(t => t.AppendOption0)

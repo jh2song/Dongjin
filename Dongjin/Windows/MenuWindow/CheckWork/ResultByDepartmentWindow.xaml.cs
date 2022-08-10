@@ -230,21 +230,59 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 			}
 		}
 
+		class Money
+		{
+			public int Department { get; set; }
+			public int SellMoney { get; set; }
+			public int RefundMoney { get; set; }
+			public int DepositMoney { get; set; }
+		}
+
+		class Count
+		{
+			public int Department { get; set; }
+			public int SellCount { get; set; }
+			public int RefundCount { get; set; }
+		}
+
 		private void ShowGrid()
 		{
 			try
 			{
-				var today01Money = DB.Conn.Query(@"
-SELECT SUBSTR(ClientCode, 1, 1), SUM(
+				var todayMoney = DB.Conn.Query<Money>(@"
+SELECT SUBSTR(ClientCode, 1, 1), SUM(TodaySellMoney), SUM(TodayRefundMoney), SUM(TodayDepositMoney)
 FROM ClientLedger
-
+WHERE TransactionDate = ?
 GROUP BY SUBSTR(ClientCode, 1, 1);
-");
+", _dateTime);
+				var todayCount = DB.Conn.Query<Count>(@"
+SELECT SUBSTR(ClientCode, 1, 1), SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END), SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END)
+FROM Document
+WHERE TransactionDate = ?
+GROUP BY SUBSTR(ClientCode, 1, 1);
+", _dateTime);
+				
+				foreach (Money money in todayMoney)
+				{
+					switch (money.Department)
+					{
+						case 1:
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							break;
+						case 5:
+							break;
+						case 6:
+							break;
+						case 7:
+							break;
+					}
+				}
 
-
-				Today01SellMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodaySellMoney));
-				Today01RefundMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodayRefundMoney));
-				Today01DepositMoneyLB.Content = String.Format("{0:#,0}", today01Money.Sum(cl => cl.TodayDepositMoney));
 			}
 			catch (Exception)
 			{
