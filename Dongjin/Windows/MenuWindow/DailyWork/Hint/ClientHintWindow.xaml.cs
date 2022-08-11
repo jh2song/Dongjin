@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dongjin.Table;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 	/// </summary>
 	public partial class ClientHintWindow : Window
 	{
+		private List<Client> _clientsListView;
+
 		public ClientHintWindow()
 		{
 			InitializeComponent();
+
+			_clientsListView = new List<Client>();
 		}
 
 		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
