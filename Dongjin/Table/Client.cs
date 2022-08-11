@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Dongjin.Table
 {
-	class Client
+	public class Client
 	{
 		// 거래처코드
 		[PrimaryKey]
@@ -29,10 +29,11 @@ namespace Dongjin.Table
 		// 10. 당일환입액
 
 		// 11. 당월판매액
-		
+
 		// 12. 당월입금액
-		
+
 		// 13. 당월환입액
-		
+
+
 	}
 }
