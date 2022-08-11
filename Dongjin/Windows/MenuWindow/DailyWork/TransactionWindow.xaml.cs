@@ -1,6 +1,7 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Table;
 using Dongjin.Windows.MenuWindow.BaseWork;
+using Dongjin.Windows.MenuWindow.DailyWork.Hint;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -177,6 +178,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					ClientNameTB.Text = "";
 					ClientCodeTB.Text = "";
 				}
+			}
+
+			if (e.Key == Key.F5)
+			{
+				new ClientHintWindow().Show();
 			}
 
 			if (e.Key == Key.Enter)

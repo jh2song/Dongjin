@@ -21,5 +21,15 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 		{
 			InitializeComponent();
 		}
+
+		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+
+		}
+
+		private void clientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
 	}
 }

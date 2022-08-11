@@ -4,9 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.DailyWork.Hint"
+        xmlns:uc="clr-namespace:Dongjin.Controls"
         mc:Ignorable="d"
-        Title="ClientHintWindow" Height="450" Width="800">
+        Title="ClientHintWindow" Height="500" Width="525">
     <Grid>
-        
+        <StackPanel
+            Margin="10"
+            >
+            <TextBox 
+                Margin="0 5 0 5"
+                TextChanged="TextBox_TextChanged"
+                />
+            <ListView x:Name="clientsListView"
+                  SelectionChanged="clientsListView_SelectionChanged"
+                  Height="280"
+                  Margin="0 5 0 0">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <uc:ClientControl Client="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackPanel>
     </Grid>
 </Window>
