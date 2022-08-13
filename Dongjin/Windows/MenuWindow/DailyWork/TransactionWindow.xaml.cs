@@ -164,6 +164,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 
+		public static int returnClientCode = -1;
+
 		private void ClientCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -182,7 +184,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 			if (e.Key == Key.F5)
 			{
-				new ClientHintWindow().Show();
+				new ClientHintWindow().ShowDialog();
+				if (returnClientCode != -1)
+				{
+					ClientCodeTB.Text = returnClientCode.ToString();
+					ClientCodeTB.Select(ClientCodeTB.Text.Length, 0);
+					returnClientCode = -1;
+				}
 			}
 
 			if (e.Key == Key.Enter)

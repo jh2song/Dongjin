@@ -29,7 +29,7 @@ namespace Dongjin.Controls
 
 		// Using a DependencyProperty as the backing store for Contact.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty ClientProperty =
-			DependencyProperty.Register("Contact", typeof(Client), typeof(ClientControl), new PropertyMetadata(new Client() { ClientCode = 1234, ClientName = "테스트", Phone = "(123) 456 7890" }, SetText));
+			DependencyProperty.Register("Client", typeof(Client), typeof(ClientControl), new PropertyMetadata(new Client() { ClientCode = 1234, ClientName = "테스트", Phone = "012 345 6789", PercentCode = 0, FinalDepositDate = DateTime.MinValue, FinalRefundDate = DateTime.MinValue, FinalTransactionDate = DateTime.MinValue }, SetText));
 
 		private static void SetText(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		{
@@ -37,10 +37,10 @@ namespace Dongjin.Controls
 
 			if (control != null)
 			{
-				control.ClientCodeTB.Text = (e.NewValue as Client).ClientCode.ToString();
-				control.ClientNameTB.Text = (e.NewValue as Client).ClientName;
-				control.PhoneTB.Text = (e.NewValue as Client).Phone;
-				control.CurrentLeftMoneyTB.Text = GetCurrentLeftMoney((e.NewValue as Client).ClientCode).ToString();
+				control.ClientCodeLB.Content = "거래처코드: " + (e.NewValue as Client).ClientCode.ToString();
+				control.ClientNameLB.Content = "상호: " + (e.NewValue as Client).ClientName;
+				control.PhoneLB.Content = "전화번호: " + (e.NewValue as Client).Phone;
+				control.CurrentLeftMoneyLB.Content = "현재미수금: " + GetCurrentLeftMoney((e.NewValue as Client).ClientCode).ToString();
 			}
 		}
 

@@ -1,6 +1,8 @@
-﻿using Dongjin.Table;
+﻿using Dongjin.Classes;
+using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,23 +20,60 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 	/// </summary>
 	public partial class ClientHintWindow : Window
 	{
-		private List<Client> _clientsListView;
+		private List<Client> _clients;
 
 		public ClientHintWindow()
 		{
 			InitializeComponent();
 
-			_clientsListView = new List<Client>();
+			SearchTB.Focus();
+
+			_clients = new List<Client>();
+
+			ReadDatabase();
 		}
 
-		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+		private void ReadDatabase()
 		{
+			DB.Conn.CreateTable<Client>();
 
+			_clients = (DB.Conn.Table<Client>().ToList()).OrderBy(c => c.ClientCode).ToList();
+
+			if (_clients != null)
+			{
+				clientsListView.ItemsSource = _clients;
+			}
+		}
+
+		private void SearchTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && SearchTB.Text != "")
+			{
+				SearchTB.Text = "";
+			}
+			else if (e.Key == Key.Escape && SearchTB.Text == "")
+			{
+				Close();
+			}
+			else
+			{
+				var filteredList = _clients.Where(c => c.ClientCode.ToString().StartsWith(SearchTB.Text));
+
+				clientsListView.ItemsSource = filteredList;
+			}
 		}
 
 		private void clientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			Client selectedClient = (Client)clientsListView.SelectedItem;
 
+			if (selectedClient == null)
+				return;
+
+			Dongjin.Windows.MenuWindow.DailyWork.TransactionWindow.returnClientCode
+				= selectedClient.ClientCode;
+			Close();
 		}
+
 	}
 }
