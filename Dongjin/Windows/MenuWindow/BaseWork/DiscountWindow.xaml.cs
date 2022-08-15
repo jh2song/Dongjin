@@ -24,6 +24,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 	{
 		List<Discount> _discounts;
 		private bool _noInDB;
+		private bool _bubble;
 
 		public DiscountWindow()
 		{
@@ -110,6 +111,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				DB.Conn.CreateTable<Discount>();
 				DB.Conn.Execute($"UPDATE Discount SET DiscountName = '{DiscountNameTB.Text}' WHERE DiscountCode = {int.Parse(CodeTB.Text)};");
 				MessageBox.Show("할인율 이름이 변경되었습니다.", "할인율 변경", MessageBoxButton.OK);
+				_bubble = true;
 			}
 			catch (Exception ex)
 			{
@@ -184,5 +186,33 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 		}
 
+		private void Window_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key != Key.F5)
+				return;
+
+			try
+			{
+				DB.Conn.Execute($"DELETE FROM Discount WHERE DiscountCode = '{CodeTB.Text}'");
+				DG.ItemsSource = null;
+				CodeTB.Text = DiscountNameTB.Text = "";
+				CodeTB.Focus();
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("삭제가 실패하였습니다.", "삭제 DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		// block bubbling
+		private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+			if (_bubble)
+			{
+				e.Handled = true;
+				_bubble = false;
+				return;
+			}
+		}
 	}
 }

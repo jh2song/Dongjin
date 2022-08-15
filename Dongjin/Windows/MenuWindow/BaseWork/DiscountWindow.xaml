@@ -11,6 +11,8 @@
         WindowStyle="None"
         Background="Black"
         Title="DiscountWindow"
+        KeyDown="Window_KeyDown"
+        PreviewKeyUp="Window_PreviewKeyUp"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -63,7 +65,12 @@
             <Label
                 Content=")"
                 />
-
+            <Label
+                Margin="50 0 0 0"
+                Content="F5키를 누르시면 할인율이 삭제됩니다."
+                Background="White"
+                Foreground="Black"
+                />
         </StackPanel>
 
         <DataGrid
