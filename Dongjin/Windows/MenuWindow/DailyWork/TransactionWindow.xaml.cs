@@ -630,6 +630,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				DepositDB(depositMoney);
 				ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Visible;
 				DepositLB.Visibility = DepositTB.Visibility = Visibility.Hidden;
+				DepositTB.Text = "";
+				ProductCodeTB.Text = "";
 				ProductCodeTB.Focus();
 			}
 		}
@@ -749,6 +751,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					
 					DiscountPercentStackPanel.Visibility = Visibility.Hidden;
 					ProductCountTB.Visibility = Visibility.Hidden;
+					ProductNameTB.Visibility = Visibility.Hidden;
 					PrintOptionLB.Visibility = Visibility.Visible;
 					ProductCodeTB.Text = ProductNameTB.Text = ProductCountTB.Text = DiscountPercentTB.Text = "";
 					ProductCodeTB.Focus();
