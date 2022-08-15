@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dongjin.Table
 {
-	class Product
+	public class Product
 	{
 		// 제품코드/바코드
 		[PrimaryKey]

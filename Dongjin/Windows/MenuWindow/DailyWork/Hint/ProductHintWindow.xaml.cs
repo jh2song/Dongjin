@@ -16,32 +16,32 @@ using System.Windows.Shapes;
 namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 {
 	/// <summary>
-	/// Interaction logic for ClientHintWindow.xaml
+	/// Interaction logic for ProductHintWindow.xaml
 	/// </summary>
-	public partial class ClientHintWindow : Window
+	public partial class ProductHintWindow : Window
 	{
-		private List<Client> _clients;
+		private List<Product> _products;
 
-		public ClientHintWindow()
+		public ProductHintWindow()
 		{
 			InitializeComponent();
 
 			SearchTB.Focus();
 
-			_clients = new List<Client>();
+			_products = new List<Product>();
 
 			ReadDatabase();
 		}
 
 		private void ReadDatabase()
 		{
-			DB.Conn.CreateTable<Client>();
+			DB.Conn.CreateTable<Product>();
 
-			_clients = (DB.Conn.Table<Client>().ToList()).OrderBy(c => c.ClientCode).ToList();
+			_products = (DB.Conn.Table<Product>().ToList()).OrderBy(c => c.ProductCode).ToList();
 
-			if (_clients != null)
+			if (_products != null)
 			{
-				ClientsListView.ItemsSource = _clients;
+				ProductsListView.ItemsSource = _products;
 			}
 		}
 
@@ -57,23 +57,22 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			}
 			else
 			{
-				var filteredList = _clients.Where(c => c.ClientCode.ToString().StartsWith(SearchTB.Text));
+				var filteredList = _products.Where(c => c.ProductCode.StartsWith(SearchTB.Text));
 
-				ClientsListView.ItemsSource = filteredList;
+				ProductsListView.ItemsSource = filteredList;
 			}
 		}
 
-		private void clientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ProductsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			Client selectedClient = (Client)ClientsListView.SelectedItem;
+			Product selectedProduct = (Product)ProductsListView.SelectedItem;
 
-			if (selectedClient == null)
+			if (selectedProduct == null)
 				return;
 
-			Dongjin.Windows.MenuWindow.DailyWork.TransactionWindow.returnClientCode
-				= selectedClient.ClientCode;
+			TransactionWindow.returnProductCode
+				= selectedProduct.ProductCode;
 			Close();
 		}
-
 	}
 }

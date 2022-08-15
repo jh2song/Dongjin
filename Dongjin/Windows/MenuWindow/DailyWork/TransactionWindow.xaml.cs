@@ -503,6 +503,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			e.Handled = RegexClass.NotUnderboundNumber(e.Text, 1, 2);
 		}
 
+		public static string returnProductCode = "";
+
 		private void ProductCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape)
@@ -521,6 +523,17 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 				else
 					ProductCodeTB.Text = "";
+			}
+
+			if (e.Key == Key.F5)
+			{
+				new ProductHintWindow().ShowDialog();
+				if (returnProductCode != "")
+				{
+					ProductCodeTB.Text = returnProductCode;
+					ProductCodeTB.Select(ProductCodeTB.Text.Length, 0);
+					returnProductCode = "";
+				}
 			}
 
 			if (e.Key == Key.Enter)
