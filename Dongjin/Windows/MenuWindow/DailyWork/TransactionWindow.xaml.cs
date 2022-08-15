@@ -760,25 +760,35 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			}
 		}
 
+		class Rate
+		{
+			public double DiscountRate { get; set; }
+		}
+
 		private void DiscountPercentTB_GotFocus(object sender, RoutedEventArgs e)
 		{
 			try
 			{
-				var query = DB.Conn.Query<Discount>(
-					@"SELECT a.DiscountRate
-					FROM Discount a, Product b
-					WHERE a.BrandCode = b.BrandCode
-					AND b.ProductCode = ?", productObject.ProductCode
-					).ToArray();
+				var query = DB.Conn.Query<Rate>(@"
+SELECT d.DiscountRate
+FROM Client c, Discount d, Product p
+WHERE c.PercentCode = d.DiscountCode
+AND d.BrandCode = p.BrandCode
+AND p.ProductCode = ?
+", productObject.ProductCode).FirstOrDefault();
 				
-				productDiscountRate = query[0].DiscountRate;
+				if (query == null)
+				{
+					throw new Exception();
+				}
+
+				productDiscountRate = query.DiscountRate;
 				DiscountPercentTB.Text = productDiscountRate.ToString("F2");
 				DiscountPercentTB.Select(DiscountPercentTB.Text.Length, 0);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				Debug.WriteLine(ex.ToString());
-				// mes box 
+				MessageBox.Show("할인율 또는 제품이 등록되어있지 않습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
