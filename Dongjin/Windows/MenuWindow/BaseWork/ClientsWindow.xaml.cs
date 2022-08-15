@@ -297,14 +297,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void tbDetail3_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Enter && tbDetail3.Text != "0" && _lastClientLedger == null)
-			{
-				MessageBox.Show("거래처 첫 등록이라 현재미수금을 설정할 수 없습니다.", "논리적 오류", MessageBoxButton.OK, MessageBoxImage.Error);
-				tbDetail3.Text = "0";
-				tbDetail4.Focus();
-			}
-
-			if (e.Key == Key.Enter && _lastClientLedger != null)
+			if (e.Key == Key.Enter)
 			{
 				if (UpdateCommanding)
 				{
@@ -494,11 +487,26 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						ClientLedger cl = DB.Conn.Table<ClientLedger>().ToList()
 							.Where(c1 => c1.ClientCode == _clientCode)
 							.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
+
+						int money;
+						if (!int.TryParse(tbDetail3.Text, out money))
+						{
+							throw new Exception();
+						}
+
 						if (cl != null)
 						{
-							cl.CurrentLeftMoney = int.Parse((tbDetail3.Text).Replace(",", "."));
+							cl.CurrentLeftMoney = money;
 							DB.Conn.Update(cl);
 						}
+						else
+						{
+							cl = new ClientLedger();
+							cl.ClientCode = _clientCode;
+							cl.CurrentLeftMoney = money;
+							DB.Conn.Insert(cl);
+						}
+
 
 						Client client = new Client();
 						int target;
