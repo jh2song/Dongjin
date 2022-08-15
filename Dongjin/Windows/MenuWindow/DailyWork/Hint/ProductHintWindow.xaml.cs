@@ -45,7 +45,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			}
 		}
 
-		private void SearchTB_KeyDown(object sender, KeyEventArgs e)
+		private void SearchTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape && SearchTB.Text != "")
 			{

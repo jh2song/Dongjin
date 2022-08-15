@@ -45,7 +45,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			}
 		}
 
-		private void SearchTB_KeyDown(object sender, KeyEventArgs e)
+		private void SearchTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Escape && SearchTB.Text != "")
 			{
@@ -63,7 +63,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			}
 		}
 
-		private void clientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ClientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			Client selectedClient = (Client)ClientsListView.SelectedItem;
 

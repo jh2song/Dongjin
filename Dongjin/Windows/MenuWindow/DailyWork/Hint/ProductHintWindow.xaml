@@ -27,7 +27,7 @@
             <TextBox 
                 x:Name="SearchTB"
                 Margin="0 5 0 5"
-                KeyDown="SearchTB_KeyDown"
+                KeyUp="SearchTB_KeyUp"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 />

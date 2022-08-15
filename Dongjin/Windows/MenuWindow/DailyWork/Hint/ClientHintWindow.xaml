@@ -27,12 +27,12 @@
             <TextBox 
                 x:Name="SearchTB"
                 Margin="0 5 0 5"
-                KeyDown="SearchTB_KeyDown"
+                KeyUp="SearchTB_KeyUp"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 />
             <ListView x:Name="ClientsListView"
-                  SelectionChanged="clientsListView_SelectionChanged"
+                  SelectionChanged="ClientsListView_SelectionChanged"
                   Margin="0 5 0 0">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
