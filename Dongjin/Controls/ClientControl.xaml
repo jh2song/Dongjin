@@ -11,29 +11,24 @@
                     Orientation="Horizontal">
             <Label
                 x:Name="ClientCodeLB"
-                FontSize="20"
                 />
             <Label
                 Content="/"
                 />
             <Label
                 x:Name="ClientNameLB"
-                FontSize="20"
-                FontWeight="Bold"
                 />
             <Label
                 Content="/"
                 />
             <Label 
                 x:Name="PhoneLB"
-                FontSize="20"
                 />
             <Label
                 Content="/"
                 />
             <Label 
                 x:Name="CurrentLeftMoneyLB"
-                FontSize="20"
                 />
         </StackPanel>
     </Grid>
