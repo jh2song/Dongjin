@@ -326,8 +326,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void tbDetail4_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Enter)
+			int percentCode;
+			if (e.Key == Key.Enter && int.TryParse(tbDetail4.Text, out percentCode))
 			{
+				if (DB.Conn.Table<Discount>().Where(d => d.DiscountCode == percentCode).Count() == 0)
+				{
+					MessageBox.Show("할인율 테이블에 등록되어 있지 않은 코드입니다.", "할인율 에러", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
+				}
+
 				if (UpdateCommanding)
 				{
 					tbcmd.Text = "";
@@ -339,6 +346,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					tbcmd.Focus();
 				}
 			}
+			else
+				return;
 
 			if (e.Key == Key.Escape)
 			{
