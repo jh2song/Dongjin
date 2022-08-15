@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dongjin.Table
+﻿namespace Dongjin.Table
 {
 	class TEST
 	{

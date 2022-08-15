@@ -1,22 +1,12 @@
 ﻿using Dongjin.Classes;
+using Dongjin.Table;
+using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Dongjin.Windows.MenuWindow;
-using System.IO;
-using System.Security.Cryptography;
-using SQLite;
-using Dongjin.Table;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 namespace Dongjin.Windows.LoginWindow
 {
