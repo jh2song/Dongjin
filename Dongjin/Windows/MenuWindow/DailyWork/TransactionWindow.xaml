@@ -476,6 +476,7 @@
                 Foreground="Black"
                 KeyUp="DepositTB_KeyUp"
                 PreviewTextInput="DepositTB_PreviewTextInput"
+                GotFocus="DepositTB_GotFocus"
                 />
 
             <TextBox

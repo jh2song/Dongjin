@@ -556,6 +556,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Hidden;
 					DepositLB.Visibility = DepositTB.Visibility = Visibility.Visible;
 					DepositTB.Focus();
+					ProductCodeTB.Text = "";
 					return;
 				}
 				if (ProductCodeTB.Text == "DDD" || ProductCodeTB.Text == "ddd")
@@ -600,6 +601,21 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			}
 		}
 
+		private void DepositTB_GotFocus(object sender, RoutedEventArgs e)
+		{
+			DB.Conn.CreateTable<ClientLedger>();
+
+			var query = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
+			&& cl.TransactionDate == transactionDate).FirstOrDefault();
+
+			if (query == null)
+				return;
+
+			DepositTB.Text = query.TodayDepositMoney.ToString();
+			DepositTB.Select(DepositTB.Text.Length, 0);
+			DepositTB.Focus();
+		}
+
 		private void DepositTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			int depositMoney;
@@ -608,6 +624,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			{ 
 				ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Visible;
 				DepositLB.Visibility = DepositTB.Visibility = Visibility.Hidden;
+				ProductCodeTB.Focus();
 			}
 
 			if (e.Key == Key.Escape && DepositTB.Text != "")
