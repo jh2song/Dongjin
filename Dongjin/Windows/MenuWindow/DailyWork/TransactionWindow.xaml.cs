@@ -554,7 +554,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")
 				{
 					ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Hidden;
-					DepositLB.Visibility = DepositTB.Visibility = Visibility.Visible;
+					DepositLB.Visibility = DepositTB.Visibility = DepositGuideLB.Visibility = Visibility.Visible;
 					DepositTB.Focus();
 					ProductCodeTB.Text = "";
 					return;
@@ -611,10 +611,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			&& cl.TransactionDate == transactionDate).FirstOrDefault();
 
 			if (query == null)
-				return;
+			{
+				DepositGuideLB.Content = "0";
+			}
+			else
+			{
+				DepositGuideLB.Content = query.TodayDepositMoney.ToString();
+			}
 
-			DepositTB.Text = query.TodayDepositMoney.ToString();
-			DepositTB.Select(DepositTB.Text.Length, 0);
 			DepositTB.Focus();
 		}
 
@@ -625,7 +629,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			if (e.Key == Key.Escape && DepositTB.Text == "")
 			{ 
 				ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Visible;
-				DepositLB.Visibility = DepositTB.Visibility = Visibility.Hidden;
+				DepositLB.Visibility = DepositTB.Visibility = DepositGuideLB.Visibility = Visibility.Hidden;
 				ProductCodeTB.Focus();
 			}
 
@@ -640,7 +644,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				MonthDepositMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthDepositMoneyTB.Text.Replace(",", "")) + depositMoney));
 				DepositDB(depositMoney);
 				ProductCodeTB.Visibility = PrintOptionLB.Visibility = Visibility.Visible;
-				DepositLB.Visibility = DepositTB.Visibility = Visibility.Hidden;
+				DepositLB.Visibility = DepositTB.Visibility = DepositGuideLB.Visibility = Visibility.Hidden;
 				DepositTB.Text = "";
 				ProductCodeTB.Text = "";
 				ProductCodeTB.Focus();

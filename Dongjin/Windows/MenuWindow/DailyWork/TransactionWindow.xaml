@@ -479,6 +479,17 @@
                 GotFocus="DepositTB_GotFocus"
                 />
 
+            <Label
+                x:Name="DepositGuideLB"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Grid.Column="2"
+                Visibility="Hidden"
+                Background="White"
+                Foreground="Black"
+                />
+
+
             <TextBox
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
