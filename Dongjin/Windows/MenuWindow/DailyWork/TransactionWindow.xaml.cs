@@ -561,17 +561,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 				if (ProductCodeTB.Text == "DDD" || ProductCodeTB.Text == "ddd")
 				{
-					List<Document> prevData = DG.ItemsSource as List<Document>;
+					List<Document> prevData = DG.ItemsSource.Cast<Document>().ToList();
 					foreach (Document data in prevData)
 					{
 						DB.Conn.CreateTable<Document>();
 						DB.Conn.Delete<Document>(data.ID);
-
-						DB.Conn.CreateTable<ClientLedger>();
 					}
-					var target = DB.Conn.Table<ClientLedger>().ToList().Where(cl => cl.ClientCode == clientCode &&
-																	cl.TransactionDate == transactionDate).FirstOrDefault();
-					DB.Conn.Delete<ClientLedger>(target.ID);
+
+					UpdateDBInDeletingEvent();
 
 					DG.ItemsSource = null;
 					ProductCodeTB.Text = "";
@@ -599,6 +596,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					return;
 				}
 			}
+		}
+
+		private void UpdateDBInDeletingEvent()
+		{
+			// throw new NotImplementedException();
 		}
 
 		private void DepositTB_GotFocus(object sender, RoutedEventArgs e)
