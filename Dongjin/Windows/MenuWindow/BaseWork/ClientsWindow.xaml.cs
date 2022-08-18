@@ -511,14 +511,6 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							cl.CurrentLeftMoney = money;
 							DB.Conn.Update(cl);
 						}
-						else
-						{
-							cl = new ClientLedger();
-							cl.ClientCode = _clientCode;
-							cl.CurrentLeftMoney = money;
-							DB.Conn.Insert(cl);
-						}
-
 
 						Client client = new Client();
 						int target;
@@ -732,7 +724,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		private void tbDetail8_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
+			{
 				tbcmd.Focus();
+			}
 
 			if (e.Key == Key.Escape)
 			{

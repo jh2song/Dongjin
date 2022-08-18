@@ -273,6 +273,19 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void RenderTopMenu()
 		{
+			int parsedCode;
+			if (int.TryParse(ClientCodeTB.Text, out parsedCode))
+			{
+				try
+				{
+					DB.Conn.CreateTable<Client>();
+					foundClient = DB.Conn.Find<Client>(c => c.ClientCode == parsedCode);
+				}
+				catch (Exception)
+				{
+
+				}
+			}
 			MonthSellMoneyTB.Text = String.Format("{0:#,0}", GetMonthSellMoney());
 			MonthDepositMoneyTB.Text = String.Format("{0:#,0}", GetMonthDepositMoney());
 			MonthRefundMoneyTB.Text = String.Format("{0:#,0}", GetMonthRefundMoney());
