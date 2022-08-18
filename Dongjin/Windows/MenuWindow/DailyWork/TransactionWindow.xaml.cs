@@ -23,7 +23,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private string productName;
 		private int productCount;
 		private Product productObject;
-		private double productDiscountRate;
+		private decimal productDiscountRate;
 		private DateTime transactionDate;
 		private int clientCode;
 
@@ -801,7 +801,7 @@ AND TransactionDate = ?
 
 			if (e.Key == Key.Enter)
 			{
-				if (double.TryParse(DiscountPercentTB.Text, out productDiscountRate))
+				if (decimal.TryParse(DiscountPercentTB.Text, out productDiscountRate))
 				{
 					// Datagrid를 표시해야 함
 					DG.Visibility = Visibility.Visible;
@@ -878,7 +878,7 @@ AND p.ProductCode = ?
 				ts.ProductName = productObject.ProductName;
 				ts.ProductCount = productCount;
 				ts.Price = productObject.Price * productCount;
-				ts.DiscountPrice = (int)((double)ts.Price * productDiscountRate / 100.00);
+				ts.DiscountPrice = (int)((decimal)ts.Price * productDiscountRate / 100.00m);
 				switch (appendChoice)
 				{
 					case 0:

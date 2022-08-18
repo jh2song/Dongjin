@@ -226,7 +226,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				DB.Conn.CreateTable<Brand>();
 				var list = DB.Conn.Table<Brand>().Where(b => b.BrandCode.Equals(brandCode)).ToList();
 
-				ret = (int)((double)ret * (list[0].BuyingPercent / 100.0));
+				ret = (int)((decimal)ret * (decimal)list[0].BuyingPercent / 100.0m);
 			}
 			catch (Exception ex)
 			{
