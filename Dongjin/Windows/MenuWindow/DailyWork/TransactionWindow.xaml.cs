@@ -499,6 +499,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void ProductCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
+			if (e.Key == Key.Enter && ProductCodeTB.Text == "")
+				return;
+
 			if (e.Key == Key.Escape)
 			{
 				if (ProductCodeTB.Text == "")
