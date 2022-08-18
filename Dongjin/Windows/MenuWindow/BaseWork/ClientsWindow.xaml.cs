@@ -111,6 +111,8 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			}
 			else
 			{
+				isOnDBByCode = true;
+
 				tbDetail1.Text = client[0].ClientName;
 				tbDetail2.Text = client[0].Phone;
 				tbDetail3.Text = String.Format("{0:#,0}", GetCurrentLeftMoney());
@@ -317,9 +319,17 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void tbDetail4_KeyDown(object sender, KeyEventArgs e)
 		{
+			if (e.Key == Key.Enter && tbDetail4.Text == "")
+			{
+				MessageBox.Show("단가(%)구분 (또는 할인율코드)은 꼭 입력하셔야 합니다.", "논리 오류", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return;
+			}
+
+
 			int percentCode;
 			if (e.Key == Key.Enter && int.TryParse(tbDetail4.Text, out percentCode))
 			{
+				DB.Conn.CreateTable<Discount>();
 				if (DB.Conn.Table<Discount>().Where(d => d.DiscountCode == percentCode).Count() == 0)
 				{
 					MessageBox.Show("할인율 테이블에 등록되어 있지 않은 코드입니다.", "할인율 에러", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -456,12 +466,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 					{
 						// 데이터베이스에서 삭제
 						conn.CreateTable<Client>();
+						conn.CreateTable<ClientLedger>();
+
 						int parsedCode;
 						if (int.TryParse(tb4.Text, out parsedCode))
+						{
 							conn.Execute($"DELETE FROM Client WHERE ClientCode = {parsedCode};");
-
-						conn.CreateTable<ClientLedger>();
-						conn.Delete(_lastClientLedger);
+							conn.Execute($"DELETE FROM ClientLedger WHERE ClientCode = {parsedCode};");	
+						}
 
 						isOnDBByCode = false;
 						UpdateCommanding = false;
@@ -544,10 +556,24 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 
 						// ClientLedger Update
+						//conn.CreateTable<ClientLedger>();
+						//if(_lastClientLedger != null && int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
+						//{
+						//	_lastClientLedger.CurrentLeftMoney = target;
+						//	conn.Update(_lastClientLedger);
+						//}
+						
 						conn.CreateTable<ClientLedger>();
-						if(_lastClientLedger != null && int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
+						if (_lastClientLedger != null)
 						{
-							_lastClientLedger.CurrentLeftMoney = target;
+							if (int.TryParse(tbDetail3.Text.Replace(",", ""), out target))
+								_lastClientLedger.CurrentLeftMoney = target;
+							if (int.TryParse(tbDetail8.Text.Replace(",", ""), out target))
+								_lastClientLedger.TodaySellMoney = target;
+							if (int.TryParse(tbDetail9.Text.Replace(",", ""), out target))
+								_lastClientLedger.TodayDepositMoney = target;
+							if (int.TryParse(tbDetail10.Text.Replace(",", ""), out target))
+								_lastClientLedger.TodayRefundMoney = target;
 							conn.Update(_lastClientLedger);
 						}
 
