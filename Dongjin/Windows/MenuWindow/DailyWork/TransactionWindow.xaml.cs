@@ -843,7 +843,7 @@ AND p.ProductCode = ?
 					throw new Exception();
 				}
 
-				productDiscountRate = query.DiscountRate;
+				productDiscountRate = (decimal)query.DiscountRate;
 				DiscountPercentTB.Text = productDiscountRate.ToString("F2");
 				DiscountPercentTB.Select(DiscountPercentTB.Text.Length, 0);
 			}
