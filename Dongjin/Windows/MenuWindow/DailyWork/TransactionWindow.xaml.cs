@@ -250,8 +250,8 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 						}
 
 						TotalCountTB.Text = String.Format("{0:#,0}", totalCount);
-						TotalDiscountPriceTB.Text = String.Format("{0:#,0", totalDiscountPrice);
-						TotalPriceTB.Text = String.Format("{0:#,0", totalPrice);
+						TotalDiscountPriceTB.Text = String.Format("{0:#,0}", totalDiscountPrice);
+						TotalPriceTB.Text = String.Format("{0:#,0}", totalPrice);
 
 					}
 					catch (Exception ex)
@@ -723,6 +723,8 @@ AND TransactionDate = ?
 				c.FinalTransactionDate = transactionDate;
 				c.FinalDepositDate = transactionDate;
 				DB.Conn.Update(c);
+
+				RenderTopMenu();
 			}
 			catch (Exception)
 			{
@@ -925,10 +927,10 @@ AND p.ProductCode = ?
 
 				if (choice == 1) // 출고
 				{
-					cl.TodaySellMoney += ts.ProductCount * ts.DiscountPrice;
-					cl.CurrentLeftMoney += ts.ProductCount * ts.DiscountPrice;
+					cl.TodaySellMoney += ts.DiscountPrice;
+					cl.CurrentLeftMoney += ts.DiscountPrice;
 
-					MonthSellMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthSellMoneyTB.Text.Replace(",", "")) + ts.ProductCount * ts.DiscountPrice));
+					MonthSellMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthSellMoneyTB.Text.Replace(",", "")) + ts.DiscountPrice));
 					CurrentLeftMoneyTB.Text = String.Format("{0:#,0}", cl.CurrentLeftMoney);
 
 					var affected = DB.Conn.Update(cl);
@@ -947,11 +949,11 @@ AND p.ProductCode = ?
 				}
 				if (choice == 3) // 환입
 				{
-					cl.TodayRefundMoney += ts.ProductCount * ts.DiscountPrice;
-					cl.CurrentLeftMoney -= ts.ProductCount * ts.DiscountPrice;
+					cl.TodayRefundMoney += ts.DiscountPrice;
+					cl.CurrentLeftMoney -= ts.DiscountPrice;
 
 					CurrentLeftMoneyTB.Text = String.Format("{0:#,0}", cl.CurrentLeftMoney);
-					MonthRefundMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthRefundMoneyTB.Text.Replace(",", "")) + ts.ProductCount * ts.DiscountPrice));
+					MonthRefundMoneyTB.Text = String.Format("{0:#,0}", (int.Parse(MonthRefundMoneyTB.Text.Replace(",", "")) + ts.DiscountPrice));
 
 					var affected = DB.Conn.Update(cl);
 					if (affected == 0)

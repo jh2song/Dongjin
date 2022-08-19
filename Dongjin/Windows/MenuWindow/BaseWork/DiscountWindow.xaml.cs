@@ -176,6 +176,10 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				// 메시지박스 출력
 				MessageBox.Show("표에 문제가 발생하였습니다.", "표 오류", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
+			finally
+			{
+				_bubble = true;
+			}
 		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -467,12 +467,14 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 						// 데이터베이스에서 삭제
 						conn.CreateTable<Client>();
 						conn.CreateTable<ClientLedger>();
+						conn.CreateTable<Document>();
 
 						int parsedCode;
 						if (int.TryParse(tb4.Text, out parsedCode))
 						{
 							conn.Execute($"DELETE FROM Client WHERE ClientCode = {parsedCode};");
-							conn.Execute($"DELETE FROM ClientLedger WHERE ClientCode = {parsedCode};");	
+							conn.Execute($"DELETE FROM ClientLedger WHERE ClientCode = {parsedCode};");
+							conn.Execute($"DELETE FROM Document WHERE ClientCode = {parsedCode};");
 						}
 
 						isOnDBByCode = false;
