@@ -153,7 +153,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void ClientCodeTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotNumericBackspace(e.Text);
+			if (e.Text == "P" || e.Text == "p")
+				e.Handled = false;
+			else
+				e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
 
 		public static int returnClientCode = -1;
@@ -188,6 +191,15 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			if (e.Key == Key.Enter)
 			{
 				e.Handled = true;
+
+
+				// 공지사항 처리
+				if (ClientCodeTB.Text == "P" || ClientCodeTB.Text == "p")
+				{
+					AlarmSession();
+					return;
+				}
+				// 공지사항 끝
 
 				transactionDate = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
 
@@ -268,6 +280,49 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					InputProductAndOptionGrid.Visibility = Visibility.Visible;
 					ProductCodeTB.Focus();
 				}
+			}
+		}
+
+		private void AlarmSession()
+		{
+			AlarmSP.Visibility = Visibility.Visible;
+
+			DB.Conn.CreateTable<Alarm>();
+
+			Alarm alarmObj = DB.Conn.Table<Alarm>().ToList().FirstOrDefault();
+
+			if (alarmObj != null)
+				AlarmTB.Text = alarmObj.AlarmString;
+
+			AlarmTB.Select(AlarmTB.Text.Length, 0);
+			AlarmTB.Focus();
+		}
+
+		private void AlarmTB_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && AlarmTB.Text == "")
+			{
+				AlarmSP.Visibility = Visibility.Hidden;
+				ClientCodeTB.Text = "";
+				ClientCodeTB.Focus();
+			}
+			else if (e.Key == Key.Escape && AlarmTB.Text != "")
+			{
+				AlarmTB.Text = "";
+			}
+			else if (e.Key == Key.Enter)
+			{
+				Alarm updatedAlarm = new Alarm();
+				updatedAlarm.AlarmString = AlarmTB.Text;
+
+				var isUpdated = DB.Conn.Update(updatedAlarm);
+				if (isUpdated == 0)
+					DB.Conn.Insert(updatedAlarm);
+
+				AlarmTB.Text = "";
+				AlarmSP.Visibility = Visibility.Hidden;
+				ClientCodeTB.Text = "";
+				ClientCodeTB.Focus();
 			}
 		}
 

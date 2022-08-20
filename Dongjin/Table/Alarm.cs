@@ -1,7 +1,11 @@
-﻿namespace Dongjin.Table
+﻿using SQLite;
+
+namespace Dongjin.Table
 {
 	class Alarm
 	{
-		public string AlarmString { get; set; }
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+		public string AlarmString { get; set; } = "";
 	}
 }

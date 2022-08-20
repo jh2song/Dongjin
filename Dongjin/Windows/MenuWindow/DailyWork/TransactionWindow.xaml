@@ -300,6 +300,24 @@
                 />
         </Grid>
 
+        <StackPanel
+            Grid.Row="5"
+            x:Name="AlarmSP"
+            Margin="10 0 10 0"
+            Visibility="Hidden"
+            Orientation="Horizontal"
+            >
+
+            <Label
+                Content="공지사항: "
+                />
+            <TextBox
+                x:Name="AlarmTB"
+                KeyDown="AlarmTB_KeyDown"
+                />
+
+        </StackPanel>
+        
         <!-- DataGrid -->
         <DataGrid
             x:Name="DG"
