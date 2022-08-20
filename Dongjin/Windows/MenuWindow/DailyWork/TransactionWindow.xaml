@@ -328,6 +328,7 @@
             CanUserAddRows="False"
             HeadersVisibility="None"
             Visibility="Hidden"
+            GridLinesVisibility="None"
             >
             <Grid.Row>5</Grid.Row>
 

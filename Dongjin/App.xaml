@@ -88,6 +88,7 @@
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="-1"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style>
@@ -100,6 +101,7 @@
             <Setter Property="FontSize" Value="30"/>
 
             <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Margin" Value="-1"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 

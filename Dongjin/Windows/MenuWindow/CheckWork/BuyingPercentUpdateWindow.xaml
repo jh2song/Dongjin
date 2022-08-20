@@ -39,6 +39,7 @@
             VerticalScrollBarVisibility="Hidden"
             CanUserAddRows="False"
             CellEditEnding="DG_CellEditEnding"
+            GridLinesVisibility="None"
             >
             <Grid.Row>1</Grid.Row>
             <Grid.RowSpan>3</Grid.RowSpan>

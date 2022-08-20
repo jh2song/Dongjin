@@ -65,6 +65,7 @@
             AutoGenerateColumns="False"
             VerticalScrollBarVisibility="Hidden"
             CanUserAddRows="False"
+            GridLinesVisibility="None"
             >
             <Grid.Row>2</Grid.Row>
 
