@@ -71,7 +71,7 @@
                 />
 
             <Label
-                Content="        거래처코드: ["
+                Content="        거래처코드: "
                 FontSize="32"
                 />
             <TextBox
@@ -79,15 +79,11 @@
                 MaxLines="1"
                 MaxLength="4"
                 MinWidth="80"
-                VerticalAlignment="Center"
                 Style="{StaticResource detailStyle}"
                 PreviewTextInput="tb4_PreviewTextInput"
                 KeyDown="TB4_KeyDown"
                 />
-            <Label
-                Content="]"
-                FontSize="32"
-                />
+            
             <Grid.Row>1</Grid.Row>
         </StackPanel>
 
