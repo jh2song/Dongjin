@@ -31,6 +31,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		{
 			InitializeComponent();
 
+			this.DataContext = this;
+			StartUpText = "";
+
 			ChoiceTB.Focus();
 		}
 
@@ -222,7 +225,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					}
 				}
 
-				
+
 				if (!int.TryParse(ClientCodeTB.Text, out clientCode))
 				{
 					return;
@@ -282,6 +285,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 			}
 		}
+		public string StartUpText { get; set; }
 
 		private void AlarmSession()
 		{
@@ -310,14 +314,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			{
 				AlarmTB.Text = "";
 			}
-			else if (e.Key == Key.Enter)
+			else if (e.Key == Key.Enter && AlarmTB.LineCount == 3)
 			{
-				Alarm updatedAlarm = new Alarm();
-				updatedAlarm.AlarmString = AlarmTB.Text;
+				Alarm alarmObj = DB.Conn.Table<Alarm>().ToList().FirstOrDefault();
+				alarmObj.AlarmString = AlarmTB.Text;
 
-				var isUpdated = DB.Conn.Update(updatedAlarm);
+				var isUpdated = DB.Conn.Update(alarmObj);
 				if (isUpdated == 0)
-					DB.Conn.Insert(updatedAlarm);
+					DB.Conn.Insert(alarmObj);
 
 				AlarmTB.Text = "";
 				AlarmSP.Visibility = Visibility.Hidden;

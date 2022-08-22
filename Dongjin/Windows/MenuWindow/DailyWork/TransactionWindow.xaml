@@ -306,14 +306,27 @@
             Margin="10 0 10 0"
             Visibility="Hidden"
             Orientation="Horizontal"
+            HorizontalAlignment="Center"
             >
 
             <Label
                 Content="공지사항: "
                 />
             <TextBox
+                Style="{x:Null}"
                 x:Name="AlarmTB"
+                VerticalAlignment="Center"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                MinLines="2"
+                MaxLines="2"
+                Width="1200"
+                Background="Black"
+                Foreground="White"
+                FontSize="32"
+                FontWeight="Bold"
                 KeyDown="AlarmTB_KeyDown"
+                Text="{Binding StartUpText}"
                 />
 
         </StackPanel>
