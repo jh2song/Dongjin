@@ -307,28 +307,34 @@
             Visibility="Hidden"
             Orientation="Horizontal"
             HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             >
 
             <Label
                 Content="공지사항: "
                 />
-            <TextBox
-                Style="{x:Null}"
-                x:Name="AlarmTB"
-                VerticalAlignment="Center"
-                AcceptsReturn="True"
-                TextWrapping="Wrap"
-                MinLines="2"
-                MaxLines="2"
-                Width="1200"
-                Background="Black"
-                Foreground="White"
-                FontSize="32"
-                FontWeight="Bold"
-                KeyDown="AlarmTB_KeyDown"
-                Text="{Binding StartUpText}"
-                />
-
+            <Border
+                BorderBrush="White"
+                BorderThickness="2"
+                Margin="20 0 0 0"
+                >
+                <StackPanel
+                    Margin="50"
+                    >
+                    <TextBox
+                        x:Name="AlarmTB1"
+                        Style="{StaticResource detailStyle}"
+                        Width="1200"
+                        KeyDown="AlarmTB1_KeyDown"
+                        />
+                    <TextBox
+                        x:Name="AlarmTB2"
+                        Style="{StaticResource detailStyle}"
+                        Width="1200"
+                        KeyDown="AlarmTB2_KeyDown"
+                        />
+                </StackPanel>
+            </Border>
         </StackPanel>
         
         <!-- DataGrid -->

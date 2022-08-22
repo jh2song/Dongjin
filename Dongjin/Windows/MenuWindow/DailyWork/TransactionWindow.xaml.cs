@@ -31,9 +31,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		{
 			InitializeComponent();
 
-			this.DataContext = this;
-			StartUpText = "";
-
 			ChoiceTB.Focus();
 		}
 
@@ -285,7 +282,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				}
 			}
 		}
-		public string StartUpText { get; set; }
 
 		private void AlarmSession()
 		{
@@ -296,34 +292,74 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			Alarm alarmObj = DB.Conn.Table<Alarm>().ToList().FirstOrDefault();
 
 			if (alarmObj != null)
-				AlarmTB.Text = alarmObj.AlarmString;
+			{
+				AlarmTB1.Text = alarmObj.AlarmString1;
+				AlarmTB2.Text = alarmObj.AlarmString2;
+			}
 
-			AlarmTB.Select(AlarmTB.Text.Length, 0);
-			AlarmTB.Focus();
+			if (AlarmTB2.Text != "")
+			{
+				AlarmTB2.Select(AlarmTB2.Text.Length, 0);
+				AlarmTB2.Focus();
+			}
+			else
+			{
+				AlarmTB1.Select(AlarmTB1.Text.Length, 0);
+				AlarmTB1.Focus();
+			}
 		}
 
-		private void AlarmTB_KeyDown(object sender, KeyEventArgs e)
+		private void AlarmTB1_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key == Key.Escape && AlarmTB.Text == "")
+			if (e.Key == Key.Escape && AlarmTB1.Text == "")
 			{
+				bubble = true;
 				AlarmSP.Visibility = Visibility.Hidden;
+				AlarmTB1.Text = AlarmTB2.Text = "";
 				ClientCodeTB.Text = "";
 				ClientCodeTB.Focus();
 			}
-			else if (e.Key == Key.Escape && AlarmTB.Text != "")
+			else if (e.Key == Key.Escape && AlarmTB1.Text != "")
 			{
-				AlarmTB.Text = "";
+				AlarmTB1.Text = "";
 			}
-			else if (e.Key == Key.Enter && AlarmTB.LineCount == 3)
+			else if (e.Key == Key.Enter)
+			{
+				AlarmTB2.Focus();
+			}
+		}
+
+		private void AlarmTB2_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Escape && AlarmTB2.Text == "")
+			{
+				AlarmTB1.Focus();
+				AlarmTB1.Select(AlarmTB1.Text.Length, 0);
+			}
+			else if (e.Key == Key.Escape && AlarmTB2.Text != "")
+			{
+				AlarmTB2.Text = "";
+			}
+			else if (e.Key == Key.Enter)
 			{
 				Alarm alarmObj = DB.Conn.Table<Alarm>().ToList().FirstOrDefault();
-				alarmObj.AlarmString = AlarmTB.Text;
 
-				var isUpdated = DB.Conn.Update(alarmObj);
-				if (isUpdated == 0)
+				if (alarmObj == null)
+				{
+					alarmObj = new Alarm();
+					alarmObj.AlarmString1 = AlarmTB1.Text;
+					alarmObj.AlarmString2 = AlarmTB2.Text;
+
 					DB.Conn.Insert(alarmObj);
+				}
+				else if (alarmObj != null)
+				{
+					alarmObj.AlarmString1 = AlarmTB1.Text;
+					alarmObj.AlarmString2 = AlarmTB2.Text;
+					DB.Conn.Update(alarmObj);
+				}
 
-				AlarmTB.Text = "";
+				AlarmTB1.Text = AlarmTB2.Text = "";
 				AlarmSP.Visibility = Visibility.Hidden;
 				ClientCodeTB.Text = "";
 				ClientCodeTB.Focus();
