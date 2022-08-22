@@ -274,5 +274,21 @@ namespace Dongjin.Windows.MenuWindow
 			grids.Add(null);
 			grids.Add(underGrid6);
 		}
+
+		// block bubbling
+		private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+		{
+			if (Bubble.bubble)
+			{
+				e.Handled = true;
+				Bubble.bubble = false;
+				return;
+			}
+		}
+
+		private void Window_Activated(object sender, EventArgs e)
+		{
+			Bubble.bubble = true;
+		}
 	}
 }

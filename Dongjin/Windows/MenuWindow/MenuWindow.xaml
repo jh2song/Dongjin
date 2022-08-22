@@ -12,6 +12,8 @@
         Background="Black"
         KeyUp="Window_KeyUp"
         KeyDown="Window_KeyDown"
+        PreviewKeyUp="Window_PreviewKeyUp"
+        Activated="Window_Activated"
         >
     <Grid Margin="50 0 50 0">
         <Grid.ColumnDefinitions>

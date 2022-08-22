@@ -18,7 +18,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 	{
 		private int choice;
 		private Client foundClient;
-		private bool bubble;
 		private int appendChoice;
 		private string productName;
 		private int productCount;
@@ -206,7 +205,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (choice == 2)
 				{
 					var check = MessageBox.Show("(덤)전표가 맞습니까?", "확인", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-					bubble = true;
+					Bubble.bubble = true;
 					if (check == MessageBoxResult.Cancel)
 					{
 						return;
@@ -215,7 +214,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				else if (choice == 3)
 				{
 					var check = MessageBox.Show("환입전표가 맞습니까?", "확인", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-					bubble = true;
+					Bubble.bubble = true;
 					if (check == MessageBoxResult.Cancel)
 					{
 						return;
@@ -313,7 +312,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		{
 			if (e.Key == Key.Escape && AlarmTB1.Text == "")
 			{
-				bubble = true;
+				Bubble.bubble = true;
 				AlarmSP.Visibility = Visibility.Hidden;
 				AlarmTB1.Text = AlarmTB2.Text = "";
 				ClientCodeTB.Text = "";
@@ -536,10 +535,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		// block bubbling
 		private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
 		{
-			if (bubble)
+			if (Bubble.bubble)
 			{
 				e.Handled = true;
-				bubble = false;
+				Bubble.bubble = false;
 				return;
 			}
 		}
@@ -673,7 +672,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				else // 제품을 전표에 입력했는데 제품이 없는 경우
 				{
 					var check = MessageBox.Show("제품이 데이터베이스에 없습니다. 등록하러 가시겠습니까?", "DB에 없음", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-					bubble = true;
+					Bubble.bubble = true;
 					if (check == MessageBoxResult.Cancel)
 					{
 						return;
