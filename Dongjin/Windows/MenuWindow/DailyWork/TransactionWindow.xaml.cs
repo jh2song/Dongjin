@@ -1017,6 +1017,7 @@ AND p.ProductCode = ?
 					cl = new ClientLedger();
 					cl.ClientCode = clientCode;
 					cl.TransactionDate = transactionDate;
+					cl.CurrentLeftMoney = GetCurrentLeftMoney();
 				}
 
 				if (choice == 1) // 출고
