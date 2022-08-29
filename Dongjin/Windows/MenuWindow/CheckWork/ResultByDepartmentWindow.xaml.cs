@@ -382,12 +382,15 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
 		{
 			try
 			{
+				DB.Conn.CreateTable<ClientLedger>();
 				var todayMoney = DB.Conn.Query<Money>(@"
 SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(TodaySellMoney) AS SellMoney, SUM(TodayRefundMoney) AS RefundMoney, SUM(TodayDepositMoney) AS DepositMoney
 FROM ClientLedger
 WHERE TransactionDate = ?
 GROUP BY SUBSTR(ClientCode, 1, 1);
 ", _dateTime);
+
+				DB.Conn.CreateTable<Document>();
 				var todayCount = DB.Conn.Query<Count>(@"
 SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END) AS SellCount, SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END) AS RefundCount
 FROM Document
@@ -447,12 +450,15 @@ GROUP BY SUBSTR(ClientCode, 1, 1);
 		{
 			try
 			{
+				DB.Conn.CreateTable<ClientLedger>();
 				var monthMoney = DB.Conn.Query<Money>(@"
 SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(TodaySellMoney) AS SellMoney, SUM(TodayRefundMoney) AS RefundMoney, SUM(TodayDepositMoney) AS DepositMoney
 FROM ClientLedger
 WHERE STRFTIME('%m', TransactionDate) = STRFTIME('%m', ?) AND STRFTIME('%Y', TransactionDate) = STRFTIME('%Y', ?)
 GROUP BY SUBSTR(ClientCode, 1, 1);
 ", _dateTime, _dateTime);
+
+				DB.Conn.CreateTable<Document>();
 				var monthCount = DB.Conn.Query<Count>(@"
 SELECT SUBSTR(ClientCode, 1, 1) AS Department, SUM(CASE WHEN Choice = 1 THEN ProductCount ELSE 0 END) AS SellCount, SUM(CASE WHEN Choice = 3 THEN ProductCount ELSE 0 END) AS RefundCount
 FROM Document
