@@ -232,6 +232,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (!ShowNameByCode(ClientCodeTB.Text))
 				{
 					MessageBox.Show("거래처코드가 거래처 DB에 등록되어있지 않습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+					Bubble.bubble = true;
 					return;
 				}
 
