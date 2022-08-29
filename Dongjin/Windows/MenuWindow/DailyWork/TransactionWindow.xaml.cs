@@ -714,15 +714,15 @@ AND TransactionDate = ?
 						switch (choice)
 						{
 							case 1:
-								cl.TodaySellMoney -= data.ProductCount * data.DiscountPrice;
-								cl.CurrentLeftMoney -= data.ProductCount * data.DiscountPrice;
+								cl.TodaySellMoney -= data.DiscountPrice;
+								cl.CurrentLeftMoney -= data.DiscountPrice;
 								break;
 							case 2:
 								// 덤은 처리할 게 없음
 								break;
 							case 3:
-								cl.TodayRefundMoney -= data.ProductCount * data.DiscountPrice;
-								cl.CurrentLeftMoney += data.ProductCount * data.DiscountPrice;
+								cl.TodayRefundMoney -= data.DiscountPrice;
+								cl.CurrentLeftMoney += data.DiscountPrice;
 								break;
 						}
 					}
