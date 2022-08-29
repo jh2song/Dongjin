@@ -206,7 +206,7 @@ namespace Dongjin.Windows.LoginWindow
 				}
 				else
 				{
-					var options = new SQLiteConnectionString(App.databasePath, true, key: previousPassword);
+					var options = new SQLiteConnectionString(App.databasePath, false, key: previousPassword);
 					DB.Conn = new SQLiteConnection(options);
 					DB.Conn.Execute(query: $"PRAGMA rekey=`{passwordBox1.Password}`;");
 					DB.Conn.CreateTable<TEST>();
