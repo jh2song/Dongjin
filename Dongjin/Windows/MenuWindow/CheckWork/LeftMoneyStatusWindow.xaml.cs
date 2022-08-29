@@ -113,6 +113,7 @@ WHERE a.ClientCode = b.ClientCode AND b.ClientCode = c.ClientCode AND b.Transact
 					_finalSumMoney += item.CurrentLeftMoney;
 				}
 
+				lms = lms.OrderBy(t => t.ClientCode).ToList();
 				DG.ItemsSource = null;
 				DG.ItemsSource = lms;
 				FinalSumPriceTB.Text = String.Format("{0:#,0}", _finalSumMoney);
@@ -162,6 +163,7 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = b.MaxTransactionDate;
 					_finalSumMoney += leftMoneyGroupByClientCode;
 				}
 
+				
 				DG.ItemsSource = null;
 				DG.ItemsSource = bindingList;
 				
