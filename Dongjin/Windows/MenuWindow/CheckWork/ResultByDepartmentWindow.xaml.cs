@@ -322,7 +322,7 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 SELECT a.ClientCode, b.ClientName, a.TodaySellMoney, a.TodayRefundMoney, a.TodayDepositMoney, a.CurrentLeftMoney
 FROM ClientLedger AS a, Client AS b
 WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = ?
-;", _dateTime);
+;", _dateTime).OrderBy(t => t.ClientCode);
 
 				int sumSell = 0;
 				int sumRefund = 0;
