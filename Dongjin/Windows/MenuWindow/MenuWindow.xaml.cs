@@ -20,7 +20,7 @@ namespace Dongjin.Windows.MenuWindow
 		private List<LabelClass> labels = new List<LabelClass>();
 		private List<Grid> grids = new List<Grid>();
 
-		private bool underVisible = true;
+		private bool underVisible = false;
 		private int topIndex = -1;
 		private int underIndex = 0;
 

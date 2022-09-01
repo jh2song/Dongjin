@@ -171,7 +171,6 @@ namespace Dongjin.Windows.LoginWindow
 				var options = new SQLiteConnectionString(App.databasePath, false, key: passwordBox1.Password);
 				DB.Conn = new SQLiteConnection(options);
 				DB.Conn.CreateTable<TEST>();
-				Bubble.bubble = true;
 				new MenuWindow.MenuWindow().Show();
 				Close();
 			}

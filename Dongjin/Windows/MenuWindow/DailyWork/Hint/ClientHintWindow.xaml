@@ -31,21 +31,24 @@
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Left"
                 />
-            <ListView x:Name="ClientsListView"
-                  SelectionChanged="ClientsListView_SelectionChanged"
-                  Margin="0 5 0 0">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <uc:ClientControl Client="{Binding}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
+            <Grid>
+                <ScrollViewer>
+                    <ListView x:Name="ClientsListView"
+                          SelectionChanged="ClientsListView_SelectionChanged"
+                          Margin="0 5 0 0">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <uc:ClientControl Client="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
