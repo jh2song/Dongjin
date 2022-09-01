@@ -1008,7 +1008,10 @@ AND p.ProductCode = ?
 					realTransaction.Price += ts.Price;
 					realTransaction.ProductCount += ts.ProductCount;
 
-					DB.Conn.Update(realTransaction);
+					if (realTransaction.ProductCount != 0)
+						DB.Conn.Update(realTransaction);
+					else
+						DB.Conn.Delete(realTransaction);
 				}
 
 				// ClientLedger 테이블 수정
