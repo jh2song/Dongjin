@@ -13,27 +13,45 @@
         WindowState="Maximized"
         WindowStyle="None"
         >
-    <Grid>
-        <StackPanel
-            Margin="10"
+    <Grid
+        Margin="10"
+        Grid.Row="3"
+        >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        
+        <Label
+            Grid.Row="0"
+            Content="종료하실려면 ESC를 누르세요"
+            Background="White"
+            Foreground="Black"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Center"
+            />
+        <TextBox 
+            Grid.Row="1"
+            x:Name="SearchTB"
+            Margin="0 5 0 5"
+            KeyUp="SearchTB_KeyUp"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Left"
+            />
+
+        <ScrollViewer
+            Grid.Row="2"
+            Margin="0 5 0 0"
+            ScrollViewer.CanContentScroll="True"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
             >
-            <Label
-                Content="종료하실려면 ESC를 누르세요"
-                Background="White"
-                Foreground="Black"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center"
-                />
-            <TextBox 
-                x:Name="SearchTB"
-                Margin="0 5 0 5"
-                KeyUp="SearchTB_KeyUp"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Left"
-                />
             <ListView x:Name="ProductsListView"
                       SelectionChanged="ProductsListView_SelectionChanged"
-                  Margin="0 5 0 0">
+                      Background="Black"
+                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -45,6 +63,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
