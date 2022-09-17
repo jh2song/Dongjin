@@ -50,7 +50,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			}
 			else
 			{
-				var filteredList = _products.Where(c => c.ProductCode.StartsWith(SearchTB.Text));
+				var filteredList = _products.Where(c => c.ProductCode.StartsWith(SearchTB.Text)
+				|| c.ProductName.StartsWith(SearchTB.Text)
+				);
 
 				ProductsListView.ItemsSource = filteredList;
 			}
