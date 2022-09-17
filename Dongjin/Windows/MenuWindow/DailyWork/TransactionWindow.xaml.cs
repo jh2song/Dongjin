@@ -935,7 +935,8 @@ FROM Client c, Discount d, Product p
 WHERE c.PercentCode = d.DiscountCode
 AND d.BrandCode = p.BrandCode
 AND p.ProductCode = ?
-", productObject.ProductCode).FirstOrDefault();
+AND c.ClientCode = ?;
+", productObject.ProductCode, clientCode).FirstOrDefault();
 				
 				if (query == null)
 				{
