@@ -869,7 +869,8 @@ AND TransactionDate = ?
 			{
 				if (ProductCountTB.Text == "")
 				{
-					return;
+					ProductCountTB.Text = "1";
+					productCount = 1;
 				}
 				else
 				{
@@ -1107,9 +1108,6 @@ AND c.ClientCode = ?;
 
 		private void ProductCountTB_GotFocus(object sender, RoutedEventArgs e)
 		{
-			if (ProductCountTB.Text == "")
-				ProductCountTB.Text = "1";
-
 			ProductCountTB.Select(ProductCodeTB.Text.Length, 0);
 		}
 	}
