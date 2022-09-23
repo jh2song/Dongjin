@@ -13,15 +13,13 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 	/// </summary>
 	public partial class ProductHintWindow : Window
 	{
-		private List<Product> _products;
+		private List<Product> _products = new List<Product>();
 
 		public ProductHintWindow()
 		{
 			InitializeComponent();
 
 			SearchTB.Focus();
-
-			_products = new List<Product>();
 
 			ReadDatabase();
 		}
@@ -30,7 +28,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 		{
 			DB.Conn.CreateTable<Product>();
 
-			_products = (DB.Conn.Table<Product>().ToList()).OrderBy(c => c.ProductCode).ToList();
+			_products = DB.Conn.Table<Product>().OrderBy(c => c.ProductCode).ToList();
 
 			if (_products != null)
 			{
