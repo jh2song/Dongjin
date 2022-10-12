@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dongjin.Table;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,7 +18,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
     /// </summary>
     public partial class PrintTransactionWindow : Window
     {
-        public PrintTransactionWindow()
+        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient)
         {
             InitializeComponent();
         }

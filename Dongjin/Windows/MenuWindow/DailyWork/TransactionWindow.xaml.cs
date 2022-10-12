@@ -2,6 +2,7 @@
 using Dongjin.Table;
 using Dongjin.Windows.MenuWindow.BaseWork;
 using Dongjin.Windows.MenuWindow.DailyWork.Hint;
+using Dongjin.Windows.MenuWindow.DailyWork.Print;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,6 +26,12 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private decimal productDiscountRate;
 		private DateTime transactionDate;
 		private int clientCode;
+		public static int returnClientCode = -1;
+
+		class Rate
+		{
+			public double DiscountRate { get; set; }
+		}
 
 		public TransactionWindow()
 		{
@@ -157,8 +164,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			else
 				e.Handled = RegexClass.NotNumericBackspace(e.Text);
 		}
-
-		public static int returnClientCode = -1;
 
 		private void ClientCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
@@ -629,22 +634,22 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				PrintOptionLB.Visibility = Visibility.Hidden;
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
-
+					new PrintTransactionWindow("P", transactionDate, foundClient).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
-
+					new PrintTransactionWindow("P1", transactionDate, foundClient).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
-
+					new PrintTransactionWindow("P2", transactionDate, foundClient).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
-
+					new PrintTransactionWindow("P0", transactionDate, foundClient).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")
@@ -919,11 +924,6 @@ AND TransactionDate = ?
 					return;
 				}
 			}
-		}
-
-		class Rate
-		{
-			public double DiscountRate { get; set; }
 		}
 
 		private void DiscountPercentTB_GotFocus(object sender, RoutedEventArgs e)
