@@ -634,22 +634,22 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				PrintOptionLB.Visibility = Visibility.Hidden;
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
-					new PrintTransactionWindow("P", transactionDate, foundClient).ShowDialog();
+					new PrintTransactionWindow("P", transactionDate, foundClient, DG).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
-					new PrintTransactionWindow("P1", transactionDate, foundClient).ShowDialog();
+					new PrintTransactionWindow("P1", transactionDate, foundClient, DG).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
-					new PrintTransactionWindow("P2", transactionDate, foundClient).ShowDialog();
+					new PrintTransactionWindow("P2", transactionDate, foundClient, DG).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
-					new PrintTransactionWindow("P0", transactionDate, foundClient).ShowDialog();
+					new PrintTransactionWindow("P0", transactionDate, foundClient, DG).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")

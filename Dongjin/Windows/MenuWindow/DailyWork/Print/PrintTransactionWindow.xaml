@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.DailyWork.Print"
         mc:Ignorable="d"
-        Title="PrintTransactionWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="PrintTransactionWindow" Height="500" Width="720">
+    <StackPanel
+        Orientation="Vertical"
+        >
+        <Button
+            Margin="0 5 0 0"
+            Content="인쇄 하기"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            />
+        <ScrollViewer
+            Name="SV"
+            CanContentScroll="True"
+            VerticalScrollBarVisibility="Visible"
+            >
+            <Label
+                Foreground="Black"
+                Background="White"
+                >
+                <TextBlock            
+                    TextDecorations="Underline"
+                    Text="거래 명세서"
+                />
+            </Label>
+        </ScrollViewer>
+    </StackPanel>
 </Window>

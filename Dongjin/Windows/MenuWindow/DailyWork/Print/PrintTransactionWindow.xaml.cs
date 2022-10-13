@@ -18,7 +18,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
     /// </summary>
     public partial class PrintTransactionWindow : Window
     {
-        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient)
+        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, DataGrid DG)
         {
             InitializeComponent();
         }
