@@ -40,7 +40,16 @@
                     VerticalScrollBarVisibility="Hidden"
                     CanUserAddRows="False"
                     GridLinesVisibility="None"
-                >
+                    Style="{x:Null}"
+                    >
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource PrintDataGridColumnHeader}"/>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
+                    </DataGrid.CellStyle>
+
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
                             <DataGridTextColumn.ElementStyle>
