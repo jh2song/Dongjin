@@ -27,14 +27,103 @@
                 <Label
                     Foreground="Black"
                     Background="White"
+                    FontSize="20"
                     >
                     <TextBlock            
                         TextDecorations="Underline"
                         Text="거래 명세서"
                     />
                 </Label>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    >
+                    <Label
+                        x:Name="Year"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        />
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="년 "
+                        FontSize="10"
+                        />
+                    <Label
+                        x:Name="Month"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        />
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="월 "
+                        FontSize="10"
+                        />
+                    <Label
+                        x:Name="Day"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        />
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="일"
+                        FontSize="10"
+                        />
+                </StackPanel>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    >
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="거래처코드: "
+                        FontSize="10"
+                        />
+                    <Label
+                        x:Name="LBClientCode"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        Margin="0 0 10 0"
+                        />
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="전화: "
+                        FontSize="10"
+                        />
+                    <Label
+                        x:Name="LBPhone"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        Margin="0 0 10 0"
+                        />
+                    <Label
+                        Foreground="Black"
+                        Background="White"
+                        Content="거래처명: "
+                        FontSize="10"
+                        />
+                    <Label
+                        x:Name="LBClientName"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        />
+                </StackPanel>
+                
+                
                 <DataGrid
-                    x:Name="DG"
+                    x:Name="DGPrint"
                     RowHeaderWidth="0"
                     AutoGenerateColumns="False"
                     VerticalScrollBarVisibility="Hidden"

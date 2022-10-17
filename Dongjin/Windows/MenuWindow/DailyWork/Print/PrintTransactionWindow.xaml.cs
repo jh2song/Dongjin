@@ -21,6 +21,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, DataGrid DG)
         {
             InitializeComponent();
+
+
         }
+
+
     }
 }
