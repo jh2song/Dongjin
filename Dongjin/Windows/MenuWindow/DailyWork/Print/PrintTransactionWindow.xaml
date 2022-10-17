@@ -257,7 +257,7 @@
                         />
 
                     <Label
-                        Content="당월환입액"
+                        Content="당월판매액"
                         Foreground="Black"
                         FontSize="10"
                         Grid.Row="2"
@@ -265,10 +265,27 @@
                         HorizontalAlignment="Center"
                         />
                     <Label
-                        x:Name="LBThisMonthRefundMoney"
+                        x:Name="LBThisMonthSellingMoney"
                         Foreground="Black"
                         FontSize="10"
                         Grid.Row="2"
+                        Grid.Column="3"
+                        HorizontalAlignment="Left"
+                        />
+                    
+                    <Label
+                        Content="당월환입액"
+                        Foreground="Black"
+                        FontSize="10"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        />
+                    <Label
+                        x:Name="LBThisMonthRefundMoney"
+                        Foreground="Black"
+                        FontSize="10"
+                        Grid.Row="3"
                         Grid.Column="3"
                         HorizontalAlignment="Left"
                         />
@@ -277,7 +294,7 @@
                         Content="당월입금액"
                         Foreground="Black"
                         FontSize="10"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Grid.Column="2"
                         HorizontalAlignment="Center"
                         />
@@ -285,7 +302,7 @@
                         x:Name="LBThisMonthDepositMoney"
                         Foreground="Black"
                         FontSize="10"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Grid.Column="3"
                         HorizontalAlignment="Left"
                         />
