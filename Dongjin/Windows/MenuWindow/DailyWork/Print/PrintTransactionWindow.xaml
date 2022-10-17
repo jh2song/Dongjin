@@ -116,7 +116,8 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Border
@@ -316,10 +317,19 @@
                         />
 
                     <Label
-                        x:Name="LBAlarm"
+                        x:Name="LBAlarm1"
                         Foreground="Black"
                         FontSize="10"
+                        Content=""
                         Grid.Row="6"
+                        Grid.ColumnSpan="4"
+                        />
+                    <Label
+                        x:Name="LBAlarm2"
+                        Foreground="Black"
+                        FontSize="10"
+                        Content=""
+                        Grid.Row="7"
                         Grid.ColumnSpan="4"
                         />
                 </Grid>

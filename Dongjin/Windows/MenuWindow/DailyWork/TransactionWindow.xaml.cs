@@ -27,6 +27,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 		private DateTime transactionDate;
 		private int clientCode;
 		public static int returnClientCode = -1;
+		private List<Document> _documentList = null;
 
 		class Rate
 		{
@@ -634,22 +635,22 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				PrintOptionLB.Visibility = Visibility.Hidden;
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
-					new PrintTransactionWindow("P", transactionDate, foundClient, DG).ShowDialog();
+					new PrintTransactionWindow("P", transactionDate, foundClient, _documentList).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
-					new PrintTransactionWindow("P1", transactionDate, foundClient, DG).ShowDialog();
+					new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
-					new PrintTransactionWindow("P2", transactionDate, foundClient, DG).ShowDialog();
+					new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
-					new PrintTransactionWindow("P0", transactionDate, foundClient, DG).ShowDialog();
+					new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")
@@ -1072,20 +1073,20 @@ AND c.ClientCode = ?;
 
 				// Datagrid에 표시
 				DB.Conn.CreateTable<Document>();
-				var list = DB.Conn.Table<Document>().ToList().Where(t => t.Choice == choice &&
+				_documentList = DB.Conn.Table<Document>().Where(t => t.Choice == choice &&
 																				t.ClientCode == clientCode &&
 																				t.TransactionDate == transactionDate)
 					.OrderBy(t => t.AppendOption0)
 					.OrderBy(t => t.AppendOption1)
 					.OrderBy(t => t.AppendOption2)
-					.OrderBy(t => t.ProductCode);
+					.OrderBy(t => t.ProductCode).ToList();
 				DG.ItemsSource = null;
-				DG.ItemsSource = list;
+				DG.ItemsSource = _documentList;
 
 				int totalCount = 0;
 				int totalDiscountPrice = 0;
 				int totalPrice = 0;
-				foreach(var element in list)
+				foreach(var element in _documentList)
 				{
 					totalCount += element.ProductCount;
 					totalDiscountPrice += element.DiscountPrice;

@@ -1,6 +1,7 @@
 ﻿using Dongjin.Table;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,9 +22,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         string _printOption;
         DateTime _transactionDate;
         Client _foundClient;
-        DataGrid _DG;
+        List<Document> _DG;
 
-        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, DataGrid DG)
+        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, List<Document> DG)
         {
             InitializeComponent();
 
@@ -35,6 +36,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             SetDate();
             SetClientInfo();
             SetDataGrid();
+            SetDetails();
         }
 
 		private void SetDate()
@@ -66,7 +68,73 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 
         private void SetDataGrid()
         {
-			
+			switch (_printOption)
+			{
+                case "P":
+                    SetOnly0();
+                    break;
+                case "P1":
+                    SetOnly1();
+                    break;
+                case "P2":
+                    SetOnly2();
+                    break;
+                case "P0":
+                    SetAll();
+                    break;
+			}
+        }
+
+		private void SetOnly0()
+		{
+            _DG = _DG.Where(dc => dc.AppendOption0 == 1 
+            && dc.AppendOption1 == 0 
+            && dc.AppendOption2 == 0)
+                .ToList();
+
+            DGPrint.ItemsSource = _DG;
+		}
+
+		private void SetOnly1()
+		{
+            _DG = _DG.Where(dc => dc.AppendOption0 == 0
+           && dc.AppendOption1 == 1
+           && dc.AppendOption2 == 0)
+               .ToList();
+
+            DGPrint.ItemsSource = _DG;
+        }
+
+		private void SetOnly2()
+		{
+            _DG = _DG.Where(dc => dc.AppendOption0 == 0
+          && dc.AppendOption1 == 0
+          && dc.AppendOption2 == 1)
+              .ToList();
+
+            DGPrint.ItemsSource = _DG;
+        }
+
+		private void SetAll()
+		{
+            DGPrint.ItemsSource = _DG;
+        }
+
+        private void SetDetails()
+        {
+            // 당일분
+            LBPrevDayLeftMoney.Content = "";
+            LBSellingCount.Content = "";
+            LBSellingMoney.Content = "";
+            LBCurrentLeftMoney.Content = "";
+
+            // 월집계
+            LBPrevMonthLeftMoney.Content = "";
+            LBThisMonthSellingMoney.Content = "";
+            LBThisMonthRefundMoney.Content = "";
+            LBThisMonthDepositMoney.Content = "";
+
+            // 공지사항
         }
     }
 }

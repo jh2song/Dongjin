@@ -3,7 +3,7 @@ using System;
 
 namespace Dongjin.Table
 {
-	class Document
+	public class Document
 	{
 		[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
