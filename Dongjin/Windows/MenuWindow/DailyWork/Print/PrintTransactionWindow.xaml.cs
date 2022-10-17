@@ -34,6 +34,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 
             SetDate();
             SetClientInfo();
+            SetDataGrid();
         }
 
 		private void SetDate()
@@ -51,6 +52,21 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             outClientInfo += "거래처명: ";
             outClientInfo +=  _foundClient.ClientName.ToString();
             LBClientInfo.Content = outClientInfo;
+        }
+
+        class DGPrintClass
+        {
+            public string ProductName { get; set; }
+            public int ProductCount { get; set; }
+            public int Price { get; set; }
+            public int DiscountPrice { get; set; }
+            public int AppendOption1 { get; set; }
+            public int AppendOption2 { get; set; }
+        }
+
+        private void SetDataGrid()
+        {
+			
         }
     }
 }
