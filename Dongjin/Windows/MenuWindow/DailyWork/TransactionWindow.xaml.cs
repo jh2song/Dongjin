@@ -596,6 +596,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		public static string returnProductCode = "";
 
+		public class PrintMonth
+		{
+			public string PrevMonthLeftMoney { get; set; }
+			public string ThisMonthSellingMoney { get; set; }
+			public string ThisMonthRefundMoney { get; set; }
+			public string ThisMonthDepositMoney { get; set; }
+		}
+
 		private void ProductCodeTB_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter && ProductCodeTB.Text == "")
@@ -633,24 +641,40 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 			if (e.Key == Key.Enter)
 			{
 				PrintOptionLB.Visibility = Visibility.Hidden;
+
+				DB.Conn.CreateTable<Document>();
+				_documentList = DB.Conn.Table<Document>().Where(t => t.Choice == choice &&
+																				t.ClientCode == clientCode &&
+																				t.TransactionDate == transactionDate)
+					.OrderBy(t => t.AppendOption0)
+					.OrderBy(t => t.AppendOption1)
+					.OrderBy(t => t.AppendOption2)
+					.OrderBy(t => t.ProductCode).ToList();
+
+				PrintMonth printout = new PrintMonth();
+				printout.PrevMonthLeftMoney = PrevMonthLeftMoneyTB.Text;
+				printout.ThisMonthSellingMoney = MonthSellMoneyTB.Text;
+				printout.ThisMonthRefundMoney = MonthRefundMoneyTB.Text;
+				printout.ThisMonthDepositMoney = MonthDepositMoneyTB.Text;
+
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
-					new PrintTransactionWindow("P", transactionDate, foundClient, _documentList).ShowDialog();
+					new PrintTransactionWindow("P", transactionDate, foundClient, _documentList, printout).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
-					new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList).ShowDialog();
+					new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList, printout).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
-					new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList).ShowDialog();
+					new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList, printout).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
-					new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList).ShowDialog();
+					new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList, printout).ShowDialog();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")

@@ -1,4 +1,5 @@
-﻿using Dongjin.Table;
+﻿using Dongjin.Classes;
+using Dongjin.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Dongjin.Windows.MenuWindow.DailyWork.TransactionWindow;
 
 namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 {
@@ -23,8 +25,10 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         DateTime _transactionDate;
         Client _foundClient;
         List<Document> _DG;
+        PrintMonth _printMonth;
 
-        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, List<Document> DG)
+        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, List<Document> DG,
+           PrintMonth printMonth)
         {
             InitializeComponent();
 
@@ -32,6 +36,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             _transactionDate = transactionDate;
             _foundClient = foundClient;
             _DG = DG;
+            _printMonth = printMonth;
 
             SetDate();
             SetClientInfo();
@@ -123,18 +128,51 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         private void SetDetails()
         {
             // 당일분
-            LBPrevDayLeftMoney.Content = "";
-            LBSellingCount.Content = "";
-            LBSellingMoney.Content = "";
-            LBCurrentLeftMoney.Content = "";
+            SetTodayJobs();
 
             // 월집계
-            LBPrevMonthLeftMoney.Content = "";
-            LBThisMonthSellingMoney.Content = "";
-            LBThisMonthRefundMoney.Content = "";
-            LBThisMonthDepositMoney.Content = "";
+            LBPrevMonthLeftMoney.Content = _printMonth.PrevMonthLeftMoney;
+            LBThisMonthSellingMoney.Content = _printMonth.ThisMonthSellingMoney;
+            LBThisMonthRefundMoney.Content = _printMonth.ThisMonthRefundMoney;
+            LBThisMonthDepositMoney.Content = _printMonth.ThisMonthDepositMoney;
 
             // 공지사항
+            SetAlarm();
         }
-    }
+
+		private void SetTodayJobs()
+		{
+            DB.Conn.CreateTable<ClientLedger>();
+            var clientLedger = 
+            DB.Conn.Table<ClientLedger>()
+                .Where(cl => cl.ClientCode == _foundClient.ClientCode
+            && cl.TransactionDate == _transactionDate).ToList().FirstOrDefault();
+
+            LBPrevDayLeftMoney.Content = String.Format("{0:#,0}", (clientLedger.CurrentLeftMoney
+                - clientLedger.TodaySellMoney
+                + clientLedger.TodayRefundMoney
+                + clientLedger.TodayDepositMoney));
+
+            DB.Conn.CreateTable<Document>();
+            LBSellingCount.Content = String.Format("{0:#,0}", DB.Conn.Table<Document>().Where(d => d.TransactionDate == _transactionDate
+            && d.ClientCode == _foundClient.ClientCode).Sum(d => d.ProductCount));
+
+            LBSellingMoney.Content = String.Format("{0:#,0}", clientLedger.TodaySellMoney);
+
+            LBCurrentLeftMoney.Content = String.Format("{0:#,0}", clientLedger.CurrentLeftMoney);
+        }
+
+		private void SetAlarm()
+		{
+            DB.Conn.CreateTable<Alarm>();
+
+            Alarm alarmObj = DB.Conn.Table<Alarm>().ToList().FirstOrDefault();
+
+            if (alarmObj != null)
+            {
+                LBAlarm1.Content = alarmObj.AlarmString1;
+                LBAlarm2.Content = alarmObj.AlarmString2;
+            }
+        }
+	}
 }

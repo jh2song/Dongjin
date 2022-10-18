@@ -123,7 +123,7 @@
                     <Border
                         BorderThickness="1"
                         BorderBrush="Black"
-                        Grid.RowSpan="7"
+                        Grid.RowSpan="8"
                         Grid.ColumnSpan="4"
                         />
                     <Border
@@ -140,18 +140,23 @@
                         Grid.ColumnSpan="4"
                         />
                     <Border
-                        BorderThickness="1 1 1 0"
+                        BorderThickness="0 1 0 0"
                         BorderBrush="Black"
                         Grid.Row="5"
                         Grid.ColumnSpan="4"
                         />
                     <Border
-                        BorderThickness="1 1 1 1"
+                        BorderThickness="0 1 0 0"
                         BorderBrush="Black"
                         Grid.Row="6"
                         Grid.ColumnSpan="4"
                         />
-
+                    <Border
+                        BorderThickness="0 0 0 0"
+                        BorderBrush="Black"
+                        Grid.Row="7"
+                        Grid.ColumnSpan="4"
+                        />
 
                     <Label
                         Content="당일분"
