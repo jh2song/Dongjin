@@ -13,7 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Markup;
 using static Dongjin.Windows.MenuWindow.DailyWork.TransactionWindow;
+using System.IO;
 
 namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 {
@@ -178,29 +180,21 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
-            FlowDocument document = new FlowDocument();
+            PrintDialog pd = new PrintDialog();
+            FlowDocument fd = SV.Document;
 
-            //PrintDialog printDlg = new PrintDialog();
+            if (pd.ShowDialog() != null)
+            {
+                fd.PageHeight = pd.PrintableAreaHeight;
+                fd.PageWidth = pd.PrintableAreaWidth;
+                fd.PagePadding = new Thickness(50);
+                fd.ColumnGap = 0;
+                fd.ColumnWidth = pd.PrintableAreaWidth;
 
-            //if (printDlg.ShowDialog() == true)
-            //{
-            //    System.Printing.PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
-            //    double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / SV.ActualWidth, capabilities.PageImageableArea.ExtentHeight /
-            //    SV.ActualHeight);
-            //    SV.LayoutTransform = new ScaleTransform(scale, scale);
-            //    Size sz = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
-            //    //update the layout of the visual to the printer page size.
-            //    SV.Measure(sz);
-            //    SV.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
-
-            //    //now print the visual to printer to fit on the one page.
-            //    printDlg.PrintVisual(SV, "First Fit to Page WPF Print");
-            //}
-        }
-
-		private void DGPrint_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-		{
-            SV.ScrollToVerticalOffset(SV.VerticalOffset - e.Delta / 3);
+                IDocumentPaginatorSource dps = fd;
+                pd.PrintDocument(dps.DocumentPaginator, "flow doc");
+                this.Close();
+            }
         }
 	}
 }

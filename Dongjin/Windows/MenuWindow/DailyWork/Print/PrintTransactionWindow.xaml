@@ -11,7 +11,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
-        
+
         <Button
             Grid.Row="0"
             x:Name="BtnPrint"
@@ -21,332 +21,343 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
-        <ScrollViewer
+        <FlowDocumentScrollViewer
             Grid.Row="1"
             Name="SV"
-            CanContentScroll="False"
             VerticalScrollBarVisibility="Hidden"
             >
-            <StackPanel
-                Orientation="Vertical"
+            <FlowDocument
+                FontFamily="Segoe UI"
                 >
+                <Section>
+                    <BlockUIContainer>
+                        <Label
+                            Foreground="Black"
+                            Background="White"
+                            FontSize="20"
+                            >
+                            <TextBlock            
+                                TextDecorations="Underline"
+                                Text="거래 명세서"
+                                />
+                        </Label>
+                    </BlockUIContainer>
 
-                <Label
-                    Foreground="Black"
-                    Background="White"
-                    FontSize="20"
-                    >
-                    <TextBlock            
-                        TextDecorations="Underline"
-                        Text="거래 명세서"
-                    />
-                </Label>
+                    <BlockUIContainer>
+                        <Label
+                        x:Name="LBDate"
+                        Foreground="Black"
+                        Background="White"
+                        FontSize="10"
+                        />
+                    </BlockUIContainer>
 
-                <Label
-                    x:Name="LBDate"
-                    Foreground="Black"
-                    Background="White"
-                    FontSize="10"
-                    />
+                    <BlockUIContainer>
+                        <Label
+                            x:Name="LBClientInfo"
+                            Foreground="Black"
+                            Background="White"
+                            FontSize="10"
+                        />
+                    </BlockUIContainer>
 
-                <Label
-                    x:Name="LBClientInfo"
-                    Foreground="Black"
-                    Background="White"
-                    FontSize="10"
-                    />
+                    <BlockUIContainer>
+                        <DataGrid
+                            x:Name="DGPrint"
+                            RowHeaderWidth="0"
+                            AutoGenerateColumns="False"
+                            VerticalScrollBarVisibility="Hidden"
+                            CanUserAddRows="False"
+                            GridLinesVisibility="None"
+                            IsHitTestVisible="False"
+                            Style="{x:Null}"
+                            Margin="10 0 10 0"
+                            >
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource PrintDataGridColumnHeader}"/>
+                            </DataGrid.ColumnHeaderStyle>
 
-                <DataGrid
-                    x:Name="DGPrint"
-                    RowHeaderWidth="0"
-                    AutoGenerateColumns="False"
-                    VerticalScrollBarVisibility="Hidden"
-                    CanUserAddRows="False"
-                    GridLinesVisibility="None"
-                    PreviewMouseWheel="DGPrint_PreviewMouseWheel"
-                    Style="{x:Null}"
-                    Margin="10 0 10 0"
-                    >
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource PrintDataGridColumnHeader}"/>
-                    </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
+                            </DataGrid.CellStyle>
 
-                    <DataGrid.CellStyle>
-                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
-                    </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </BlockUIContainer>
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style BasedOn="{StaticResource CellCenterAlign}"/>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Grid
-                    Margin="10 10 10 0"
-                    >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="4*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="4*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                    <BlockUIContainer>
+                        <Grid
+                            Margin="10 10 10 0"
+                            >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Border
-                        BorderThickness="1"
-                        BorderBrush="Black"
-                        Grid.RowSpan="8"
-                        Grid.ColumnSpan="4"
-                        />
-                    <Border
-                        BorderThickness="0 0 1 0"
-                        BorderBrush="Black"
-                        Grid.Row="0"
-                        Grid.RowSpan="5"
-                        Grid.ColumnSpan="2"
-                        />
-                    <Border
-                        BorderThickness="0 0 0 1"
-                        BorderBrush="Black"
-                        Grid.Row="0"
-                        Grid.ColumnSpan="4"
-                        />
-                    <Border
-                        BorderThickness="0 1 0 0"
-                        BorderBrush="Black"
-                        Grid.Row="5"
-                        Grid.ColumnSpan="4"
-                        />
-                    <Border
-                        BorderThickness="0 1 0 0"
-                        BorderBrush="Black"
-                        Grid.Row="6"
-                        Grid.ColumnSpan="4"
-                        />
-                    <Border
-                        BorderThickness="0 0 0 0"
-                        BorderBrush="Black"
-                        Grid.Row="7"
-                        Grid.ColumnSpan="4"
-                        />
+                            <Border
+                                BorderThickness="1"
+                                BorderBrush="Black"
+                                Grid.RowSpan="8"
+                                Grid.ColumnSpan="4"
+                                />
+                            <Border
+                                BorderThickness="0 0 1 0"
+                                BorderBrush="Black"
+                                Grid.Row="0"
+                                Grid.RowSpan="5"
+                                Grid.ColumnSpan="2"
+                                />
+                            <Border
+                                BorderThickness="0 0 0 1"
+                                BorderBrush="Black"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="4"
+                                />
+                            <Border
+                                BorderThickness="0 1 0 0"
+                                BorderBrush="Black"
+                                Grid.Row="5"
+                                Grid.ColumnSpan="4"
+                                />
+                            <Border
+                                BorderThickness="0 1 0 0"
+                                BorderBrush="Black"
+                                Grid.Row="6"
+                                Grid.ColumnSpan="4"
+                                />
+                            <Border
+                                BorderThickness="0 0 0 0"
+                                BorderBrush="Black"
+                                Grid.Row="7"
+                                Grid.ColumnSpan="4"
+                                />
 
-                    <Label
-                        Content="당일분"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        HorizontalAlignment="Center"
-                        />
+                            <Label
+                                Content="당일분"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                HorizontalAlignment="Center"
+                                />
 
-                    <Label
-                        Content="전일미수"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBPrevDayLeftMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="전일미수"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBPrevDayLeftMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="판매수량"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="2"
-                        Grid.Column="0"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBSellingCount"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="판매수량"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBSellingCount"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="판매금액"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBSellingMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="판매금액"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBSellingMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="현재미수"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBCurrentLeftMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="현재미수"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBCurrentLeftMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="월집계"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        HorizontalAlignment="Center"
-                        />
+                            <Label
+                                Content="월집계"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                HorizontalAlignment="Center"
+                                />
 
-                    <Label
-                        Content="전월말미수"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBPrevMonthLeftMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="1"
-                        Grid.Column="3"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="전월말미수"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBPrevMonthLeftMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="당월판매액"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="2"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBThisMonthSellingMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="2"
-                        Grid.Column="3"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="당월판매액"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBThisMonthSellingMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="당월환입액"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="3"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBThisMonthRefundMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="3"
-                        Grid.Column="3"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="당월환입액"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBThisMonthRefundMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="3"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="당월입금액"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="4"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        />
-                    <Label
-                        x:Name="LBThisMonthDepositMoney"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="4"
-                        Grid.Column="3"
-                        HorizontalAlignment="Left"
-                        />
+                            <Label
+                                Content="당월입금액"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                />
+                            <Label
+                                x:Name="LBThisMonthDepositMoney"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="4"
+                                Grid.Column="3"
+                                HorizontalAlignment="Left"
+                                />
 
-                    <Label
-                        Content="공지사항"
-                        Foreground="Black"
-                        FontSize="10"
-                        Grid.Row="5"
-                        Grid.ColumnSpan="4"
-                        />
+                            <Label
+                                Content="공지사항"
+                                Foreground="Black"
+                                FontSize="10"
+                                Grid.Row="5"
+                                Grid.ColumnSpan="4"
+                                />
 
-                    <Label
-                        x:Name="LBAlarm1"
-                        Foreground="Black"
-                        FontSize="10"
-                        Content=""
-                        Grid.Row="6"
-                        Grid.ColumnSpan="4"
-                        />
-                    <Label
-                        x:Name="LBAlarm2"
-                        Foreground="Black"
-                        FontSize="10"
-                        Content=""
-                        Grid.Row="7"
-                        Grid.ColumnSpan="4"
-                        />
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
+                            <Label
+                                x:Name="LBAlarm1"
+                                Foreground="Black"
+                                FontSize="10"
+                                Content=""
+                                Grid.Row="6"
+                                Grid.ColumnSpan="4"
+                                />
+                            <Label
+                                x:Name="LBAlarm2"
+                                Foreground="Black"
+                                FontSize="10"
+                                Content=""
+                                Grid.Row="7"
+                                Grid.ColumnSpan="4"
+                                />
+                        </Grid>
+                    </BlockUIContainer>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
     </Grid>
 </Window>
