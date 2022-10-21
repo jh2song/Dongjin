@@ -3,6 +3,7 @@ using Dongjin.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -173,6 +174,33 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
                 LBAlarm1.Content = alarmObj.AlarmString1;
                 LBAlarm2.Content = alarmObj.AlarmString2;
             }
+        }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            FlowDocument document = new FlowDocument();
+
+            //PrintDialog printDlg = new PrintDialog();
+
+            //if (printDlg.ShowDialog() == true)
+            //{
+            //    System.Printing.PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
+            //    double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / SV.ActualWidth, capabilities.PageImageableArea.ExtentHeight /
+            //    SV.ActualHeight);
+            //    SV.LayoutTransform = new ScaleTransform(scale, scale);
+            //    Size sz = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
+            //    //update the layout of the visual to the printer page size.
+            //    SV.Measure(sz);
+            //    SV.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), sz));
+
+            //    //now print the visual to printer to fit on the one page.
+            //    printDlg.PrintVisual(SV, "First Fit to Page WPF Print");
+            //}
+        }
+
+		private void DGPrint_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+		{
+            SV.ScrollToVerticalOffset(SV.VerticalOffset - e.Delta / 3);
         }
 	}
 }

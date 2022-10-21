@@ -6,24 +6,31 @@
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.DailyWork.Print"
         mc:Ignorable="d"
         Title="PrintTransactionWindow" Height="500" Width="720">
-    <StackPanel
-        Orientation="Vertical"
-        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        
         <Button
+            Grid.Row="0"
+            x:Name="BtnPrint"
+            Click="BtnPrint_Click"
             Margin="0 5 0 0"
             Content="인쇄 하기"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
         <ScrollViewer
+            Grid.Row="1"
             Name="SV"
-            CanContentScroll="True"
-            VerticalScrollBarVisibility="Visible"
+            CanContentScroll="False"
+            VerticalScrollBarVisibility="Hidden"
             >
             <StackPanel
                 Orientation="Vertical"
                 >
-                
+
                 <Label
                     Foreground="Black"
                     Background="White"
@@ -56,6 +63,7 @@
                     VerticalScrollBarVisibility="Hidden"
                     CanUserAddRows="False"
                     GridLinesVisibility="None"
+                    PreviewMouseWheel="DGPrint_PreviewMouseWheel"
                     Style="{x:Null}"
                     Margin="10 0 10 0"
                     >
@@ -166,7 +174,7 @@
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Center"
                         />
-                    
+
                     <Label
                         Content="전일미수"
                         Foreground="Black"
@@ -278,7 +286,7 @@
                         Grid.Column="3"
                         HorizontalAlignment="Left"
                         />
-                    
+
                     <Label
                         Content="당월환입액"
                         Foreground="Black"
@@ -340,5 +348,5 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-    </StackPanel>
+    </Grid>
 </Window>
