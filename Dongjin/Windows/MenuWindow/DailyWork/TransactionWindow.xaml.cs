@@ -1003,8 +1003,8 @@ AND c.ClientCode = ?;
 				ts.ProductCode = productObject.ProductCode;
 				ts.ProductName = productObject.ProductName;
 				ts.ProductCount = productCount;
-				ts.Price = productObject.Price * productCount;
-				ts.DiscountPrice = (int)((decimal)ts.Price * productDiscountRate / 100.00m);
+				ts.Price = productObject.Price;
+				ts.DiscountPrice = (int)((decimal)ts.Price * productCount * productDiscountRate / 100.00m);
 				switch (appendChoice)
 				{
 					case 0:
