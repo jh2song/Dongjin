@@ -73,41 +73,38 @@
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
                             >
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource PrintDataGridColumnHeader}"/>
-                            </DataGrid.ColumnHeaderStyle>
 
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="8*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>

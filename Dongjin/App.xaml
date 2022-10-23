@@ -121,12 +121,24 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="10"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        </Style>
+
+        <Style x:Key="PrintDataGridColumnHeaderLeft" TargetType="DataGridColumnHeader" BasedOn="{StaticResource PrintDataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="3 0 0 0"/>
+        </Style>
+
+        <Style x:Key="PrintDataGridColumnHeaderRight" TargetType="DataGridColumnHeader" BasedOn="{StaticResource PrintDataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0 0 3 0"/>
         </Style>
 
         <Style x:Key="CellLeftAlign">
             <Setter Property="Control.HorizontalAlignment"
             Value="Left" />
-            <Setter Property="Control.Margin" Value="2 0 0 0"/>
+            <Setter Property="Control.Padding" Value="3 0 0 0"/>
         </Style>
         <Style x:Key="CellCenterAlign">
             <Setter Property="Control.HorizontalAlignment"
@@ -135,7 +147,7 @@
         <Style x:Key="CellRightAlign">
             <Setter Property="Control.HorizontalAlignment"
             Value="Right" />
-            <Setter Property="Control.Margin" Value="0 0 2 0"/>
+            <Setter Property="Control.Padding" Value="0 0 3 0"/>
         </Style>
     </Application.Resources>
 </Application>
