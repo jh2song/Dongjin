@@ -104,6 +104,13 @@
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
+        <Style x:Key="PrintDataGrid" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        
         <Style x:Key="PrintDataGridCell" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -128,5 +135,13 @@
             <Setter Property="Control.HorizontalAlignment"
             Value="Right" />
         </Style>
+
+        <Style x:Key="MarginCellLeftAlign" BasedOn="{StaticResource CellLeftAlign}">
+            <Setter Property="Control.Margin" Value="2 0 0 0"/>
+        </Style>
+        <Style x:Key="MarginCellRightAlign" BasedOn="{StaticResource CellRightAlign}">
+            <Setter Property="Control.Margin" Value="0 0 2 0"/>
+        </Style>
+        
     </Application.Resources>
 </Application>

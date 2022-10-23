@@ -275,7 +275,7 @@
                 Grid.Column="3"
                 />
             <TextBox
-                Text="정가 액"
+                Text="정 가 액"
                 VerticalAlignment="Center"
                 Background="White"
                 Foreground="Black"
