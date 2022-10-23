@@ -11,6 +11,7 @@
         WindowState="Maximized"
         WindowStyle="None"
         Background="Black"
+        KeyDown="Window_KeyDown"
         >
     <Grid>
         <Grid.RowDefinitions>

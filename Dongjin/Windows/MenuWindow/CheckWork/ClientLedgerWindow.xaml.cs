@@ -1,5 +1,6 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Table;
+using Dongjin.Windows.MenuWindow.CheckWork.Print;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -248,5 +249,11 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 				Close();
 			}
 		}
-	}
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+			new PrintCLWindow(DG).Show();
+			return;
+        }
+    }
 }

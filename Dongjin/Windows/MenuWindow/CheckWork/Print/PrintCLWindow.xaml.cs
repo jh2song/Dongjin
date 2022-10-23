@@ -17,9 +17,19 @@ namespace Dongjin.Windows.MenuWindow.CheckWork.Print
     /// </summary>
     public partial class PrintCLWindow : Window
     {
-        public PrintCLWindow()
+        private DataGrid _DG;
+
+        public PrintCLWindow(DataGrid DG)
         {
             InitializeComponent();
+
+            _DG = DG;
+            SetDataGrid();
+        }
+
+        private void SetDataGrid()
+        {
+            
         }
     }
 }
