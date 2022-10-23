@@ -77,7 +77,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ClientName}" IsReadOnly="True" Width="5*">
@@ -87,7 +87,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding PercentCode}" IsReadOnly="True" Width="*">
@@ -97,7 +97,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
@@ -107,7 +107,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FinalDepositDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
@@ -117,7 +117,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FinalTransactionDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
@@ -127,7 +127,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Phone}" IsReadOnly="True" Width="3*">
@@ -137,7 +137,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>

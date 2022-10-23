@@ -94,7 +94,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding BrandName}" IsReadOnly="True" Width="2*">
@@ -104,7 +104,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding DiscountRate, StringFormat=\{0:n2\}}" IsReadOnly="False" Width="*">
@@ -113,6 +113,9 @@
                             할인율
                         </TextBox>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                    </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
