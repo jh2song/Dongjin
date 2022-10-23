@@ -126,6 +126,7 @@
         <Style x:Key="CellLeftAlign">
             <Setter Property="Control.HorizontalAlignment"
             Value="Left" />
+            <Setter Property="Control.Margin" Value="2 0 0 0"/>
         </Style>
         <Style x:Key="CellCenterAlign">
             <Setter Property="Control.HorizontalAlignment"
@@ -134,14 +135,7 @@
         <Style x:Key="CellRightAlign">
             <Setter Property="Control.HorizontalAlignment"
             Value="Right" />
-        </Style>
-
-        <Style x:Key="MarginCellLeftAlign" BasedOn="{StaticResource CellLeftAlign}">
-            <Setter Property="Control.Margin" Value="2 0 0 0"/>
-        </Style>
-        <Style x:Key="MarginCellRightAlign" BasedOn="{StaticResource CellRightAlign}">
             <Setter Property="Control.Margin" Value="0 0 2 0"/>
         </Style>
-        
     </Application.Resources>
 </Application>

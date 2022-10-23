@@ -84,32 +84,32 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellLeftAlign}"/>
+                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellRightAlign}"/>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellRightAlign}"/>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellRightAlign}"/>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellRightAlign}"/>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource MarginCellRightAlign}"/>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                             </DataGrid.Columns>

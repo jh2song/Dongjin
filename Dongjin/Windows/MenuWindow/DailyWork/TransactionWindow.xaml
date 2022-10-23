@@ -354,37 +354,37 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ProductCode}" IsReadOnly="True" Width="4*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="2*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                        <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
