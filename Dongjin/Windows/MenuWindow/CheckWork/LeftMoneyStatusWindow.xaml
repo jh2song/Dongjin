@@ -29,7 +29,18 @@
             Background="White"
             Grid.Row="0"
             />
-
+        
+        <RichTextBox
+            Grid.Row="0"
+            Margin="0 0 0 10"
+            HorizontalAlignment="Left"
+            HorizontalContentAlignment="Right" Background="Transparent"
+            >
+            <FlowDocument>
+                <Paragraph TextAlignment="Right" Foreground="Red" FontSize="40" FontWeight="Bold">프린트: F5</Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        
         <StackPanel
             Orientation="Horizontal"
             VerticalAlignment="Center"

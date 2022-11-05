@@ -18,18 +18,30 @@ namespace Dongjin.Windows.MenuWindow.CheckWork.Print
     public partial class PrintCLWindow : Window
     {
         private DataGrid _DG;
+        private string _sumSell;
+        private string _sumRefund;
+        private string _sumDeposit;
 
-        public PrintCLWindow(DataGrid DG)
+        public PrintCLWindow(DataGrid DG, string sumSell, string sumRefund, string sumDeposit)
         {
             InitializeComponent();
 
             _DG = DG;
+            _sumSell = sumSell;
+            _sumRefund = sumRefund;
+            _sumDeposit = sumDeposit;
+
             SetDataGrid();
         }
 
         private void SetDataGrid()
         {
             
+        }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -135,6 +135,10 @@
             <Setter Property="Padding" Value="0 0 3 0"/>
         </Style>
 
+        <Style x:Key="PrintDataGridColumnHeaderCenter" TargetType="DataGridColumnHeader" BasedOn="{StaticResource PrintDataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
         <Style x:Key="CellLeftAlign">
             <Setter Property="Control.HorizontalAlignment"
             Value="Left" />

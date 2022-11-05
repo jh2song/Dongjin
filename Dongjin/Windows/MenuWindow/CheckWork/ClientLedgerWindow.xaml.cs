@@ -252,7 +252,9 @@ namespace Dongjin.Windows.MenuWindow.CheckWork
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-			new PrintCLWindow(DG).Show();
+			if (e.Key == Key.F5)
+				new PrintCLWindow(DG, SumSellLB.Content.ToString(), SumRefundLB.Content.ToString(), SumDepositLB.Content.ToString()).Show();
+			
 			return;
         }
     }

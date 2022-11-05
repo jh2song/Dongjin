@@ -7,7 +7,22 @@
         mc:Ignorable="d"
         Title="PrintCLWindow" Height="500" Width="720">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        
+        <Button
+            Grid.Row="0"
+            x:Name="BtnPrint"
+            Click="BtnPrint_Click"
+            Margin="0 5 0 0"
+            Content="인쇄 하기"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            />
         <FlowDocumentScrollViewer
+            Grid.Row="1"
             Name="FDSV"
             VerticalScrollBarVisibility="Hidden"
             >
@@ -26,42 +41,40 @@
                             IsHitTestVisible="False"
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
+                            HorizontalAlignment="Center"
                             >
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource PrintDataGridColumnHeader}"/>
-                            </DataGrid.ColumnHeaderStyle>
 
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" IsReadOnly="True" Width="8*">
+                                <DataGridTextColumn Header="처리일자" HeaderStyle="{StaticResource PrintDataGridColumnHeaderCenter}" Binding="{Binding TransactionDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="*">
                                     <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" IsReadOnly="True" Width="2*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="전일 미수" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding PrevLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="금일 판매" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding TodaySellMoney,  StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="금일 환입" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding TodayRefundMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="금일 입금" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding TodayDepositMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="현재 미수" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
