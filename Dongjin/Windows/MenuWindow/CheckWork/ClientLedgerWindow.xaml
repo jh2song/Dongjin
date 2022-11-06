@@ -136,7 +136,7 @@
                         <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding PrevLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderRight}" Binding="{Binding PrevLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             전일 미수
@@ -146,7 +146,7 @@
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding TodaySellMoney,  StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderRight}" Binding="{Binding TodaySellMoney,  StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             금일 판매
@@ -156,7 +156,7 @@
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding TodayRefundMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderRight}" Binding="{Binding TodayRefundMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             금일 환입
@@ -166,7 +166,7 @@
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding TodayDepositMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderRight}" Binding="{Binding TodayDepositMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             금일 입금
@@ -176,7 +176,7 @@
                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
+                <DataGridTextColumn HeaderStyle="{StaticResource DataGridColumnHeaderRight}" Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="False" Width="*">
                     <DataGridTextColumn.Header>
                         <TextBox Background="White" Foreground="Black">
                             현재 미수
