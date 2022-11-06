@@ -10,7 +10,9 @@
         Height="1080"
         WindowState="Maximized"
         WindowStyle="None"
-        Background="Black">
+        Background="Black"
+        KeyDown="Window_KeyDown"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

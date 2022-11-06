@@ -21,5 +21,10 @@ namespace Dongjin.Windows.MenuWindow.CheckWork.Print
         {
             InitializeComponent();
         }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

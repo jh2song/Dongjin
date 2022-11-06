@@ -63,6 +63,7 @@
 
                     <BlockUIContainer>
                         <DataGrid
+                            Width="600"
                             x:Name="DGPrint"
                             RowHeaderWidth="0"
                             AutoGenerateColumns="False"
@@ -119,18 +120,21 @@
                             Margin="0 10 0 10"
                             BorderBrush="Black"
                             BorderThickness="0.5"
+                            Width="600"
                             />
                     </BlockUIContainer>
                     
                     <BlockUIContainer>
                         <Grid
                             Margin="10 0 10 0"
+                            HorizontalAlignment="Center"
+                            Width="600"
                             >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

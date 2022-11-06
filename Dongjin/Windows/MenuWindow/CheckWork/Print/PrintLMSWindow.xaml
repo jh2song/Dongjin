@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.CheckWork.Print"
         mc:Ignorable="d"
-        Title="PrintLMSWindow" Height="450" Width="800">
+        Title="PrintLMSWindow" Height="500" Width="720">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="0"
+            x:Name="BtnPrint"
+            Click="BtnPrint_Click"
+            Margin="0 5 0 0"
+            Content="인쇄 하기"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            />
+
+        <FlowDocumentScrollViewer
+            Grid.Row="1"
+            Name="FDSV"
+            VerticalScrollBarVisibility="Hidden"
+            >
+            
+        </FlowDocumentScrollViewer>
     </Grid>
 </Window>

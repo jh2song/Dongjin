@@ -1,5 +1,6 @@
 ﻿using Dongjin.Classes;
 using Dongjin.Table;
+using Dongjin.Windows.MenuWindow.CheckWork.Print;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -175,6 +176,12 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = b.MaxTransactionDate;
 			}
 		}
 
-		
-	}
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.Key == Key.F5)
+				new PrintLMSWindow().Show();
+
+			return;
+		}
+    }
 }
