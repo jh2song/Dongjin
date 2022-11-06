@@ -130,7 +130,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding FinalTransactionDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
@@ -140,7 +140,7 @@
                         </TextBox>
                     </DataGridTextColumn.Header>
                     <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Phone}" IsReadOnly="True" Width="3*">

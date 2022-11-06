@@ -179,7 +179,7 @@ WHERE a.ClientCode = b.ClientCode AND a.TransactionDate = b.MaxTransactionDate;
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
 			if (e.Key == Key.F5)
-				new PrintLMSWindow().Show();
+				new PrintLMSWindow(DG).Show();
 
 			return;
 		}

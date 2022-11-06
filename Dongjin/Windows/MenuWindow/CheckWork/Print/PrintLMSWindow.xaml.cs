@@ -17,14 +17,30 @@ namespace Dongjin.Windows.MenuWindow.CheckWork.Print
     /// </summary>
     public partial class PrintLMSWindow : Window
     {
-        public PrintLMSWindow()
+        public PrintLMSWindow(DataGrid DG)
         {
             InitializeComponent();
+
+            DGPrint.ItemsSource = DG.Items;
         }
 
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
+            PrintDialog pd = new PrintDialog();
+            FlowDocument fd = FDSV.Document;
 
+            if (pd.ShowDialog() != null)
+            {
+                fd.PageHeight = pd.PrintableAreaHeight;
+                fd.PageWidth = pd.PrintableAreaWidth;
+                fd.PagePadding = new Thickness(50);
+                fd.ColumnGap = 0;
+                fd.ColumnWidth = pd.PrintableAreaWidth;
+
+                IDocumentPaginatorSource dps = fd;
+                pd.PrintDocument(dps.DocumentPaginator, "flow doc");
+                this.Close();
+            }
         }
     }
 }

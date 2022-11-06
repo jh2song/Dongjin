@@ -27,7 +27,70 @@
             Name="FDSV"
             VerticalScrollBarVisibility="Hidden"
             >
-            
+            <FlowDocument
+                FontFamily="Segoe UI"
+                >
+                <Section>
+                    <BlockUIContainer>
+                        <DataGrid
+                            Width="600"
+                            x:Name="DGPrint"
+                            RowHeaderWidth="0"
+                            AutoGenerateColumns="False"
+                            VerticalScrollBarVisibility="Hidden"
+                            CanUserAddRows="False"
+                            GridLinesVisibility="None"
+                            IsHitTestVisible="False"
+                            Style="{StaticResource PrintDataGrid}"
+                            Margin="10 0 10 0"
+                            HorizontalAlignment="Center"
+                            >
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
+                            </DataGrid.CellStyle>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="코드" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" Binding="{Binding ClientCode, TargetNullValue=''}" IsReadOnly="True" Width="2*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="거 래 처 명" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" Binding="{Binding ClientName}" IsReadOnly="True" Width="5*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="&lt;%>" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding PercentCode}" IsReadOnly="True" Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="미 수 금" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" Binding="{Binding CurrentLeftMoney, StringFormat=\{0:N0\}}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="종입금일" HeaderStyle="{StaticResource PrintDataGridColumnHeaderCenter}" Binding="{Binding FinalDepositDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="종거래일" HeaderStyle="{StaticResource PrintDataGridColumnHeaderCenter}" Binding="{Binding FinalTransactionDate, StringFormat=yy/MM/dd}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellCenterAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="전화번호" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" Binding="{Binding Phone}" IsReadOnly="True" Width="3*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </BlockUIContainer>
+                </Section>
+            </FlowDocument>
         </FlowDocumentScrollViewer>
     </Grid>
 </Window>
