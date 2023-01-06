@@ -580,7 +580,11 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (AppendTB.Text == "")
 					appendChoice = 0;
 				else
-					appendChoice = int.Parse(AppendTB.Text);
+                {
+					if (!int.TryParse(AppendTB.Text, out appendChoice))
+						return;
+				}
+					
 
 				AppendTB.Text = "";
 				AppendStackPanel.Visibility = Visibility.Hidden;
@@ -591,7 +595,12 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 		private void AppendTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = RegexClass.NotUnderboundNumber(e.Text, 1, 2);
+			if (!(e.Text == "1" || e.Text == "2"))
+				e.Handled = true;
+			if (AppendTB.Text.Length != 0)
+				e.Handled = true;
+
+			//e.Handled = RegexClass.NotUnderboundOnlyNumber(e.Text, 1, 2);
 		}
 
 		public static string returnProductCode = "";

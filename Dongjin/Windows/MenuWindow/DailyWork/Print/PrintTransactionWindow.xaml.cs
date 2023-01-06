@@ -39,6 +39,14 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             _transactionDate = transactionDate;
             _foundClient = foundClient;
             _DG = DG;
+
+            // _DG 수량*단가=금액
+            // 으로 수정
+            foreach (var item in _DG.ToList())
+            {
+                item.Price = item.DiscountPrice / item.ProductCount;
+            }
+
             _printMonth = printMonth;
 
             SetDate();

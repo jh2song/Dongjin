@@ -86,12 +86,34 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 				}
 				else 
 				{
+					if (OverlappedProducts())
+                    {
+						MessageBox.Show("중복된 제품이 있습니다.", "DB 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+						tb6.Text = "";
+						return;
+                    }
 					tbDetail1.Focus();
 				}
 			}
 		}
 
-		private void ShowDetail(string code)
+        private bool OverlappedProducts()
+        {
+			try
+            {
+				DB.Conn.CreateTable<Product>();
+				List<Product> products = DB.Conn.Table<Product>().Where(p => p.ProductName.Equals(tb6.Text)).ToList();
+				if (products.Count != 0)
+					return true;
+            }
+			catch (Exception)
+            {
+
+            }
+			return false;
+        }
+
+        private void ShowDetail(string code)
 		{
 			try
 			{
@@ -118,10 +140,15 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 			List<Product> products = DB.Conn.Table<Product>().Where(c => c.ProductCode.Equals(code)).ToList();
 
-			if (products.Count == 0)
-				return false;
-			else
+			if (products.Count == 1 && products[0].BrandCode == int.Parse(tb4.Text))
 				return true;
+			else
+				return false;
+
+			//if (products.Count == 0)
+			//	return false;
+			//else
+			//	return true;
 		}
 
 		private void TBDetail1_KeyDown(object sender, KeyEventArgs e)

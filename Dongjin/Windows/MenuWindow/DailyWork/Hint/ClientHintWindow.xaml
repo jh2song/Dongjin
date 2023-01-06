@@ -48,7 +48,7 @@
             <ListView x:Name="ClientsListView"
                       SelectionChanged="ClientsListView_SelectionChanged"
                       Background="Black"
-                      ScrollViewer.CanContentScroll="False"
+                      ScrollViewer.CanContentScroll="True"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       >
                 <ListView.ItemContainerStyle>
@@ -56,6 +56,18 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </ListView.ItemContainerStyle>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!--<StackPanel/>
+                    If StackPanel was used, the memory consumed was over 2GB and dead slow.
+                    -->
+                        <VirtualizingStackPanel>
+                            <!--Memory footprint is only 200 mb-->
+                        </VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <uc:ClientControl Client="{Binding}"/>
