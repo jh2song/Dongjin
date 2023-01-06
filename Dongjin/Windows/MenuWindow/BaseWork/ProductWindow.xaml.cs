@@ -102,7 +102,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			try
             {
 				DB.Conn.CreateTable<Product>();
-				List<Product> products = DB.Conn.Table<Product>().Where(p => p.ProductName.Equals(tb6.Text)).ToList();
+				List<Product> products = DB.Conn.Table<Product>().Where(p => p.ProductCode.Equals(tb6.Text)).ToList();
 				if (products.Count != 0)
 					return true;
             }
