@@ -154,6 +154,18 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (DayTB.Text.Length < 2)
 					DayTB.Text = DateTime.Now.Day.ToString("00");
 
+				transactionDate = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
+
+				// 입력한 날짜와 현재 날짜가 다름
+				if (transactionDate != new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day))
+                {
+					MessageBox.Show("입력한 날짜가 현재 날짜와 다릅니다! 예전 기록을 보고싶으시면 그대로 진행하시고 그렇지 않을 경우 즉시 ESC로 뒤로가기를 하십시오. 치명적인 버그가 생길 수 있습니다."
+						, "확인 요망!!!"
+						, MessageBoxButton.OK
+						, MessageBoxImage.Error
+						);
+                }
+
 				ClientCodeTB.Focus();
 			}
 		}
@@ -205,8 +217,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 					return;
 				}
 				// 공지사항 끝
-
-				transactionDate = new DateTime(int.Parse("20" + YearTB.Text), int.Parse(MonthTB.Text), int.Parse(DayTB.Text));
 
 				if (choice == 2)
 				{
@@ -668,22 +678,26 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
-					new PrintTransactionWindow("P", transactionDate, foundClient, _documentList, printout).Show();
+					if (DG.Items.Count > 0)
+						new PrintTransactionWindow("P", transactionDate, foundClient, _documentList, printout).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
-					new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList, printout).Show();
+					if (DG.Items.Count > 0)
+						new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList, printout).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
-					new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList, printout).Show();
+					if (DG.Items.Count > 0)
+						new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList, printout).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
-					new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList, printout).Show();
+					if (DG.Items.Count > 0)
+						new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList, printout).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")
