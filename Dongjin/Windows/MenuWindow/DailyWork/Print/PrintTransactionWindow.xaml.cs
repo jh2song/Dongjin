@@ -165,8 +165,15 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
                 + clientLedger.TodayDepositMoney));
 
             DB.Conn.CreateTable<Document>();
-            LBSellingCount.Content = String.Format("{0:#,0}", DB.Conn.Table<Document>().Where(d => d.TransactionDate == _transactionDate
-            && d.ClientCode == _foundClient.ClientCode).Sum(d => d.ProductCount));
+
+            // 판매수량 계산
+            var totalCount = 0;
+            foreach (var item in _DG)
+            {
+                totalCount += item.ProductCount;
+            }
+            LBSellingCount.Content = totalCount.ToString();
+            // 판매수량 끝
 
             LBSellingMoney.Content = String.Format("{0:#,0}", clientLedger.TodaySellMoney);
 
