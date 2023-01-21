@@ -662,7 +662,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				PrintOptionLB.Visibility = Visibility.Hidden;
 
 				DB.Conn.CreateTable<Document>();
-				_documentList = DB.Conn.Table<Document>().Where(t => t.Choice == choice &&
+				_documentList = DB.Conn.Table<Document>().Where(t =>
 																				t.ClientCode == clientCode &&
 																				t.TransactionDate == transactionDate)
 					.OrderBy(t => t.AppendOption0)
@@ -679,25 +679,25 @@ namespace Dongjin.Windows.MenuWindow.DailyWork
 				if (ProductCodeTB.Text == "P" || ProductCodeTB.Text == "p")
 				{
 					if (DG.Items.Count > 0)
-						new PrintTransactionWindow("P", transactionDate, foundClient, _documentList, printout).Show();
+						new PrintTransactionWindow("P", transactionDate, foundClient, _documentList, printout, TotalCountTB.Text, this).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P1" || ProductCodeTB.Text == "p1")
 				{
 					if (DG.Items.Count > 0)
-						new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList, printout).Show();
+						new PrintTransactionWindow("P1", transactionDate, foundClient, _documentList, printout, TotalCountTB.Text, this).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P2" || ProductCodeTB.Text == "p2")
 				{
 					if (DG.Items.Count > 0)
-						new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList, printout).Show();
+						new PrintTransactionWindow("P2", transactionDate, foundClient, _documentList, printout, TotalCountTB.Text, this).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "P0" || ProductCodeTB.Text == "p0")
 				{
 					if (DG.Items.Count > 0)
-						new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList, printout).Show();
+						new PrintTransactionWindow("P0", transactionDate, foundClient, _documentList, printout, TotalCountTB.Text, this).Show();
 					return;
 				}
 				if (ProductCodeTB.Text == "I" || ProductCodeTB.Text == "i")

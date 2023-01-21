@@ -27,22 +27,26 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         string _printOption;
         DateTime _transactionDate;
         Client _foundClient;
-        List<Document> _DG;
+        List<Document> _AllDatagrid;
+        private string _LBTotalSellingCount;
+        private TransactionWindow _callingWindow;
         PrintMonth _printMonth;
 
-        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, List<Document> DG,
-           PrintMonth printMonth)
+        public PrintTransactionWindow(string printOption, DateTime transactionDate, Client foundClient, List<Document> AllDatagrid,
+           PrintMonth printMonth, string LBTotalSellingCount, TransactionWindow callingWindow)
         {
             InitializeComponent();
 
             _printOption = printOption;
             _transactionDate = transactionDate;
             _foundClient = foundClient;
-            _DG = DG;
+            _AllDatagrid = AllDatagrid;
+            _LBTotalSellingCount = LBTotalSellingCount;
+            _callingWindow = callingWindow;
 
             // _DG 수량*단가=금액
             // 으로 수정
-            foreach (var item in _DG.ToList())
+            foreach (var item in _AllDatagrid.ToList())
             {
                 item.Price = item.DiscountPrice / item.ProductCount;
             }
@@ -103,37 +107,72 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 
 		private void SetOnly0()
 		{
-            _DG = _DG.Where(dc => dc.AppendOption0 == 1 
+            DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1
+            && dc.AppendOption0 == 1 
             && dc.AppendOption1 == 0 
             && dc.AppendOption2 == 0)
                 .ToList();
 
-            DGPrint.ItemsSource = _DG;
-		}
+            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
+             && dc.AppendOption0 == 1
+             && dc.AppendOption1 == 0
+             && dc.AppendOption2 == 0)
+                 .ToList();
+
+            DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3
+            && dc.AppendOption0 == 1
+            && dc.AppendOption1 == 0
+            && dc.AppendOption2 == 0)
+                .ToList();
+        }
 
 		private void SetOnly1()
 		{
-            _DG = _DG.Where(dc => dc.AppendOption0 == 0
+           DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1
+           && dc.AppendOption0 == 0
            && dc.AppendOption1 == 1
            && dc.AppendOption2 == 0)
                .ToList();
 
-            DGPrint.ItemsSource = _DG;
+            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
+           && dc.AppendOption0 == 0
+           && dc.AppendOption1 == 1
+           && dc.AppendOption2 == 0)
+               .ToList();
+
+            DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3
+           && dc.AppendOption0 == 0
+           && dc.AppendOption1 == 1
+           && dc.AppendOption2 == 0)
+               .ToList();
         }
 
 		private void SetOnly2()
 		{
-            _DG = _DG.Where(dc => dc.AppendOption0 == 0
-          && dc.AppendOption1 == 0
-          && dc.AppendOption2 == 1)
-              .ToList();
+            DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1
+            && dc.AppendOption0 == 0
+            && dc.AppendOption1 == 0
+            && dc.AppendOption2 == 1)
+                .ToList();
 
-            DGPrint.ItemsSource = _DG;
+            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
+           && dc.AppendOption0 == 0
+           && dc.AppendOption1 == 0
+           && dc.AppendOption2 == 1)
+               .ToList();
+
+            DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3
+           && dc.AppendOption0 == 0
+           && dc.AppendOption1 == 0
+           && dc.AppendOption2 == 1)
+               .ToList();
         }
 
 		private void SetAll()
 		{
-            DGPrint.ItemsSource = _DG;
+            DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1).ToList();
+            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2).ToList();
+            DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3).ToList();
         }
 
         private void SetDetails()
@@ -167,12 +206,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             DB.Conn.CreateTable<Document>();
 
             // 판매수량 계산
-            var totalCount = 0;
-            foreach (var item in _DG)
-            {
-                totalCount += item.ProductCount;
-            }
-            LBSellingCount.Content = totalCount.ToString();
+            LBSellingCount.Content = int.Parse(_LBTotalSellingCount);
             // 판매수량 끝
 
             LBSellingMoney.Content = String.Format("{0:#,0}", clientLedger.TodaySellMoney);
@@ -209,6 +243,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
                 IDocumentPaginatorSource dps = fd;
                 pd.PrintDocument(dps.DocumentPaginator, "flow doc");
                 this.Close();
+                _callingWindow.Focus();
+                _callingWindow.WindowState = WindowState.Maximized;
+                _callingWindow.ProductCodeTB.Focus();
             }
         }
 	}
