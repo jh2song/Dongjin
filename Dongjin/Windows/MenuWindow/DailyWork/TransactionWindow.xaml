@@ -582,6 +582,13 @@
                     x:Name="DiscountPercentLB"
                     Content="%"
                     />
+                <Label
+                    x:Name="BaseDiscountPercentLB"
+                    Background="White"
+                    Foreground="Black"
+                    FontSize="25"
+                    Content="xx.xx"
+                    />
             </StackPanel>
             
             <Label

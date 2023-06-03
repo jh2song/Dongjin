@@ -954,7 +954,7 @@ AND TransactionDate = ?
 
 			if (e.Key == Key.Enter)
 			{
-				if (decimal.TryParse(DiscountPercentTB.Text, out productDiscountRate))
+				if (DiscountPercentTB.Text == "" || decimal.TryParse(DiscountPercentTB.Text, out productDiscountRate))
 				{
 					// Datagrid를 표시해야 함
 					DG.Visibility = Visibility.Visible;
@@ -993,8 +993,7 @@ AND c.ClientCode = ?;
 				}
 
 				productDiscountRate = (decimal)query.DiscountRate;
-				DiscountPercentTB.Text = productDiscountRate.ToString("F2");
-				DiscountPercentTB.Select(DiscountPercentTB.Text.Length, 0);
+				BaseDiscountPercentLB.Content = productDiscountRate.ToString("F2");
 			}
 			catch (Exception)
 			{
