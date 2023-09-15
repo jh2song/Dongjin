@@ -206,7 +206,9 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             DB.Conn.CreateTable<Document>();
 
             // 판매수량 계산
-            LBSellingCount.Content = int.Parse(_LBTotalSellingCount);
+            LBSellingCount.Content = _LBTotalSellingCount;
+            // string numbersOnly = new string(_LBTotalSellingCount.Where(char.IsDigit).ToArray());
+            // LBSellingCount.Content = string.Format("{0:#,0}", int.Parse(numbersOnly));
             // 판매수량 끝
 
             LBSellingMoney.Content = String.Format("{0:#,0}", clientLedger.TodaySellMoney);

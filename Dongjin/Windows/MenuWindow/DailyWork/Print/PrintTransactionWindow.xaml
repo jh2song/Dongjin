@@ -99,7 +99,7 @@
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -166,7 +166,7 @@
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -233,7 +233,7 @@
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
+                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
