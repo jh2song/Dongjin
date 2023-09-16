@@ -229,5 +229,5 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
                 _callingWindow.ProductCodeTB.Focus();
             }
         }
-	}
+    }
 }

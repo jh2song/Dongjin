@@ -34,7 +34,8 @@
                         <Label
                             Foreground="Black"
                             Background="White"
-                            FontSize="20"
+                            FontSize="40"
+                            FontWeight="Normal"
                             >
                             <TextBlock            
                                 TextDecorations="Underline"
@@ -45,10 +46,11 @@
 
                     <BlockUIContainer>
                         <Label
-                        x:Name="LBDate"
-                        Foreground="Black"
-                        Background="White"
-                        FontSize="20"
+                            x:Name="LBDate"
+                            Foreground="Black"
+                            Background="White"
+                            FontSize="20"
+                            FontWeight="Normal"
                         />
                     </BlockUIContainer>
 
@@ -58,12 +60,13 @@
                             Foreground="Black"
                             Background="White"
                             FontSize="20"
+                            FontWeight="Normal"
+                            Margin="0 5 0 5"
                         />
                     </BlockUIContainer>
 
                     <BlockUIContainer>
                         <DataGrid
-                            Width="800"
                             x:Name="DGPrint1"
                             RowHeaderWidth="0"
                             AutoGenerateColumns="False"
@@ -74,6 +77,7 @@
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
+                            Width="650"
                             >
 
                             <DataGrid.CellStyle>
@@ -120,6 +124,8 @@
                             Foreground="Black"
                             Background="White"
                             FontSize="20"
+                            FontWeight="Normal"
+                            Margin="0 5 0 5"
                             >
                             <TextBlock            
                                 TextDecorations="Underline"
@@ -130,7 +136,6 @@
 
                     <BlockUIContainer>
                         <DataGrid
-                            Width="800"
                             x:Name="DGPrint3"
                             RowHeaderWidth="0"
                             AutoGenerateColumns="False"
@@ -141,6 +146,7 @@
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
+                            Width="650"
                             >
 
                             <DataGrid.CellStyle>
@@ -187,7 +193,8 @@
                             Margin="0 10 0 10"
                             BorderBrush="Black"
                             BorderThickness="0.5"
-                            Width="800"
+                            HorizontalAlignment="Center"
+                            Width="650"
                             />
                     </BlockUIContainer>
                     
@@ -195,13 +202,13 @@
                         <Grid
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
-                            Width="800"
+                            Width="650"
                             >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -243,6 +250,7 @@
                                 Content="당일분"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="0"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Center"
@@ -252,6 +260,7 @@
                                 Content="전일미수"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -260,6 +269,7 @@
                                 x:Name="LBPrevDayLeftMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -269,6 +279,7 @@
                                 Content="판매수량"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -277,6 +288,7 @@
                                 x:Name="LBSellingCount"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -286,6 +298,7 @@
                                 Content="판매금액"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -294,6 +307,7 @@
                                 x:Name="LBSellingMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -303,6 +317,7 @@
                                 Content="현재미수"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -311,6 +326,7 @@
                                 x:Name="LBCurrentLeftMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -320,6 +336,7 @@
                                 Content="월집계"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Grid.ColumnSpan="2"
@@ -330,6 +347,7 @@
                                 Content="전월말미수"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -338,6 +356,7 @@
                                 x:Name="LBPrevMonthLeftMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -347,6 +366,7 @@
                                 Content="당월판매액"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -355,6 +375,7 @@
                                 x:Name="LBThisMonthSellingMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -364,6 +385,7 @@
                                 Content="당월환입액"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -372,6 +394,7 @@
                                 x:Name="LBThisMonthRefundMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -381,6 +404,7 @@
                                 Content="당월입금액"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -389,6 +413,7 @@
                                 x:Name="LBThisMonthDepositMoney"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -398,6 +423,7 @@
                                 x:Name="LBAlarm1"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Content=""
                                 Grid.Row="5"
                                 Grid.ColumnSpan="4"
@@ -406,6 +432,7 @@
                                 x:Name="LBAlarm2"
                                 Foreground="Black"
                                 FontSize="20"
+                                FontWeight="Normal"
                                 Content=""
                                 Grid.Row="6"
                                 Grid.ColumnSpan="4"
