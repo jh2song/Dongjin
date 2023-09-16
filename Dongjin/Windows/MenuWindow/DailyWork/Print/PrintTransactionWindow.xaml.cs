@@ -67,8 +67,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
         private void SetClientInfo()
         {
             string outClientInfo = "";
-            outClientInfo += "거래처코드: ";
-            outClientInfo += _foundClient.ClientCode.ToString() + "   ";
             outClientInfo += "전화: ";
             outClientInfo += _foundClient.Phone.ToString() + "   ";
             outClientInfo += "거래처명: ";
@@ -113,12 +111,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             && dc.AppendOption2 == 0)
                 .ToList();
 
-            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
-             && dc.AppendOption0 == 1
-             && dc.AppendOption1 == 0
-             && dc.AppendOption2 == 0)
-                 .ToList();
-
             DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3
             && dc.AppendOption0 == 1
             && dc.AppendOption1 == 0
@@ -129,12 +121,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 		private void SetOnly1()
 		{
            DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1
-           && dc.AppendOption0 == 0
-           && dc.AppendOption1 == 1
-           && dc.AppendOption2 == 0)
-               .ToList();
-
-            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
            && dc.AppendOption0 == 0
            && dc.AppendOption1 == 1
            && dc.AppendOption2 == 0)
@@ -155,12 +141,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             && dc.AppendOption2 == 1)
                 .ToList();
 
-            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2
-           && dc.AppendOption0 == 0
-           && dc.AppendOption1 == 0
-           && dc.AppendOption2 == 1)
-               .ToList();
-
             DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3
            && dc.AppendOption0 == 0
            && dc.AppendOption1 == 0
@@ -171,7 +151,6 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 		private void SetAll()
 		{
             DGPrint1.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 1).ToList();
-            DGPrint2.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 2).ToList();
             DGPrint3.ItemsSource = _AllDatagrid.Where(dc => dc.Choice == 3).ToList();
         }
 

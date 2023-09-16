@@ -34,7 +34,7 @@
                         <Label
                             Foreground="Black"
                             Background="White"
-                            FontSize="10"
+                            FontSize="20"
                             >
                             <TextBlock            
                                 TextDecorations="Underline"
@@ -48,7 +48,7 @@
                         x:Name="LBDate"
                         Foreground="Black"
                         Background="White"
-                        FontSize="10"
+                        FontSize="20"
                         />
                     </BlockUIContainer>
 
@@ -57,26 +57,13 @@
                             x:Name="LBClientInfo"
                             Foreground="Black"
                             Background="White"
-                            FontSize="10"
+                            FontSize="20"
                         />
                     </BlockUIContainer>
 
                     <BlockUIContainer>
-                        <Label
-                            Foreground="Black"
-                            Background="White"
-                            FontSize="10"
-                            >
-                            <TextBlock            
-                                TextDecorations="Underline"
-                                Text="출고"
-                                />
-                        </Label>
-                    </BlockUIContainer>
-                    
-                    <BlockUIContainer>
                         <DataGrid
-                            Width="600"
+                            Width="800"
                             x:Name="DGPrint1"
                             RowHeaderWidth="0"
                             AutoGenerateColumns="False"
@@ -94,7 +81,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="8*">
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="6*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -104,12 +91,12 @@
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="4*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="4*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -132,74 +119,7 @@
                         <Label
                             Foreground="Black"
                             Background="White"
-                            FontSize="10"
-                            >
-                            <TextBlock            
-                                TextDecorations="Underline"
-                                Text="덤"
-                                />
-                        </Label>
-                    </BlockUIContainer>
-
-                    <BlockUIContainer>
-                        <DataGrid
-                            Width="600"
-                            x:Name="DGPrint2"
-                            RowHeaderWidth="0"
-                            AutoGenerateColumns="False"
-                            VerticalScrollBarVisibility="Hidden"
-                            CanUserAddRows="False"
-                            GridLinesVisibility="None"
-                            IsHitTestVisible="False"
-                            Style="{StaticResource PrintDataGrid}"
-                            Margin="10 0 10 0"
-                            HorizontalAlignment="Center"
-                            >
-
-                            <DataGrid.CellStyle>
-                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource PrintDataGridCell}"/>
-                            </DataGrid.CellStyle>
-
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="8*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellLeftAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="수량" Binding="{Binding ProductCount, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가1" Binding="{Binding AppendOption1}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="추가2" Binding="{Binding AppendOption2}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="2*">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style BasedOn="{StaticResource CellRightAlign}"/>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </BlockUIContainer>
-
-                    <BlockUIContainer>
-                        <Label
-                            Foreground="Black"
-                            Background="White"
-                            FontSize="10"
+                            FontSize="20"
                             >
                             <TextBlock            
                                 TextDecorations="Underline"
@@ -210,7 +130,7 @@
 
                     <BlockUIContainer>
                         <DataGrid
-                            Width="600"
+                            Width="800"
                             x:Name="DGPrint3"
                             RowHeaderWidth="0"
                             AutoGenerateColumns="False"
@@ -228,7 +148,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="8*">
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="6*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -238,12 +158,12 @@
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="단가" Binding="{Binding Price, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="4*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="3*">
+                                <DataGridTextColumn Header="금액" Binding="{Binding DiscountPrice, StringFormat=\{0:N0\}}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderRight}" IsReadOnly="True" Width="4*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellRightAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -267,7 +187,7 @@
                             Margin="0 10 0 10"
                             BorderBrush="Black"
                             BorderThickness="0.5"
-                            Width="600"
+                            Width="800"
                             />
                     </BlockUIContainer>
                     
@@ -275,7 +195,7 @@
                         <Grid
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
-                            Width="600"
+                            Width="800"
                             >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -322,7 +242,7 @@
                             <Label
                                 Content="당일분"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="0"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Center"
@@ -331,7 +251,7 @@
                             <Label
                                 Content="전일미수"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -339,7 +259,7 @@
                             <Label
                                 x:Name="LBPrevDayLeftMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -348,7 +268,7 @@
                             <Label
                                 Content="판매수량"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -356,7 +276,7 @@
                             <Label
                                 x:Name="LBSellingCount"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -365,7 +285,7 @@
                             <Label
                                 Content="판매금액"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -373,7 +293,7 @@
                             <Label
                                 x:Name="LBSellingMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -382,7 +302,7 @@
                             <Label
                                 Content="현재미수"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="4"
                                 Grid.Column="0"
                                 HorizontalAlignment="Center"
@@ -390,7 +310,7 @@
                             <Label
                                 x:Name="LBCurrentLeftMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="4"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
@@ -399,7 +319,7 @@
                             <Label
                                 Content="월집계"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="0"
                                 Grid.Column="2"
                                 Grid.ColumnSpan="2"
@@ -409,7 +329,7 @@
                             <Label
                                 Content="전월말미수"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -417,7 +337,7 @@
                             <Label
                                 x:Name="LBPrevMonthLeftMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="1"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -426,7 +346,7 @@
                             <Label
                                 Content="당월판매액"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="2"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -434,7 +354,7 @@
                             <Label
                                 x:Name="LBThisMonthSellingMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="2"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -443,7 +363,7 @@
                             <Label
                                 Content="당월환입액"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="3"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -451,7 +371,7 @@
                             <Label
                                 x:Name="LBThisMonthRefundMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="3"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -460,7 +380,7 @@
                             <Label
                                 Content="당월입금액"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="4"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
@@ -468,7 +388,7 @@
                             <Label
                                 x:Name="LBThisMonthDepositMoney"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Grid.Row="4"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
@@ -477,7 +397,7 @@
                             <Label
                                 x:Name="LBAlarm1"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Content=""
                                 Grid.Row="5"
                                 Grid.ColumnSpan="4"
@@ -485,7 +405,7 @@
                             <Label
                                 x:Name="LBAlarm2"
                                 Foreground="Black"
-                                FontSize="10"
+                                FontSize="20"
                                 Content=""
                                 Grid.Row="6"
                                 Grid.ColumnSpan="4"

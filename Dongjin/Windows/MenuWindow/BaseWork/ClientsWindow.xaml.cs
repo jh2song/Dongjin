@@ -502,8 +502,9 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 							.Where(c1 => c1.ClientCode == _clientCode)
 							.OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
 
-						int money;
-						if (!int.TryParse(tbDetail3.Text, out money))
+                        string numbersOnly = new string(tbDetail3.Text.Where(char.IsDigit).ToArray());
+                        int money;
+						if (!int.TryParse(numbersOnly, out money))
 						{
 							throw new Exception();
 						}
