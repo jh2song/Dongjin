@@ -51,7 +51,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Hint
 			else
 			{
 				var filteredList = _clients.Where(c => c.ClientCode.ToString().StartsWith(SearchTB.Text)
-				|| c.ClientName.StartsWith(SearchTB.Text)
+				|| c.ClientName.Contains(SearchTB.Text)
 				);
 
 				ClientsListView.ItemsSource = filteredList;

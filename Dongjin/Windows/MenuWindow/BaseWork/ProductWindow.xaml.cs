@@ -155,7 +155,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Escape)
 			{
-				if (tbDetail1.Text == "")
+				if (tbDetail1.Text == "" && !isUpdateing)
 				{
 					tb6.Focus();
 					tb6.Select(tb6.Text.Length, 0);
@@ -181,7 +181,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Escape)
 			{
-				if (tbDetail2.Text == "")
+				if (tbDetail2.Text == "" && !isUpdateing)
 				{
 					tbDetail1.Focus();
 					tbDetail1.Select(tbDetail1.Text.Length, 0);
@@ -210,7 +210,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Escape)
 			{
-				if (tbDetail3.Text == "")
+				if (tbDetail3.Text == "" && !isUpdateing)
 				{
 					tbDetail2.Focus();
 					tbDetail2.Select(tbDetail2.Text.Length, 0);
@@ -268,7 +268,7 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 		{
 			if (e.Key == Key.Escape)
 			{
-				if (tbDetail4.Text == "")
+				if (tbDetail4.Text == "" && !isUpdateing)
 				{
 					tbDetail3.Focus();
 					tbDetail3.Select(tbDetail3.Text.Length, 0);
@@ -499,5 +499,11 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 			tbDetail4.Text = CalculateBuyingPrice(tb4.Text, tbDetail2.Text);
 			tbDetail4.Select(tbDetail4.Text.Length, 0);
 		}
-	}
+
+        private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+    }
 }

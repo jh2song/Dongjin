@@ -920,6 +920,13 @@ AND TransactionDate = ?
 
 			if (e.Key == Key.Enter)
 			{
+				// 제품 갯수가 10만개 부턴 입력 불가
+				if (ProductCountTB.Text.Length > 5)
+				{
+                    MessageBox.Show("갯수가 너무 큽니다!", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
 				if (ProductCountTB.Text == "")
 				{
 					ProductCountTB.Text = "1";
@@ -954,6 +961,13 @@ AND TransactionDate = ?
 
 			if (e.Key == Key.Enter)
 			{
+				// 할인율이 1억자리가 넘어가면 안됨
+				if (DiscountPercentTB.Text.Length > 8)
+				{
+					MessageBox.Show("할인율이 너무 큽니다!", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
+				}
+
 				if (DiscountPercentTB.Text == "" || decimal.TryParse(DiscountPercentTB.Text, out productDiscountRate))
 				{
 					// Datagrid를 표시해야 함

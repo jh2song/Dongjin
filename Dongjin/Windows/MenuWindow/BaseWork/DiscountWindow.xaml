@@ -67,7 +67,7 @@
                 />
             <Label
                 Margin="50 0 0 0"
-                Content="F5키를 누르시면 할인율이 삭제됩니다."
+                Content="F9키를 누르시면 할인율이 삭제됩니다."
                 Background="White"
                 Foreground="Black"
                 />

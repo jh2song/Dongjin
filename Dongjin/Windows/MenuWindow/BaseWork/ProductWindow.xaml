@@ -147,6 +147,7 @@
                 MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail1_KeyDown"
+                PreviewMouseDown="TextBox_PreviewMouseDown"
                 />
             <Label
                 Grid.Row="1"
@@ -162,6 +163,7 @@
                 MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail2_KeyDown"
+                PreviewMouseDown="TextBox_PreviewMouseDown"
                 />
             <Label
                 Grid.Row="2"
@@ -177,6 +179,7 @@
                 MinWidth="1200"
                 Style="{StaticResource detailStyle}"
                 KeyDown="TBDetail3_KeyDown"
+                PreviewMouseDown="TextBox_PreviewMouseDown"
                 />
             <Label
                 Grid.Row="3"
@@ -193,6 +196,7 @@
                 Style="{StaticResource detailStyle}"
                 GotFocus="tbDetail4_GotFocus"
                 KeyDown="TBDetail4_KeyDown"
+                PreviewMouseDown="TextBox_PreviewMouseDown"
                 />
             <Label
                 Grid.Row="4"
@@ -207,6 +211,7 @@
                 Grid.ColumnSpan="3"
                 MinWidth="1200"
                 Style="{StaticResource detailStyle}"
+                PreviewMouseDown="TextBox_PreviewMouseDown"
                 />
         </Grid>
 

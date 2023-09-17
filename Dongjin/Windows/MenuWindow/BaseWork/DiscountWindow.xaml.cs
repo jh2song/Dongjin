@@ -183,8 +183,13 @@ namespace Dongjin.Windows.MenuWindow.BaseWork
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.F5)
+			if (e.Key != Key.F9)
 				return;
+
+			if (MessageBoxResult.No != MessageBox.Show("아니오 혹은 No를 클릭할 시 할인율이 삭제됩니다. 할인율을 삭제하고 싶으시면 아니오 혹은 No를 클릭하세요", "할인율 삭제", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+			{
+				return;
+			}
 
 			try
 			{
