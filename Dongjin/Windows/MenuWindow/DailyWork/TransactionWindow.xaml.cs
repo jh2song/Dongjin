@@ -849,8 +849,8 @@ AND TransactionDate = ?
 				DB.Conn.CreateTable<ClientLedger>();
 				//ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
 				//													&& cl.TransactionDate == transactionDate).FirstOrDefault();
-				ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode).
-					OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
+				ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
+					&& cl.TransactionDate == transactionDate).FirstOrDefault();
 
 				if (cl == null)
 				{
