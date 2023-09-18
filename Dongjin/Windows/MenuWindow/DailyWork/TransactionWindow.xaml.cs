@@ -847,28 +847,37 @@ AND TransactionDate = ?
 			try
 			{
 				DB.Conn.CreateTable<ClientLedger>();
-				//ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
-				//													&& cl.TransactionDate == transactionDate).FirstOrDefault();
-				ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
-					&& cl.TransactionDate == transactionDate).FirstOrDefault();
+                //ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode
+                //													&& cl.TransactionDate == transactionDate).FirstOrDefault();
+                ClientLedger cl = DB.Conn.Table<ClientLedger>().Where(cl => cl.ClientCode == clientCode).
+                     OrderByDescending(cl => cl.TransactionDate).FirstOrDefault();
 
-				if (cl == null)
+                if (cl == null)
+                {
+                    cl = new ClientLedger();
+                    cl.ClientCode = clientCode;
+                    cl.TransactionDate = transactionDate;
+                    cl.TodayDepositMoney = depositMoney;
+                    cl.CurrentLeftMoney -= depositMoney;
+                    DB.Conn.Insert(cl);
+                }
+				else if (cl.TransactionDate != transactionDate)
 				{
-					cl = new ClientLedger();
-					cl.ClientCode = clientCode;
-					cl.TransactionDate = transactionDate;
-					cl.TodayDepositMoney = depositMoney;
-					cl.CurrentLeftMoney -= depositMoney;
-					DB.Conn.Insert(cl);
+					ClientLedger cl2 = new ClientLedger();
+					cl2.ClientCode = clientCode;
+					cl2.TransactionDate = transactionDate;
+					cl2.TodayDepositMoney = depositMoney;
+					cl2.CurrentLeftMoney = cl.CurrentLeftMoney - depositMoney;
+					DB.Conn.Insert(cl2);
 				}
-				else
-				{
-					cl.TodayDepositMoney += depositMoney;
-					cl.CurrentLeftMoney -= depositMoney;
-					DB.Conn.Update(cl);
-				}
+                else
+                {
+                    cl.TodayDepositMoney += depositMoney;
+                    cl.CurrentLeftMoney -= depositMoney;
+                    DB.Conn.Update(cl);
+                }
 
-				DB.Conn.CreateTable<Client>();
+                DB.Conn.CreateTable<Client>();
 				Client c = DB.Conn.Table<Client>().ToList().Where(c => c.ClientCode == clientCode).FirstOrDefault();
 				c.FinalTransactionDate = transactionDate;
 				c.FinalDepositDate = transactionDate;
