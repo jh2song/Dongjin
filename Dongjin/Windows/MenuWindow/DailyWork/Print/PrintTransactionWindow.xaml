@@ -5,26 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dongjin.Windows.MenuWindow.DailyWork.Print"
         mc:Ignorable="d"
-        Title="PrintTransactionWindow" Height="500" Width="720">
+        Title="PrintTransactionWindow" Height="500" Width="900">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="19*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="184*"/>
+            <RowDefinition Height="275*"/>
         </Grid.RowDefinitions>
 
         <Button
             Grid.Row="0"
             x:Name="BtnPrint"
             Click="BtnPrint_Click"
-            Margin="0 5 0 0"
+            Margin="0,5,0,0"
             Content="인쇄 하기"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             />
         <FlowDocumentScrollViewer
-            Grid.Row="1"
             Name="SV"
-            VerticalScrollBarVisibility="Hidden"
+            VerticalScrollBarVisibility="Hidden" Margin="0,24,0,0" Grid.RowSpan="3"
             >
             <FlowDocument
                 FontFamily="Segoe UI"
@@ -187,7 +187,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </BlockUIContainer>
-                    
+
                     <BlockUIContainer>
                         <Border
                             Margin="0 10 0 10"
@@ -197,13 +197,14 @@
                             Width="730"
                             />
                     </BlockUIContainer>
-                    
+
                     <BlockUIContainer>
                         <Grid
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
                             Width="730"
                             >
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
                                 <ColumnDefinition Width="5*"/>
@@ -211,13 +212,13 @@
                                 <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
                             </Grid.RowDefinitions>
 
                             <Border
@@ -254,6 +255,7 @@
                                 Grid.Row="0"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Center"
+                                Padding="0"
                                 />
 
                             <Label
@@ -263,7 +265,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBPrevDayLeftMoney"
@@ -273,6 +276,7 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -282,7 +286,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="0"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBSellingCount"
@@ -292,6 +297,7 @@
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -301,7 +307,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="0"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBSellingMoney"
@@ -311,6 +318,7 @@
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -320,7 +328,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="0"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBCurrentLeftMoney"
@@ -330,6 +339,7 @@
                                 Grid.Row="4"
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -341,6 +351,7 @@
                                 Grid.Column="2"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Center"
+                                Padding="0"
                                 />
 
                             <Label
@@ -350,7 +361,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="2"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBPrevMonthLeftMoney"
@@ -360,6 +372,7 @@
                                 Grid.Row="1"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -369,7 +382,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="2"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBThisMonthSellingMoney"
@@ -379,6 +393,7 @@
                                 Grid.Row="2"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -388,7 +403,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="2"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBThisMonthRefundMoney"
@@ -398,6 +414,7 @@
                                 Grid.Row="3"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -407,7 +424,8 @@
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="2"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBThisMonthDepositMoney"
@@ -417,6 +435,7 @@
                                 Grid.Row="4"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
+                                Padding="0"
                                 />
 
                             <Label
@@ -427,6 +446,7 @@
                                 Content=""
                                 Grid.Row="5"
                                 Grid.ColumnSpan="4"
+                                Padding="0"
                                 />
                             <Label
                                 x:Name="LBAlarm2"
@@ -436,6 +456,7 @@
                                 Content=""
                                 Grid.Row="6"
                                 Grid.ColumnSpan="4"
+                                Padding="0"
                                 />
                         </Grid>
                     </BlockUIContainer>
