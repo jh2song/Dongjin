@@ -34,7 +34,7 @@
                         <Label
                             Foreground="Black"
                             Background="White"
-                            FontSize="40"
+                            FontSize="14"
                             FontWeight="Normal"
                             >
                             <TextBlock            
@@ -49,7 +49,7 @@
                             x:Name="LBDate"
                             Foreground="Black"
                             Background="White"
-                            FontSize="18"
+                            FontSize="14"
                             FontWeight="Normal"
                         />
                     </BlockUIContainer>
@@ -59,7 +59,7 @@
                             x:Name="LBClientInfo"
                             Foreground="Black"
                             Background="White"
-                            FontSize="18"
+                            FontSize="14"
                             FontWeight="Normal"
                             Margin="0 5 0 5"
                         />
@@ -77,7 +77,7 @@
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
-                            Width="650"
+                            Width="730"
                             >
 
                             <DataGrid.CellStyle>
@@ -85,7 +85,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="7*">
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="9*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -123,7 +123,7 @@
                         <Label
                             Foreground="Black"
                             Background="White"
-                            FontSize="18"
+                            FontSize="14"
                             FontWeight="Normal"
                             Margin="0 5 0 5"
                             >
@@ -146,7 +146,7 @@
                             Style="{StaticResource PrintDataGrid}"
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
-                            Width="650"
+                            Width="730"
                             >
 
                             <DataGrid.CellStyle>
@@ -154,7 +154,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="7*">
+                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="9*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
@@ -194,7 +194,7 @@
                             BorderBrush="Black"
                             BorderThickness="0.5"
                             HorizontalAlignment="Center"
-                            Width="650"
+                            Width="730"
                             />
                     </BlockUIContainer>
                     
@@ -202,7 +202,7 @@
                         <Grid
                             Margin="10 0 10 0"
                             HorizontalAlignment="Center"
-                            Width="650"
+                            Width="730"
                             >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="5*"/>
@@ -249,7 +249,7 @@
                             <Label
                                 Content="당일분"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="0"
                                 Grid.ColumnSpan="2"
@@ -259,7 +259,7 @@
                             <Label
                                 Content="전일미수"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="0"
@@ -268,7 +268,7 @@
                             <Label
                                 x:Name="LBPrevDayLeftMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -278,7 +278,7 @@
                             <Label
                                 Content="판매수량"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="0"
@@ -287,7 +287,7 @@
                             <Label
                                 x:Name="LBSellingCount"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="1"
@@ -297,7 +297,7 @@
                             <Label
                                 Content="판매금액"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="0"
@@ -306,7 +306,7 @@
                             <Label
                                 x:Name="LBSellingMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="1"
@@ -316,7 +316,7 @@
                             <Label
                                 Content="현재미수"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="0"
@@ -325,7 +325,7 @@
                             <Label
                                 x:Name="LBCurrentLeftMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="1"
@@ -335,7 +335,7 @@
                             <Label
                                 Content="월집계"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="0"
                                 Grid.Column="2"
@@ -346,7 +346,7 @@
                             <Label
                                 Content="전월말미수"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="2"
@@ -355,7 +355,7 @@
                             <Label
                                 x:Name="LBPrevMonthLeftMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="1"
                                 Grid.Column="3"
@@ -365,7 +365,7 @@
                             <Label
                                 Content="당월판매액"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="2"
@@ -374,7 +374,7 @@
                             <Label
                                 x:Name="LBThisMonthSellingMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="2"
                                 Grid.Column="3"
@@ -384,7 +384,7 @@
                             <Label
                                 Content="당월환입액"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="2"
@@ -393,7 +393,7 @@
                             <Label
                                 x:Name="LBThisMonthRefundMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="3"
                                 Grid.Column="3"
@@ -403,7 +403,7 @@
                             <Label
                                 Content="당월입금액"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="2"
@@ -412,7 +412,7 @@
                             <Label
                                 x:Name="LBThisMonthDepositMoney"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Grid.Row="4"
                                 Grid.Column="3"
@@ -422,7 +422,7 @@
                             <Label
                                 x:Name="LBAlarm1"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Content=""
                                 Grid.Row="5"
@@ -431,7 +431,7 @@
                             <Label
                                 x:Name="LBAlarm2"
                                 Foreground="Black"
-                                FontSize="18"
+                                FontSize="14"
                                 FontWeight="Normal"
                                 Content=""
                                 Grid.Row="6"

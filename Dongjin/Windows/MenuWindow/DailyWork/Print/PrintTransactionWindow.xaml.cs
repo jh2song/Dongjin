@@ -217,7 +217,7 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
             {
                 fd.PageHeight = pd.PrintableAreaHeight;
                 fd.PageWidth = pd.PrintableAreaWidth;
-                fd.PagePadding = new Thickness(50);
+                fd.PagePadding = new Thickness(20);
                 fd.ColumnGap = 0;
                 fd.ColumnWidth = pd.PrintableAreaWidth;
 
