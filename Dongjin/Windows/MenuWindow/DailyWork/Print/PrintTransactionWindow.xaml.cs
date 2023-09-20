@@ -210,23 +210,83 @@ namespace Dongjin.Windows.MenuWindow.DailyWork.Print
 
         private void BtnPrint_Click(object sender, RoutedEventArgs e)
         {
-            PrintDialog pd = new PrintDialog();
-            FlowDocument fd = SV.Document;
+            //PrintDialog pd = new PrintDialog();
+            //FlowDocument fd = SV.Document;
 
-            if (pd.ShowDialog() != null)
+            //if (pd.ShowDialog() != null)
+            //{
+            //    fd.PageHeight = pd.PrintableAreaHeight;
+            //    fd.PageWidth = pd.PrintableAreaWidth;
+            //    fd.PagePadding = new Thickness(20);
+            //    fd.ColumnGap = 0;
+            //    fd.ColumnWidth = pd.PrintableAreaWidth;
+
+            //    IDocumentPaginatorSource dps = fd;
+            //    pd.PrintDocument(dps.DocumentPaginator, "flow doc");
+            //    this.Close();
+            //    _callingWindow.Focus();
+            //    _callingWindow.WindowState = WindowState.Maximized;
+            //    _callingWindow.ProductCodeTB.Focus();
+            //}
+
+            Print(SPcontents);
+
+            this.Close();
+            _callingWindow.Focus();
+            _callingWindow.WindowState = WindowState.Maximized;
+            _callingWindow.ProductCodeTB.Focus();
+        }
+
+        public static void Print(FrameworkElement toPrint)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() != null)
             {
-                fd.PageHeight = pd.PrintableAreaHeight;
-                fd.PageWidth = pd.PrintableAreaWidth;
-                fd.PagePadding = new Thickness(20);
-                fd.ColumnGap = 0;
-                fd.ColumnWidth = pd.PrintableAreaWidth;
+                var capabilities = printDialog.PrintQueue.GetPrintCapabilities(printDialog.PrintTicket);
+                var pageSize = new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+                var visibleSize = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
+                var fixedDoc = new FixedDocument();
 
-                IDocumentPaginatorSource dps = fd;
-                pd.PrintDocument(dps.DocumentPaginator, "flow doc");
-                this.Close();
-                _callingWindow.Focus();
-                _callingWindow.WindowState = WindowState.Maximized;
-                _callingWindow.ProductCodeTB.Focus();
+                //If the toPrint visual is not displayed on screen we neeed to measure and arrange it  
+                toPrint.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                toPrint.Arrange(new Rect(new Point(0, 0), toPrint.DesiredSize));
+                //  
+                var size = toPrint.DesiredSize;
+                //Will assume for simplicity the control fits horizontally on the page  
+                double yOffset = 0;
+                while (yOffset < size.Height)
+                {
+                    double leftOffset = (size.Width - visibleSize.Width) / 2;
+                    var vb = new VisualBrush(toPrint)
+                    {
+                        Stretch = Stretch.None,
+                        AlignmentX = AlignmentX.Left,
+                        AlignmentY = AlignmentY.Top,
+                        ViewboxUnits = BrushMappingMode.Absolute,
+                        TileMode = TileMode.None,
+                        Viewbox = new Rect(leftOffset, yOffset, size.Width, visibleSize.Height),
+                        Viewport = new Rect(0, 0, visibleSize.Width, visibleSize.Height),
+                        ViewportUnits = BrushMappingMode.Absolute
+                    };
+
+                    var pageContent = new PageContent();
+                    var page = new FixedPage();
+                    ((IAddChild)pageContent).AddChild(page);
+                    fixedDoc.Pages.Add(pageContent);
+                    page.Width = pageSize.Width;
+                    page.Height = pageSize.Height;
+                    var canvas = new Canvas();
+                    FixedPage.SetLeft(canvas, capabilities.PageImageableArea.OriginWidth);
+                    FixedPage.SetTop(canvas, capabilities.PageImageableArea.OriginHeight);
+                    canvas.Width = visibleSize.Width;
+                    canvas.Height = visibleSize.Height;
+                    canvas.Background = vb;
+                    page.Children.Add(canvas);
+                    yOffset += visibleSize.Height;
+                }
+                
+                IDocumentPaginatorSource dps = fixedDoc;
+                printDialog.PrintDocument(dps.DocumentPaginator, "전표 출력");        
             }
         }
     }

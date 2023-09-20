@@ -31,31 +31,29 @@
                 >
                 <Section>
                     <BlockUIContainer>
-                        <Label
+                        <StackPanel
+                            Name="SPcontents"
+                            >
+                            <Label
                             Foreground="Black"
                             Background="White"
                             FontSize="14"
                             FontWeight="Normal"
                             >
-                            <TextBlock            
+                                <TextBlock            
                                 TextDecorations="Underline"
                                 Text="거래 명세서"
                                 />
-                        </Label>
-                    </BlockUIContainer>
+                            </Label>
 
-                    <BlockUIContainer>
-                        <Label
+                            <Label
                             x:Name="LBDate"
                             Foreground="Black"
                             Background="White"
                             FontSize="14"
                             FontWeight="Normal"
                         />
-                    </BlockUIContainer>
-
-                    <BlockUIContainer>
-                        <Label
+                            <Label
                             x:Name="LBClientInfo"
                             Foreground="Black"
                             Background="White"
@@ -63,9 +61,7 @@
                             FontWeight="Normal"
                             Margin="0 0 0 5"
                         />
-                    </BlockUIContainer>
 
-                    <BlockUIContainer>
                         <DataGrid
                             x:Name="DGPrint1"
                             RowHeaderWidth="0"
@@ -117,9 +113,7 @@
                                 </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </BlockUIContainer>
 
-                    <BlockUIContainer>
                         <DataGrid
                             x:Name="DGPrint3"
                             RowHeaderWidth="0"
@@ -171,9 +165,7 @@
                                 </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </BlockUIContainer>
 
-                    <BlockUIContainer>
                         <Grid
                             Margin="10 10 10 0"
                             HorizontalAlignment="Center"
@@ -434,6 +426,7 @@
                                 Padding="0"
                                 />
                         </Grid>
+                        </StackPanel>
                     </BlockUIContainer>
                 </Section>
             </FlowDocument>
