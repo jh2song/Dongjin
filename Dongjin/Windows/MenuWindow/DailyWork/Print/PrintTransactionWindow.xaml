@@ -81,7 +81,7 @@
                             </DataGrid.CellStyle>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="품명" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="9*">
+                                <DataGridTextColumn Header="품명(출고)" Binding="{Binding ProductName}" HeaderStyle="{StaticResource PrintDataGridColumnHeaderLeft}" IsReadOnly="True" Width="9*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style BasedOn="{StaticResource CellLeftAlign}"/>
                                     </DataGridTextColumn.ElementStyle>
