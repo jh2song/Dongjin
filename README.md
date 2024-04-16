@@ -1,6 +1,9 @@
 # Dongjin
 동진화장품 전산 시스템
 
+# 참조
+- [테이블 구성 ORM 코드](https://github.com/jh2song/Dongjin/tree/master/Dongjin/Table)
+
 # 소프트웨어 환경
 - Visual Studio 2022
 - .Net Core 3.1
