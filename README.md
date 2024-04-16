@@ -1,6 +1,10 @@
 # Dongjin
 동진화장품 전산 시스템
 
+![image](https://github.com/jh2song/Dongjin/assets/43688074/62c583ff-9ca2-4706-902d-1d1a4a2aba1b)
+![image](https://github.com/jh2song/Dongjin/assets/43688074/23cd0b94-0bd8-485c-adcf-8b5720dc0d34)
+![image](https://github.com/jh2song/Dongjin/assets/43688074/6004cbda-9ad5-4fe2-b33f-41e34f6630fa)
+
 # 참조
 - [테이블 구성 ORM 코드](https://github.com/jh2song/Dongjin/tree/master/Dongjin/Table)
 
