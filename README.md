@@ -1,5 +1,6 @@
 # Dongjin
-동진화장품 전산 시스템
+- [포트폴리오 유튜브 영상](https://www.youtube.com/watch?v=tfUdCO2zqik)
+  - 자막을 꼭 켜주세요!
 
 ![image](https://github.com/jh2song/Dongjin/assets/43688074/62c583ff-9ca2-4706-902d-1d1a4a2aba1b)
 ![image](https://github.com/jh2song/Dongjin/assets/43688074/23cd0b94-0bd8-485c-adcf-8b5720dc0d34)
